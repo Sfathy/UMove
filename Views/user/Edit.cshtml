@@ -1,0 +1,66 @@
+﻿@model UMoveNew.Models.Users
+
+@{
+    ViewBag.Title = "Edit";
+}
+@section Styles {
+
+    <link href="@Url.Content("~/Content/new/form.css")" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+}
+
+
+<div class="container">
+    <div class="form-style-10">
+        <h1>Edit</h1>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="section"><span>1</span>@UMoveNew.Views.user.Create.NameUserNameAddress</div>
+            <div class="inner-wrap">
+                <label>
+                    @UMoveNew.Views.user.Create.YourFullName: @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </label>
+                <label>
+                    User Name: <span style="color:red;font-weight:bold;">User Name  can't be changed</span> <input type="text" id="username" name="username" disabled="disabled" value="@Model.UserName" /> 
+                 
+                </label>
+                <label>
+                    @UMoveNew.Views.user.Create.Address: @Html.EditorFor(model => model.Address)
+                    @Html.ValidationMessageFor(model => model.Address)
+                </label>
+            </div>
+
+            <div class="section"><span>2</span>@UMoveNew.Views.user.Create.EmailPhone</div>
+            <div class="inner-wrap">
+                <label>
+                    @UMoveNew.Views.user.Create.EmailAddress: @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </label>
+                <label>@UMoveNew.Views.user.Create.PhoneNumber: @Html.EditorFor(model => model.Phone) @Html.ValidationMessageFor(model => model.Phone)</label>
+            </div>
+
+            <div class="section"><span>3</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@UMoveNew.Views.user.Create.Passwords</div>
+            <div class="inner-wrap">
+                <label>@UMoveNew.Views.user.Create.Password @Html.EditorFor(model => model.Password) @Html.ValidationMessageFor(model => model.Password)</label>
+                <label>
+                    @UMoveNew.Views.user.Create.ConfirmPassword @Html.EditorFor(model => model.ConfirmPassword)
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                </label>
+                <input type="hidden" name="Type" id="Type" value="@TempData["Type"]" />
+                <input type="hidden" name="UserID" id="UserID" value="@TempData["UserID"]" />
+            </div>
+            <div class="button-section">
+                <input type="submit" name="@UMoveNew.Views.user.Create.SignUp" value="@UMoveNew.Views.user.Create.SignUp" />
+                <a href="~/user/Details/@TempData["UserID"]" class="cancel">@UMoveNew.Views.user.Create.Cancel</a></div>
+        }
+    </div>
+</div>
+
+
+
+
+
+

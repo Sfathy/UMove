@@ -1,0 +1,77 @@
+﻿@model UMoveNew.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+@section Styles {
+    <link href="@UMoveNew.Views.user.Login.style" rel="stylesheet" type="text/css" />
+
+}
+<div class="row">
+    <section id="content">
+        <h1>@UMoveNew.Views.user.Login.Loginn</h1>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                
+                @Html.ValidationSummary(true)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email)
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Password)
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                </div>
+
+            
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@UMoveNew.Views.user.Login.Loginn" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+
+        }
+        <div class="button">
+          @Html.ActionLink(UMoveNew.Views.user.Login.ForgetPassword, "ForgetPassword", "user")
+        </div>
+    </section>
+</div>
+<hr />
+
+
+@*<div class="row">
+        <section id="content">
+            <form action="">
+                <h1>Login</h1>
+                <div>
+                    <input type="text" placeholder="Email" required="" id="email" name="email" />
+                </div>
+                <div>
+                    <input type="password" placeholder="Password" required="" id="password" name="password" />
+                </div>
+                <div>
+                    <input type="submit" value="Log in" />
+                    <a href="#">Lost your password?</a>
+                    <a href="#">Register</a>
+                </div>
+            </form><!-- form -->
+            <div class="button">
+                <a href="#">Download source file</a>
+            </div><!-- button -->
+        </section><!-- content -->
+    </div>*@
+
