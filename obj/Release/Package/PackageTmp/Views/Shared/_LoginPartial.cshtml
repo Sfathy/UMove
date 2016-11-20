@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    var userInCookie = Request.Cookies["user"];
+   
+}
+@if (userInCookie != null)
+{
+     <ul class="main-navigation js-main-nav js-dropdown" >
+         <li class="current-menu-item menu-item-has-children">
+             @Html.ActionLink(UMoveNew.Views.Shared.login.Welcome +"  "+ userInCookie.Values["username"].ToString() + "!", "Details", "user", new { id = userInCookie.Values["userid"].ToString() }, null)
+             <ul role="menu" class="sub-menu">
+                 <li><a href="../../Trips/MyShipments">@UMoveNew.Views.Shared.login.MyShipments</a></li>
+                 <li><a href="../../Trips/MyInbox">@UMoveNew.Views.Shared.login.Inbox</a></li>
+                 <li><a href="../../Trips/MyBids">@UMoveNew.Views.Shared.login.MyBids</a></li>
+                 <li><a href="../../Trips/MyCars">@UMoveNew.Views.Shared.login.MyCars</a></li>
+                 @*<li><a href="#">Payments</a></li>
+                 <li><a href="#">My Profile</a></li>*@
+             </ul>
+          </li>
+         <li>@Html.ActionLink(UMoveNew.Views.Shared.login.Logout, "Logout", "user", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+         <li>
+             <div class="pp">
+                 <a href="@Url.Action("switchEn", "Home")"><img src="../images/English.GIF" width="50" height="50" alt="English" /></a>
+                 <a href="@Url.Action("switchAr", "Home")"><img src="../images/Arabic.GIF" width="50" height="50" alt="عربى" /></a>
+             </div>
+         </li>
+    </ul>
+}
+else
+{
+    <ul class="main-navigation js-main-nav js-dropdown"  >
+        <li>@Html.ActionLink(UMoveNew.Views.Shared.login.JoinUs, "Registration", "user", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink(UMoveNew.Views.Shared.login.Login, "Login", "user", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>
+            <div class="pp">
+                <a href="@Url.Action("switchEn", "Home")"><img src="../images/English.GIF" width="50" height="50" alt="English" /></a>
+                <a href="@Url.Action("switchAr", "Home")"><img src="../images/Arabic.GIF" width="50" height="50" alt="عربى" /></a>
+            </div>
+        </li>
+      </ul>
+}
+@*@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <ul class="main-navigation js-main-nav js-dropdown" >
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="main-navigation js-main-nav js-dropdown"  >
+        <li>@Html.ActionLink("Join Us", "Registration", "user", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "user", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}*@
+
