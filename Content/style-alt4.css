@@ -1,0 +1,61 @@
+.header .icon-box .fa, .number-counter__icon, hr.hr-quote::after {
+    color: #e38222;
+}
+.latest-news__date, .sticky .btn--post, .main-navigation > .current-menu-item > a::after, .main-navigation > li:hover > a::after, .main-navigation > li:focus > a::after, body.woocommerce-page span.onsale, .woocommerce span.onsale {
+    background-color: #e38222;
+}
+.sticky .btn--post {
+    border-top-color: #e38222;
+}
+.latest-news__date::after {
+    border-top-color: #c36d19;
+}
+.navbar-toggle, .jumbotron {
+    background-color: #444444;
+}
+.navbar-toggle:hover {
+    background-color: #292929;
+}
+@media (min-width: 992px) {
+.header__container {
+    background-color: #444444;
+}
+.main-navigation .menu-item-has-children:hover > a, .main-navigation .sub-menu > li > a:hover, .main-navigation .menu-item-has-children:hover::after, .main-navigation .sub-menu .menu-item-has-children:hover::after {
+    color: #444444;
+}
+.social-icons__link, .social-icons__link:hover, .footer .icon-container--square, .footer .icon-container--circle {
+    color: #444444;
+}
+}
+@media (max-width: 991px) {
+.main-navigation > li:hover > a, .main-navigation > li:focus > a, .main-navigation .sub-menu > li > a:hover {
+    color: #444444;
+}
+}
+.footer-top, .footer::before, .footer::after, .footer-top::before, .footer-top::after {
+    background-color: #444444;
+}
+.footer-bottom {
+    background-color: #303030;
+}
+.btn-info, .btn-primary, .testimonial__quote::before, .widget_search .search-submit, .sidebar .widget_nav_menu ul > li.current-menu-item a, .pagination .current, body.woocommerce-page .widget_shopping_cart_content .buttons .checkout, body.woocommerce-page nav.woocommerce-pagination ul li span.current, body.woocommerce-page button.button.alt, body.woocommerce-page div.product .woocommerce-tabs ul.tabs li.active, body.woocommerce-page .woocommerce-error a.button, body.woocommerce-page .woocommerce-info a.button, body.woocommerce-page .woocommerce-message a.button, .woocommerce-cart .wc-proceed-to-checkout a.checkout-button, body.woocommerce-page #payment #place_order, body.woocommerce-page #review_form #respond input#submit, .woocommerce button.button.alt:disabled, .woocommerce button.button.alt:disabled:hover, .woocommerce button.button.alt[disabled]:disabled, .woocommerce button.button.alt[disabled]:disabled:hover, .widget_calendar caption {
+    background-color: #2c497d;
+}
+.btn-info:hover, .open > .btn-info.dropdown-toggle, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .open > .btn-primary.dropdown-toggle, .btn-primary.active, .btn-primary.focus, .widget_search .search-submit:hover, .widget_search .search-submit:focus, body.woocommerce-page .widget_shopping_cart_content .buttons .checkout:hover, body.woocommerce-page button.button.alt:hover, body.woocommerce-page .woocommerce-error a.button:hover, body.woocommerce-page .woocommerce-info a.button:hover, body.woocommerce-page .woocommerce-message a.button:hover, .woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover, body.woocommerce-page #payment #place_order:hover, body.woocommerce-page #review_form #respond input#submit:hover {
+    background-color: #253e6a;
+}
+.btn-info, .btn-primary, body.woocommerce-page .widget_shopping_cart_content .buttons .checkout {
+    border-color: #2c497d;
+}
+.btn-info:hover, .open > .btn-info.dropdown-toggle, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .open > .btn-primary.dropdown-toggle, .btn-primary.active, .btn-primary.focus, body.woocommerce-page .widget_shopping_cart_content .buttons .checkout:hover {
+    border-color: #253e6a;
+}
+a, .latest-news--more-news::after, .widget_pw_icon_box .icon-box:hover .fa, body.woocommerce-page ul.products li.product a:hover img, .woocommerce ul.products li.product a:hover img, body.woocommerce-page ul.products li.product .price, .woocommerce ul.products li.product .price, body.woocommerce-page .star-rating, .woocommerce .star-rating, body.woocommerce-page div.product p.price, body.woocommerce-page p.stars a {
+    color: #2c497d;
+}
+a:hover, a:focus {
+    color: #253e6a;
+}
+.widget_pw_icon_box .icon-box:hover, .logo-panel img:hover {
+    border-bottom-color: #2c497d;
+}
