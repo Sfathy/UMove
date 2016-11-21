@@ -14,13 +14,13 @@ namespace UMoveNew.Controllers
     public class UsersController : ApiController
     {
         // GET api/<controller>
-        public string Get()
+     /*   public string Get()
         {
             clsUser user = new clsUser();
-            string jsonString1 = string.Empty;
-            jsonString1 = JsonConvert.SerializeObject(user.getList());
-            return jsonString1;
-        }
+            string jsonString = string.Empty;
+            jsonString = JsonConvert.SerializeObject(user.getList());
+            return jsonString;
+        }*/
 
         // GET api/<controller>/5
 
