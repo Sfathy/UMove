@@ -17,9 +17,9 @@ namespace UMoveNew.Controllers
         public string Get()
         {
             clsUser user = new clsUser();
-            string jsonString = string.Empty;
-            jsonString = JsonConvert.SerializeObject(user.getList());
-            return jsonString;
+            string jsonString1 = string.Empty;
+            jsonString1 = JsonConvert.SerializeObject(user.getList());
+            return jsonString1;
         }
 
         // GET api/<controller>/5
