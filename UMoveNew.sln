@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMoveNew", "UMoveNew\UMoveNew.csproj", "{DB8EF6DB-5F93-4797-A1A8-4C838B469191}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMoveNew.Tests", "UMoveNew.Tests\UMoveNew.Tests.csproj", "{4AEAB768-F313-4C1B-AC41-2258344E5DE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMoveNew", "UMoveNew.csproj", "{DB8EF6DB-5F93-4797-A1A8-4C838B469191}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{DB8EF6DB-5F93-4797-A1A8-4C838B469191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB8EF6DB-5F93-4797-A1A8-4C838B469191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB8EF6DB-5F93-4797-A1A8-4C838B469191}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4AEAB768-F313-4C1B-AC41-2258344E5DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AEAB768-F313-4C1B-AC41-2258344E5DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AEAB768-F313-4C1B-AC41-2258344E5DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AEAB768-F313-4C1B-AC41-2258344E5DE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
