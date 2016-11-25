@@ -13,5 +13,6 @@ namespace UMoveNew.Models
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
         public DateTime DateTime { get; set; }
+        public string Description { get; set; }
     }
 }

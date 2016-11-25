@@ -74,10 +74,14 @@ namespace UMoveNew.Controllers
         /*   public void Put(int id, [FromBody]string value)
            {
            }
-
+*/
            // DELETE api/triprquest/5
-           public void Delete(int id)
+           public HttpResponseMessage Delete(int id)
            {
-           }*/
+               clsTripRequest tripRq = new clsTripRequest();
+               tripRq.cancelTrip(id);
+               string jsonString = "{ \"success\": { \"id\": " + id.ToString() + "  } }";
+               return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+           }
     }
 }

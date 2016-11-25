@@ -194,6 +194,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppCode\clsBids.cs" />
     <Compile Include="Controllers\AppCode\clsCars.cs" />
+    <Compile Include="Controllers\AppCode\clsFavLoc.cs" />
     <Compile Include="Controllers\AppCode\clsInstallation.cs" />
     <Compile Include="Controllers\AppCode\clsQuestion.cs" />
     <Compile Include="Controllers\AppCode\clsSendNotification.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Controllers\AppCode\clsUserLocation.cs" />
     <Compile Include="Controllers\AppCode\DataAccess.cs" />
     <Compile Include="Controllers\CarCategoryController.cs" />
+    <Compile Include="Controllers\FavLocController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstallationController.cs" />
     <Compile Include="Controllers\LocationController.cs" />

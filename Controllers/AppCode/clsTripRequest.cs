@@ -15,7 +15,8 @@ namespace UMoveNew.Controllers.AppCode
             Request = 1,
             Accepted = 2,
             InProgress = 3,
-            Ended = 4
+            Ended = 4,
+            Canceled
         }
         public int insert(TripRequest trip)
         {
@@ -97,6 +98,13 @@ namespace UMoveNew.Controllers.AppCode
             }
             decimal cost = _WaitTimeRate * waitTime + _KMRate * distance;
             return cost;
+        }
+
+        public int cancelTrip(int tripID)
+        {
+            string sql = "update TripRequest set Status = " + ((int)TripStatus.Canceled).ToString() +   " Where ID = " + tripID.ToString();
+            DataAccess.ExecuteSQLNonQuery(sql);
+            return tripID;
         }
     }
 }

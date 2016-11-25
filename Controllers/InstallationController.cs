@@ -54,7 +54,7 @@ namespace UMoveNew.Controllers
         }
 
         // PUT api/<controller>/5
-        public string Put(int id, [FromBody] Installation Inst)
+        public HttpResponseMessage Put(int id, [FromBody] Installation Inst)
         {
             if (ModelState.IsValid)
             {
@@ -69,11 +69,12 @@ namespace UMoveNew.Controllers
                 dt2.Rows.Add(dr);
                 string jsonString = string.Empty;
                 jsonString = JsonConvert.SerializeObject(dt2);
-                return jsonString;
+                return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
             }
             else
             {
-                return "{ \"error\": { \"code\": 1, \"message\": \"InValid Paramters\"  } }";
+                String err = "{ \"error\": { \"code\": 1, \"message\": \"InValid Paramters\"  } }";
+                return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/jason") };
             }
         }
 
