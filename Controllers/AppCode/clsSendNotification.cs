@@ -7,99 +7,169 @@ using System.Web.Script.Serialization;
 
 public class AndroidGcmPushNotification
 {
-private  string _apiAccessKey;
-private  string[] _registrationIds;
-private  string _message;
-private  string _title;
-private  string _subtitle;
-private  string _tickerText;
-private  bool _vibrate;
-private  bool _sound;
+//private  string _apiAccessKey;
+//private  string[] _registrationIds;
+//private  string _message;
+//private  string _title;
+//private  string _subtitle;
+//private  string _tickerText;
+//private  bool _vibrate;
+//private  bool _sound;
 
 public AndroidGcmPushNotification()
 {
     
 }
 
-public string SendGcmNotification(string apiAccessKey, string[] registrationIds, string message, string title = "",
-    string subtitle = "", string tickerText = "", bool vibrate = true, bool sound = true)
+public AndroidFCMPushNotificationStatus SendNotification(string serverApiKey, string senderId, string deviceId, string message)
 {
-    _apiAccessKey = "AIzaSyBjyvyZH0EiPFf83txTcUnpbwoBuH3E1EA";//apiAccessKey;
-    _registrationIds = registrationIds;
-    _message = message;
-    _title = title;
-    _subtitle = subtitle;
-    _tickerText = tickerText;
-    _vibrate = vibrate;
-    _sound = sound;
+    AndroidFCMPushNotificationStatus result = new AndroidFCMPushNotificationStatus();
 
-    //MESSAGE DATA
-    GcmPostData data = new GcmPostData()
-    {
-        message = _message,
-        title = _title,
-        subtitle = _subtitle,
-        tickerText = _tickerText,
-        vibrate = _vibrate,
-        sound = _sound
-    };
-
-    //MESSAGE FIELDS 
-    GcmPostFields fields = new GcmPostFields();
-    fields.registration_ids = _registrationIds;
-    fields.data = data;
-
-    //SERIALIZE TO JSON 
-    JavaScriptSerializer jsonEncode = new JavaScriptSerializer();
-
-    //CONTENTS
-    byte[] byteArray = Encoding.UTF8.GetBytes(jsonEncode.Serialize(fields));
-
-    //REQUEST
-    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://android.googleapis.com/gcm/send");
-    request.Method = "POST";
-    request.KeepAlive = false;
-    request.ContentType = "application/json";
-    request.Headers.Add("Authorization: key={_apiAccessKey}");
-    request.ContentLength = byteArray.Length;
-
-    Stream dataStream = request.GetRequestStream();
-    dataStream.Write(byteArray, 0, byteArray.Length);
-    dataStream.Close();
-
-
-    //SEND REQUEST
     try
     {
-        WebResponse response = request.GetResponse();
-        {
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            string responseLine = reader.ReadToEnd();
-            reader.Close();
+        result.Successful = false;
+        result.Error = null;
 
-            return responseLine;
+        var value = message;
+        WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+        tRequest.Method = "post";
+        tRequest.ContentType = "application/x-www-form-urlencoded;charset=UTF-8";
+        tRequest.Headers.Add(string.Format("Authorization: key={0}", serverApiKey));
+       // tRequest.Headers.Add(string.Format("Sender: id={0}", senderId));
+
+        string postData = "collapse_key=score_update&time_to_live=108&delay_while_idle=1&data.message=" + value + "&data.time=" + System.DateTime.Now.ToString() + "&registration_id=" + deviceId + "";
+
+        Byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+        tRequest.ContentLength = byteArray.Length;
+
+        using (Stream dataStream = tRequest.GetRequestStream())
+        {
+            dataStream.Write(byteArray, 0, byteArray.Length);
+
+            using (WebResponse tResponse = tRequest.GetResponse())
+            {
+                using (Stream dataStreamResponse = tResponse.GetResponseStream())
+                {
+                    using (StreamReader tReader = new StreamReader(dataStreamResponse))
+                    {
+                        String sResponseFromServer = tReader.ReadToEnd();
+                        result.Response = sResponseFromServer;
+                    }
+                }
+            }
         }
     }
-    catch (Exception e)
+    catch (Exception ex)
     {
-        return e.Message;
+        result.Successful = false;
+        result.Response = null;
+        result.Error = ex;
     }
 
-}
-private class GcmPostFields
-{
-    public string[] registration_ids { get; set; }
-    public GcmPostData data { get; set; }
-
-}
-private class GcmPostData
-{
-    public string message { get; set; }
-    public string title { get; set; }
-    public string subtitle { get; set; }
-    public string tickerText { get; set; }
-    public bool vibrate { get; set; }
-    public bool sound { get; set; }
+    return result;
 }
 
+
+public class AndroidFCMPushNotificationStatus
+{
+    public bool Successful
+    {
+        get;
+        set;
+    }
+
+    public string Response
+    {
+        get;
+        set;
+    }
+    public Exception Error
+    {
+        get;
+        set;
+    }
+}
+
+    #region Commented
+    //public string SendGcmNotification(string apiAccessKey, string[] registrationIds, string message, string title = "",
+//    string subtitle = "", string tickerText = "", bool vibrate = true, bool sound = true)
+//{
+//    _apiAccessKey = "AIzaSyBjyvyZH0EiPFf83txTcUnpbwoBuH3E1EA";//apiAccessKey;
+//    _registrationIds = registrationIds;
+//    _message = message;
+//    _title = title;
+//    _subtitle = subtitle;
+//    _tickerText = tickerText;
+//    _vibrate = vibrate;
+//    _sound = sound;
+
+//    //MESSAGE DATA
+//    GcmPostData data = new GcmPostData()
+//    {
+//        message = _message,
+//        title = _title,
+//        subtitle = _subtitle,
+//        tickerText = _tickerText,
+//        vibrate = _vibrate,
+//        sound = _sound
+//    };
+
+//    //MESSAGE FIELDS 
+//    GcmPostFields fields = new GcmPostFields();
+//    fields.registration_ids = _registrationIds;
+//    fields.data = data;
+
+//    //SERIALIZE TO JSON 
+//    JavaScriptSerializer jsonEncode = new JavaScriptSerializer();
+
+//    //CONTENTS
+//    byte[] byteArray = Encoding.UTF8.GetBytes(jsonEncode.Serialize(fields));
+
+//    //REQUEST
+//    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://android.googleapis.com/gcm/send");
+//    request.Method = "POST";
+//    request.KeepAlive = false;
+//    request.ContentType = "application/json";
+//    request.Headers.Add("Authorization: key={_apiAccessKey}");
+//    request.ContentLength = byteArray.Length;
+
+//    Stream dataStream = request.GetRequestStream();
+//    dataStream.Write(byteArray, 0, byteArray.Length);
+//    dataStream.Close();
+
+
+//    //SEND REQUEST
+//    try
+//    {
+//        WebResponse response = request.GetResponse();
+//        {
+//            StreamReader reader = new StreamReader(response.GetResponseStream());
+//            string responseLine = reader.ReadToEnd();
+//            reader.Close();
+
+//            return responseLine;
+//        }
+//    }
+//    catch (Exception e)
+//    {
+//        return e.Message;
+//    }
+
+//}
+//private class GcmPostFields
+//{
+//    public string[] registration_ids { get; set; }
+//    public GcmPostData data { get; set; }
+
+//}
+//private class GcmPostData
+//{
+//    public string message { get; set; }
+//    public string title { get; set; }
+//    public string subtitle { get; set; }
+//    public string tickerText { get; set; }
+//    public bool vibrate { get; set; }
+//    public bool sound { get; set; }
+    //}
+    #endregion
 }

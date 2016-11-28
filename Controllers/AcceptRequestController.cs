@@ -49,7 +49,8 @@ namespace UMoveNew.Controllers
                 AndroidGcmPushNotification not = new AndroidGcmPushNotification();
                 string jsonString = string.Empty;
                 jsonString = JsonConvert.SerializeObject(dtDriver);
-                not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
+                //not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
+                not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "", customerDeviceToken, JsonConvert.SerializeObject(trip));
                 jsonRes = "{ \"success\": { \"id\": " + RequestID.ToString() + "  } }";
             }
             catch(Exception e)

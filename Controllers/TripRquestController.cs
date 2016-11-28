@@ -59,7 +59,7 @@ namespace UMoveNew.Controllers
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 
-                    not.SendGcmNotification("", new string[] { dt.Rows[i]["deviceToken"].ToString() }, JsonConvert.SerializeObject(trip), "Customer Request");
+                    not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "", dt.Rows[i]["deviceToken"].ToString(), JsonConvert.SerializeObject(trip));
                 }
                 jsonString = "{ \"success\": { \"id\": " + tripID.ToString() + "  } }";
             }
