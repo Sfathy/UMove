@@ -54,7 +54,7 @@ namespace UMoveNew.Controllers
         }
 
         // PUT api/<controller>/5
-        public HttpResponseMessage Put(int id, [FromBody] Installation Inst)
+        public HttpResponseMessage Put( [FromBody] Installation Inst)
         {
             if (ModelState.IsValid)
             {
