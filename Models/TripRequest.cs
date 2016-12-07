@@ -25,9 +25,17 @@ namespace UMoveNew.Models
         public int CarCategory { get; set; }
         public int Status { get; set; }
         public DateTime PicUpDate { get; set; }
+
+        public DateTime StartTime { get; set; }
+
+        public DateTime EndTime { get; set; }
         public Decimal Cost { get; set; }
         public Decimal Distance { get; set; }
         public Decimal WaitingTime { get; set; }
-        
+
+        public List<TripRouteSteps> steps { get; set; }
+
+
+        public decimal Duration { get; set; }
     }
 }

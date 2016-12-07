@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using UMoveNew.Controllers.AppCode;
+using UMoveNew.Models;
 
 namespace UMoveNew.Controllers
 {
@@ -41,15 +43,29 @@ namespace UMoveNew.Controllers
         }
 
         // PUT api/tripstatus/5
-        public HttpResponseMessage Put(int tripID, decimal waitingTime, decimal distance, decimal cost)
+        public HttpResponseMessage Put(int tripID,List<TripRouteSteps> steps)
         {
             string jsonString = string.Empty;
             try
             {
                 //end the trip and change the status to ended
                 clsTripRequest trip = new clsTripRequest();
-                trip.End(tripID, waitingTime, distance, cost);
-                jsonString = "{ \"success\": { \"id\": " + tripID.ToString() + "  } }";
+                clsUser u = new clsUser();
+                trip.End(tripID, 10, 50, 30);
+                //notify the user with the end trip
+                TripRequest userTrip = trip.get(tripID);
+                //get customer Device Token
+                string customerDeviceToken = u.getUserDeviceToken(userTrip.CustomerID);
+
+
+                //send notification to the user with the driver information
+                AndroidGcmPushNotification not = new AndroidGcmPushNotification();
+                //string jsonString = string.Empty;
+                jsonString = "{ \"Trip Ended\": { \"id\": " + tripID.ToString() + "  } }";
+                //not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
+                not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "UMove", customerDeviceToken, jsonString);
+                ////////////////////////////////////////////////
+                
             }
             catch (Exception e)
             {

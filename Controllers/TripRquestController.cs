@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 using UMoveNew.Controllers.AppCode;
 using UMoveNew.Models;
@@ -61,13 +63,25 @@ namespace UMoveNew.Controllers
 
                     not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "", dt.Rows[i]["deviceToken"].ToString(), JsonConvert.SerializeObject(trip));
                 }
-                jsonString = "{ \"success\": { \"id\": " + tripID.ToString() + "  } }";
+                string url = "https://maps.googleapis.com/maps/api/directions/json?origin="+trip.SourceLat.ToString()+"%2C"+trip.Sourcelong.ToString()+"&destination="+trip.DestLat.ToString()+"%2C"+trip.DestLong.ToString();
+                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(string.Format(url));
+                webReq.Method = "GET";
+                HttpWebResponse webResponse = (HttpWebResponse)webReq.GetResponse();
+                using (Stream responseStream = webResponse.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                    jsonString =  reader.ReadToEnd();
+                }
+             //   TripRoute t = (TripRoute)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString, typeof(TripRoute));
+
+               // jsonString = "{ \"success\": { \"id\": " + tripID.ToString() + "  } }";
+                //return webResponse;
             }
             catch (Exception e)
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't save trip\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return  new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
 
         // PUT api/triprquest/5
