@@ -7,6 +7,7 @@ namespace UMoveNew.Models
 {
     public class paymentMethodDetails
     {
+        public int ID { get; set; }
         public int UserID { get; set; }
         public string MethodName { get; set; }
         public DateTime ExpiryDate { get; set; }
