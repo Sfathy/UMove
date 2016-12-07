@@ -213,6 +213,7 @@
     <Compile Include="Controllers\PaymentMethodController.cs" />
     <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Controllers\TripCostController.cs" />
+    <Compile Include="Controllers\TripDetailsController.cs" />
     <Compile Include="Controllers\TripRquestController.cs" />
     <Compile Include="Controllers\TripsController.cs" />
     <Compile Include="Controllers\TripStatusController.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\TripQuestions.cs" />
     <Compile Include="Models\TripRequest.cs" />
+    <Compile Include="Models\TripRoute.cs" />
     <Compile Include="Models\TripService.cs" />
     <Compile Include="Models\UserLocation.cs" />
     <Compile Include="Models\Users.cs" />

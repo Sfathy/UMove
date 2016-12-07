@@ -51,8 +51,29 @@ namespace UMoveNew.Controllers.AppCode
         {
             string sql = "select * from TripRequest where ID = " + id.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
-            if(dt != null && dt.Rows!=null && dt.Rows.Count>0)
-                return new TripRequest() { UserID = int.Parse(dt.Rows[0]["UserID"].ToString()), DestLat = decimal.Parse(dt.Rows[0]["DestLat"].ToString()), DestLong = decimal.Parse(dt.Rows[0]["DestLong"].ToString()), DriverID = int.Parse(dt.Rows[0]["DriverID"].ToString()), PicUpDate = DateTime.Parse(dt.Rows[0]["PicUpDate"].ToString()), SourceLat = decimal.Parse(dt.Rows[0]["SourceLat"].ToString()), Sourcelong = decimal.Parse(dt.Rows[0]["SourceLong"].ToString()), Status = int.Parse(dt.Rows[0]["Status"].ToString()), PaymentMethod = int.Parse(dt.Rows[0]["PaymentMethod"].ToString()), CarCategory = int.Parse(dt.Rows[0]["CarCategory"].ToString()) };
+            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+            {
+                TripRequest tr = new TripRequest();
+                tr.UserID = int.Parse(dt.Rows[0]["UserID"].ToString());
+                tr.DestLat = decimal.Parse(dt.Rows[0]["DestLat"].ToString());
+                tr.DestLong = decimal.Parse(dt.Rows[0]["DestLong"].ToString());
+                tr.DriverID = int.Parse(dt.Rows[0]["DriverID"].ToString());
+                tr.PicUpDate = DateTime.Parse(dt.Rows[0]["PicUpDate"].ToString());
+                tr.SourceLat = decimal.Parse(dt.Rows[0]["SourceLat"].ToString());
+                tr.Sourcelong = decimal.Parse(dt.Rows[0]["SourceLong"].ToString());
+                tr.Status = (dt.Rows[0]["Status"] == DBNull.Value)?0:int.Parse(dt.Rows[0]["Status"].ToString());
+                tr.PaymentMethod = (dt.Rows[0]["PaymentMethod"]==DBNull.Value)?0: int.Parse(dt.Rows[0]["PaymentMethod"].ToString());
+                tr.CarCategory = int.Parse(dt.Rows[0]["CarCategory"].ToString()) ;
+                tr.Cost = (dt.Rows[0]["Cost"] == DBNull.Value) ? 0 : decimal.Parse(dt.Rows[0]["Cost"].ToString());
+                tr.WaitingTime = (dt.Rows[0]["WaitingTime"] == DBNull.Value) ? 0 : decimal.Parse(dt.Rows[0]["WaitingTime"].ToString());
+                tr.Distance = (dt.Rows[0]["Distance"] == DBNull.Value) ? 0 : decimal.Parse(dt.Rows[0]["Distance"].ToString());
+                tr.Duration = 50;
+                tr.StartTime = DateTime.Now;
+                tr.EndTime = DateTime.Now;
+                tr.steps = new List<TripRouteSteps>();
+                tr.steps.Add(new TripRouteSteps(){distance = new propt("10Km",1000),duration = new propt("10 min",600000),end_location = new Point(25.22145M,630.254M),start_location = new Point(68.215M,36.25412M),travel_mode ="DRIVING",html_instructions="Continue onto \u003cb\u003eAl Betrool\u003c/b\u003e"});
+                return tr;
+            }
             return null;
         }
 

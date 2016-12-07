@@ -12,11 +12,13 @@ namespace UMoveNew.Controllers
     public class TripCostController : ApiController
     {
         // GET api/tripcost
-        public HttpResponseMessage Get(decimal distance, decimal waitTime,int carCategory)
+        public HttpResponseMessage Get(decimal sourceLat,decimal sourceLng,decimal destinationLat,decimal destinationLng, int carCategory)
         {
+            decimal distance = 50;
+            decimal waitTime = 30;
             clsTripRequest trip = new clsTripRequest();
             decimal cost = trip.calcCost(distance, waitTime,carCategory);
-            string jsonString = "{ \"cost\": { \"cost\": "+cost.ToString()+"  } }";
+            string jsonString = "{ \"cost\": { \"cost\": "+cost.ToString()+",\"time\":"+waitTime.ToString()+"  } }";
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
 
             
