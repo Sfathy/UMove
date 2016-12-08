@@ -205,6 +205,7 @@
     <Compile Include="Controllers\AppCode\clsUserLocation.cs" />
     <Compile Include="Controllers\AppCode\DataAccess.cs" />
     <Compile Include="Controllers\CarCategoryController.cs" />
+    <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\FavLocController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstallationController.cs" />
