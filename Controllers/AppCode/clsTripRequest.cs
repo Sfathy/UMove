@@ -75,7 +75,7 @@ namespace UMoveNew.Controllers.AppCode
                 tr.Duration = 50;
                 tr.StartTime = DateTime.Now;
                 tr.EndTime = DateTime.Now;
-                string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + tr.SourceLat.ToString() + "%2C" + tr.Sourcelong.ToString() + "&destination=" + tr.DestLat.ToString() + "%2C" + tr.DestLong.ToString();
+                string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + tr.SourceLat.ToString() + "%2C" + tr.Sourcelong.ToString() + "&destination=" + tr.DestLat.ToString() + "%2C" + tr.DestLong.ToString()+ "&alternatives=true";
                 string jsonString = string.Empty;
                 HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(string.Format(url));
                 webReq.Method = "GET";
