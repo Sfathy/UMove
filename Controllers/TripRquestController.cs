@@ -63,18 +63,18 @@ namespace UMoveNew.Controllers
 
                     not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "", dt.Rows[i]["deviceToken"].ToString(), JsonConvert.SerializeObject(trip));
                 }
-                string url = "https://maps.googleapis.com/maps/api/directions/json?origin="+trip.SourceLat.ToString()+"%2C"+trip.Sourcelong.ToString()+"&destination="+trip.DestLat.ToString()+"%2C"+trip.DestLong.ToString();
-                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(string.Format(url));
-                webReq.Method = "GET";
-                HttpWebResponse webResponse = (HttpWebResponse)webReq.GetResponse();
-                using (Stream responseStream = webResponse.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    jsonString =  reader.ReadToEnd();
-                }
+                //string url = "https://maps.googleapis.com/maps/api/directions/json?origin="+trip.SourceLat.ToString()+"%2C"+trip.Sourcelong.ToString()+"&destination="+trip.DestLat.ToString()+"%2C"+trip.DestLong.ToString();
+                //HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(string.Format(url));
+                //webReq.Method = "GET";
+                //HttpWebResponse webResponse = (HttpWebResponse)webReq.GetResponse();
+                //using (Stream responseStream = webResponse.GetResponseStream())
+                //{
+                //    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                //    jsonString =  reader.ReadToEnd();
+                //}
              //   TripRoute t = (TripRoute)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString, typeof(TripRoute));
 
-               // jsonString = "{ \"success\": { \"id\": " + tripID.ToString() + "  } }";
+                jsonString = "{ \"success\": { \"id\": " + tripID.ToString() + "  } }";
                 //return webResponse;
             }
             catch (Exception e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -33,9 +34,9 @@ namespace UMoveNew.Models
         public Decimal Distance { get; set; }
         public Decimal WaitingTime { get; set; }
 
-        public List<TripRouteSteps> steps { get; set; }
+     //   public List<TripRouteSteps> steps { get; set; }
 
-
+        public JObject googleApi { get; set; }
         public decimal Duration { get; set; }
     }
 }
