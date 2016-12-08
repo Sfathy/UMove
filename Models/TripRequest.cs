@@ -36,7 +36,7 @@ namespace UMoveNew.Models
 
      //   public List<TripRouteSteps> steps { get; set; }
 
-        public JObject googleApi { get; set; }
+        public string Route { get; set; }
         public decimal Duration { get; set; }
     }
 }

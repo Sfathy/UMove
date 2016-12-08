@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using UMoveNew.Controllers.AppCode;
 using UMoveNew.Models;
 
@@ -21,7 +23,7 @@ namespace UMoveNew.Controllers
         // GET api/tripdetails/5
         public HttpResponseMessage Get(int id)
         {
-            
+
             clsTripRequest trip = new clsTripRequest();
             TripRequest t = trip.get(id);
             //string url = "https://maps.googleapis.com/maps/api/directions/json?origin="+trip.SourceLat.ToString()+"%2C"+trip.Sourcelong.ToString()+"&destination="+trip.DestLat.ToString()+"%2C"+trip.DestLong.ToString();
@@ -35,11 +37,27 @@ namespace UMoveNew.Controllers
             //}
             //   TripRoute t = (TripRoute)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString, typeof(TripRoute));
 
-           
-            //return webResponse;
 
-            string jsonString = JsonConvert.SerializeObject(t);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            //return webResponse;
+          JObject  routs = (JObject)JsonConvert.DeserializeObject(t.Route, typeof(JObject));
+          routs.Add("ID", id);
+          routs.Add("UserID", t.UserID);
+          routs.Add("SourceLat", t.SourceLat);
+          routs.Add("Sourcelong", t.Sourcelong);
+          routs.Add("DestLat", t.DestLat);
+          routs.Add("DestLong", t.DestLong);
+          routs.Add("DriverID", t.DriverID);
+          routs.Add("PicUpDate", t.PicUpDate);
+          routs.Add("Status", t.Status);
+          routs.Add("PaymentMethod", t.PaymentMethod);
+          routs.Add("CarCategory", t.CarCategory);
+          routs.Add("Distance", t.Distance);
+          routs.Add("WaitingTime", t.WaitingTime);
+          routs.Add("Cost", t.Cost);
+          string s = JsonConvert.SerializeObject(routs);
+            string jsonString =JsonConvert.SerializeObject(t);
+           // return t;
+              return new HttpResponseMessage() { Content = new StringContent(s.Trim(), System.Text.Encoding.UTF8, "application/jason") };
 
         }
 

@@ -25,8 +25,9 @@ namespace UMoveNew.Controllers.AppCode
         }
         public int insert(TripRequest trip)
         {
+            JObject googleApi = (JObject)JsonConvert.DeserializeObject(trip.Route, typeof(JObject));
             //check if the user name exist before
-            SqlParameter[] param = new SqlParameter[9];
+            SqlParameter[] param = new SqlParameter[10];
             param[0] = DataAccess.AddParamter("@UserID", trip.UserID, SqlDbType.Int, 50);
             param[1] = DataAccess.AddParamter("@DestLat", trip.DestLat, SqlDbType.Decimal, 500);
             param[2] = DataAccess.AddParamter("@DestLong", trip.DestLong, SqlDbType.Decimal, 500);
@@ -36,12 +37,13 @@ namespace UMoveNew.Controllers.AppCode
             param[6] = DataAccess.AddParamter("@PicUpDate", trip.PicUpDate, SqlDbType.DateTime, 50);
             param[7] = DataAccess.AddParamter("@PaymentMethod", trip.PaymentMethod, SqlDbType.Int, 50);
             param[8] = DataAccess.AddParamter("@CarCategory", trip.CarCategory, SqlDbType.Int, 50);
+            param[9] = DataAccess.AddParamter("@Route", googleApi.ToString(), SqlDbType.NVarChar, int.MaxValue);
             
             //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
 
 
-            string sql = "insert into TripRequest([UserID],[DestLat],[DestLong],[SourceLat],[SourceLong],[DriverID],[PicUpDate],PaymentMethod,CarCategory) values" +
-                "(@UserID,@DestLat,@DestLong,@SourceLat,@SourceLong,@DriverID,@PicUpDate,@PaymentMethod,@CarCategory)";
+            string sql = "insert into TripRequest([UserID],[DestLat],[DestLong],[SourceLat],[SourceLong],[DriverID],[PicUpDate],PaymentMethod,CarCategory,Route) values" +
+                "(@UserID,@DestLat,@DestLong,@SourceLat,@SourceLong,@DriverID,@PicUpDate,@PaymentMethod,@CarCategory,@Route)";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int tripID = 0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from TripRequest");
@@ -75,17 +77,17 @@ namespace UMoveNew.Controllers.AppCode
                 tr.Duration = 50;
                 tr.StartTime = DateTime.Now;
                 tr.EndTime = DateTime.Now;
-                string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + tr.SourceLat.ToString() + "%2C" + tr.Sourcelong.ToString() + "&destination=" + tr.DestLat.ToString() + "%2C" + tr.DestLong.ToString()+ "&alternatives=true";
-                string jsonString = string.Empty;
-                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(string.Format(url));
-                webReq.Method = "GET";
-                HttpWebResponse webResponse = (HttpWebResponse)webReq.GetResponse();
-                using (Stream responseStream = webResponse.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    jsonString = reader.ReadToEnd();
-                }
-                tr.googleApi =(JObject)JsonConvert.DeserializeObject(jsonString,typeof(JObject));
+                //string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + tr.SourceLat.ToString() + "%2C" + tr.Sourcelong.ToString() + "&destination=" + tr.DestLat.ToString() + "%2C" + tr.DestLong.ToString();
+                //string jsonString = string.Empty;
+                //HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(string.Format(url));
+                //webReq.Method = "GET";
+                //HttpWebResponse webResponse = (HttpWebResponse)webReq.GetResponse();
+                //using (Stream responseStream = webResponse.GetResponseStream())
+                //{
+                //    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                //    jsonString = reader.ReadToEnd();
+                //}
+                tr.Route = (dt.Rows[0]["Route"] == DBNull.Value) ? "" : JsonConvert.DeserializeObject(dt.Rows[0]["Route"].ToString(), typeof(JObject)).ToString();
                 //   tr.steps = new List<TripRouteSteps>();
               //  tr.steps.Add(new TripRouteSteps(){distance = new propt("10Km",1000),duration = new propt("10 min",600000),end_location = new Point(25.22145M,630.254M),start_location = new Point(68.215M,36.25412M),travel_mode ="DRIVING",html_instructions="Continue onto \u003cb\u003eAl Betrool\u003c/b\u003e"});
                 return tr;
