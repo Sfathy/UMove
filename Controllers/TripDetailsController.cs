@@ -48,16 +48,16 @@ namespace UMoveNew.Controllers
           routs.Add("DestLong", t.DestLong);
           routs.Add("DriverID", t.DriverID);
             //get driver info this isn't real data 
-          routs.Add("DriverID", "Hossam");
-          routs.Add("DriverLat", "30.151425467127243");
-          routs.Add("DriverLat", "31.321661397814747");
+          routs.Add("DriverName", "Hossam");
+          routs.Add("Driverlatitude", "30.151425467127243");
+          routs.Add("DriverLongitude", "31.321661397814747");
           routs.Add("PicUpDate", t.PicUpDate);
           routs.Add("Status", t.Status);
           routs.Add("PaymentMethod", t.PaymentMethod);
           routs.Add("CarCategory", t.CarCategory);
           routs.Add("Distance", t.Distance);
           routs.Add("WaitingTime", t.WaitingTime);
-          routs.Add("Cost", t.Cost);
+          routs.Add("Cost", t.Cost.ToString()+" LE");
           string s = JsonConvert.SerializeObject(routs);
             string jsonString =JsonConvert.SerializeObject(t);
            // return t;

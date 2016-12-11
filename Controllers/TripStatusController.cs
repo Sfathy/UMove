@@ -64,7 +64,7 @@ namespace UMoveNew.Controllers
                 //send notification to the user with the driver information
                 AndroidGcmPushNotification not = new AndroidGcmPushNotification();
                 //string jsonString = string.Empty;
-                jsonString = "{ \"Trip Ended\": { \"id\": " + tripID.ToString() + ",\"Cost\":"+finalCost.ToString()+"  } }";
+                jsonString = "{ \"Trip Ended\": { \"id\": " + tripID.ToString() + ",\"Cost\":"+finalCost.ToString()+"\"LE\"  } }";
                 //not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
                 not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "UMove", customerDeviceToken, jsonString);
                 ////////////////////////////////////////////////

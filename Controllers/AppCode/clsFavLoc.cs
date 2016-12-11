@@ -49,7 +49,7 @@ namespace UMoveNew.Controllers.AppCode
         }
         public int Delete(int id) 
         {
-            string sql = "Delete Form UserFavLocation Where where ID =" + id.ToString();
+            string sql = "Delete From UserFavLocation Where  ID =" + id.ToString();
             return DataAccess.ExecuteSQLNonQuery(sql);
         }
         
