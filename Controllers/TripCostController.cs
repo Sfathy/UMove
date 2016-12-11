@@ -47,7 +47,7 @@ namespace UMoveNew.Controllers
                 cost = trip.calcCost(distance, waitTime, carCategory);
                 
                 j = (JObject) routes[i];
-                j.Add("cost", cost.ToString());
+                j.Add("cost", cost.ToString()+" LE");
                 routes[i] = j;
             }
             

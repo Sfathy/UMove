@@ -62,15 +62,27 @@ namespace UMoveNew.Controllers
             }
             else
             {
-                jsonString = "{ \"error\": { \"code\": 1, \"message\": \"Error while updating new locatino\"  } }"; ;
+                jsonString = "{ \"error\": { \"code\": 1, \"message\": \"Error while updating new location\"  } }"; ;
             }
 
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
 
         // DELETE api/favloc/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
+            string jsonString = string.Empty;
+            clsFavLoc loc = new clsFavLoc();
+           int res= loc.Delete(id);
+            if (res>0)
+            {
+                jsonString = "{ \"success\": { \"id\":" + id.ToString() + "  } }";
+            }
+            else
+            {
+                jsonString = "{ \"error\": { \"code\": 1, \"message\": \"Error while Deleting  location\"  } }"; ;
+            }
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
     }
 }

@@ -47,7 +47,11 @@ namespace UMoveNew.Controllers.AppCode
 
             return id;
         }
-
+        public int Delete(int id) 
+        {
+            string sql = "Delete Form UserFavLocation Where where ID =" + id.ToString();
+            return DataAccess.ExecuteSQLNonQuery(sql);
+        }
         
         //public List<UserLocation> getList()
         //{
