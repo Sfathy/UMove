@@ -104,7 +104,7 @@ namespace UMoveNew.Controllers
                     DataTable dt = new DataTable();
                     dt.Columns.Add("ID");
                     DataRow dr = dt.NewRow();
-                    dr["ID"] = User.insert(user);
+                    dr["ID"] = User.update(id,user);
                     if (dr["ID"].ToString() != "-1")
                     {
                         dt.Rows.Add(dr);
