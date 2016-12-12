@@ -35,8 +35,12 @@ namespace UMoveNew.Models
         public Decimal WaitingTime { get; set; }
 
      //   public List<TripRouteSteps> steps { get; set; }
-
+        public string   DriverName { get; set; }
+        public string DriverPhone { get; set; }
+        public string DriverCarNo { get; set; }
         public string Route { get; set; }
-        public decimal Duration { get; set; }
+        public double Duration { get; set; }
+        public string  StartAddress { get; set; }
+        public string EndAddress { get; set; }
     }
 }
