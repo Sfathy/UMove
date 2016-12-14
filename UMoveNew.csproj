@@ -239,6 +239,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Installation.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\paymentMethodDetails.cs" />
     <Compile Include="Models\RateDriver.cs" />
     <Compile Include="Models\restPasswordController.cs" />
