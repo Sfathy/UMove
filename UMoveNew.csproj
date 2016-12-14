@@ -206,12 +206,14 @@
     <Compile Include="Controllers\AppCode\DataAccess.cs" />
     <Compile Include="Controllers\CarCategoryController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
+    <Compile Include="Controllers\ChangeUserInfoController.cs" />
     <Compile Include="Controllers\FavDriverController.cs" />
     <Compile Include="Controllers\FavLocController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstallationController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LoginAPIController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\PaymentMethodController.cs" />
     <Compile Include="Controllers\RateDriverController.cs" />
     <Compile Include="Controllers\TripController.cs" />
@@ -223,6 +225,7 @@
     <Compile Include="Controllers\TripsController.cs" />
     <Compile Include="Controllers\TripStatusController.cs" />
     <Compile Include="Controllers\userController.cs" />
+    <Compile Include="Controllers\UserPhonesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
