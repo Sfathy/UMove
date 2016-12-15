@@ -196,6 +196,7 @@
     <Compile Include="Controllers\AppCode\clsCars.cs" />
     <Compile Include="Controllers\AppCode\clsFavLoc.cs" />
     <Compile Include="Controllers\AppCode\clsInstallation.cs" />
+    <Compile Include="Controllers\AppCode\clsNotification.cs" />
     <Compile Include="Controllers\AppCode\clsPaymentMethod.cs" />
     <Compile Include="Controllers\AppCode\clsQuestion.cs" />
     <Compile Include="Controllers\AppCode\clsSendNotification.cs" />
