@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using UMoveNew.Controllers.AppCode;
 using UMoveNew.Models;
 
 namespace UMoveNew.Controllers
@@ -20,21 +21,8 @@ namespace UMoveNew.Controllers
         // GET api/notification/5
         public HttpResponseMessage Get(int userId)
         {
-            List<Notification> nots = new List<Notification>();
-            Notification n = new Notification();
-            n.ID = 1;
-            n.Description = "You won 30 Points";
-            n.NotDate = new DateTime(2016, 12, 15, 4, 30, 00);
-            n.UserID = 37;
-            nots.Add(n);
-
-            n = new Notification();
-            n.ID = 2;
-            n.Description = "You won 10 Points";
-            n.NotDate = new DateTime(2016, 12, 15, 8, 30, 00);
-            n.UserID = 37;
-            nots.Add(n);
-
+            List<Notification> nots = new clsNotification().get(userId);
+            
             string jsonString = "";
             //DataTable dt = new clsTripRequest().get(userId, userType);
             jsonString = JsonConvert.SerializeObject(nots);
