@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AppCode\clsBids.cs" />
     <Compile Include="Controllers\AppCode\clsCars.cs" />
+    <Compile Include="Controllers\AppCode\clsFavDriver.cs" />
     <Compile Include="Controllers\AppCode\clsFavLoc.cs" />
     <Compile Include="Controllers\AppCode\clsInstallation.cs" />
     <Compile Include="Controllers\AppCode\clsNotification.cs" />

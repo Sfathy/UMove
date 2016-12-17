@@ -17,7 +17,12 @@ namespace UMoveNew.Models
 
         public string CarNo { get; set; }
 
+        public int CarType { get; set; }
         public double Duration { get; set; }
         public double Distance { get; set; }
+
+        public decimal DriverLat { get; set; }
+
+        public decimal DriverLng { get; set; }
     }
 }
