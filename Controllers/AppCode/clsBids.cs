@@ -28,8 +28,8 @@ namespace UMoveNew.Controllers.AppCode
             //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
 
 
-            string sql = "insert into Bid(UserID,Price,TripID,TruckType,PickupDate,DeliveryDate,BidExpiration,Note,TermCondition,Accepted) values" +
-                "(@UserID,@Price,@TripID,@TruckType,@PickupDate,@DeliveryDate,@BidExpiration,@Note,@TermCondition,@Accepted)";
+            string sql = "insert into Bid(UserID,Price,TripID,TruckType,PickupDate,DeliveryDate,BidExpiration,Note,TermCondition,Accepted,Puplished) values" +
+                "(@UserID,@Price,@TripID,@TruckType,@PickupDate,@DeliveryDate,@BidExpiration,@Note,@TermCondition,@Accepted,0)";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int bidID = 0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from Bid");

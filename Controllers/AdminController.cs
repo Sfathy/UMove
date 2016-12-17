@@ -16,15 +16,64 @@ namespace UMoveNew.Controllers
         }
         public ActionResult AllShipments()
         {
+            if (Request.Cookies["user"] != null )
+            {
+                HttpCookie myCookie = Request.Cookies["user"];
+                int Type = Convert.ToInt32(myCookie.Values["type"].ToString());
+                if (Type ==3)
+                {
+                    return Redirect("/Administrator/AllTrips.aspx");
+                }
+                else
+                {
+                    return RedirectToAction("NotAuthonticated", "Admin");
+                }
+            }
+            else
+                return RedirectToAction("login", "user");
+        }
+        public ActionResult AllBids()
+        {
             if (Request.Cookies["user"] != null)
             {
-                return Redirect("/Administrator/AllTrips.aspx");
+                HttpCookie myCookie = Request.Cookies["user"];
+                int Type = Convert.ToInt32(myCookie.Values["type"].ToString());
+                if (Type == 3)
+                {
+                    return Redirect("/Administrator/AllBids.aspx");
+                }
+                else
+                {
+                    return RedirectToAction("NotAuthonticated", "Admin");
+                }
+            }
+            else
+                return RedirectToAction("login", "user");
+        }
+        public ActionResult Questions()
+        {
+            if (Request.Cookies["user"] != null)
+            {
+                HttpCookie myCookie = Request.Cookies["user"];
+                int Type = Convert.ToInt32(myCookie.Values["type"].ToString());
+                if (Type == 3)
+                {
+                    return Redirect("/Administrator/Questions.aspx");
+                }
+                else
+                {
+                    return RedirectToAction("NotAuthonticated", "Admin");
+                }
             }
             else
                 return RedirectToAction("login", "user");
         }
         //
         // GET: /Admin/Details/5
+        public ActionResult NotAuthonticated() { 
+        
+            return View();
+        }
         public ActionResult Details(int id)
         {
             return View();

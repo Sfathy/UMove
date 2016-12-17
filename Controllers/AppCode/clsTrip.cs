@@ -38,8 +38,8 @@ namespace UMoveNew.Controllers.AppCode
             //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
 
 
-            string sql = "insert into Trip([UserID],[DestLat],[DestLag],[SourceLat],[SourceLag],[EstimatedCost],[TripDuration],[TripCost],[EstimatedDuration],[DriverID],[PicUpDate],[DeliveryDate],[Note],[PicUpType],[DeliveryType],[SourceLocationText],[DeliveryLocationText],[Name],[CustomerID],[Country],[PaymentType]) values" +
-                "(@UserID,@DestLat,@DestLag,@SourceLat,@SourceLag,@EstimatedCost,@TripDuration,@TripCost,@EstimatedDuration,@DriverID,@PicUpDate,@DeliveryDate,@Note,@PicUpType,@DeliveryType,@SourceLocationText,@DeliveryLocationText,@Name,@CustomerID,@Country,@TripType)";
+            string sql = "insert into Trip([UserID],[DestLat],[DestLag],[SourceLat],[SourceLag],[EstimatedCost],[TripDuration],[TripCost],[EstimatedDuration],[DriverID],[PicUpDate],[DeliveryDate],[Note],[PicUpType],[DeliveryType],[SourceLocationText],[DeliveryLocationText],[Name],[CustomerID],[Country],[PaymentType],[Puplished]) values" +
+                "(@UserID,@DestLat,@DestLag,@SourceLat,@SourceLag,@EstimatedCost,@TripDuration,@TripCost,@EstimatedDuration,@DriverID,@PicUpDate,@DeliveryDate,@Note,@PicUpType,@DeliveryType,@SourceLocationText,@DeliveryLocationText,@Name,@CustomerID,@Country,@TripType,0)";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int tripID = 0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from Trip");
@@ -75,6 +75,7 @@ namespace UMoveNew.Controllers.AppCode
                 }
 
             }
+            sendmessage(trip);
             return tripID;
         }
         public void sendmessage(Trip trip)
@@ -84,7 +85,7 @@ namespace UMoveNew.Controllers.AppCode
             clsUser u = new clsUser();
             DataTable dt3 = u.get(trip.UserID);
             string Message = " You Have Request Trip by Name" + trip.Name + "";
-            string Message_AR = " N'تم عمل رحلة بأسم' " + trip.Name + " ";
+            string Message_AR = " N'تم عمل رحلة بأسم' " + trip.Name + " فى انتظار موافقة مدير الموقع ";
             param2[0] = DataAccess.AddParamter("@Message", Message, SqlDbType.NChar, 500);
             param2[1] = DataAccess.AddParamter("@ToUser", trip.UserID, SqlDbType.Int, 50);
             param2[2] = DataAccess.AddParamter("@Sender", trip.UserID, SqlDbType.Int, 50);

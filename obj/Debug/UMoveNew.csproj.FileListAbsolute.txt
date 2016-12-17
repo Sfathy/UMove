@@ -227,3 +227,5 @@ C:\Users\Hossam-\Documents\GitHub\UMove\obj\Debug\UMoveNew.dll.licenses
 C:\Users\Hossam-\Documents\GitHub\UMove\obj\Debug\en-GB\UMoveNew.resources.dll
 C:\Users\Hossam-\Documents\GitHub\UMove\obj\Debug\UMoveNew.dll
 C:\Users\Hossam-\Documents\GitHub\UMove\obj\Debug\UMoveNew.pdb
+C:\Users\Hossam-\Documents\GitHub\UMove\obj\Debug\UMoveNew.Views.Admin.NotAuthonticated.resources
+C:\Users\Hossam-\Documents\GitHub\UMove\obj\Debug\UMoveNew.Views.Admin.NotAuthonticated.en-GB.resources

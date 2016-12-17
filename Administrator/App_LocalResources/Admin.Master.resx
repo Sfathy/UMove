@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnArabicResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Arabic.GIF"  width="50" height="50" alt="عربى" /&gt;</value>
+  </data>
+  <data name="btnArabicResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnEnglishResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/English.GIF" width="50" height="50" alt="English" /&gt;</value>
+  </data>
+  <data name="btnEnglishResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="Label10Resource1.Text" xml:space="preserve">
     <value>بداية العمل</value>
   </data>
@@ -178,16 +190,10 @@
     <value />
   </data>
   <data name="Label1Resource1.Text" xml:space="preserve">
-    <value />
+    <value>Logout</value>
   </data>
   <data name="Label1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label1Resource2.Text" xml:space="preserve">
     <value>خروج</value>
-  </data>
-  <data name="Label1Resource2.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="Label20Resource1.Text" xml:space="preserve">
     <value>مساعدة</value>
@@ -249,12 +255,6 @@
   <data name="Label29Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="Label2Resource1.Text" xml:space="preserve">
-    <value>رحلاتى</value>
-  </data>
-  <data name="Label2Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Label30Resource1.Text" xml:space="preserve">
     <value />
   </data>
@@ -279,14 +279,32 @@
   <data name="Label33Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="Label3Resource1.Text" xml:space="preserve">
-    <value>الرسائل</value>
+  <data name="Label36Resource1.Text" xml:space="preserve">
+    <value>الرحلات الجديدة</value>
   </data>
-  <data name="Label3Resource1.ToolTip" xml:space="preserve">
+  <data name="Label36Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label37Resource1.Text" xml:space="preserve">
+    <value>مذايدات</value>
+  </data>
+  <data name="Label37Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label38Resource1.Text" xml:space="preserve">
+    <value>الاسئلة</value>
+  </data>
+  <data name="Label38Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label39Resource1.Text" xml:space="preserve">
+    <value>الاجابات</value>
+  </data>
+  <data name="Label39Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label4Resource1.Text" xml:space="preserve">
-    <value>القائمة</value>
+    <value>القائوة</value>
   </data>
   <data name="Label4Resource1.ToolTip" xml:space="preserve">
     <value />
@@ -295,18 +313,6 @@
     <value>الرئيسية</value>
   </data>
   <data name="Label5Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label6Resource1.Text" xml:space="preserve">
-    <value>رحلة جديدة</value>
-  </data>
-  <data name="Label6Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label7Resource1.Text" xml:space="preserve">
-    <value>البحث عن رحلة</value>
-  </data>
-  <data name="Label7Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label8Resource1.Text" xml:space="preserve">
@@ -321,11 +327,11 @@
   <data name="Label9Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="layoutDirection" xml:space="preserve">
-    <value>rtl</value>
+  <data name="lproResource1.Text" xml:space="preserve">
+    <value />
   </data>
-  <data name="style.css" xml:space="preserve">
-    <value>../Content/style_ar.css</value>
+  <data name="lproResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="UserNameResource1.Text" xml:space="preserve">
     <value>مرحباً !</value>
@@ -333,16 +339,10 @@
   <data name="UserNameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="UserNameResource2.Text" xml:space="preserve">
-    <value>مرحباً !</value>
+  <data name="layoutDirection" xml:space="preserve">
+    <value>rtl</value>
   </data>
-  <data name="UserNameResource2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label113Resource1.Text" xml:space="preserve">
-    <value>عروضى</value>
-  </data>
-  <data name="Label1113Resource1.Text" xml:space="preserve">
-    <value>سياراتى</value>
+  <data name="style.css" xml:space="preserve">
+    <value>../Content/style_ar.css</value>
   </data>
 </root>

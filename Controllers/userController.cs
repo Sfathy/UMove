@@ -42,6 +42,7 @@ namespace UMoveNew.Controllers
 
                     usercookie.Values.Add("userid", UserID.ToString());
                     usercookie.Values.Add("username", dt.Rows[0]["username"].ToString());
+                    usercookie.Values.Add("type", dt.Rows[0]["Type"].ToString());
                     usercookie.Expires = DateTime.Now.AddDays(2);
                     Response.Cookies.Add(usercookie);
                     return RedirectToAction("Index", "Home");

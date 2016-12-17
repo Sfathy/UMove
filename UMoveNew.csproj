@@ -189,12 +189,33 @@
     <Compile Include="Administrator\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\AllBids.aspx.cs">
+      <DependentUpon>AllBids.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\AllBids.aspx.designer.cs">
+      <DependentUpon>AllBids.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\AllTrips.aspx.cs">
       <DependentUpon>AllTrips.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Administrator\AllTrips.aspx.designer.cs">
       <DependentUpon>AllTrips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\Questions.aspx.cs">
+      <DependentUpon>Questions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\Questions.aspx.designer.cs">
+      <DependentUpon>Questions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\TripDetails.aspx.cs">
+      <DependentUpon>TripDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\TripDetails.aspx.designer.cs">
+      <DependentUpon>TripDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -396,6 +417,16 @@
       <DependentUpon>TripEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\Admin\NotAuthonticated.en-GB.Designer.cs">
+      <DependentUpon>NotAuthonticated.en-GB.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Admin\NotAuthonticated.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NotAuthonticated.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Shared\Layout.en-GB.Designer.cs">
       <DependentUpon>Layout.en-GB.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -493,7 +524,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Administrator\AllBids.aspx" />
     <Content Include="Administrator\AllTrips.aspx" />
+    <Content Include="Administrator\Questions.aspx" />
+    <Content Include="Administrator\TripDetails.aspx" />
     <Content Include="bin\AjaxControlToolkit.dll" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
@@ -726,12 +760,12 @@
     <Content Include="Views\Trips\Household.cshtml" />
     <Content Include="Views\Trips\Freight.cshtml" />
     <Content Include="Shipments\Site.Master" />
+    <Content Include="Views\Admin\NotAuthonticated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\bin\en-GB\" />
     <Folder Include="images\Upload\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -751,6 +785,16 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Administrator\App_LocalResources\Admin.Master.resx" />
+    <Content Include="Administrator\App_LocalResources\Admin.Master.en-GB.resx" />
+    <Content Include="Administrator\App_LocalResources\AllTrips.aspx.resx" />
+    <Content Include="Administrator\App_LocalResources\AllTrips.aspx.en-GB.resx" />
+    <Content Include="Administrator\App_LocalResources\TripDetails.aspx.resx" />
+    <Content Include="Administrator\App_LocalResources\TripDetails.aspx.en-GB.resx" />
+    <Content Include="Administrator\App_LocalResources\AllBids.aspx.resx" />
+    <Content Include="Administrator\App_LocalResources\AllBids.aspx.en-GB.resx" />
+    <Content Include="Administrator\App_LocalResources\Questions.aspx.resx" />
+    <Content Include="Administrator\App_LocalResources\Questions.aspx.en-GB.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Shipments\App_LocalResources\Site.Master.resx" />
     <Content Include="Shipments\App_LocalResources\Site.Master.en-GB.resx" />
@@ -791,6 +835,14 @@
     <Content Include="Shipments\App_LocalResources\MyCars.aspx.en-GB.resx" />
     <EmbeddedResource Include="Shipments\App_LocalResources\TripBids.aspx.en-GB.resx">
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\NotAuthonticated.en-GB.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NotAuthonticated.en-GB.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Admin\NotAuthonticated.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NotAuthonticated.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\Layout.en-GB.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

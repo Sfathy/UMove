@@ -129,7 +129,7 @@
        
         HeaderText="Ask Question" ClientInstanceName="ASPxPopupControl1" >
     </dx:ASPxPopupControl>
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT     dbo.TripQuestions.Question, dbo.Users.Name AS QuestionUser, dbo.TripQuestions.Answer, Users_1.Name AS AnswerUser, dbo.TripQuestions.QuestionTime, dbo.TripQuestions.AnswerTime FROM dbo.TripQuestions LEFT OUTER JOIN dbo.Users AS Users_1 ON dbo.TripQuestions.AnswerUserID = Users_1.ID LEFT OUTER JOIN dbo.Users ON dbo.TripQuestions.QuestionUserID = dbo.Users.ID Where TripID=@ID">
+                    <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT     dbo.TripQuestions.Question, dbo.Users.Name AS QuestionUser, dbo.TripQuestions.Answer, Users_1.Name AS AnswerUser, dbo.TripQuestions.QuestionTime, dbo.TripQuestions.AnswerTime FROM dbo.TripQuestions LEFT OUTER JOIN dbo.Users AS Users_1 ON dbo.TripQuestions.AnswerUserID = Users_1.ID LEFT OUTER JOIN dbo.Users ON dbo.TripQuestions.QuestionUserID = dbo.Users.ID Where TripID=@ID and QuestionPuplished=1">
                         <SelectParameters>
                             <asp:QueryStringParameter QueryStringField="id" Name="ID"></asp:QueryStringParameter>
                         </SelectParameters>
@@ -148,7 +148,7 @@
                                 <dx:GridViewDataTextColumn FieldName="Note" Caption="Note" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource10"></dx:GridViewDataTextColumn>
                             </Columns>
                         </dx:ASPxGridView>
-                        <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT Bid.Price, Users.Name, Bid.BidExpiration, Bid.Note FROM Bid INNER JOIN Users ON Bid.UserID = Users.ID WHERE (Bid.TripID = @ID)">
+                        <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT Bid.Price, Users.Name, Bid.BidExpiration, Bid.Note FROM Bid INNER JOIN Users ON Bid.UserID = Users.ID WHERE (Bid.TripID = @ID) and Puplished=1">
                             <SelectParameters>
                                 <asp:QueryStringParameter QueryStringField="id" Name="ID"></asp:QueryStringParameter>
                             </SelectParameters>

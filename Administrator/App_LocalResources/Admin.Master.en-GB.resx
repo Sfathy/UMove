@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnArabicResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Arabic.GIF"  width="50" height="50" alt="عربى" /&gt;</value>
+  </data>
+  <data name="btnArabicResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnEnglishResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/English.GIF" width="50" height="50" alt="English" /&gt;</value>
+  </data>
+  <data name="btnEnglishResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="Label10Resource1.Text" xml:space="preserve">
-    <value>بداية العمل</value>
+    <value>Opening Time</value>
   </data>
   <data name="Label10Resource1.ToolTip" xml:space="preserve">
     <value />
@@ -130,7 +142,7 @@
     <value />
   </data>
   <data name="Label12Resource1.Text" xml:space="preserve">
-    <value>اتصل بنا</value>
+    <value>Email Us</value>
   </data>
   <data name="Label12Resource1.ToolTip" xml:space="preserve">
     <value />
@@ -142,127 +154,115 @@
     <value />
   </data>
   <data name="Label14Resource1.Text" xml:space="preserve">
-    <value>اطلب رحلة</value>
+    <value>REQUEST A QUOTE</value>
   </data>
   <data name="Label14Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label15Resource1.Text" xml:space="preserve">
-    <value />
+    <value>But i must explain to you how all this mistaken idea pleasure and praising pain was born and i will give you. But i explain to you how all this mistaken idea.</value>
   </data>
   <data name="Label15Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label16Resource1.Text" xml:space="preserve">
-    <value>التفاوض</value>
+    <value>NAVIGATION</value>
   </data>
   <data name="Label16Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label17Resource1.Text" xml:space="preserve">
-    <value>اضافات</value>
+    <value>Extras</value>
   </data>
   <data name="Label17Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label18Resource1.Text" xml:space="preserve">
-    <value>جداول</value>
+    <value>Tables</value>
   </data>
   <data name="Label18Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label19Resource1.Text" xml:space="preserve">
-    <value>اشترى الان</value>
+    <value>Buy Now</value>
   </data>
   <data name="Label19Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label1Resource1.Text" xml:space="preserve">
-    <value />
+    <value>Logout</value>
   </data>
   <data name="Label1Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="Label1Resource2.Text" xml:space="preserve">
-    <value>خروج</value>
-  </data>
-  <data name="Label1Resource2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Label20Resource1.Text" xml:space="preserve">
-    <value>مساعدة</value>
+    <value>Theme Documentation</value>
   </data>
   <data name="Label20Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label21Resource1.Text" xml:space="preserve">
-    <value>خدماتنا</value>
+    <value>OUR SERVICES</value>
   </data>
   <data name="Label21Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label22Resource1.Text" xml:space="preserve">
-    <value>جميع الخدمات</value>
+    <value>All Services</value>
   </data>
   <data name="Label22Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label23Resource1.Text" xml:space="preserve">
-    <value>رحلة برية</value>
+    <value>Ground Transport</value>
   </data>
   <data name="Label23Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label24Resource1.Text" xml:space="preserve">
-    <value>Umove</value>
+    <value>Cargo</value>
   </data>
   <data name="Label24Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label25Resource1.Text" xml:space="preserve">
-    <value>التخزين</value>
+    <value>Warehousing</value>
   </data>
   <data name="Label25Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label26Resource1.Text" xml:space="preserve">
-    <value>الخدمة اللوجستية</value>
+    <value>Logistic Service</value>
   </data>
   <data name="Label26Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label27Resource1.Text" xml:space="preserve">
-    <value>خدمة النقل بالشاحنات</value>
+    <value>Trucking Service</value>
   </data>
   <data name="Label27Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label28Resource1.Text" xml:space="preserve">
-    <value>التخزين</value>
+    <value>Storage</value>
   </data>
   <data name="Label28Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label29Resource1.Text" xml:space="preserve">
-    <value>اشترى الان</value>
+    <value>BUY NOW</value>
   </data>
   <data name="Label29Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="Label2Resource1.Text" xml:space="preserve">
-    <value>رحلاتى</value>
-  </data>
-  <data name="Label2Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Label30Resource1.Text" xml:space="preserve">
-    <value />
+    <value>But i must explain to you how all this mistaken idea pleasure and praising pain was born and i will give you. But i explain to you how all this mistaken idea.</value>
   </data>
   <data name="Label30Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label31Resource1.Text" xml:space="preserve">
-    <value>اشترى الان</value>
+    <value>BUY CARGOPRESS</value>
   </data>
   <data name="Label31Resource1.ToolTip" xml:space="preserve">
     <value />
@@ -279,38 +279,44 @@
   <data name="Label33Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="Label3Resource1.Text" xml:space="preserve">
-    <value>الرسائل</value>
+  <data name="Label36Resource1.Text" xml:space="preserve">
+    <value>New Shipments</value>
   </data>
-  <data name="Label3Resource1.ToolTip" xml:space="preserve">
+  <data name="Label36Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label37Resource1.Text" xml:space="preserve">
+    <value>Bids</value>
+  </data>
+  <data name="Label37Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label38Resource1.Text" xml:space="preserve">
+    <value>Questions</value>
+  </data>
+  <data name="Label38Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label39Resource1.Text" xml:space="preserve">
+    <value>Answers</value>
+  </data>
+  <data name="Label39Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label4Resource1.Text" xml:space="preserve">
-    <value>القائمة</value>
+    <value>MENU</value>
   </data>
   <data name="Label4Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label5Resource1.Text" xml:space="preserve">
-    <value>الرئيسية</value>
+    <value>Home</value>
   </data>
   <data name="Label5Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="Label6Resource1.Text" xml:space="preserve">
-    <value>رحلة جديدة</value>
-  </data>
-  <data name="Label6Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label7Resource1.Text" xml:space="preserve">
-    <value>البحث عن رحلة</value>
-  </data>
-  <data name="Label7Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Label8Resource1.Text" xml:space="preserve">
-    <value>اتصل بنا فى اى وقت</value>
+    <value>Call Us Anytime</value>
   </data>
   <data name="Label8Resource1.ToolTip" xml:space="preserve">
     <value />
@@ -321,28 +327,22 @@
   <data name="Label9Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="layoutDirection" xml:space="preserve">
-    <value>rtl</value>
+  <data name="lproResource1.Text" xml:space="preserve">
+    <value />
   </data>
-  <data name="style.css" xml:space="preserve">
-    <value>../Content/style_ar.css</value>
+  <data name="lproResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="UserNameResource1.Text" xml:space="preserve">
-    <value>مرحباً !</value>
+    <value>Welcome !</value>
   </data>
   <data name="UserNameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="UserNameResource2.Text" xml:space="preserve">
-    <value>مرحباً !</value>
+  <data name="layoutDirection" xml:space="preserve">
+    <value>ltr</value>
   </data>
-  <data name="UserNameResource2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label113Resource1.Text" xml:space="preserve">
-    <value>عروضى</value>
-  </data>
-  <data name="Label1113Resource1.Text" xml:space="preserve">
-    <value>سياراتى</value>
+  <data name="style.css" xml:space="preserve">
+    <value>../Content/style.css</value>
   </data>
 </root>
