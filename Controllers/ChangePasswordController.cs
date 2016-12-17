@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using UMoveNew.Models;
 
 namespace UMoveNew.Controllers
 {
@@ -22,15 +23,9 @@ namespace UMoveNew.Controllers
             return "value";
         }
 
-        class changePassword
-        {
-            public int userID { get; set; }
-            public string oldPassword { get; set; }
-
-            public string newPassword { get; set; }
-        }
+        
         // POST api/<controller>
-        public HttpResponseMessage Post([FromBody]changePassword n )
+        public HttpResponseMessage Post([FromBody] changePassword n )
         {
             string jsonString = string.Empty;
             string sql = "select * from Users Where ID=" + n.userID + " And Password='" + n.oldPassword + "'";
