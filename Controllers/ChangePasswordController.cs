@@ -22,17 +22,24 @@ namespace UMoveNew.Controllers
             return "value";
         }
 
+        class changePassword
+        {
+            public int userID { get; set; }
+            public string oldPassword { get; set; }
+
+            public string newPassword { get; set; }
+        }
         // POST api/<controller>
-        public HttpResponseMessage Post(int id, string oldPassword, string newPassword)
+        public HttpResponseMessage Post([FromBody]changePassword n )
         {
             string jsonString = string.Empty;
-            string sql = "select * from Users Where ID=" + id + " And Password='" + oldPassword + "'";
+            string sql = "select * from Users Where ID=" + n.userID + " And Password='" + n.oldPassword + "'";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt.Rows.Count > 0)
             {
-                sql = "Update Users set Password='" + newPassword + "' Where ID=" + id;
+                sql = "Update Users set Password='" + n.newPassword + "' Where ID=" + n.userID;
                 DataAccess.ExecuteSQLNonQuery(sql);
-                jsonString = "{ \"success\": { \"id\": " + id + "  } }";
+                jsonString = "{ \"success\": { \"id\": " + n.userID + "  } }";
             }
             else 
             {
