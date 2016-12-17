@@ -21,8 +21,18 @@ namespace UMoveNew.Controllers
             clsUserLocation loc = new clsUserLocation();
             DataTable dt = loc.getNearestDrivers(Latitude, Longitude);
             string jsonString = string.Empty;
+
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
+                DataRow dr;
+                dt.Columns.Add("duration");
+                dt.Columns.Add("driverDescription");
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dr = dt.NewRow();
+                    dr["duration"] = loc.getDuration(Latitude, Longitude, decimal.Parse(dt.Rows[i]["latitude"].ToString()), decimal.Parse(dt.Rows[i]["Longitude"].ToString()));
+                    dr["driverDescription"] = dt.Rows[i]["users.Name"];
+                }
                 jsonString = JsonConvert.SerializeObject(dt);
             }
             else

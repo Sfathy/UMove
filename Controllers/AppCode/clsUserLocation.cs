@@ -81,5 +81,10 @@ namespace UMoveNew.Controllers.AppCode
             return userlocations;
         }
 
+
+        public decimal getDuration(decimal srcLat, decimal srcLng, decimal dstLat, decimal dstLng)
+        {
+            return 10;
+        }
     }
 }
