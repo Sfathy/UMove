@@ -254,6 +254,7 @@
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\PaymentMethodController.cs" />
     <Compile Include="Controllers\RateDriverController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Controllers\TripCostController.cs" />
     <Compile Include="Controllers\TripDetailsController.cs" />
