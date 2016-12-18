@@ -12,15 +12,30 @@ namespace UMoveNew.Controllers
         // GET: /Admin/
         public ActionResult Index()
         {
-            return View();
-        }
-        public ActionResult AllShipments()
-        {
-            if (Request.Cookies["user"] != null )
+            if (Request.Cookies["user"] != null)
             {
                 HttpCookie myCookie = Request.Cookies["user"];
                 int Type = Convert.ToInt32(myCookie.Values["type"].ToString());
-                if (Type ==3)
+                if (Type == 3)
+                {
+                    return RedirectToAction("AllShipments", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("NotAuthonticated", "Admin");
+                }
+            }
+            else
+                return RedirectToAction("login", "user");
+
+        }
+        public ActionResult AllShipments()
+        {
+            if (Request.Cookies["user"] != null)
+            {
+                HttpCookie myCookie = Request.Cookies["user"];
+                int Type = Convert.ToInt32(myCookie.Values["type"].ToString());
+                if (Type == 3)
                 {
                     return Redirect("/Administrator/AllTrips.aspx");
                 }
@@ -70,8 +85,9 @@ namespace UMoveNew.Controllers
         }
         //
         // GET: /Admin/Details/5
-        public ActionResult NotAuthonticated() { 
-        
+        public ActionResult NotAuthonticated()
+        {
+
             return View();
         }
         public ActionResult Details(int id)
