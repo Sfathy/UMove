@@ -24,6 +24,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["QuestionID"].ToString());
                 string sql = "Update TripQuestions Set QuestionPuplished=1 Where QuestionID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
         }
     }

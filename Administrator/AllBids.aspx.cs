@@ -24,6 +24,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["id"].ToString());
                 string sql = "Update Bid Set Puplished=1 Where ID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
         }
     }
