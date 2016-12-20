@@ -12,7 +12,7 @@ namespace UMoveNew.Models
         public int DriverID { get; set; }
         public int Rate { get; set; }
 
-        public string DriverName { get; set; }
+        public string Name { get; set; }
         public int UserID { get; set; }
 
         public string Feedback { get; set; }
