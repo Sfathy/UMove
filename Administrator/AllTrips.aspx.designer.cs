@@ -40,6 +40,24 @@ namespace UMoveNew.Administrator {
         protected global::DevExpress.Web.GridViewCommandColumnCustomButton btnAccept;
         
         /// <summary>
+        /// btnIgnore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.GridViewCommandColumnCustomButton btnIgnore;
+        
+        /// <summary>
+        /// SqlDataSource10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource10;
+        
+        /// <summary>
         /// SqlDataSource3 control.
         /// </summary>
         /// <remarks>

@@ -108,8 +108,6 @@
                              
                                 <li><a href="../../Trips/Categories"><asp:Label runat="server" ID="Label6" Text="New Shipment" meta:resourcekey="Label6Resource1"></asp:Label></a></li>
                                <li><a href="../../Trips/AllShipments"><asp:Label runat="server" ID="Label7" Text="Find Shipment" meta:resourcekey="Label7Resource1"></asp:Label></a></li>
-                              <li><a href="../../Admin/AllShipments">
-                                                <asp:Label runat="server" ID="Label36" Text="New Shipments" meta:resourcekey="Label7Resource1"></asp:Label></a></li>
                                  </ul>
 
                         </nav>

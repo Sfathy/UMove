@@ -6,6 +6,10 @@
 @section Styles {
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     }
+@if (HttpContext.Current.Session["Items"]!=null)
+{
+    HttpContext.Current.Session["Items"] = null;
+}
 <div class="counters">
     <div class="container">
         <div class="row">

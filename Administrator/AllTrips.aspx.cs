@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace UMoveNew.Administrator
 {
-    public partial class AllTrips : System.Web.UI.Page
+    public partial class AllTrips : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,6 +37,15 @@ namespace UMoveNew.Administrator
                 DataRow dr = ASPxGridView1.GetDataRow(Gid);
                 int id = Convert.ToInt32(dr["id"].ToString());
                 string sql = "Update Trip Set Puplished=1 Where ID=" + id.ToString();
+                DataAccess.ExecuteSQLNonQuery(sql);
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+            else if (e.ButtonID == "btnIgnore")
+            {
+                int Gid = Convert.ToInt32(e.VisibleIndex.ToString());
+                DataRow dr = ASPxGridView1.GetDataRow(Gid);
+                int id = Convert.ToInt32(dr["id"].ToString());
+                string sql = "Update Trip Set Puplished=3 Where ID=" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
                 Response.Redirect(Request.Url.AbsoluteUri);
             }

@@ -29,6 +29,10 @@
                         <dx:GridViewDataComboBoxColumn FieldName="UserID" Caption="User" VisibleIndex="3" meta:resourcekey="GridViewDataComboBoxColumnResource3">
                             <PropertiesComboBox DataSourceID="SqlDataSource5" TextField="Name" ValueField="ID"></PropertiesComboBox>
                         </dx:GridViewDataComboBoxColumn>
+                          <dx:GridViewDataComboBoxColumn FieldName="Puplished" SortIndex="0" SortOrder="Ascending" UnboundType="String" VisibleIndex="6" Caption="Status"  meta:resourcekey="GridViewDataComboBoxColumnResource7">
+                       <PropertiesComboBox DataSourceID="SqlDataSource10" DropDownStyle="DropDown" TextField="Name" ValueField="ID">
+                       </PropertiesComboBox>
+                       </dx:GridViewDataComboBoxColumn>
                         <dx:GridViewCommandColumn ButtonType="Image" Caption="View / Accept" VisibleIndex="11" meta:resourcekey="GridViewCommandColumnResource1">
                             <CustomButtons>
                                 <dx:GridViewCommandColumnCustomButton ID="BtnView" Text="View" meta:resourcekey="GridViewCommandColumnCustomButtonResource1">
@@ -39,6 +43,10 @@
                                     <Image IconID="actions_apply_16x16">
                                     </Image>
                                 </dx:GridViewCommandColumnCustomButton>
+                                  <dx:GridViewCommandColumnCustomButton ID="btnIgnore">
+                            <Image IconID="actions_close_16x16">
+                            </Image>
+                        </dx:GridViewCommandColumnCustomButton>
                             </CustomButtons>
                         </dx:GridViewCommandColumn>
                         <dx:GridViewDataTextColumn Caption="Distance" FieldName="Dis" Name="Distance" UnboundType="Decimal" VisibleIndex="10" meta:resourcekey="GridViewDataTextColumnResource6" >
@@ -76,8 +84,9 @@
             </div>
         </div>
     </div>
+       <asp:SqlDataSource runat="server" ID="SqlDataSource10" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [ID], [Name] FROM [ItemStatus]"></asp:SqlDataSource>         
     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [ID], [Name] FROM [Categories]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [ID], [Name] FROM [SubCategory]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [ID], [Name] FROM [Users]"></asp:SqlDataSource>
-    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT   dbo.Trip.Name AS TripName, dbo.Trip.SourceLocationText, dbo.Trip.DeliveryLocationText, dbo.Trip.PicUpDate, dbo.Trip.DeliveryDate, DATEDIFF(hh, dbo.Trip.PicUpDate,dbo.Trip.DeliveryDate) AS Ending, dbo.Trip.ID, dbo.TripItems.ItemCatID, dbo.TripItems.ItemSubCatID, dbo.Trip.UserID, ACOS(SIN(dbo.Trip.SourceLat) * SIN(dbo.Trip.DestLat) + COS(dbo.Trip.SourceLat) * COS(dbo.Trip.DestLat) * COS(dbo.Trip.DestLag - dbo.Trip.DestLag)) AS Dis, dbo.Trip.Puplished FROM dbo.Trip INNER JOIN dbo.TripItems ON dbo.Trip.ID = dbo.TripItems.ID WHERE (dbo.Trip.Puplished = 0) ORDER BY dbo.Trip.PicUpDate"></asp:SqlDataSource>
+    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT   dbo.Trip.Name AS TripName, dbo.Trip.SourceLocationText, dbo.Trip.DeliveryLocationText, dbo.Trip.PicUpDate, dbo.Trip.DeliveryDate, DATEDIFF(hh, dbo.Trip.PicUpDate,dbo.Trip.DeliveryDate) AS Ending, dbo.Trip.ID, dbo.TripItems.ItemCatID, dbo.TripItems.ItemSubCatID, dbo.Trip.UserID, ACOS(SIN(dbo.Trip.SourceLat) * SIN(dbo.Trip.DestLat) + COS(dbo.Trip.SourceLat) * COS(dbo.Trip.DestLat) * COS(dbo.Trip.DestLag - dbo.Trip.DestLag)) AS Dis, dbo.Trip.Puplished FROM dbo.Trip INNER JOIN dbo.TripItems ON dbo.Trip.ID = dbo.TripItems.ID WHERE (dbo.Trip.Puplished <> 1) ORDER BY dbo.Trip.PicUpDate DESC, dbo.Trip.Puplished"></asp:SqlDataSource>
 </asp:Content>

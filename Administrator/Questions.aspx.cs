@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace UMoveNew.Administrator
 {
-    public partial class Questions : System.Web.UI.Page
+    public partial class Questions : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,6 +23,15 @@ namespace UMoveNew.Administrator
                 DataRow dr = ASPxGridView1.GetDataRow(Gid);
                 int id = Convert.ToInt32(dr["QuestionID"].ToString());
                 string sql = "Update TripQuestions Set QuestionPuplished=1 Where QuestionID =" + id.ToString();
+                DataAccess.ExecuteSQLNonQuery(sql);
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+            if (e.ButtonID == "btnIgnore")
+            {
+                int Gid = Convert.ToInt32(e.VisibleIndex.ToString());
+                DataRow dr = ASPxGridView1.GetDataRow(Gid);
+                int id = Convert.ToInt32(dr["QuestionID"].ToString());
+                string sql = "Update TripQuestions Set QuestionPuplished=3 Where QuestionID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
                 Response.Redirect(Request.Url.AbsoluteUri);
             }

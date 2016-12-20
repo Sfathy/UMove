@@ -798,6 +798,9 @@
   <data name="GridViewDataComboBoxColumnResource3.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="GridViewDataComboBoxColumnResource7.Caption" xml:space="preserve">
+    <value>Status</value>
+  </data>
   <data name="GridViewDataDateColumnResource1.Caption" xml:space="preserve">
     <value>PicUp Date</value>
   </data>

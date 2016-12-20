@@ -10,7 +10,7 @@ using UMoveNew.Models;
 
 namespace UMoveNew.Administrator
 {
-    public partial class TripDetails : System.Web.UI.Page
+    public partial class TripDetails : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
