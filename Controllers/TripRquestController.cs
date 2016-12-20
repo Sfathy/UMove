@@ -29,9 +29,9 @@ namespace UMoveNew.Controllers
                 dt.Columns.Add("driverDescription");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    dr = dt.NewRow();
-                    dr["duration"] = loc.getDuration(Latitude, Longitude, decimal.Parse(dt.Rows[i]["latitude"].ToString()), decimal.Parse(dt.Rows[i]["Longitude"].ToString()));
-                    dr["driverDescription"] = dt.Rows[i]["users.Name"];
+                   // dr = dt.NewRow();
+                    dt.Rows[i]["duration"] = loc.getDuration(Latitude, Longitude, decimal.Parse(dt.Rows[i]["latitude"].ToString()), decimal.Parse(dt.Rows[i]["Longitude"].ToString()));
+                    dt.Rows[i]["driverDescription"] = dt.Rows[i]["Name"];
                 }
                 jsonString = JsonConvert.SerializeObject(dt);
             }

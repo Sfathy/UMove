@@ -77,7 +77,7 @@ namespace UMoveNew.Controllers.AppCode
         }
         public int login(string email,string pass)
         {
-            string sql = "select * from users where Email = '" + email + "' and Password ='" + pass + "'";
+            string sql = "select * from users where (Email = '" + email + "' and Password ='" + pass + "') or (Phone = '"+email+"' and Password = '"+pass+"')";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if(dt != null && dt.Rows != null && dt.Rows.Count>0)
             {

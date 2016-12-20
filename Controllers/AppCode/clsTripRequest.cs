@@ -27,7 +27,7 @@ namespace UMoveNew.Controllers.AppCode
         {
             JObject googleApi = (JObject)JsonConvert.DeserializeObject(trip.Route, typeof(JObject));
             //check if the user name exist before
-            SqlParameter[] param = new SqlParameter[10];
+            SqlParameter[] param = new SqlParameter[12];
             param[0] = DataAccess.AddParamter("@UserID", trip.UserID, SqlDbType.Int, 50);
             param[1] = DataAccess.AddParamter("@DestLat", trip.DestLat, SqlDbType.Decimal, 500);
             param[2] = DataAccess.AddParamter("@DestLong", trip.DestLong, SqlDbType.Decimal, 500);
@@ -38,14 +38,14 @@ namespace UMoveNew.Controllers.AppCode
             param[7] = DataAccess.AddParamter("@PaymentMethod", trip.PaymentMethod, SqlDbType.Int, 50);
             param[8] = DataAccess.AddParamter("@CarCategory", trip.CarCategory, SqlDbType.Int, 50);
             param[9] = DataAccess.AddParamter("@Route", googleApi.ToString(), SqlDbType.NVarChar, int.MaxValue);
-            //param[10] = DataAccess.AddParamter("@StartAddress", googleApi[.GetValue("").ToString(), SqlDbType.NVarChar, int.MaxValue);
-            //param[11] = DataAccess.AddParamter("@StartAddress", googleApi.GetValue("").ToString(), SqlDbType.NVarChar, int.MaxValue);
+            param[10] = DataAccess.AddParamter("@StartAddress", trip.StartAddress, SqlDbType.NVarChar, int.MaxValue);
+            param[11] = DataAccess.AddParamter("@EndAddress", trip.EndAddress, SqlDbType.NVarChar, int.MaxValue);
             
             //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
 
 
-            string sql = "insert into TripRequest([UserID],[DestLat],[DestLong],[SourceLat],[SourceLong],[DriverID],[PicUpDate],PaymentMethod,CarCategory,Route) values" +
-                "(@UserID,@DestLat,@DestLong,@SourceLat,@SourceLong,@DriverID,@PicUpDate,@PaymentMethod,@CarCategory,@Route)";
+            string sql = "insert into TripRequest([UserID],[DestLat],[DestLong],[SourceLat],[SourceLong],[DriverID],[PicUpDate],PaymentMethod,CarCategory,Route,StartAddress,EndAddress) values" +
+                "(@UserID,@DestLat,@DestLong,@SourceLat,@SourceLong,@DriverID,@PicUpDate,@PaymentMethod,@CarCategory,@Route.@StartAddress.@EndAddress)";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int tripID = 0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from TripRequest");
@@ -107,7 +107,7 @@ namespace UMoveNew.Controllers.AppCode
         public DataTable get(int userId,int userType)
         {
 
-            string sql = "select TripRequest.*,Users.Name as DriverName,Users.Phone as DriverPhone from TripRequest inner join users on users.ID = TripRequest.DriverID";
+            string sql = "select TripRequest.*,Users.Name as DriverName,Users.Phone as DriverPhone,CarCategory.Name as CarCategoryName,icon from TripRequest inner join users on users.ID = TripRequest.DriverID inner join carcategory on tripRequest.CarCategory = carcategory.ID ";
             if(userType == 1)
                 sql +=" where userID = " + userId.ToString();
             else
@@ -115,6 +115,15 @@ namespace UMoveNew.Controllers.AppCode
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
+                dt.Columns.Add("CarDescription");
+                dt.Columns.Add("CarNo");
+            //    dt.Columns.Add("CarIcon");
+                DataRow dr;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["CarDescription"] = "Hundai Elintra Black";
+                    dt.Rows[i]["CarNo"] = "ت ع 256";
+                }
                 /*TripRequest tr = new TripRequest();
                 tr.UserID = int.Parse(dt.Rows[0]["UserID"].ToString());
                 tr.DestLat = decimal.Parse(dt.Rows[0]["DestLat"].ToString());

@@ -9,21 +9,21 @@ using UMoveNew.Models;
 
 namespace UMoveNew.Controllers
 {
-    public class RateDriverController : ApiController
+    public class RateUserController : ApiController
     {
-        // GET api/ratedriver
+        // GET api/rateuser
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/ratedriver/5
-        public HttpResponseMessage Get(int driverId)
+        // GET api/rateuser/5
+        public HttpResponseMessage Get(int userId)
         {
             List<RateDriver> drivers = new List<RateDriver>();
             RateDriver d1 = new RateDriver();
-            //d1.UserID = 2;
-            d1.DriverID = driverId;
+            d1.UserID = userId;
+            //d1.DriverID = userId;
             d1.Feedback = "Good Driver";
             d1.Name = "Adam Ali";
             d1.Rate = 4;
@@ -44,7 +44,7 @@ namespace UMoveNew.Controllers
             //DataTable dt = new clsTripRequest().get(userId, userType);
             jsonString = JsonConvert.SerializeObject(drivers);
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
-            
+
         }
 
         // POST api/ratedriver
@@ -55,13 +55,12 @@ namespace UMoveNew.Controllers
             // jsonString = JsonConvert.SerializeObject("");
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
-
-        // PUT api/ratedriver/5
+        // PUT api/rateuser/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/ratedriver/5
+        // DELETE api/rateuser/5
         public void Delete(int id)
         {
         }
