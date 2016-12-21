@@ -22,7 +22,7 @@ namespace UMoveNew.Controllers
             if(userType==0) //user
                 jsonString = "{ \"UserBalance\": { \"Point\": 60 , \"Km\":120 , \"Money\":\"20 L.E\"} }";
             else //driver
-                jsonString = "{ \"UserBalance\": {  \"Km\":120 , \"Money\":\"20 L.E\"}} }";
+                jsonString = "{ \"UserBalance\": {  \"Km\":120 , \"Money\":\"20 L.E\"} }";
             // DataTable dt = new clsTripRequest().get(userId, userType);
 
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
