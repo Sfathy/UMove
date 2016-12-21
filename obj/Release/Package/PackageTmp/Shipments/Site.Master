@@ -12,7 +12,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>NitroGFX.COM - All For WebMasters... CargoPress</title>
     <!-- Styling -->
-     <asp:ContentPlaceHolder ID="head" runat="server" />
+     <asp:ContentPlaceHolder ID="head" runat="server" >
     </asp:ContentPlaceHolder>
     
    

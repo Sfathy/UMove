@@ -12,7 +12,7 @@ namespace UMoveNew.Controllers
         // GET api/settings
         public HttpResponseMessage Get()
         {
-            string jsonString = "{ \"Settings\": { \"DriverTimer\": 30,\"DriverCancelFee\":7,\"UserCancelFee\":7,\"DateFormat\":MM/dd/yyyy HH:mm:ss  } }";
+            string jsonString = "{ \"Settings\": { \"DriverTimer\": 30,\"DriverCancelFee\":7,\"UserCancelFee\":7,\"DateFormat\":\"MM/dd/yyyy HH:mm:ss\"  } }";
            // DataTable dt = new clsTripRequest().get(userId, userType);
             
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
