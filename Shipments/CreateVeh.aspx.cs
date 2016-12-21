@@ -300,6 +300,11 @@ namespace UMoveNew.Shipments
             Response.Redirect("~/Shipments/CreateTirp.aspx");
         }
 
+        protected void FileUpload1_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 

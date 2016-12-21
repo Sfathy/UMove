@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
       <link href="<%$ Resources:form.css %>" rel="stylesheet" type="text/css"  runat="server" />
     <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css' />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
 
         function showpreview(input) {
