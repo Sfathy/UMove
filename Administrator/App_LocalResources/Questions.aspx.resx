@@ -358,7 +358,7 @@
     <value />
   </data>
   <data name="GridViewCommandColumnResource1.Caption" xml:space="preserve">
-    <value>قبول</value>
+    <value>قبول / تجاهل</value>
   </data>
   <data name="GridViewCommandColumnResource1.ClearFilterButton.Text" xml:space="preserve">
     <value />
@@ -533,6 +533,12 @@
   </data>
   <data name="GridViewDataTextColumnResource6.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="GridViewDataTextColumnResource7.Caption" xml:space="preserve">
+    <value>مكان بداية الرحلة</value>
+  </data>
+  <data name="GridViewDataTextColumnResource8.Caption" xml:space="preserve">
+    <value>مكان التسليم</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>NitroGFX.COM - All For WebMasters... CargoPress</value>

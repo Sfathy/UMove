@@ -11,17 +11,19 @@
         <Columns>
             <dx:GridViewDataTextColumn FieldName="QuestionID" Caption="ID" VisibleIndex="0" Visible="false"  meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
              <dx:GridViewDataTextColumn FieldName="Name" Caption="Trip Name" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource2" ></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="Question" Caption="Question" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource3" ></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="QuestionUser" Caption="By" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource4" ></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="Answer" Caption="Answer" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="AnswerUser" Visible="false" VisibleIndex="6" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn FieldName="QuestionTime" Caption="Question Time" VisibleIndex="2" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
-            <dx:GridViewDataDateColumn FieldName="AnswerTime" Caption="Answer Time" VisibleIndex="5" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
-              <dx:GridViewDataComboBoxColumn FieldName="QuestionPuplished" SortIndex="0" SortOrder="Ascending" UnboundType="String" VisibleIndex="6" Caption="Status"  meta:resourcekey="GridViewDataComboBoxColumnResource1">
+                     <dx:GridViewDataTextColumn FieldName="SourceLocationText" Caption="Source Location" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="DeliveryLocationText" Caption="Delivery Location" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource8"></dx:GridViewDataTextColumn>
+              <dx:GridViewDataTextColumn FieldName="Question" Caption="Question" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource3" ></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="QuestionUser" Caption="By" VisibleIndex="6" meta:resourcekey="GridViewDataTextColumnResource4" ></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="Answer" Caption="Answer" VisibleIndex="7" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="AnswerUser" Visible="false" VisibleIndex="9" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataDateColumn FieldName="QuestionTime" Caption="Question Time" VisibleIndex="5" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
+            <dx:GridViewDataDateColumn FieldName="AnswerTime" Caption="Answer Time" VisibleIndex="8" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
+              <dx:GridViewDataComboBoxColumn FieldName="QuestionPuplished" SortIndex="0" SortOrder="Ascending" UnboundType="String" VisibleIndex="10" Caption="Status"  meta:resourcekey="GridViewDataComboBoxColumnResource1">
                        <PropertiesComboBox DataSourceID="SqlDataSource1" DropDownStyle="DropDown" TextField="Name" ValueField="ID">
                        </PropertiesComboBox>
                        </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewCommandColumn ButtonType="Image" Caption="Accept" VisibleIndex="7" meta:resourcekey="GridViewCommandColumnResource1" ShowClearFilterButton="True">
+            <dx:GridViewCommandColumn ButtonType="Image" Caption="Accept" VisibleIndex="11" meta:resourcekey="GridViewCommandColumnResource1" ShowClearFilterButton="True">
                 <CustomButtons>
                     <dx:GridViewCommandColumnCustomButton ID="btnAccept" meta:resourcekey="GridViewCommandColumnCustomButtonResource1">
                         <Image IconID="actions_apply_16x16">
@@ -38,7 +40,7 @@
         <Settings ShowFilterRow="True" />
 
     </dx:ASPxGridView>
-    <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT dbo.TripQuestions.QuestionID,dbo.TripQuestions.Question, dbo.Users.Name AS QuestionUser, dbo.TripQuestions.Answer, Users_1.Name AS AnswerUser, dbo.TripQuestions.QuestionTime, dbo.TripQuestions.AnswerTime,dbo.TripQuestions.QuestionPuplished, dbo.TripQuestions.AnswerPuplished, dbo.Trip.Name FROM dbo.TripQuestions INNER JOIN dbo.Trip ON dbo.TripQuestions.TripID = dbo.Trip.ID LEFT OUTER JOIN dbo.Users AS Users_1 ON dbo.TripQuestions.AnswerUserID = Users_1.ID LEFT OUTER JOIN dbo.Users ON dbo.TripQuestions.QuestionUserID = dbo.Users.ID Where QuestionPuplished<>1 order by QuestionPuplished"></asp:SqlDataSource>
+    <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT dbo.TripQuestions.QuestionID,dbo.TripQuestions.Question, dbo.Users.Name AS QuestionUser, dbo.TripQuestions.Answer, Users_1.Name AS AnswerUser, dbo.TripQuestions.QuestionTime, dbo.TripQuestions.AnswerTime,dbo.TripQuestions.QuestionPuplished, dbo.TripQuestions.AnswerPuplished, dbo.Trip.Name, dbo.Trip.SourceLocationText,dbo.Trip.DeliveryLocationText FROM dbo.TripQuestions INNER JOIN dbo.Trip ON dbo.TripQuestions.TripID = dbo.Trip.ID LEFT OUTER JOIN dbo.Users AS Users_1 ON dbo.TripQuestions.AnswerUserID = Users_1.ID LEFT OUTER JOIN dbo.Users ON dbo.TripQuestions.QuestionUserID = dbo.Users.ID Where QuestionPuplished<>1 order by QuestionPuplished"></asp:SqlDataSource>
            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [ID], [Name] FROM [ItemStatus]"></asp:SqlDataSource>         
                         </div>
             </div>

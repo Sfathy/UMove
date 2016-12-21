@@ -595,7 +595,7 @@
     <value />
   </data>
   <data name="GridViewCommandColumnResource1.Caption" xml:space="preserve">
-    <value>View / Accept</value>
+    <value>View / Accept / Ignore</value>
   </data>
   <data name="GridViewCommandColumnResource1.ClearFilterButton.Text" xml:space="preserve">
     <value />

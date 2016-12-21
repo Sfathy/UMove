@@ -11,15 +11,17 @@
         <Columns>
              <dx:GridViewDataTextColumn FieldName="ID" Caption="ID" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
              <dx:GridViewDataTextColumn FieldName="TripName" Caption="Trip Name" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource2" ></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="Price" Caption="Price" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="username" Caption="User" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn FieldName="BidExpiration" Caption="Bid Expiration" VisibleIndex="4" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
-            <dx:GridViewDataTextColumn FieldName="Note" Caption="Note" VisibleIndex="5" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
-           <dx:GridViewDataComboBoxColumn FieldName="Puplished" SortIndex="0" SortOrder="Ascending" UnboundType="String" VisibleIndex="6" Caption="Status"  meta:resourcekey="GridViewDataComboBoxColumnResource1">
+            <dx:GridViewDataTextColumn FieldName="Price" Caption="Price" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="SourceLocationText" Caption="Source Location" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="DeliveryLocationText" Caption="Delivery Location" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="username" Caption="User" VisibleIndex="5" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataDateColumn FieldName="BidExpiration" Caption="Bid Expiration" VisibleIndex="6" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
+            <dx:GridViewDataTextColumn FieldName="Note" Caption="Note" VisibleIndex="7" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
+           <dx:GridViewDataComboBoxColumn FieldName="Puplished" SortIndex="0" SortOrder="Ascending" UnboundType="String" VisibleIndex="8" Caption="Status"  meta:resourcekey="GridViewDataComboBoxColumnResource1">
                        <PropertiesComboBox DataSourceID="SqlDataSource1" DropDownStyle="DropDown" TextField="Name" ValueField="ID">
                        </PropertiesComboBox>
                        </dx:GridViewDataComboBoxColumn>
-              <dx:GridViewCommandColumn ButtonType="Image" Caption="Accept" VisibleIndex="7" meta:resourcekey="GridViewCommandColumnResource1" ShowClearFilterButton="True">
+              <dx:GridViewCommandColumn ButtonType="Image" Caption="Accept" VisibleIndex="9" meta:resourcekey="GridViewCommandColumnResource1" ShowClearFilterButton="True">
             
                     <CustomButtons>
                     <dx:GridViewCommandColumnCustomButton ID="btnAccept" meta:resourcekey="GridViewCommandColumnCustomButtonResource1">
@@ -34,7 +36,7 @@
         </Columns>
         <Settings ShowFilterRow="True" />
     </dx:ASPxGridView>
-    <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT dbo.Bid.Price, dbo.Users.Name AS username, dbo.Bid.BidExpiration, dbo.Bid.Note, dbo.Trip.Name AS TripName, dbo.Bid.Puplished, dbo.Bid.ID FROM dbo.Bid INNER JOIN dbo.Users ON dbo.Bid.UserID = dbo.Users.ID INNER JOIN dbo.Trip ON dbo.Bid.TripID = dbo.Trip.ID WHERE (dbo.Bid.Puplished <> 1) order by Puplished"></asp:SqlDataSource>
+    <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT dbo.Bid.Price, dbo.Users.Name AS username, dbo.Bid.BidExpiration, dbo.Bid.Note, dbo.Trip.Name AS TripName, dbo.Bid.Puplished, dbo.Bid.ID,dbo.Trip.SourceLocationText,dbo.Trip.DeliveryLocationText FROM dbo.Bid INNER JOIN dbo.Users ON dbo.Bid.UserID = dbo.Users.ID INNER JOIN dbo.Trip ON dbo.Bid.TripID = dbo.Trip.ID WHERE (dbo.Bid.Puplished <> 1) order by Puplished"></asp:SqlDataSource>
                 <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [ID], [Name] FROM [ItemStatus]"></asp:SqlDataSource>         
                  </div>
             </div>
