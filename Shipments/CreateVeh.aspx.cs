@@ -232,7 +232,7 @@ namespace UMoveNew.Shipments
                 string fileLocation = Server.MapPath("~/images/Upload/"  +fileName);
                 FileUpload1.SaveAs(fileLocation);
                 Bitmap bi =  CreateThumbnail(fileLocation, 50, 50);
-                if (fileExtension == ".Jpeg" || fileExtension == ".jpeg" || fileExtension == ".gif" || fileExtension == ".GIF")
+                if (fileExtension == ".Jpg" || fileExtension == ".jpg" || fileExtension == ".gif" || fileExtension == ".GIF" || fileExtension == ".PNG" || fileExtension == ".png")
                 {
                     bi.Save(fileLocation, System.Drawing.Imaging.ImageFormat.Png);
                 }
