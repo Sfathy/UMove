@@ -239,6 +239,7 @@
     <Compile Include="Controllers\AppCode\clsQuestion.cs" />
     <Compile Include="Controllers\AppCode\clsSendNotification.cs" />
     <Compile Include="Controllers\AppCode\clsTrip.cs" />
+    <Compile Include="Controllers\AppCode\clsTripIssue.cs" />
     <Compile Include="Controllers\AppCode\clsTripRequest.cs" />
     <Compile Include="Controllers\AppCode\clsUser.cs" />
     <Compile Include="Controllers\AppCode\clsUserLocation.cs" />
