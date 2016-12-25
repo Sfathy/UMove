@@ -19,12 +19,14 @@ namespace UMoveNew.Controllers.AppCode
             param[2] = DataAccess.AddParamter("@NotDate", not.NotDate, SqlDbType.DateTime, 50);
 
             string sql = "insert into Notifications(UserID,Description,NotDate) values (@UserID,@Description,@NotDate)";
-            DataAccess.ExecuteSQLNonQuery(sql, param);
-
-            DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from Notifications");
-            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+            int res = DataAccess.ExecuteSQLNonQuery(sql, param);
+            if (res > 0)
             {
-                return int.Parse(dt.Rows[0]["MaxID"].ToString());
+                DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from Notifications");
+                if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+                {
+                    return int.Parse(dt.Rows[0]["MaxID"].ToString());
+                }
             }
             return 0;
         }

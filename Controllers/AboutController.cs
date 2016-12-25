@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,7 +14,10 @@ namespace UMoveNew.Controllers
         // GET api/about
         public HttpResponseMessage Get()
         {
-            string jsonString = "{ \"URL\": { \"url\": http://umove2.mline-ksa1.com/ } }";
+            string sql = "Select ParamterName,ParamterValue From  Settings Where ID=7";
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+         //   string jsonString = "{ \"URL\": { \"url\": http://umove2.mline-ksa1.com/ } }";
+            string jsonString = "{\"" + dt.Rows[0]["ParamterName"].ToString() + "\":\"" + dt.Rows[0]["ParamterValue"].ToString()+"\"}";
             // DataTable dt = new clsTripRequest().get(userId, userType);
 
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };

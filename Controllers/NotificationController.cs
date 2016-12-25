@@ -30,8 +30,19 @@ namespace UMoveNew.Controllers
         }
 
         // POST api/notification
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post([FromBody]Notification not)
         {
+            clsNotification clsNot = new clsNotification();
+            int res = clsNot.insert(not);
+            string jsonString = "";
+            if (res > 0)
+            {
+                jsonString = "{ \"success\": { \"id\":" + res.ToString() + "  } }";
+            }
+            else {
+                jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't save Notification\"  } }";
+            }
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
 
         // PUT api/notification/5

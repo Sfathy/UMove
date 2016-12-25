@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using UMoveNew.Controllers.AppCode;
+using UMoveNew.Models;
 
 namespace UMoveNew.Controllers
 {
@@ -20,44 +22,45 @@ namespace UMoveNew.Controllers
         // GET api/userphones/5
         public HttpResponseMessage Get(int userId)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("PhoneNo");
-            dt.Columns.Add("ID");
-            DataRow dr = dt.NewRow();
-            dr["PhoneNo"] = "01212121212";
-            dr["ID"] = 1;
-            dt.Rows.Add(dr);
-            dr = dt.NewRow();
-            dr["PhoneNo"] = "01010101010";
-            dr["ID"] = 2;
-            dt.Rows.Add(dr);
-
+            List<UserPhones> userPhones = new clsUserPhones().get(userId);
             string jsonString = "";
-            //DataTable dt = new clsTripRequest().get(userId, userType);
-            jsonString = JsonConvert.SerializeObject(dt);
+            jsonString = JsonConvert.SerializeObject(userPhones);
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
-        public class UserPhones
-        {
-            public int ID { get; set; }
-            public int UserID { get; set; }
 
-            public string  PhoneNo { get; set; }
-        }
         // POST api/userphones
         public HttpResponseMessage Post([FromBody]UserPhones Phone)
         {
-            string jsonString = "{ \"success\": { \"id\": 3  } }"; ;
+            clsUserPhones clsuserphone = new clsUserPhones();
+            int res = clsuserphone.insert(Phone);
 
-            // jsonString = JsonConvert.SerializeObject("");
+            string jsonString = "";
+            if (res > 0)
+            {
+                jsonString = "{ \"success\": { \"id\":" + res.ToString() + "  } }";
+            }
+            else
+            {
+                jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't save User Phone\"  } }";
+            }
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
 
         // PUT api/userphones/5
         public HttpResponseMessage Put(int id, [FromBody]UserPhones Phone)
         {
-            string jsonString = "{ \"success\": { \"id\": "+id.ToString()+"  } }"; ;
+            clsUserPhones clsuserphone = new clsUserPhones();
+            int res = clsuserphone.update(id, Phone);
 
+            string jsonString = "";
+            if (res > 0)
+            {
+                jsonString = "{ \"success\": { \"id\":" + res.ToString() + "  } }";
+            }
+            else
+            {
+                jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't Update User Phone\"  } }";
+            }
             // jsonString = JsonConvert.SerializeObject("");
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
@@ -65,9 +68,18 @@ namespace UMoveNew.Controllers
         // DELETE api/userphones/5
         public HttpResponseMessage Delete(int id)
         {
-            string jsonString = "{ \"success\": { \"id\": "+id.ToString()+"  } }"; ;
+            clsUserPhones clsuserphone = new clsUserPhones();
+            int res = clsuserphone.Delete(id);
 
-            // jsonString = JsonConvert.SerializeObject("");
+            string jsonString = "";
+            if (res > 0)
+            {
+                jsonString = "{ \"success\": { \"id\":" + res.ToString() + "  } }";
+            }
+            else
+            {
+                jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't Update User Phone\"  } }";
+            }
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
     }
