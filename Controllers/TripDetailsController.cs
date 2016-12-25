@@ -58,7 +58,9 @@ namespace UMoveNew.Controllers
           routs.Add("Distance", t.Distance);
           routs.Add("WaitingTime", t.WaitingTime);
           routs.Add("Cost", t.Cost.ToString()+" LE");
-          string s = JsonConvert.SerializeObject(routs);
+
+          routs.Add("Steps", t.Steps); 
+            string s = JsonConvert.SerializeObject(routs);
             string jsonString =JsonConvert.SerializeObject(t);
            // return t;
               return new HttpResponseMessage() { Content = new StringContent(s.Trim(), System.Text.Encoding.UTF8, "application/jason") };

@@ -40,10 +40,7 @@ namespace UMoveNew.Controllers
             {
                 distance = Convert.ToDecimal(routes[i]["legs"][0]["distance"]["value"].ToString())/1000;
                 waitTime = Convert.ToDecimal(routes[i]["legs"][0]["duration"]["value"].ToString());
-                waitTime = waitTime / 60;
-                waitTime = waitTime - (40 / distance * 60);
-                if (waitTime < 0)
-                    waitTime = 0;
+                waitTime = new clsTripRequest().calcWaitTime(distance, waitTime);
                 cost = trip.calcCost(distance, waitTime, carCategory);
                 
                 j = (JObject) routes[i];
@@ -60,6 +57,8 @@ namespace UMoveNew.Controllers
 
             
         }
+
+       
 
         // GET api/tripcost/5
       /*  public string Get(int id)

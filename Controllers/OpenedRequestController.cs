@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using UMoveNew.Controllers.AppCode;
 
 namespace UMoveNew.Controllers
 {
@@ -20,8 +21,8 @@ namespace UMoveNew.Controllers
         // GET api/openedrequest/5
         public HttpResponseMessage Get(decimal Latitude, decimal Longitude, int DriverID)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("TripID");
+            //DataTable dt = new DataTable();
+            /*dt.Columns.Add("TripID");
             dt.Columns.Add("Duration");
             dt.Columns.Add("lat");
             dt.Columns.Add("lng");
@@ -35,7 +36,8 @@ namespace UMoveNew.Controllers
                 dr["lng"] = 25.3621 + i;
                 dt.Rows.Add(dr);
             }
-
+            */
+            DataTable dt = new clsTripRequest().get(Latitude,Longitude);
             string jsonString = "";
             //DataTable dt = new clsTripRequest().get(userId, userType);
             jsonString = JsonConvert.SerializeObject(dt);

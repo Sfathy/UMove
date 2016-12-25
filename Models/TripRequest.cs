@@ -42,5 +42,7 @@ namespace UMoveNew.Models
         public double Duration { get; set; }
         public string  StartAddress { get; set; }
         public string EndAddress { get; set; }
+
+        public string Steps { get; set; }
     }
 }
