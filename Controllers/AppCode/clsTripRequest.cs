@@ -44,8 +44,8 @@ namespace UMoveNew.Controllers.AppCode
             //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
 
 
-            string sql = "insert into TripRequest([UserID],[DestLat],[DestLong],[SourceLat],[SourceLong],[DriverID],[PicUpDate],PaymentMethod,CarCategory,Route,StartAddress,EndAddress) values" +
-                "(@UserID,@DestLat,@DestLong,@SourceLat,@SourceLong,@DriverID,@PicUpDate,@PaymentMethod,@CarCategory,@Route.@StartAddress.@EndAddress)";
+            string sql = "insert into TripRequest([UserID],[DestLat],[DestLong],[SourceLat],[SourceLong],[DriverID],[PicUpDate],PaymentMethod,CarCategory,Route,StartAddress,EndAddress,Status) values" +
+                "(@UserID,@DestLat,@DestLong,@SourceLat,@SourceLong,@DriverID,@PicUpDate,@PaymentMethod,@CarCategory,@Route,@StartAddress,@EndAddress,"+((int) TripStatus.Request).ToString()+")";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int tripID = 0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from TripRequest");
@@ -85,6 +85,7 @@ namespace UMoveNew.Controllers.AppCode
                 tr.Duration = (tr.EndTime - tr.StartTime).TotalHours;
                 tr.StartAddress = (dt.Rows[0]["StartAddress"] == DBNull.Value) ? "" : dt.Rows[0]["StartAddress"].ToString();
                 tr.EndAddress = (dt.Rows[0]["EndAddress"] == DBNull.Value) ? "" : dt.Rows[0]["EndAddress"].ToString();
+                tr.Steps= (dt.Rows[0]["Steps"] == DBNull.Value) ? "" : dt.Rows[0]["Steps"].ToString();
                 //tr.EndTime = DateTime.Now;
                 //string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + tr.SourceLat.ToString() + "%2C" + tr.Sourcelong.ToString() + "&destination=" + tr.DestLat.ToString() + "%2C" + tr.DestLong.ToString();
                 //string jsonString = string.Empty;
@@ -107,7 +108,7 @@ namespace UMoveNew.Controllers.AppCode
         public DataTable get(int userId,int userType)
         {
 
-            string sql = "SELECT dbo.TripRequest.ID, dbo.TripRequest.UserID, dbo.TripRequest.SourceLat, dbo.TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.Route, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID ";
+            string sql = "SELECT dbo.TripRequest.ID, 'Hundai Elintra Black' as  CarDescription ,'ت ع 256' as CarNo,  dbo.TripRequest.UserID, dbo.TripRequest.SourceLat, dbo.TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.Route, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID ";
             if(userType == 1)
                 sql +=" where userID = " + userId.ToString();
             else
@@ -115,46 +116,6 @@ namespace UMoveNew.Controllers.AppCode
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
-                dt.Columns.Add("CarDescription");
-                dt.Columns.Add("CarNo");
-            //    dt.Columns.Add("CarIcon");
-                DataRow dr;
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    dt.Rows[i]["CarDescription"] = "Hundai Elintra Black";
-                    dt.Rows[i]["CarNo"] = "ت ع 256";
-                }
-                /*TripRequest tr = new TripRequest();
-                tr.UserID = int.Parse(dt.Rows[0]["UserID"].ToString());
-                tr.DestLat = decimal.Parse(dt.Rows[0]["DestLat"].ToString());
-                tr.DestLong = decimal.Parse(dt.Rows[0]["DestLong"].ToString());
-                tr.DriverID = int.Parse(dt.Rows[0]["DriverID"].ToString());
-                tr.PicUpDate = DateTime.Parse(dt.Rows[0]["PicUpDate"].ToString());
-                tr.SourceLat = decimal.Parse(dt.Rows[0]["SourceLat"].ToString());
-                tr.Sourcelong = decimal.Parse(dt.Rows[0]["SourceLong"].ToString());
-                tr.Status = (dt.Rows[0]["Status"] == DBNull.Value) ? 0 : int.Parse(dt.Rows[0]["Status"].ToString());
-                tr.PaymentMethod = (dt.Rows[0]["PaymentMethod"] == DBNull.Value) ? 0 : int.Parse(dt.Rows[0]["PaymentMethod"].ToString());
-                tr.CarCategory = int.Parse(dt.Rows[0]["CarCategory"].ToString());
-                tr.Cost = (dt.Rows[0]["Cost"] == DBNull.Value) ? 0 : decimal.Parse(dt.Rows[0]["Cost"].ToString());
-                tr.WaitingTime = (dt.Rows[0]["WaitingTime"] == DBNull.Value) ? 0 : decimal.Parse(dt.Rows[0]["WaitingTime"].ToString());
-                tr.Distance = (dt.Rows[0]["Distance"] == DBNull.Value) ? 0 : decimal.Parse(dt.Rows[0]["Distance"].ToString());
-                tr.Duration = 50;
-                tr.StartTime = DateTime.Now;
-                tr.EndTime = DateTime.Now;
-                //string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + tr.SourceLat.ToString() + "%2C" + tr.Sourcelong.ToString() + "&destination=" + tr.DestLat.ToString() + "%2C" + tr.DestLong.ToString();
-                //string jsonString = string.Empty;
-                //HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(string.Format(url));
-                //webReq.Method = "GET";
-                //HttpWebResponse webResponse = (HttpWebResponse)webReq.GetResponse();
-                //using (Stream responseStream = webResponse.GetResponseStream())
-                //{
-                //    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                //    jsonString = reader.ReadToEnd();
-                //}
-                tr.Route = (dt.Rows[0]["Route"] == DBNull.Value) ? "" : JsonConvert.DeserializeObject(dt.Rows[0]["Route"].ToString(), typeof(JObject)).ToString();
-                //   tr.steps = new List<TripRouteSteps>();
-                //  tr.steps.Add(new TripRouteSteps(){distance = new propt("10Km",1000),duration = new propt("10 min",600000),end_location = new Point(25.22145M,630.254M),start_location = new Point(68.215M,36.25412M),travel_mode ="DRIVING",html_instructions="Continue onto \u003cb\u003eAl Betrool\u003c/b\u003e"});
-                return tr;*/
                 return dt;
             }
             return null;
@@ -173,13 +134,21 @@ namespace UMoveNew.Controllers.AppCode
             return tripID;
         }
 
-        public int End(int tripID,decimal waitingTime,decimal distance,decimal cost)
+        public int End(int tripID,decimal waitingTime,decimal distance,decimal cost,string steps)
         {
-            string sql = "update TripRequest set Status = " + ((int)TripStatus.Ended).ToString() + ",EndTime = '"+DateTime.Now+"',   WaitingTime = "+ waitingTime.ToString()+", Distance = " + distance.ToString() +", Cost = " + cost.ToString() +" Where ID = " + tripID.ToString();
+            string sql = "update TripRequest set Status = " + ((int)TripStatus.Ended).ToString() + ",EndTime = '"+DateTime.Now+"',   WaitingTime = "+ waitingTime.ToString()+", Distance = " + distance.ToString() +", Cost = " + cost.ToString() + ", Steps = '" + steps +"' Where ID = " + tripID.ToString();
             DataAccess.ExecuteSQLNonQuery(sql);
             return tripID;
         }
 
+        public  decimal calcWaitTime(decimal distance, decimal duration)
+        {
+            duration = duration / 60;
+            duration = duration - (40 / distance * 60);
+            if (duration < 0)
+                duration = 0;
+            return duration;
+        }
         public decimal calcCost(decimal distance, decimal waitTime,int carCategory)
         {
             decimal _WaitTimeRate = 0.1M;
@@ -208,6 +177,41 @@ namespace UMoveNew.Controllers.AppCode
             string sql = "update TripRequest set Status = " + ((int)TripStatus.Canceled).ToString() +   " Where ID = " + tripID.ToString();
             DataAccess.ExecuteSQLNonQuery(sql);
             return tripID;
+        }
+
+        public DataTable get(decimal lat,decimal lng)
+        {
+            //string sql = "SELECT TOP 5 Min(acos(sin(" + lat.ToString() + ") * sin(latitude) + cos(" + lat.ToString() + ") * cos(latitude) * cos(Longitude - (" + lon.ToString() + "))))  as dis,UserID,Users.Name,latitude,Longitude,[datetime],[type],deviceToken,CarType,Angle,5 as Time FROM UserLocation inner join Users on Users.ID =UserLocation.UserID inner join DeviceInstallation on Users.installationKey = DeviceInstallation.InstallationKey group by UserID,Users.Name,latitude,Longitude,[datetime],[type],deviceToken,CarType,Angle  having datetime > convert(VARCHAR(24),'" + DateTime.Now.AddMinutes(-30).ToString("yyyy-MM-dd hh:mm:ss") + "',120) and Users.Type = 1 order By dis";
+            string sql = "SELECT TOP 5 Min(acos(sin(" + lat.ToString() + ") * sin(sourcelat) + cos(" + lat.ToString() + ") * cos(sourcelat) * cos(SourceLong - (" + lng.ToString() + "))))  as dis , TripRequest.ID, TripRequest.UserID, TripRequest.SourceLat "
++ " , TripRequest.SourceLong, TripRequest.DestLat, TripRequest.DestLong "
++ ",  TripRequest.PicUpDate, TripRequest.Status"
++ ", TripRequest.PaymentMethod, TripRequest.CarCategory"
++ ", TripRequest.Distance, TripRequest.WaitingTime, TripRequest.Cost"
++ ", TripRequest.Route,  TripRequest.StartAddress, TripRequest.EndAddress"
++ ", Users.Name AS UserName, Users.Phone AS UserPhone"
++ ", CarCategory.Name AS CarCategoryName "
+
++ " FROM TripRequest "
++ " LEFT OUTER JOIN CarCategory ON TripRequest.CarCategory = CarCategory.ID "
++ " LEFT OUTER JOIN Users ON Users.ID = TripRequest.UserID "
+
++ " where TripRequest.Status = 1"
++ " group by "
++ " TripRequest.ID, TripRequest.UserID, TripRequest.SourceLat "
++ " , TripRequest.SourceLong, TripRequest.DestLat, TripRequest.DestLong "
++ " ,  TripRequest.PicUpDate, TripRequest.Status "
++ " , TripRequest.PaymentMethod, TripRequest.CarCategory "
++ " , TripRequest.Distance, TripRequest.WaitingTime, TripRequest.Cost "
++ " , TripRequest.Route,  TripRequest.StartAddress, TripRequest.EndAddress "
++ " , Users.Name,Users.Phone "
++ " , CarCategory.Name  ";
+            
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+            {
+                return dt;
+            }
+            return null;
         }
     }
 }

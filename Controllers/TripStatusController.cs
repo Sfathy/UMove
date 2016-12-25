@@ -53,10 +53,22 @@ namespace UMoveNew.Controllers
                 //end the trip and change the status to ended
                 clsTripRequest trip = new clsTripRequest();
                 clsUser u = new clsUser();
-                trip.End(tripID, 10, 50, 30);
-                //notify the user with the end trip
+                
                 TripRequest userTrip = trip.get(tripID);
-                decimal finalCost = trip.calcCost(userTrip.Distance, userTrip.WaitingTime, userTrip.CarCategory);
+
+                decimal duration = 0M;
+                decimal distance = 0M;
+                decimal waitTime = 0M;
+                decimal.TryParse(steps.GetValue("duration").ToString(), out duration);
+                decimal.TryParse(steps.GetValue("distance").ToString(), out distance);
+                if(distance != 0)
+                {
+                    waitTime = new clsTripRequest().calcWaitTime(distance, duration);
+                }
+                decimal finalCost = trip.calcCost(distance, waitTime, userTrip.CarCategory);
+                
+                trip.End(tripID,waitTime,distance, finalCost,steps.ToString());
+                //notify the user with the end trip
                 //get customer Device Token
                 string customerDeviceToken = u.getUserDeviceToken(userTrip.CustomerID);
 
