@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using UMoveNew.Controllers.AppCode;
 using UMoveNew.Models;
 
 namespace UMoveNew.Controllers
@@ -20,29 +22,23 @@ namespace UMoveNew.Controllers
         // GET api/ratedriver/5
         public HttpResponseMessage Get(int driverId)
         {
-            List<RateDriver> drivers = new List<RateDriver>();
-            RateDriver d1 = new RateDriver();
-            //d1.UserID = 2;
-            d1.DriverID = driverId;
-            d1.Feedback = "Good Driver";
-            d1.Name = "Adam Ali";
-            d1.Rate = 4;
-            //d1.TripID = 5;
-            d1.ID = 1;
-            drivers.Add(d1);
-            /*d1 = new RateDriver();
-            d1.UserID = 3;
-            d1.DriverID = driverId;
-            d1.DriverName = "Adam Ali";
-            d1.Feedback = "Good Driver";
-            d1.Rate = 3;
-            d1.TripID = 6;
-            d1.ID = 2;
-            drivers.Add(d1); */
-
+            //List<RateDriver> drivers = new List<RateDriver>();
+            
+            clsUserRate cRate = new clsUserRate();
+            RateDriver d1 = cRate.get(driverId);
+          
+            DataTable dt = new DataTable();
+            dt.Columns.Add("UserID");
+            dt.Columns.Add("UserName");
+            dt.Columns.Add("Rate");
+            DataRow dr = dt.NewRow();
+            dr["UserID"] = d1.UserID;
+            dr["UserName"] = d1.Name;
+            dr["Rate"] = d1.Rate;
+            dt.Rows.Add(dr);
             string jsonString = "";
-            //DataTable dt = new clsTripRequest().get(userId, userType);
-            jsonString = JsonConvert.SerializeObject(drivers);
+            
+            jsonString = JsonConvert.SerializeObject(dt);
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
             
         }
@@ -50,7 +46,17 @@ namespace UMoveNew.Controllers
         // POST api/ratedriver
         public HttpResponseMessage Post([FromBody]RateDriver Rate)
         {
-            string jsonString = "{ \"success\": { \"id\": 3  } }"; ;
+            clsUserRate cRate = new clsUserRate();
+           int res= cRate.insert_DriverRate(Rate);
+           string jsonString = "";
+           if (res>0)
+           {
+                jsonString = "{ \"success\": { \"id\": "+res+" } }";
+           }
+           else
+           {
+               jsonString = "{ \"error\": { \"code\": 1, \"message\": \"Error while adding new Rate\"  } }";
+           }
 
             // jsonString = JsonConvert.SerializeObject("");
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
