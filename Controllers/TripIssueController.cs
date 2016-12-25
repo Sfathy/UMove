@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using UMoveNew.Controllers.AppCode;
 using UMoveNew.Models;
 
 namespace UMoveNew.Controllers
@@ -15,8 +16,9 @@ namespace UMoveNew.Controllers
         // GET api/tripissue
         public HttpResponseMessage Get()
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("ID");
+           // clsTripIssue issue = 
+            DataTable dt = new  clsTripIssue().getAllIssues();
+            /*dt.Columns.Add("ID");
             dt.Columns.Add("Issue");
             DataRow dr = dt.NewRow();
             dr["ID"] = 1;
@@ -36,18 +38,20 @@ namespace UMoveNew.Controllers
             dr = dt.NewRow();
             dr["ID"] = 4;
             dr["Issue"] = "I used a wrong payment method";
-            dt.Rows.Add(dr);
+            dt.Rows.Add(dr);*/
             string jsonString = "";
             //DataTable dt = new clsTripRequest().get(userId, userType);
             jsonString = JsonConvert.SerializeObject(dt);
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
             
             
-        }
+        } 
 
         // GET api/tripissue/5
         public HttpResponseMessage Get(int tripId)
         {
+            DataTable dt = new clsTripIssue().getTripIssues(tripId);
+            /*
             List<TripIssues> tripIssues = new List<TripIssues>();
             TripIssues d1 = new TripIssues();
             d1.UserID = 2;
@@ -55,10 +59,10 @@ namespace UMoveNew.Controllers
             d1.IssueID = 2;
             d1.TripID = tripId;
             tripIssues.Add(d1);
-            
+            */
             string jsonString = "";
             //DataTable dt = new clsTripRequest().get(userId, userType);
-            jsonString = JsonConvert.SerializeObject(tripIssues);
+            jsonString = JsonConvert.SerializeObject(dt);
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
             
         }
@@ -66,7 +70,9 @@ namespace UMoveNew.Controllers
         // POST api/tripissue
         public HttpResponseMessage Post([FromBody]TripIssues tripIssue)
         {
-            string jsonString = "{ \"success\": { \"id\": 3  } }"; ;
+            clsTripIssue issue = new clsTripIssue();
+            int id = issue.insert(tripIssue);
+            string jsonString = "{ \"success\": { \"id\": "+ id.ToString() +"  } }"; ;
 
             // jsonString = JsonConvert.SerializeObject("");
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
