@@ -40,6 +40,6 @@ namespace UMoveNew.Controllers.AppCode
             string sql = "Select * from Issues";
             return    DataAccess.ExecuteSQLQuery(sql);
 
-        }
+        } 
     }
 }
