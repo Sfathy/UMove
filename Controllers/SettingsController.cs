@@ -15,16 +15,16 @@ namespace UMoveNew.Controllers
         {
             string sql = "Select ParamterName,ParamterValue From  Settings";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
-            string jsonString = "[{\"" + dt.Rows[0]["ParamterName"].ToString() + "\":\"" + dt.Rows[0]["ParamterValue"].ToString() + "\"},";
+            string jsonString = "{\"" + dt.Rows[0]["ParamterName"].ToString() + "\":\"" + dt.Rows[0]["ParamterValue"].ToString() + "\",";
             for (int i = 1; i < dt.Rows.Count; i++)
             {
                 if (i < dt.Rows.Count - 1)
                 {
-                    jsonString += "{\"" + dt.Rows[i]["ParamterName"].ToString() + "\":\"" + dt.Rows[i]["ParamterValue"].ToString() + "\"},";
+                    jsonString += "\"" + dt.Rows[i]["ParamterName"].ToString() + "\":\"" + dt.Rows[i]["ParamterValue"].ToString() + "\",";
                 }
                 else
                 {
-                    jsonString += "{\"" + dt.Rows[i]["ParamterName"].ToString() + "\":\"" + dt.Rows[i]["ParamterValue"].ToString() + "\"}]";
+                    jsonString += "\"" + dt.Rows[i]["ParamterName"].ToString() + "\":\"" + dt.Rows[i]["ParamterValue"].ToString() + "\"}";
                 }
 
 
