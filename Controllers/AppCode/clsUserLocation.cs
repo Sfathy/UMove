@@ -72,11 +72,11 @@ namespace UMoveNew.Controllers.AppCode
         public List<UserLocation> get(int UserID)
         {
             List<UserLocation> userlocations = new List<UserLocation>();
-            string sql = "select * from UserLocation where UserID = " + UserID.ToString();
+            string sql = "select * from UserLocation inner join users on userID = Users.ID where UserID = " + UserID.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                userlocations.Add(new UserLocation() { ID = int.Parse(dt.Rows[i]["ID"].ToString()), UserID = int.Parse(dt.Rows[i]["UserID"].ToString()), Latitude = decimal.Parse(dt.Rows[i]["Latitude"].ToString()), Longitude = decimal.Parse(dt.Rows[i]["Longitude"].ToString()), DateTime = DateTime.Parse(dt.Rows[i]["DateTime"].ToString()), Angle = decimal.Parse(dt.Rows[i]["Angle"].ToString()) });
+                userlocations.Add(new UserLocation() { ID = int.Parse(dt.Rows[i]["ID"].ToString()), UserID = int.Parse(dt.Rows[i]["UserID"].ToString()), Latitude = decimal.Parse(dt.Rows[i]["Latitude"].ToString()), Longitude = decimal.Parse(dt.Rows[i]["Longitude"].ToString()), DateTime = DateTime.Parse(dt.Rows[i]["DateTime"].ToString()), Angle = decimal.Parse(dt.Rows[i]["Angle"].ToString()), Description = dt.Rows[i]["Name"].ToString() });
             }
             return userlocations;
         }
