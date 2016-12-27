@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,11 +38,56 @@ namespace UMoveNew.Controllers
                 dt.Rows.Add(dr);
             }
             */
+
+            string s = "[";
+            List<string> ss = new List<string>();
             DataTable dt = new clsTripRequest().get(Latitude,Longitude);
-            string jsonString = "";
-            //DataTable dt = new clsTripRequest().get(userId, userType);
-            jsonString = JsonConvert.SerializeObject(dt);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            if (dt!=null)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    JObject routs = (JObject)JsonConvert.DeserializeObject(dt.Rows[0]["Route"].ToString(), typeof(JObject));
+                    routs.Add("ID", dt.Rows[0]["ID"].ToString());
+                    routs.Add("dis", dt.Rows[0]["dis"].ToString());
+                    routs.Add("UserID", dt.Rows[0]["dis"].ToString());
+                    routs.Add("SourceLat", dt.Rows[0]["SourceLat"].ToString());
+                    routs.Add("SourceLong", dt.Rows[0]["SourceLong"].ToString());
+                    routs.Add("DestLat", dt.Rows[0]["DestLat"].ToString());
+                    routs.Add("DestLong", dt.Rows[0]["DestLong"].ToString());
+                    routs.Add("PicUpDate", dt.Rows[0]["PicUpDate"].ToString());
+                    //get driver info this isn't real data 
+                    routs.Add("Status", dt.Rows[0]["Status"].ToString());
+                    routs.Add("PaymentMethod", dt.Rows[0]["PaymentMethod"].ToString());
+                    routs.Add("CarCategory", dt.Rows[0]["CarCategory"].ToString());
+                    routs.Add("Distance", dt.Rows[0]["Distance"].ToString());
+                    routs.Add("WaitingTime", dt.Rows[0]["WaitingTime"].ToString());
+                    routs.Add("Cost", dt.Rows[0]["Cost"].ToString());
+                    //routs.Add("CarCategory", t.CarCategory);
+                    //routs.Add("Distance", t.Distance);
+                    //routs.Add("WaitingTime", t.WaitingTime);
+                    //routs.Add("Cost", t.Cost.ToString() + " LE");
+
+                    //      routs.Add("Steps", dt.Rows[0]["Route"].ToString());
+                    routs.Add("StartAddress", dt.Rows[0]["StartAddress"].ToString());
+                    routs.Add("EndAddress", dt.Rows[0]["EndAddress"].ToString());
+                    routs.Add("UserName", dt.Rows[0]["UserName"].ToString());
+                    routs.Add("UserPhone", dt.Rows[0]["UserPhone"].ToString());
+                    routs.Add("CarCategoryName", dt.Rows[0]["CarCategoryName"].ToString());
+                    s += JsonConvert.SerializeObject(routs);
+                    if (i<dt.Rows.Count-1)
+                    {
+                        s += ",";
+                    }
+                    
+                   // ss.Add(s.Trim());
+                }
+                s += "]";
+          //      string jsonString = "";
+                //DataTable dt = new clsTripRequest().get(userId, userType);
+                //jsonString = JsonConvert.SerializeObject(dt); 
+            }
+
+            return new HttpResponseMessage() { Content = new StringContent(s.Trim(), System.Text.Encoding.UTF8, "application/jason") };
         }
 
         // POST api/openedrequest
