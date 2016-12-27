@@ -58,7 +58,7 @@ namespace UMoveNew.Controllers.AppCode
         }
         public TripRequest get(int id)
         {
-            string sql = "select TripRequest.*,Users.Name as DriverName,Users.Phone as DriverPhone from TripRequest inner join users on users.ID = TripRequest.DriverID where TripRequest.ID = " + id.ToString();
+            string sql = "select TripRequest.*,driver.Name as DriverName,driver.Phone as DriverPhone, cust.Name as UserName,cust.Phone as UserPhone from TripRequest inner join users as driver on driver.ID = TripRequest.DriverID inner join users as cust on cust.ID = TripRequest.UserID  where TripRequest.ID = " + id.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
@@ -79,6 +79,8 @@ namespace UMoveNew.Controllers.AppCode
                 
                 tr.DriverName = (dt.Rows[0]["DriverName"] == DBNull.Value) ? "" : dt.Rows[0]["DriverName"].ToString();
                 tr.DriverPhone = (dt.Rows[0]["DriverPhone"] == DBNull.Value) ? "" : dt.Rows[0]["DriverPhone"].ToString();
+                tr.UserName = (dt.Rows[0]["UserName"] == DBNull.Value) ? "" : dt.Rows[0]["UserName"].ToString();
+                tr.UserPhone = (dt.Rows[0]["UserPhone"] == DBNull.Value) ? "" : dt.Rows[0]["UserPhone"].ToString();
                 tr.DriverCarNo = "ت ع 256";
                 tr.StartTime = (dt.Rows[0]["StartTime"] == DBNull.Value) ? DateTime.MinValue  : DateTime.Parse(dt.Rows[0]["StartTime"].ToString());
                 tr.EndTime = (dt.Rows[0]["EndTime"] == DBNull.Value) ? DateTime.MinValue: DateTime.Parse(dt.Rows[0]["EndTime"].ToString());
@@ -109,7 +111,7 @@ namespace UMoveNew.Controllers.AppCode
         {
 
             string sql = "SELECT dbo.TripRequest.ID, 'Hundai Elintra Black' as  CarDescription ,'ت ع 256' as CarNo,  dbo.TripRequest.UserID, dbo.TripRequest.SourceLat, dbo.TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.Route, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID ";
-            if(userType == 1)
+            if(userType == 0)
                 sql +=" where userID = " + userId.ToString();
             else
                 sql += " where DriverID = " + userId.ToString();
