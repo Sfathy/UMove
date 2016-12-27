@@ -67,6 +67,7 @@ namespace UMoveNew.Controllers.AppCode
                 tr.DestLat = decimal.Parse(dt.Rows[0]["DestLat"].ToString());
                 tr.DestLong = decimal.Parse(dt.Rows[0]["DestLong"].ToString());
                 tr.DriverID = int.Parse(dt.Rows[0]["DriverID"].ToString());
+                tr.DriverRate = new clsUserRate().get(tr.DriverID).Rate;
                 tr.PicUpDate = DateTime.Parse(dt.Rows[0]["PicUpDate"].ToString());
                 tr.SourceLat = decimal.Parse(dt.Rows[0]["SourceLat"].ToString());
                 tr.Sourcelong = decimal.Parse(dt.Rows[0]["SourceLong"].ToString());
