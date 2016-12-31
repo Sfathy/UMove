@@ -242,6 +242,7 @@
     <Compile Include="Controllers\AppCode\clsTripIssue.cs" />
     <Compile Include="Controllers\AppCode\clsTripRequest.cs" />
     <Compile Include="Controllers\AppCode\clsUser.cs" />
+    <Compile Include="Controllers\AppCode\clsUserBalance.cs" />
     <Compile Include="Controllers\AppCode\clsUserLocation.cs" />
     <Compile Include="Controllers\AppCode\clsUserPhones.cs" />
     <Compile Include="Controllers\AppCode\clsUserRate.cs" />

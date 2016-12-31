@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using UMoveNew.Controllers.AppCode;
 
 namespace UMoveNew.Controllers
 {
@@ -19,12 +22,9 @@ namespace UMoveNew.Controllers
         public HttpResponseMessage Get(int userId,int userType)
         {
             string jsonString = "";
-            if(userType==0) //user
-                jsonString = "{ \"UserBalance\": { \"Point\": 60 , \"Km\":120 , \"Money\":\"20 L.E\"} }";
-            else //driver
-                jsonString = "{ \"UserBalance\": {  \"Km\":120 , \"Money\":\"20 L.E\"} }";
-            // DataTable dt = new clsTripRequest().get(userId, userType);
-
+           
+             DataTable dt = new clsUserBalance().getBalance(userId);
+             jsonString = JsonConvert.SerializeObject(dt);
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
 
