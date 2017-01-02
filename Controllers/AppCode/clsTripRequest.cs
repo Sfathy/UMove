@@ -69,7 +69,7 @@ namespace UMoveNew.Controllers.AppCode
                 tr.DriverID = (dt.Rows[0]["DriverID"] == DBNull.Value) ? 0 : int.Parse(dt.Rows[0]["DriverID"].ToString());
                 if (tr.DriverID != 0)
                     tr.DriverRate = new clsUserRate().get(tr.DriverID).Rate;
-                tr.PicUpDate = DateTime.Parse(dt.Rows[0]["PicUpDate"].ToString());
+                tr.PicUpDate = (dt.Rows[0]["PicUpDate"] == DBNull.Value) ? DateTime.Now : DateTime.Parse(dt.Rows[0]["PicUpDate"].ToString());
                 tr.SourceLat = decimal.Parse(dt.Rows[0]["SourceLat"].ToString());
                 tr.Sourcelong = decimal.Parse(dt.Rows[0]["SourceLong"].ToString());
                 tr.Status = (dt.Rows[0]["Status"] == DBNull.Value)?0:int.Parse(dt.Rows[0]["Status"].ToString());
