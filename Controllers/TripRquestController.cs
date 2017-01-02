@@ -30,7 +30,7 @@ namespace UMoveNew.Controllers
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                    // dr = dt.NewRow();
-                    dt.Rows[i]["duration"] = loc.getDuration(Latitude, Longitude, decimal.Parse(dt.Rows[i]["latitude"].ToString()), decimal.Parse(dt.Rows[i]["Longitude"].ToString()));
+                    dt.Rows[i]["duration"] = ((clsUserLocation.dist)loc.getDistance(Latitude, Longitude, decimal.Parse(dt.Rows[i]["latitude"].ToString()), decimal.Parse(dt.Rows[i]["Longitude"].ToString()))).duration;
                     dt.Rows[i]["driverDescription"] = dt.Rows[i]["Name"];
                 }
                 jsonString = JsonConvert.SerializeObject(dt);
@@ -100,10 +100,10 @@ namespace UMoveNew.Controllers
            }
 */
            // DELETE api/triprquest/5
-           public HttpResponseMessage Delete(int id)
+           public HttpResponseMessage Delete(int id,int userType)
            {
                clsTripRequest tripRq = new clsTripRequest();
-               tripRq.cancelTrip(id);
+               tripRq.cancelTrip(id,userType);
                string jsonString = "{ \"success\": { \"id\": " + id.ToString() + "  } }";
                return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
            }

@@ -48,11 +48,11 @@ namespace UMoveNew.Controllers.AppCode
         public List<FavDriver> get(int UserID)
         {
             List<FavDriver> favDrivers = new List<FavDriver>();
-            string sql = "select * from FavDriver inner join Users on DriverID = Users.ID inner join UserLocation on DriverID = UserLocation.UserID where FavDriver.UserID = " + UserID.ToString();
+            string sql = "select * from FavDriver left outer join Users on DriverID = Users.ID left outer join UserLocation on DriverID = UserLocation.UserID left outer join DriverCarDetails on DriverID = DriverCarDetails.UserID where FavDriver.UserID = " + UserID.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                favDrivers.Add(new FavDriver() { ID = int.Parse(dt.Rows[i]["ID"].ToString()), UserID = int.Parse(dt.Rows[i]["UserID"].ToString()), DriverID = int.Parse(dt.Rows[i]["DriverID"].ToString()), DriverName = dt.Rows[i]["Name"].ToString(), DriverLat = decimal.Parse(dt.Rows[i]["latitude"].ToString()), DriverLng = decimal.Parse(dt.Rows[i]["longitude"].ToString()) });
+                favDrivers.Add(new FavDriver() { ID = int.Parse(dt.Rows[i]["ID"].ToString()), UserID = int.Parse(dt.Rows[i]["UserID"].ToString()), DriverID = int.Parse(dt.Rows[i]["DriverID"].ToString()), DriverName = dt.Rows[i]["Name"].ToString(), DriverLat = decimal.Parse(dt.Rows[i]["latitude"].ToString()), DriverLng = decimal.Parse(dt.Rows[i]["longitude"].ToString()), CarDescription = dt.Rows[i]["CarDescription"].ToString(), CarNo = dt.Rows[i]["CarNo"].ToString() });
             }
             return favDrivers;
         }

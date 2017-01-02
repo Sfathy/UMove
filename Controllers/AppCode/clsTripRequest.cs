@@ -58,7 +58,7 @@ namespace UMoveNew.Controllers.AppCode
         }
         public TripRequest get(int id)
         {
-            string sql = "select TripRequest.*,driver.Name as DriverName,driver.Phone as DriverPhone, cust.Name as UserName,cust.Phone as UserPhone from TripRequest inner join users as driver on driver.ID = TripRequest.DriverID inner join users as cust on cust.ID = TripRequest.UserID  where TripRequest.ID = " + id.ToString();
+            string sql = "select TripRequest.*,driver.Name as DriverName,driver.Phone as DriverPhone, cust.Name as UserName,cust.Phone as UserPhone,CarNo from TripRequest left outer join users as driver on driver.ID = TripRequest.DriverID left outer join users as cust on cust.ID = TripRequest.UserID left outer join DriverCarDetails on TripRequest.DriverID = DriverCarDetails.UserID  where TripRequest.ID = " + id.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
@@ -66,8 +66,9 @@ namespace UMoveNew.Controllers.AppCode
                 tr.UserID = int.Parse(dt.Rows[0]["UserID"].ToString());
                 tr.DestLat = decimal.Parse(dt.Rows[0]["DestLat"].ToString());
                 tr.DestLong = decimal.Parse(dt.Rows[0]["DestLong"].ToString());
-                tr.DriverID = int.Parse(dt.Rows[0]["DriverID"].ToString());
-                tr.DriverRate = new clsUserRate().get(tr.DriverID).Rate;
+                tr.DriverID = (dt.Rows[0]["DriverID"] == DBNull.Value) ? 0 : int.Parse(dt.Rows[0]["DriverID"].ToString());
+                if (tr.DriverID != 0)
+                    tr.DriverRate = new clsUserRate().get(tr.DriverID).Rate;
                 tr.PicUpDate = DateTime.Parse(dt.Rows[0]["PicUpDate"].ToString());
                 tr.SourceLat = decimal.Parse(dt.Rows[0]["SourceLat"].ToString());
                 tr.Sourcelong = decimal.Parse(dt.Rows[0]["SourceLong"].ToString());
@@ -82,7 +83,7 @@ namespace UMoveNew.Controllers.AppCode
                 tr.DriverPhone = (dt.Rows[0]["DriverPhone"] == DBNull.Value) ? "" : dt.Rows[0]["DriverPhone"].ToString();
                 tr.UserName = (dt.Rows[0]["UserName"] == DBNull.Value) ? "" : dt.Rows[0]["UserName"].ToString();
                 tr.UserPhone = (dt.Rows[0]["UserPhone"] == DBNull.Value) ? "" : dt.Rows[0]["UserPhone"].ToString();
-                tr.DriverCarNo = "ت ع 256";
+                tr.DriverCarNo = (dt.Rows[0]["CarNo"] == DBNull.Value) ? "" : dt.Rows[0]["CarNo"].ToString(); ;
                 tr.StartTime = (dt.Rows[0]["StartTime"] == DBNull.Value) ? DateTime.MinValue  : DateTime.Parse(dt.Rows[0]["StartTime"].ToString());
                 tr.EndTime = (dt.Rows[0]["EndTime"] == DBNull.Value) ? DateTime.MinValue: DateTime.Parse(dt.Rows[0]["EndTime"].ToString());
                 tr.Duration = (tr.EndTime - tr.StartTime).TotalHours;
@@ -141,6 +142,16 @@ namespace UMoveNew.Controllers.AppCode
         {
             string sql = "update TripRequest set Status = " + ((int)TripStatus.Ended).ToString() + ",EndTime = '"+DateTime.Now+"',   WaitingTime = "+ waitingTime.ToString()+", Distance = " + distance.ToString() +", Cost = " + cost.ToString() + ", Steps = '" + steps +"' Where ID = " + tripID.ToString();
             DataAccess.ExecuteSQLNonQuery(sql);
+            TripRequest t = new clsTripRequest().get(tripID);
+            //update user balance (KM only)
+            sql = " if exists ( select * from UserBalance where userid = " + t.UserID.ToString() + ") begin Update UserBalance set KMBalance = KMBalance + " + distance.ToString() + ",PointsBalance= PointsBalance +" + (distance / clsSettings.Setting.UserPointRate).ToString() + " where userid = " + t.UserID.ToString() 
+                +" end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values ("+t.UserID.ToString()+","+distance.ToString()+",0,"+ (distance / clsSettings.Setting.UserPointRate).ToString() +") end ";
+            DataAccess.ExecuteSQLNonQuery(sql);
+            //update driver balance
+            sql = "if exists ( select * from UserBalance where userid = " + t.DriverID.ToString() + ") begin Update UserBalance set KMBalance = KMBalance + " + distance.ToString() + ",PointsBalance= PointsBalance +" + (distance / clsSettings.Setting.DriverPointRate).ToString() + ",MoneyBalance = MoneyBalance - " + (cost * clsSettings.Setting.CompanyRate / 100).ToString() + " where userid = " + t.UserID.ToString()
+                + " end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values (" + t.DriverID.ToString() + "," + distance.ToString() + "," + (-1 * cost * clsSettings.Setting.CompanyRate / 100).ToString() + "," + (distance / clsSettings.Setting.DriverPointRate).ToString() + ") end";
+            DataAccess.ExecuteSQLNonQuery(sql);
+            
             return tripID;
         }
 
@@ -154,31 +165,42 @@ namespace UMoveNew.Controllers.AppCode
         }
         public decimal calcCost(decimal distance, decimal waitTime,int carCategory)
         {
-            decimal _WaitTimeRate = 0.1M;
-            decimal _KMRate = 0.4M;
-            switch(carCategory)
-            {
-                case 2:
-                    {
-                        _WaitTimeRate = 0.2M;
-                        _KMRate = 0.5M;
-                        break;
-                    }
-                case 3:
-                    {
-                        _WaitTimeRate = 0.1M;
-                        _KMRate = 0.4M;
-                        break;
-                    }
-            }
-            decimal cost = _WaitTimeRate * waitTime + _KMRate * distance;
+            string sql = "select * from carCategory where ID = " + carCategory.ToString();
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+            decimal _WaitTimeRate = decimal.Parse(dt.Rows[0]["MinFees"].ToString());
+            decimal _KMRate = decimal.Parse(dt.Rows[0]["KmFees"].ToString());
+            decimal _StartFees = decimal.Parse(dt.Rows[0]["StartFees"].ToString());
+            decimal _minFees = decimal.Parse(dt.Rows[0]["MinimumFees"].ToString());
+            
+            decimal cost =_StartFees +  _WaitTimeRate * waitTime + _KMRate * distance;
+            if (cost < _minFees)
+                cost = _minFees;
             return cost;
         }
 
-        public int cancelTrip(int tripID)
+        public int cancelTrip(int tripID,int userType)
         {
             string sql = "update TripRequest set Status = " + ((int)TripStatus.Canceled).ToString() +   " Where ID = " + tripID.ToString();
             DataAccess.ExecuteSQLNonQuery(sql);
+            int userID = 0; 
+            decimal fees = 0.0M;
+            TripRequest t = new clsTripRequest().get(tripID);
+            if (userType == 0)
+            {
+                userID = t.UserID;
+                fees = clsSettings.Setting.UserCancelFee;
+            }
+            else
+            {
+                userID =  t.DriverID;
+                fees = clsSettings.Setting.DriverCancelFee;
+            }
+            //update the balance for the user
+            sql = "if exists ( select * from UserBalance where userid = "+userID.ToString()+") begin update UserBalance set MoneyBalance = MoneyBalance + " + fees.ToString() +" where userID = "+userID.ToString() 
+                + " end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values ("+userID.ToString()+",0,"+fees.ToString()+",0) end ";
+                
+            DataAccess.ExecuteSQLNonQuery(sql);
+
             return tripID;
         }
 

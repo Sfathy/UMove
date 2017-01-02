@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 using UMoveNew.Controllers.AppCode;
 using UMoveNew.Models;
@@ -22,10 +25,10 @@ namespace UMoveNew.Controllers
         }
 
         // GET api/favdriver/5
-        public HttpResponseMessage Get(int userId)
+        public HttpResponseMessage Get(int userId,decimal lat,decimal lng)
         {
             //use this URL to get the distance between user and driver
-            //https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=30.151425467127243%2C31.321661397814747&destinations=30.071246%2C31.3516287&key=AIzaSyBrnXeFYGzOaWAktnIISiPiQ4A49pZxsRc
+            //https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=29.857218,%2031.371445&destinations=29.842767,%2031.333465&key=AIzaSyApwh5jfaziQLqxrDGMRrChZQkCs0vavsA
 
             List<FavDriver> drivers = new clsFavDriver().get(userId);
             FavDriver d1 = new FavDriver();
@@ -33,32 +36,13 @@ namespace UMoveNew.Controllers
             {
                 d1 = new FavDriver();
                 d1 = drivers[i];
-                d1.CarDescription = "Hundai Elintra Black";
-                d1.CarNo = "ت ع 256";
-                d1.Distance = 30;
-                d1.Duration = 120;
+
+                clsUserLocation.dist mes = new clsUserLocation().getDistance(lat, lng, d1.DriverLat,d1.DriverLng);
+                d1.Distance = mes.distnation;
+                d1.Duration = mes.duration;
                 drivers[i] = d1;
             }
-            /*d1.UserID = 2;
-            d1.DriverID = 4;
-            d1.CarDescription = "Hundai Elintra Black";
-            d1.CarNo = "ت ع 256";
-            d1.Distance = 30;
-            d1.DriverName = "Ahmed Hussien";
-            d1.Duration = 120;
-            d1.ID = 1;
-            drivers.Add(d1);
-            d1 = new FavDriver();
-            d1.UserID = 2;
-            d1.DriverID = 5;
-            d1.CarDescription = "Hundai Elintra Black";
-            d1.CarNo = "ت ع 256";
-            d1.Distance = 50;
-            d1.DriverName = "Adam Ali";
-            d1.Duration = 180;
-            d1.ID = 2;
-            drivers.Add(d1);
-            */
+            
             string jsonString = "";
             //DataTable dt = new clsTripRequest().get(userId, userType);
             jsonString = JsonConvert.SerializeObject(drivers);
@@ -66,6 +50,7 @@ namespace UMoveNew.Controllers
 
             
         }
+       
 
         // POST api/favdriver
         public HttpResponseMessage Post([FromBody]FavDriver driver)

@@ -238,6 +238,7 @@
     <Compile Include="Controllers\AppCode\clsPaymentMethod.cs" />
     <Compile Include="Controllers\AppCode\clsQuestion.cs" />
     <Compile Include="Controllers\AppCode\clsSendNotification.cs" />
+    <Compile Include="Controllers\AppCode\clsSettings.cs" />
     <Compile Include="Controllers\AppCode\clsTrip.cs" />
     <Compile Include="Controllers\AppCode\clsTripIssue.cs" />
     <Compile Include="Controllers\AppCode\clsTripRequest.cs" />

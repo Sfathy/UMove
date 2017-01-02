@@ -30,6 +30,22 @@ namespace UMoveNew.Controllers
         // POST api/changename
         public HttpResponseMessage Post([FromBody]ChangeUserName NewName)
         {
+            string fields = "";
+            if (NewName.NewUserName != string.Empty)
+                fields += " Name = " + NewName.NewUserName;
+            if (NewName.NewUserPhone != string.Empty)
+            {
+                if (fields != string.Empty)
+                    fields += ",";
+                fields += " Phone = " + NewName.NewUserPhone;
+            }
+            if (NewName.NewUserMail != string.Empty)
+            {
+                if (fields != string.Empty)
+                    fields += ",";
+                fields += " Email = " + NewName.NewUserMail;
+            }
+            string sql = "update users set " + fields + " where ID = " + NewName.UserID.ToString(); 
             string jsonString = "{ \"success\": { \"id\": "+NewName.UserID.ToString()+"  } }"; ;
 
             // jsonString = JsonConvert.SerializeObject("");

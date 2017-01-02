@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using UMoveNew.Models;
 
@@ -81,6 +86,30 @@ namespace UMoveNew.Controllers.AppCode
             return userlocations;
         }
 
+        public struct dist
+        {
+            public decimal distnation;
+            public decimal duration;
+        }
+        public  dist getDistance(decimal slat, decimal slng, decimal dlat, decimal dlng)
+        {
+            string url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=" + slat.ToString() + ",%20" + slng.ToString() + "&destinations=" + dlat + ",%20" + dlng + "&key=AIzaSyApwh5jfaziQLqxrDGMRrChZQkCs0vavsA";
+            string jsonString = string.Empty;
+            HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(string.Format(url));
+            webReq.Method = "GET";
+            HttpWebResponse webResponse = (HttpWebResponse)webReq.GetResponse();
+            using (Stream responseStream = webResponse.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                jsonString = reader.ReadToEnd();
+            }
+            JObject googleApi = (JObject)JsonConvert.DeserializeObject(jsonString, typeof(JObject));
+            JArray mes = (JArray)googleApi["rows"];
+            dist d = new dist();
+            d.distnation = Convert.ToDecimal(mes[0]["elements"][0]["distance"]["value"].ToString()) / 1000;
+            d.duration = Convert.ToDecimal(mes[0]["elements"][0]["duration"]["value"].ToString()) / 60;
+            return d;
+        }
 
         public decimal getDuration(decimal srcLat, decimal srcLng, decimal dstLat, decimal dstLng)
         {

@@ -32,26 +32,34 @@ namespace UMoveNew.Controllers
             try
             {
                 clsTripRequest trip = new clsTripRequest();
-                trip.Accept(RequestID, UserID);
+                TripRequest t = trip.get(RequestID);
+                if (t.Status == (int)clsTripRequest.TripStatus.Request)
+                {
+                    trip.Accept(RequestID, UserID);
 
-                //get driver info
-                clsUser u = new clsUser();
-                DataTable dtDriver = u.get(UserID);
+                    //get driver info
+                    clsUser u = new clsUser();
+                    DataTable dtDriver = u.get(UserID);
 
-                //get request info
-                TripRequest userTrip = trip.get(RequestID);
+                    //get request info
+                    TripRequest userTrip = trip.get(RequestID);
 
-                //get customer Device Token
-                string customerDeviceToken = u.getUserDeviceToken(userTrip.CustomerID);
+                    //get customer Device Token
+                    string customerDeviceToken = u.getUserDeviceToken(userTrip.CustomerID);
 
 
-                //send notification to the user with the driver information
-                AndroidGcmPushNotification not = new AndroidGcmPushNotification();
-                string jsonString = string.Empty;
-                jsonString = JsonConvert.SerializeObject(dtDriver);
-                //not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
-                not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "", customerDeviceToken, JsonConvert.SerializeObject(trip));
-                jsonRes = "{ \"success\": { \"id\": " + RequestID.ToString() + "  } }";
+                    //send notification to the user with the driver information
+                    AndroidGcmPushNotification not = new AndroidGcmPushNotification();
+                    string jsonString = string.Empty;
+                    jsonString = JsonConvert.SerializeObject(dtDriver);
+                    //not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
+                    not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "", customerDeviceToken, JsonConvert.SerializeObject(trip));
+                    jsonRes = "{ \"success\": { \"id\": " + RequestID.ToString() + "  } }";
+                }
+                else
+                {
+                    jsonRes = "{ \"error\": { \"code\": 4, \"message\": \"trip already accepted\"  } }";
+                }
             }
             catch(Exception e)
             {

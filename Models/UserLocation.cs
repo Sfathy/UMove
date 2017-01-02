@@ -15,7 +15,7 @@ namespace UMoveNew.Models
         public DateTime DateTime { get; set; }
         public string Description { get; set; }
         public Decimal Angle { get; set; }
-
+        public int getRequests { get; set; }
         public string Address { get; set; }
     }
 }
