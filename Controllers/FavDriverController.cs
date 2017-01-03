@@ -36,10 +36,17 @@ namespace UMoveNew.Controllers
             {
                 d1 = new FavDriver();
                 d1 = drivers[i];
-
-                clsUserLocation.dist mes = new clsUserLocation().getDistance(lat, lng, d1.DriverLat,d1.DriverLng);
-                d1.Distance = mes.distnation;
-                d1.Duration = mes.duration;
+                if (d1.DriverLat != null && d1.DriverLat != 0 && d1.DriverLng != null && d1.DriverLng != 0)
+                {
+                    clsUserLocation.dist mes = new clsUserLocation().getDistance(lat, lng, d1.DriverLat, d1.DriverLng);
+                    d1.Distance = mes.distnation;
+                    d1.Duration = mes.duration;
+                }
+                else
+                {
+                    d1.Distance = 0;
+                    d1.Duration = 0;
+                }
                 drivers[i] = d1;
             }
             
