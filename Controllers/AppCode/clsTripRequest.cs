@@ -148,7 +148,7 @@ namespace UMoveNew.Controllers.AppCode
                 +" end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values ("+t.UserID.ToString()+","+distance.ToString()+",0,"+ (distance / clsSettings.Setting.UserPointRate).ToString() +") end ";
             DataAccess.ExecuteSQLNonQuery(sql);
             //update driver balance
-            sql = "if exists ( select * from UserBalance where userid = " + t.DriverID.ToString() + ") begin Update UserBalance set KMBalance = KMBalance + " + distance.ToString() + ",PointsBalance= PointsBalance +" + (distance / clsSettings.Setting.DriverPointRate).ToString() + ",MoneyBalance = MoneyBalance - " + (cost * clsSettings.Setting.CompanyRate / 100).ToString() + " where userid = " + t.UserID.ToString()
+            sql = "if exists ( select * from UserBalance where userid = " + t.DriverID.ToString() + ") begin Update UserBalance set KMBalance = KMBalance + " + distance.ToString() + ",PointsBalance= PointsBalance +" + (distance / clsSettings.Setting.DriverPointRate).ToString() + ",MoneyBalance = MoneyBalance - " + (cost * clsSettings.Setting.CompanyRate / 100).ToString() + " where userid = " + t.DriverID.ToString()
                 + " end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values (" + t.DriverID.ToString() + "," + distance.ToString() + "," + (-1 * cost * clsSettings.Setting.CompanyRate / 100).ToString() + "," + (distance / clsSettings.Setting.DriverPointRate).ToString() + ") end";
             DataAccess.ExecuteSQLNonQuery(sql);
             
