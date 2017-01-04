@@ -37,11 +37,14 @@ namespace UMoveNew.Models
      //   public List<TripRouteSteps> steps { get; set; }
         public string   DriverName { get; set; }
         public string DriverPhone { get; set; }
+        public string DriverPhoto { get; set; }
 
         public decimal DriverRate { get; set; }
         public string UserName { get; set; }
         public string UserPhone { get; set; }
         public string DriverCarNo { get; set; }
+        public string DriverCarDescription { get; set; }
+        public bool IsFav { get; set; }
         public string Route { get; set; }
         public double Duration { get; set; }
         public string  StartAddress { get; set; }

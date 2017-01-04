@@ -56,5 +56,14 @@ namespace UMoveNew.Controllers.AppCode
             }
             return favDrivers;
         }
+
+        internal bool isFav(int userID, int driverID)
+        {
+            string sql = "select * from FavDriver where UserID = " + userID.ToString() + " and DriverID = " + driverID.ToString();
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+                return true;
+            return false;
+        }
     }
 }

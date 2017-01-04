@@ -53,9 +53,11 @@ namespace UMoveNew.Controllers
           routs.Add("DriverName", t.DriverName);
           routs.Add("DriverPhone", t.DriverPhone);
           routs.Add("DriverCarNo", t.DriverCarNo);
+          routs.Add("DriverCarDescription", t.DriverCarDescription);
             // demo photo
-          routs.Add("DriverPhoto", "http://umove2.mline-ksa1.com/images/widget-title-logo.png");
-          routs.Add("DriverRate", d1.Rate);
+          routs.Add("DriverPhoto", t.DriverPhoto);
+          routs.Add("DriverRate", t.DriverRate);
+          routs.Add("IsFav", t.IsFav);
           routs.Add("UserName", t.UserName);
           routs.Add("UserPhone", t.UserPhone);
             

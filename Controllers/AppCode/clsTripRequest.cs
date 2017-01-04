@@ -58,7 +58,7 @@ namespace UMoveNew.Controllers.AppCode
         }
         public TripRequest get(int id)
         {
-            string sql = "select TripRequest.*,driver.Name as DriverName,driver.Phone as DriverPhone, cust.Name as UserName,cust.Phone as UserPhone,CarNo from TripRequest left outer join users as driver on driver.ID = TripRequest.DriverID left outer join users as cust on cust.ID = TripRequest.UserID left outer join DriverCarDetails on TripRequest.DriverID = DriverCarDetails.UserID  where TripRequest.ID = " + id.ToString();
+            string sql = "select TripRequest.*,driver.Name as DriverName,driver.Phone as DriverPhone, cust.Name as UserName,cust.Phone as UserPhone,CarNo,CarDescription,DriverPhoto from TripRequest left outer join users as driver on driver.ID = TripRequest.DriverID left outer join users as cust on cust.ID = TripRequest.UserID left outer join DriverCarDetails on TripRequest.DriverID = DriverCarDetails.UserID  where TripRequest.ID = " + id.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
@@ -68,7 +68,10 @@ namespace UMoveNew.Controllers.AppCode
                 tr.DestLong = decimal.Parse(dt.Rows[0]["DestLong"].ToString());
                 tr.DriverID = (dt.Rows[0]["DriverID"] == DBNull.Value) ? 0 : int.Parse(dt.Rows[0]["DriverID"].ToString());
                 if (tr.DriverID != 0)
+                {
                     tr.DriverRate = new clsUserRate().get(tr.DriverID).Rate;
+                    tr.IsFav = new clsFavDriver().isFav(tr.UserID, tr.DriverID);
+                }
                 tr.PicUpDate = (dt.Rows[0]["PicUpDate"] == DBNull.Value) ? DateTime.Now : DateTime.Parse(dt.Rows[0]["PicUpDate"].ToString());
                 tr.SourceLat = decimal.Parse(dt.Rows[0]["SourceLat"].ToString());
                 tr.Sourcelong = decimal.Parse(dt.Rows[0]["SourceLong"].ToString());
@@ -81,9 +84,11 @@ namespace UMoveNew.Controllers.AppCode
                 
                 tr.DriverName = (dt.Rows[0]["DriverName"] == DBNull.Value) ? "" : dt.Rows[0]["DriverName"].ToString();
                 tr.DriverPhone = (dt.Rows[0]["DriverPhone"] == DBNull.Value) ? "" : dt.Rows[0]["DriverPhone"].ToString();
+                tr.DriverPhoto = (dt.Rows[0]["DriverPhoto"] == DBNull.Value) ? "" : dt.Rows[0]["DriverPhoto"].ToString();
                 tr.UserName = (dt.Rows[0]["UserName"] == DBNull.Value) ? "" : dt.Rows[0]["UserName"].ToString();
                 tr.UserPhone = (dt.Rows[0]["UserPhone"] == DBNull.Value) ? "" : dt.Rows[0]["UserPhone"].ToString();
-                tr.DriverCarNo = (dt.Rows[0]["CarNo"] == DBNull.Value) ? "" : dt.Rows[0]["CarNo"].ToString(); ;
+                tr.DriverCarNo = (dt.Rows[0]["CarNo"] == DBNull.Value) ? "" : dt.Rows[0]["CarNo"].ToString();
+                tr.DriverCarDescription = (dt.Rows[0]["CarDescription"] == DBNull.Value) ? "" : dt.Rows[0]["CarDescription"].ToString(); 
                 tr.StartTime = (dt.Rows[0]["StartTime"] == DBNull.Value) ? DateTime.MinValue  : DateTime.Parse(dt.Rows[0]["StartTime"].ToString());
                 tr.EndTime = (dt.Rows[0]["EndTime"] == DBNull.Value) ? DateTime.MinValue: DateTime.Parse(dt.Rows[0]["EndTime"].ToString());
                 tr.Duration = (tr.EndTime - tr.StartTime).TotalHours;
@@ -109,7 +114,7 @@ namespace UMoveNew.Controllers.AppCode
             return null;
         }
 
-        public DataTable get(int userId,int userType)
+        public DataTable get(int userId,int userType,int isFuture)
         {
 
             string sql = "SELECT dbo.TripRequest.ID,   CarDescription , CarNo,  dbo.TripRequest.UserID, dbo.TripRequest.SourceLat, dbo.TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.Route, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID";
@@ -117,6 +122,8 @@ namespace UMoveNew.Controllers.AppCode
                 sql += " where dbo.TripRequest.UserID = " + userId.ToString();
             else
                 sql += " where DriverID = " + userId.ToString();
+            if (isFuture == 1)
+                sql += " and PicUpDate > '" + DateTime.Now + "'";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {

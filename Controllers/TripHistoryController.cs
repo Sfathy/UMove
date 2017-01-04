@@ -22,7 +22,7 @@ namespace UMoveNew.Controllers
         public HttpResponseMessage Get(int userId, int userType, int isFuture)
         {
             string jsonString = "";
-            DataTable dt = new clsTripRequest().get(userId, userType);
+            DataTable dt = new clsTripRequest().get(userId, userType,isFuture);
             jsonString = JsonConvert.SerializeObject(dt);
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
