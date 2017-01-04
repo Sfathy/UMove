@@ -29,8 +29,16 @@ namespace UMoveNew.Controllers.AppCode
                 rateDriver.UserID = UserID;
                 sql = "select Name From Users Where ID=" + UserID;
                 dt = DataAccess.ExecuteSQLQuery(sql);
-                rateDriver.Name = dt.Rows[0]["Name"].ToString();
-                rateDriver.Rate = 0;
+                if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+                {
+                    rateDriver.Name = dt.Rows[0]["Name"].ToString();
+                    rateDriver.Rate = 0;
+                }
+                else
+                {
+                    rateDriver.Name = "Deleted User ";
+                    rateDriver.Rate = 0;
+                }
             }
             return rateDriver;
         }

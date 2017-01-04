@@ -114,7 +114,7 @@ namespace UMoveNew.Controllers.AppCode
 
             string sql = "SELECT dbo.TripRequest.ID,   CarDescription , CarNo,  dbo.TripRequest.UserID, dbo.TripRequest.SourceLat, dbo.TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.Route, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID";
             if(userType == 0)
-                sql +=" where userID = " + userId.ToString();
+                sql += " where dbo.TripRequest.UserID = " + userId.ToString();
             else
                 sql += " where DriverID = " + userId.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);

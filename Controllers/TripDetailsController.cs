@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -47,8 +48,14 @@ namespace UMoveNew.Controllers
           routs.Add("DestLat", t.DestLat);
           routs.Add("DestLong", t.DestLong);
           routs.Add("DriverID", t.DriverID);
+          RateDriver d1 = new clsUserRate().get(t.DriverID);
             //get driver info this isn't real data 
           routs.Add("DriverName", t.DriverName);
+          routs.Add("DriverPhone", t.DriverPhone);
+          routs.Add("DriverCarNo", t.DriverCarNo);
+            // demo photo
+          routs.Add("DriverPhoto", "http://umove2.mline-ksa1.com/images/widget-title-logo.png");
+          routs.Add("DriverRate", d1.Rate);
           routs.Add("UserName", t.UserName);
           routs.Add("UserPhone", t.UserPhone);
             
