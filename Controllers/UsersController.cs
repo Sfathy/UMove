@@ -63,7 +63,7 @@ namespace UMoveNew.Controllers
                     DataTable dt = new DataTable();
                     //dt.Columns.Add("ID");
                     DataRow dr = dt.NewRow();
-                    int id = User.update(user.UserID,user);
+                    int id = User.insert(user);
                     if (id != -1)
                     {
                         dt = User.get(id);
