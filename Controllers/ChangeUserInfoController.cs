@@ -31,22 +31,29 @@ namespace UMoveNew.Controllers
         public HttpResponseMessage Post([FromBody]ChangeUserName NewName)
         {
             string fields = "";
-            if (NewName.NewUserName != string.Empty)
+            if (NewName.NewUserName != string.Empty && NewName.NewUserName != null)
                 fields += " Name = " + NewName.NewUserName;
-            if (NewName.NewUserPhone != string.Empty)
+            if (NewName.NewUserPhone != string.Empty && NewName.NewUserPhone != null)
             {
                 if (fields != string.Empty)
                     fields += ",";
                 fields += " Phone = " + NewName.NewUserPhone;
             }
-            if (NewName.NewUserMail != string.Empty)
+            if (NewName.NewUserMail != string.Empty && NewName.NewUserMail != null)
             {
                 if (fields != string.Empty)
                     fields += ",";
                 fields += " Email = " + NewName.NewUserMail;
             }
-            string sql = "update users set " + fields + " where ID = " + NewName.UserID.ToString(); 
-            string jsonString = "{ \"success\": { \"id\": "+NewName.UserID.ToString()+"  } }"; ;
+            string sql = "update users set " + fields + " where ID = " + NewName.UserID.ToString();
+            int res = DataAccess.ExecuteSQLNonQuery(sql);
+            string jsonString = "";
+            if (res > 0)
+            {
+                jsonString = "{ \"success\": { \"id\": " + NewName.UserID.ToString() + "  } }"; 
+            }
+            else
+                jsonString = "{ \"error\": { \"code\": 1, \"message\": \" Can not update \"  } }";
 
             // jsonString = JsonConvert.SerializeObject("");
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
