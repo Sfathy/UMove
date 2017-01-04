@@ -32,18 +32,18 @@ namespace UMoveNew.Controllers
         {
             string fields = "";
             if (NewName.NewUserName != string.Empty && NewName.NewUserName != null)
-                fields += " Name = " + NewName.NewUserName;
+                fields += " Name = '" + NewName.NewUserName+"'";
             if (NewName.NewUserPhone != string.Empty && NewName.NewUserPhone != null)
             {
                 if (fields != string.Empty)
                     fields += ",";
-                fields += " Phone = " + NewName.NewUserPhone;
+                fields += " Phone = '" + NewName.NewUserPhone+"'";
             }
             if (NewName.NewUserMail != string.Empty && NewName.NewUserMail != null)
             {
                 if (fields != string.Empty)
                     fields += ",";
-                fields += " Email = " + NewName.NewUserMail;
+                fields += " Email = '" + NewName.NewUserMail+"'";
             }
             string sql = "update users set " + fields + " where ID = " + NewName.UserID.ToString();
             int res = DataAccess.ExecuteSQLNonQuery(sql);
