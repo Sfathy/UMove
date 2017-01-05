@@ -22,7 +22,7 @@ namespace UMoveNew.Controllers.AppCode
             param[0] = DataAccess.AddParamter("@UserID", loc.UserID, SqlDbType.Int, 50);
             param[1] = DataAccess.AddParamter("@latitude", loc.Latitude, SqlDbType.Decimal, 50);
             param[2] = DataAccess.AddParamter("@Longitude", loc.Longitude, SqlDbType.Decimal, 50);
-            param[3] = DataAccess.AddParamter("@datetime", loc.DateTime, SqlDbType.DateTime, 50);
+            param[3] = DataAccess.AddParamter("@datetime", DateTime.Now, SqlDbType.DateTime, 50);
             param[4] = DataAccess.AddParamter("@Angle", loc.Angle, SqlDbType.Decimal, 50);
 
             string sql = "insert into UserLocation(UserID,latitude,Longitude,datetime,Angle) values (@UserID,@Latitude,@Longitude,@DateTime,@Angle)";
@@ -42,7 +42,7 @@ namespace UMoveNew.Controllers.AppCode
             param[0] = DataAccess.AddParamter("@UserID", loc.UserID, SqlDbType.Int, 50);
             param[1] = DataAccess.AddParamter("@latitude", loc.Latitude, SqlDbType.Decimal, 50);
             param[2] = DataAccess.AddParamter("@Longitude", loc.Longitude, SqlDbType.Decimal, 50);
-            param[3] = DataAccess.AddParamter("@datetime", loc.DateTime, SqlDbType.DateTime, 50);
+            param[3] = DataAccess.AddParamter("@datetime", DateTime.Now, SqlDbType.DateTime, 50);
             param[4] = DataAccess.AddParamter("@ID", id, SqlDbType.Int, 50);
             param[5] = DataAccess.AddParamter("@Angle", loc.Angle, SqlDbType.Decimal, 50);
 

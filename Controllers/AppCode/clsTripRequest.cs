@@ -58,7 +58,7 @@ namespace UMoveNew.Controllers.AppCode
         }
         public TripRequest get(int id)
         {
-            string sql = "select TripRequest.*,driver.Name as DriverName,driver.Phone as DriverPhone, cust.Name as UserName,cust.Phone as UserPhone,CarNo,CarDescription,DriverPhoto from TripRequest left outer join users as driver on driver.ID = TripRequest.DriverID left outer join users as cust on cust.ID = TripRequest.UserID left outer join DriverCarDetails on TripRequest.DriverID = DriverCarDetails.UserID  where TripRequest.ID = " + id.ToString();
+            string sql = "select TripRequest.*,driver.Name as DriverName,driver.Phone as DriverPhone, cust.Name as UserName,cust.Phone as UserPhone,CarNo,CarDescription,DriverPhoto from TripRequest left outer join users as driver on driver.ID = TripRequest.DriverID left outer join users as cust on cust.ID = TripRequest.UserID left outer join DriverCarDetails on TripRequest.DriverID = DriverCarDetails.UserID  where TripRequest.ID = " + id.ToString() ;
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
@@ -124,6 +124,7 @@ namespace UMoveNew.Controllers.AppCode
                 sql += " where DriverID = " + userId.ToString();
             if (isFuture == 1)
                 sql += " and PicUpDate > '" + DateTime.Now + "'";
+            sql += " order by TripRequest.ID desc";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
