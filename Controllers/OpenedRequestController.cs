@@ -44,7 +44,7 @@ namespace UMoveNew.Controllers
             DataTable dt = new clsTripRequest().get(Latitude,Longitude);
             if (dt!=null)
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
+            /*    for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     JObject routs = (JObject)JsonConvert.DeserializeObject(dt.Rows[0]["Route"].ToString(), typeof(JObject));
                     routs.Add("ID", dt.Rows[i]["ID"].ToString());
@@ -81,12 +81,13 @@ namespace UMoveNew.Controllers
                     
                    // ss.Add(s.Trim());
                 }
-                s += "]";
+                s += "]";*/
           //      string jsonString = "";
                 //DataTable dt = new clsTripRequest().get(userId, userType);
                 //jsonString = JsonConvert.SerializeObject(dt); 
             }
-
+                dt.Columns.Remove("Route");
+            s =  JsonConvert.SerializeObject(dt); 
             return new HttpResponseMessage() { Content = new StringContent(s.Trim(), System.Text.Encoding.UTF8, "application/jason") };
         }
 

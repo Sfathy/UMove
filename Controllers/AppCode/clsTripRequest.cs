@@ -220,29 +220,7 @@ namespace UMoveNew.Controllers.AppCode
         public DataTable get(decimal lat,decimal lng)
         {
             //string sql = "SELECT TOP 5 Min(acos(sin(" + lat.ToString() + ") * sin(latitude) + cos(" + lat.ToString() + ") * cos(latitude) * cos(Longitude - (" + lon.ToString() + "))))  as dis,UserID,Users.Name,latitude,Longitude,[datetime],[type],deviceToken,CarType,Angle,5 as Time FROM UserLocation inner join Users on Users.ID =UserLocation.UserID inner join DeviceInstallation on Users.installationKey = DeviceInstallation.InstallationKey group by UserID,Users.Name,latitude,Longitude,[datetime],[type],deviceToken,CarType,Angle  having datetime > convert(VARCHAR(24),'" + DateTime.Now.AddMinutes(-30).ToString("yyyy-MM-dd hh:mm:ss") + "',120) and Users.Type = 1 order By dis";
-            string sql = "SELECT TOP 5 Min(acos(sin(" + lat.ToString() + ") * sin(sourcelat) + cos(" + lat.ToString() + ") * cos(sourcelat) * cos(SourceLong - (" + lng.ToString() + "))))  as dis , TripRequest.ID, TripRequest.UserID, TripRequest.SourceLat "
-+ " , TripRequest.SourceLong, TripRequest.DestLat, TripRequest.DestLong "
-+ ",  TripRequest.PicUpDate, TripRequest.Status"
-+ ", TripRequest.PaymentMethod, TripRequest.CarCategory"
-+ ", TripRequest.Distance, TripRequest.WaitingTime, TripRequest.Cost"
-+ ", TripRequest.Route,  TripRequest.StartAddress, TripRequest.EndAddress"
-+ ", Users.Name AS UserName, Users.Phone AS UserPhone"
-+ ", CarCategory.Name AS CarCategoryName "
-
-+ " FROM TripRequest "
-+ " LEFT OUTER JOIN CarCategory ON TripRequest.CarCategory = CarCategory.ID "
-+ " LEFT OUTER JOIN Users ON Users.ID = TripRequest.UserID "
-
-+ " where TripRequest.Status = 1"
-+ " group by "
-+ " TripRequest.ID, TripRequest.UserID, TripRequest.SourceLat "
-+ " , TripRequest.SourceLong, TripRequest.DestLat, TripRequest.DestLong "
-+ " ,  TripRequest.PicUpDate, TripRequest.Status "
-+ " , TripRequest.PaymentMethod, TripRequest.CarCategory "
-+ " , TripRequest.Distance, TripRequest.WaitingTime, TripRequest.Cost "
-+ " , TripRequest.Route,  TripRequest.StartAddress, TripRequest.EndAddress "
-+ " , Users.Name,Users.Phone "
-+ " , CarCategory.Name  ";
+            string sql = "SELECT TOP 5 Min(acos(sin(31.8572553) * sin(sourcelat) + cos(31.8572553) * cos(sourcelat) * cos(SourceLong - (20.3713163))))  as dis , TripRequest.ID, TripRequest.UserID, TripRequest.SourceLat  , TripRequest.SourceLong, TripRequest.DestLat, TripRequest.DestLong ,  TripRequest.PicUpDate, TripRequest.Status, TripRequest.PaymentMethod, TripRequest.CarCategory, TripRequest.Distance, TripRequest.WaitingTime, TripRequest.Cost, TripRequest.Route,  TripRequest.StartAddress, TripRequest.EndAddress, Users.Name AS UserName, Users.Phone AS UserPhone, CarCategory.Name AS CarCategoryName  FROM TripRequest  LEFT OUTER JOIN CarCategory ON TripRequest.CarCategory = CarCategory.ID  LEFT OUTER JOIN Users ON Users.ID = TripRequest.UserID  where TripRequest.Status = 1 group by  TripRequest.ID, TripRequest.UserID, TripRequest.SourceLat  , TripRequest.SourceLong, TripRequest.DestLat, TripRequest.DestLong  ,  TripRequest.PicUpDate, TripRequest.Status  , TripRequest.PaymentMethod, TripRequest.CarCategory  , TripRequest.Distance, TripRequest.WaitingTime, TripRequest.Cost  , TripRequest.Route,  TripRequest.StartAddress, TripRequest.EndAddress  , Users.Name,Users.Phone  , CarCategory.Name   Order by dis asc ,ID desc";
             
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
