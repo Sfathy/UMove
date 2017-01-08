@@ -24,27 +24,32 @@ namespace UMoveNew.Controllers
         {
             return "value";
         }*/
-
+        public class acceptTripModel
+        {
+            public int RequestID { get; set; }
+            public string InstallationKey { get; set; }
+            public int UserID { get; set; }
+        }
         // POST api/acceptrequest
-        public HttpResponseMessage Post(int RequestID, string InstallationKey, int UserID)
+        public HttpResponseMessage Post([FromBody]acceptTripModel acceptTrip)
         {
             string jsonRes = "";
             try
             {
                 clsTripRequest trip = new clsTripRequest();
-                TripRequest t = trip.get(RequestID);
+                TripRequest t = trip.get(acceptTrip.RequestID);
                 if (t.Status == (int)clsTripRequest.TripStatus.Request)
                 {
-                    trip.Accept(RequestID, UserID);
+                    trip.Accept(acceptTrip.RequestID, acceptTrip.UserID);
 
                     //get driver info
                     clsUser u = new clsUser();
-                    DataTable dtDriver = u.get(UserID);
+                    DataTable dtDriver = u.get(acceptTrip.UserID);
 
                     //get request info
-                    TripRequest userTrip = trip.get(RequestID);
+                    TripRequest userTrip = trip.get(acceptTrip.RequestID);
 
-                    //get customer Device Token
+                    //get customer . Token
                     string customerDeviceToken = u.getUserDeviceToken(userTrip.CustomerID);
 
 
@@ -54,7 +59,7 @@ namespace UMoveNew.Controllers
                     jsonString = JsonConvert.SerializeObject(dtDriver);
                     //not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
                     not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "", customerDeviceToken, JsonConvert.SerializeObject(trip));
-                    jsonRes = "{ \"success\": { \"id\": " + RequestID.ToString() + "  } }";
+                    jsonRes = "{ \"success\": { \"id\": " + acceptTrip.RequestID.ToString() + "  } }";
                 }
                 else
                 {

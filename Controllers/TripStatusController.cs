@@ -25,17 +25,20 @@ namespace UMoveNew.Controllers
          {
              return "value";
          }*/
-
+        public class TripModel
+        {
+            public int tripID { get; set; }
+        }
         // POST api/tripstatus
-        public HttpResponseMessage Post(int tripID)
+        public HttpResponseMessage Post([FromBody]TripModel  tripID)
         {
             string jsonString = string.Empty;
             try
             {
                 //start the trip and change the status to started
                 clsTripRequest trip = new clsTripRequest();
-                trip.Start(tripID);
-                jsonString = "{ \"success\": { \"id\": " + tripID.ToString() + "  } }";
+                trip.Start(tripID.tripID);
+                jsonString = "{ \"success\": { \"id\": " + tripID.tripID.ToString() + "  } }";
             }
             catch (Exception e)
             {
@@ -45,7 +48,7 @@ namespace UMoveNew.Controllers
         }
 
         // PUT api/tripstatus/5
-        public HttpResponseMessage Put(int tripID, [FromBody] JObject steps)
+        public HttpResponseMessage Put([FromBody]int tripID, [FromBody] JObject steps)
         {
             string jsonString = string.Empty;
             try

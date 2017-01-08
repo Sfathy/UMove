@@ -44,12 +44,13 @@ namespace UMoveNew.Controllers.AppCode
             param[12] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
             param[13] = DataAccess.AddParamter("@WaitingTime", trip.WaitingTime, SqlDbType.Decimal, 50);
             param[14] = DataAccess.AddParamter("@Distance", trip.Distance, SqlDbType.Decimal, 50);
+
             
             //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
 
 
             string sql = "insert into TripRequest([UserID],[DestLat],[DestLong],[SourceLat],[SourceLong],[DriverID],[PicUpDate],PaymentMethod,CarCategory,Route,StartAddress,EndAddress,Status,Cost,WaitingTime,Distance) values" +
-                "(@UserID,@DestLat,@DestLong,@SourceLat,@SourceLong,@DriverID,@PicUpDate,@PaymentMethod,@CarCategory,@Route,@StartAddress,@EndAddress,"+((int) TripStatus.Request).ToString()+",@Cost,@WaitingTime,@Distance)";
+                "(@UserID,@DestLat,@DestLong,@SourceLat,@SourceLong,@DriverID,@PicUpDate,@PaymentMethod,@CarCategory,@Route,@StartAddress,@EndAddress," + ((int)TripStatus.Request).ToString() + ",@Cost,@WaitingTime,@Distance)";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int tripID = 0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from TripRequest");
@@ -121,7 +122,7 @@ namespace UMoveNew.Controllers.AppCode
         public DataTable get(int userId,int userType,int isFuture)
         {
 
-            string sql = "SELECT dbo.TripRequest.ID,   CarDescription , CarNo,  dbo.TripRequest.UserID, dbo.TripRequest.SourceLat, dbo.TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.Route, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID";
+            string sql = "SELECT dbo.TripRequest.ID,   CarDescription , CarNo,  dbo.TripRequest.UserID, dbo.TripRequest.SourceLat, dbo.TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID";
             if(userType == 0)
                 sql += " where dbo.TripRequest.UserID = " + userId.ToString();
             else
