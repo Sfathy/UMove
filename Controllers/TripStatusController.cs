@@ -48,7 +48,7 @@ namespace UMoveNew.Controllers
         }
 
         // PUT api/tripstatus/5
-        public HttpResponseMessage Put([FromBody]int tripID, [FromBody] JObject steps)
+        public HttpResponseMessage Put(int tripID, [FromBody] JObject steps)
         {
             string jsonString = string.Empty;
             try
@@ -68,7 +68,7 @@ namespace UMoveNew.Controllers
                 {
                     waitTime = new clsTripRequest().calcWaitTime(distance, duration);
                 }
-                decimal finalCost = trip.calcCost(distance, waitTime, userTrip.CarCategory);
+                decimal finalCost = Math.Round(trip.calcCost(distance, waitTime, userTrip.CarCategory),3);
                 
                 trip.End(tripID,waitTime,distance, finalCost,steps.ToString());
                 //notify the user with the end trip
@@ -79,7 +79,7 @@ namespace UMoveNew.Controllers
                 //send notification to the user with the driver information
                 AndroidGcmPushNotification not = new AndroidGcmPushNotification();
                 //string jsonString = string.Empty;
-                jsonString = "{ \"Trip Ended\": { \"id\": " + tripID.ToString() + ",\"Cost\":\""+finalCost.ToString()+" LE\"  } }";
+                jsonString = "{ \"TripEnded\": { \"id\": " + tripID.ToString() + ",\"Cost\":\""+finalCost.ToString()+" LE\"  } }";
                 //not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
                 not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "UMove", customerDeviceToken, jsonString);
                 ////////////////////////////////////////////////
