@@ -23,7 +23,14 @@ namespace UMoveNew.Controllers
         {
             string jsonString = "";
             DataTable dt = new clsTripRequest().get(userId, userType,isFuture);
-            jsonString = JsonConvert.SerializeObject(dt);
+            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+            {
+                jsonString = JsonConvert.SerializeObject(dt);
+            }
+            else
+            {
+                jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't find trips for this user \"  } }"; ;
+            }
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
 

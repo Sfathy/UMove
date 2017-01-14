@@ -39,55 +39,19 @@ namespace UMoveNew.Controllers
             }
             */
 
-            string s = "[";
+            string s = "";
             List<string> ss = new List<string>();
             DataTable dt = new clsTripRequest().get(Latitude,Longitude);
             if (dt!=null)
             {
-            /*    for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    JObject routs = (JObject)JsonConvert.DeserializeObject(dt.Rows[0]["Route"].ToString(), typeof(JObject));
-                    routs.Add("ID", dt.Rows[i]["ID"].ToString());
-                    routs.Add("dis", dt.Rows[i]["dis"].ToString());
-                    routs.Add("UserID", dt.Rows[i]["dis"].ToString());
-                    routs.Add("SourceLat", dt.Rows[i]["SourceLat"].ToString());
-                    routs.Add("SourceLong", dt.Rows[i]["SourceLong"].ToString());
-                    routs.Add("DestLat", dt.Rows[i]["DestLat"].ToString());
-                    routs.Add("DestLong", dt.Rows[i]["DestLong"].ToString());
-                    routs.Add("PicUpDate", dt.Rows[i]["PicUpDate"].ToString());
-                    //get driver info this isn't real data 
-                    routs.Add("Status", dt.Rows[i]["Status"].ToString());
-                    routs.Add("PaymentMethod", dt.Rows[i]["PaymentMethod"].ToString());
-                    routs.Add("CarCategory", dt.Rows[i]["CarCategory"].ToString());
-                    routs.Add("Distance", dt.Rows[i]["Distance"].ToString());
-                    routs.Add("WaitingTime", dt.Rows[i]["WaitingTime"].ToString());
-                    routs.Add("Cost", dt.Rows[i]["Cost"].ToString());
-                    //routs.Add("CarCategory", t.CarCategory);
-                    //routs.Add("Distance", t.Distance);
-                    //routs.Add("WaitingTime", t.WaitingTime);
-                    //routs.Add("Cost", t.Cost.ToString() + " LE");
-
-                    //      routs.Add("Steps", dt.Rows[0]["Route"].ToString());
-                    routs.Add("StartAddress", dt.Rows[i]["StartAddress"].ToString());
-                    routs.Add("EndAddress", dt.Rows[i]["EndAddress"].ToString());
-                    routs.Add("UserName", dt.Rows[i]["UserName"].ToString());
-                    routs.Add("UserPhone", dt.Rows[i]["UserPhone"].ToString());
-                    routs.Add("CarCategoryName", dt.Rows[i]["CarCategoryName"].ToString());
-                    s += JsonConvert.SerializeObject(routs);
-                    if (i<dt.Rows.Count-1)
-                    {
-                        s += ",";
-                    }
-                    
-                   // ss.Add(s.Trim());
-                }
-                s += "]";*/
-          //      string jsonString = "";
-                //DataTable dt = new clsTripRequest().get(userId, userType);
-                //jsonString = JsonConvert.SerializeObject(dt); 
-            }
                 dt.Columns.Remove("Route");
-            s =  JsonConvert.SerializeObject(dt); 
+                s = JsonConvert.SerializeObject(dt); 
+            }
+            else
+            {
+                s= "{ \"error\": { \"code\": 3, \"message\": \"no trips around you\"  } }";
+            }
+            
             return new HttpResponseMessage() { Content = new StringContent(s.Trim(), System.Text.Encoding.UTF8, "application/jason") };
         }
 

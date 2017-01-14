@@ -78,6 +78,10 @@ namespace UMoveNew.Controllers
           routs.Add("Distance", t.Distance);
           routs.Add("WaitingTime", t.WaitingTime);
           routs.Add("Cost", t.Cost.ToString()+" LE");
+
+          routs.Add("EstimatedDistance", t.EstimatedDistance);
+          routs.Add("EstimaedDuration", t.EstimatedDuration);
+          routs.Add("EstimatedCost", t.EstimatedCost );
           routs.Add("StartAddress", t.StartAddress);
           routs.Add("EndAddress", t.EndAddress);
           routs.Add("Steps", t.Steps); 
