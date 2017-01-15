@@ -58,7 +58,7 @@ namespace UMoveNew.Controllers
                 clsTripRequest tripRequest = new clsTripRequest();
                 if (trip.PicUpDate == DateTime.MinValue)
                 {
-                    trip.PicUpDate = DateTime.Now;
+                    trip.PicUpDate = DateTime.UtcNow;
                 }
                 int tripID = tripRequest.insert(trip);
                 trip.ID = tripID;

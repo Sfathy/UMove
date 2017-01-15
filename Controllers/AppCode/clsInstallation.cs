@@ -13,7 +13,7 @@ namespace UMoveNew.Controllers.AppCode
         {
             
             string sql = "INSERT INTO [DeviceInstallation]([apiKey],[appIdentifier],[appVersion],[deviceType],[deviceToken],[timezone],[InstallationKey])"+
-            " VALUES ('" + inst.apiKey.ToString() + "','" + inst.appIdentifier + "','" + inst.appVersion + "','" + inst.deviceType + "','" + inst.deviceToken + "','" + inst.timezone + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") +"')";
+            " VALUES ('" + inst.apiKey.ToString() + "','" + inst.appIdentifier + "','" + inst.appVersion + "','" + inst.deviceType + "','" + inst.deviceToken + "','" + inst.timezone + "','" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") +"')";
             DataAccess.ExecuteSQLNonQuery(sql);
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from DeviceInstallation");
             if(dt!= null && dt.Rows != null && dt.Rows.Count>0)

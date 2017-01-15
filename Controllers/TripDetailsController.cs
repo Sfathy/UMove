@@ -77,6 +77,9 @@ namespace UMoveNew.Controllers
           routs.Add("CarCategory", t.CarCategory);
           routs.Add("Distance", t.Distance);
           routs.Add("WaitingTime", t.WaitingTime);
+          routs.Add("StartTime", t.StartTime);
+          routs.Add("EndTime", t.EndTime);
+
           routs.Add("Cost", t.Cost.ToString()+" LE");
 
           routs.Add("EstimatedDistance", t.EstimatedDistance);

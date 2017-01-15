@@ -21,7 +21,7 @@ namespace UMoveNew.Controllers.AppCode
             Accepted = 2,
             InProgress = 3,
             Ended = 4,
-            Canceled
+            Canceled = 5
         }
         public int insert(TripRequest trip)
         {
@@ -81,7 +81,7 @@ namespace UMoveNew.Controllers.AppCode
                     tr.DriverRate = new clsUserRate().get(tr.DriverID).Rate;
                     tr.IsFav = new clsFavDriver().isFav(tr.UserID, tr.DriverID);
                 }
-                tr.PicUpDate = (dt.Rows[0]["PicUpDate"] == DBNull.Value) ? DateTime.Now : DateTime.Parse(dt.Rows[0]["PicUpDate"].ToString());
+                tr.PicUpDate = (dt.Rows[0]["PicUpDate"] == DBNull.Value) ? DateTime.UtcNow : DateTime.Parse(dt.Rows[0]["PicUpDate"].ToString());
                 tr.SourceLat = decimal.Parse(dt.Rows[0]["SourceLat"].ToString());
                 tr.Sourcelong = decimal.Parse(dt.Rows[0]["SourceLong"].ToString());
                 tr.Status = (dt.Rows[0]["Status"] == DBNull.Value)?0:int.Parse(dt.Rows[0]["Status"].ToString());
@@ -137,7 +137,7 @@ namespace UMoveNew.Controllers.AppCode
             else
                 sql += " where DriverID = " + userId.ToString();
             if (isFuture == 1)
-                sql += " and PicUpDate > '" + DateTime.Now + "'";
+                sql += " and PicUpDate > '" + DateTime.UtcNow + "'";
             sql += " order by TripRequest.ID desc";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
@@ -155,14 +155,14 @@ namespace UMoveNew.Controllers.AppCode
 
         public int Start(int tripID)
         {
-            string sql = "update TripRequest set Status = " + ((int)TripStatus.InProgress).ToString() + ", StartTime ='"+DateTime.Now+"' Where ID = " + tripID.ToString();
+            string sql = "update TripRequest set Status = " + ((int)TripStatus.InProgress).ToString() + ", StartTime ='"+DateTime.UtcNow+"' Where ID = " + tripID.ToString();
             DataAccess.ExecuteSQLNonQuery(sql);
             return tripID;
         }
 
         public int End(int tripID,decimal waitingTime,decimal distance,decimal cost,string steps)
         {
-            string sql = "update TripRequest set Status = " + ((int)TripStatus.Ended).ToString() + ",EndTime = '"+DateTime.Now+"',   WaitingTime = "+ waitingTime.ToString()+", Distance = " + distance.ToString() +", Cost = " + cost.ToString() + ", Steps = '" + steps +"' Where ID = " + tripID.ToString();
+            string sql = "update TripRequest set Status = " + ((int)TripStatus.Ended).ToString() + ",EndTime = '"+DateTime.UtcNow+"',   WaitingTime = "+ waitingTime.ToString()+", Distance = " + distance.ToString() +", Cost = " + cost.ToString() + ", Steps = '" + steps +"' Where ID = " + tripID.ToString();
             DataAccess.ExecuteSQLNonQuery(sql);
             TripRequest t = new clsTripRequest().get(tripID);
             //update user balance (KM only)

@@ -19,7 +19,7 @@ namespace UMoveNew.Controllers
         }
 
         // GET api/triphistory/5
-        public HttpResponseMessage Get(int userId, int userType, int isFuture)
+        public HttpResponseMessage Get(int userId, int userType, int isFuture,int pageNo)
         {
             string jsonString = "";
             DataTable dt = new clsTripRequest().get(userId, userType,isFuture);

@@ -37,7 +37,7 @@ public AndroidFCMPushNotificationStatus SendNotification(string serverApiKey, st
         tRequest.Headers.Add(string.Format("Authorization: key={0}", serverApiKey));
        // tRequest.Headers.Add(string.Format("Sender: id={0}", senderId));
 
-        string postData = "collapse_key=score_update&time_to_live=108&delay_while_idle=1&data.message=" + value + "&data.time=" + System.DateTime.Now.ToString() + "&registration_id=" + deviceId + "";
+        string postData = "collapse_key=score_update&time_to_live=108&delay_while_idle=1&data.message=" + value + "&data.time=" + System.DateTime.UtcNow.ToString() + "&registration_id=" + deviceId + "";
 
         Byte[] byteArray = Encoding.UTF8.GetBytes(postData);
         tRequest.ContentLength = byteArray.Length;
