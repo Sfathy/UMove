@@ -17,6 +17,7 @@ namespace UMoveNew.Controllers.AppCode
         public   decimal DriverPointRate { get; set; }
 
         public  decimal CompanyRate { get; set; }
+        public int PageSize { get; set; }
 
         public  static clsSettings  Setting
         {
@@ -47,6 +48,9 @@ namespace UMoveNew.Controllers.AppCode
                                     break;
                                 case "CompanyRate":
                                     setting.CompanyRate = decimal.Parse(dt.Rows[i]["ParamterValue"].ToString());
+                                    break;
+                                case "PageSize":
+                                    setting.PageSize = int.Parse(dt.Rows[i]["PageSize"].ToString());
                                     break;
                                 
                             }

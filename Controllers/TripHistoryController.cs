@@ -5,8 +5,10 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Web.Http;
 using UMoveNew.Controllers.AppCode;
+using UMoveNew.Models;
 
 namespace UMoveNew.Controllers
 {
@@ -17,15 +19,24 @@ namespace UMoveNew.Controllers
         {
             return new string[] { "value1", "value2" };
         }
-
+      
         // GET api/triphistory/5
         public HttpResponseMessage Get(int userId, int userType, int isFuture,int pageNo)
         {
+            int pageSize = clsSettings.Setting.PageSize;
             string jsonString = "";
             DataTable dt = new clsTripRequest().get(userId, userType,isFuture);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
-                jsonString = JsonConvert.SerializeObject(dt);
+                List<TripRequest> lst = dt.DataTableToList<TripRequest>();
+                if ((pageNo - 1) * pageSize < lst.Count  )
+                {
+                    jsonString = JsonConvert.SerializeObject(lst.Skip((pageNo - 1) * pageSize).Take(pageSize));
+                }
+                else
+                {
+                    jsonString = "{ \"error\": { \"code\": 2, \"message\": \"no trips in this page \"  } }"; ;
+                }
             }
             else
             {

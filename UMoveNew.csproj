@@ -248,6 +248,7 @@
     <Compile Include="Controllers\AppCode\clsUserPhones.cs" />
     <Compile Include="Controllers\AppCode\clsUserRate.cs" />
     <Compile Include="Controllers\AppCode\DataAccess.cs" />
+    <Compile Include="Controllers\AppCode\Helper.cs" />
     <Compile Include="Controllers\AppCode\RegisterDriverController.cs" />
     <Compile Include="Controllers\BalanceController.cs" />
     <Compile Include="Controllers\BecomeDriverController.cs" />
