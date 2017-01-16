@@ -21,7 +21,7 @@ namespace UMoveNew.Controllers
         }
       
         // GET api/triphistory/5
-        public HttpResponseMessage Get(int userId, int userType, int isFuture,int pageNo)
+        public HttpResponseMessage Get(int userId, int userType, int isFuture,int page)
         {
             int pageSize = clsSettings.Setting.PageSize;
             string jsonString = "";
@@ -29,9 +29,9 @@ namespace UMoveNew.Controllers
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
                 List<TripRequest> lst = dt.DataTableToList<TripRequest>();
-                if ((pageNo - 1) * pageSize < lst.Count  )
+                if ((page - 1) * pageSize < lst.Count  )
                 {
-                    jsonString = JsonConvert.SerializeObject(lst.Skip((pageNo - 1) * pageSize).Take(pageSize));
+                    jsonString = JsonConvert.SerializeObject(lst.Skip((page - 1) * pageSize).Take(pageSize));
                 }
                 else
                 {
