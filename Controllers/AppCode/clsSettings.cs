@@ -50,7 +50,7 @@ namespace UMoveNew.Controllers.AppCode
                                     setting.CompanyRate = decimal.Parse(dt.Rows[i]["ParamterValue"].ToString());
                                     break;
                                 case "PageSize":
-                                    setting.PageSize = int.Parse(dt.Rows[i]["PageSize"].ToString());
+                                    setting.PageSize = int.Parse(dt.Rows[i]["ParamterValue"].ToString());
                                     break;
                                 
                             }
