@@ -26,7 +26,7 @@ namespace UMoveNew.Controllers.AppCode
         }
         public DataTable update( Installation inst)
         {
-            string sql = "update DeviceInstallation set apiKey = '" + inst.apiKey.ToString() + "',appIdentifier = '" + inst.appIdentifier + "',appVersion = '" + inst.appVersion + "',deviceType = '" + inst.deviceType + "',deviceToken = '" + inst.deviceToken + "',timezone = '" + inst.deviceToken + "' where InstallationKey = '" + inst.InstallationKey.ToString() + "'";
+            string sql = "update DeviceInstallation set deviceToken = '" + inst.deviceToken + "' where InstallationKey = '" + inst.InstallationKey.ToString() + "'";
             
            DataAccess.ExecuteSQLNonQuery(sql);
 
