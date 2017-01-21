@@ -87,6 +87,7 @@ namespace UMoveNew.Controllers
           routs.Add("EstimatedCost", t.EstimatedCost );
           routs.Add("StartAddress", t.StartAddress);
           routs.Add("EndAddress", t.EndAddress);
+          routs.Add("NoOfSeats", t.NoOfSeats);
           routs.Add("Steps", t.Steps); 
             string s = JsonConvert.SerializeObject(routs);
             string jsonString =JsonConvert.SerializeObject(t);
