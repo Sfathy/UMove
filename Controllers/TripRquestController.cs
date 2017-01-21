@@ -21,17 +21,21 @@ namespace UMoveNew.Controllers
             clsUserLocation loc = new clsUserLocation();
             DataTable dt = loc.getNearestDrivers(Latitude, Longitude);
             string jsonString = string.Empty;
-
+           
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
                 DataRow dr;
                 dt.Columns.Add("duration");
                 dt.Columns.Add("driverDescription");
+                dt.Columns.Add("NumberOfTrips");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
+                    string sql = "SELECT COUNT(*) AS NumberOfTrips FROM dbo.TripRequest WHERE (UserID = "+dt.Rows[i]["UserID"].ToString()+") AND (Status = 1 OR Status = 2 OR Status = 4)";
+                    DataTable dtNumberOfTrips = DataAccess.ExecuteSQLQuery(sql);
                    // dr = dt.NewRow();
                     dt.Rows[i]["duration"] = ((clsUserLocation.dist)loc.getDistance(Latitude, Longitude, decimal.Parse(dt.Rows[i]["latitude"].ToString()), decimal.Parse(dt.Rows[i]["Longitude"].ToString()))).duration;
                     dt.Rows[i]["driverDescription"] = dt.Rows[i]["Name"];
+                    dt.Rows[i]["NumberOfTrips"] = dtNumberOfTrips.Rows[0]["NumberOfTrips"];
                 }
                 jsonString = JsonConvert.SerializeObject(dt);
             }
