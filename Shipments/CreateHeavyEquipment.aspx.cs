@@ -20,7 +20,10 @@ namespace UMoveNew.Shipments
             //int id = Convert.ToInt32(Request.QueryString["id"].ToString());
              if (!IsPostBack)
             {
-
+                if (Request.QueryString["alert"] == "wronextention")
+                {
+                    Response.Write("<script>alert(' الصيغة المدخلة غير مفعلة ');</script>");
+                }
                 Session["Image"] = null; 
                 gvbind();
                 AddSubmitEvent();
@@ -162,7 +165,13 @@ namespace UMoveNew.Shipments
                 FileUpload1.SaveAs(fileLocation);
                 Bitmap bi = CreateThumbnail(fileLocation, 50, 50);
 
-                bi.Save(fileLocation);
+                if (fileExtension == ".Jpg" || fileExtension == ".jpg" || fileExtension == ".gif" || fileExtension == ".GIF" || fileExtension == ".PNG" || fileExtension == ".png")
+                {
+                    bi.Save(fileLocation, System.Drawing.Imaging.ImageFormat.Png);
+                }
+                else
+                    Response.Redirect("~/Shipments/CreateVeh.aspx?id=" + id + "&&alert=wronextention");
+
 
                 dr["ImageURL"] = "~/images/Upload/" + fileName;
 

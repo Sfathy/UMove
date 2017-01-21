@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <link href="<%$ Resources:form.css %>" rel="stylesheet" type="text/css"  runat="server" />
     <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css' />
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
 
         function showpreview(input) {
 
@@ -47,7 +48,7 @@
                                     <img id="imgpreview" height="100" width="100" src="" style="border-width: 0px; visibility: hidden;" />
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:FileUpload ID="FileUpload1" runat="server" onchange="showpreview(this);" meta:resourcekey="FileUpload1Resource1" />
+                                    <asp:FileUpload ID="FileUpload1" runat="server" OnLoad="FileUpload1_Load" onchange="showpreview(this);" meta:resourcekey="FileUpload1Resource1" />
                                 </div>
                             </div>
                         </div>

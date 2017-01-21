@@ -84,7 +84,7 @@
                     </Styles>
                             </dx:ASPxGridView>
                             <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT TripItems.ID, TripItems.TripID, TripItems.ItemDesc, TripItems.Width, TripItems.Height, TripItems.Length, TripItems.Wight, TripItems.NoOfUnits, TripItems.ImageURL, SubCategory.Name AS SubCategory, Categories.Name AS Category FROM TripItems INNER JOIN SubCategory ON TripItems.ID = SubCategory.ID INNER JOIN Categories ON TripItems.ID = Categories.ID 
-Where TripItems.TripID=@TripID
+Where TripItems.TripID=@TripID and Puplished=1
 ">
                                 <SelectParameters>
                                     <asp:SessionParameter SessionField="TripID" Name="TripID"></asp:SessionParameter>
