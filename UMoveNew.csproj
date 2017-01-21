@@ -255,6 +255,7 @@
     <Compile Include="Controllers\CarCategoryController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ChangeUserInfoController.cs" />
+    <Compile Include="Controllers\FacebookLoginController.cs" />
     <Compile Include="Controllers\FavDriverController.cs" />
     <Compile Include="Controllers\FavLocController.cs" />
     <Compile Include="Controllers\HelpController.cs" />
@@ -961,7 +962,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>14755</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:14755/</IISUrl>
+          <IISUrl>http://localhost:12755/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
