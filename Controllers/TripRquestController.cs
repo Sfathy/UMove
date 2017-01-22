@@ -30,7 +30,7 @@ namespace UMoveNew.Controllers
                 dt.Columns.Add("NumberOfTrips");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    string sql = "SELECT COUNT(*) AS NumberOfTrips FROM dbo.TripRequest WHERE (UserID = "+dt.Rows[i]["UserID"].ToString()+") AND (Status = 1 OR Status = 2 OR Status = 4)";
+                    string sql = "SELECT COUNT(*) AS NumberOfTrips FROM dbo.TripRequest WHERE (UserID = "+UserID.ToString()+") AND (Status = 1 OR Status = 2 OR Status = 4)";
                     DataTable dtNumberOfTrips = DataAccess.ExecuteSQLQuery(sql);
                    // dr = dt.NewRow();
                     dt.Rows[i]["duration"] = ((clsUserLocation.dist)loc.getDistance(Latitude, Longitude, decimal.Parse(dt.Rows[i]["latitude"].ToString()), decimal.Parse(dt.Rows[i]["Longitude"].ToString()))).duration;
