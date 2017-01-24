@@ -22,7 +22,7 @@ namespace UMoveNew.Controllers.AppCode
             param[0] = DataAccess.AddParamter("@UserID", loc.UserID, SqlDbType.Int, 50);
             param[1] = DataAccess.AddParamter("@latitude", loc.Latitude, SqlDbType.Decimal, 50);
             param[2] = DataAccess.AddParamter("@Longitude", loc.Longitude, SqlDbType.Decimal, 50);
-            param[3] = DataAccess.AddParamter("@datetime", loc.DateTime, SqlDbType.DateTime, 50);
+            param[3] = DataAccess.AddParamter("@datetime", DateTime.UtcNow, SqlDbType.DateTime, 50);
             param[4] = DataAccess.AddParamter("@Angle", loc.Angle, SqlDbType.Decimal, 50);
 
             string sql = "insert into UserLocation(UserID,latitude,Longitude,datetime,Angle) values (@UserID,@Latitude,@Longitude,@DateTime,@Angle)";
@@ -42,7 +42,7 @@ namespace UMoveNew.Controllers.AppCode
             param[0] = DataAccess.AddParamter("@UserID", loc.UserID, SqlDbType.Int, 50);
             param[1] = DataAccess.AddParamter("@latitude", loc.Latitude, SqlDbType.Decimal, 50);
             param[2] = DataAccess.AddParamter("@Longitude", loc.Longitude, SqlDbType.Decimal, 50);
-            param[3] = DataAccess.AddParamter("@datetime", loc.DateTime, SqlDbType.DateTime, 50);
+            param[3] = DataAccess.AddParamter("@datetime", DateTime.UtcNow, SqlDbType.DateTime, 50);
             param[4] = DataAccess.AddParamter("@ID", id, SqlDbType.Int, 50);
             param[5] = DataAccess.AddParamter("@Angle", loc.Angle, SqlDbType.Decimal, 50);
 
@@ -59,7 +59,7 @@ namespace UMoveNew.Controllers.AppCode
             //group by UserID
 
             //order by dis
-            string sql = "SELECT TOP 5 Min(acos(sin(" + lat.ToString() + ") * sin(latitude) + cos(" + lat.ToString() + ") * cos(latitude) * cos(Longitude - (" + lon.ToString() + "))))  as dis,UserID,Users.Name,latitude,Longitude,[datetime],[type],deviceToken,CarType,Angle,5 as Time FROM UserLocation inner join Users on Users.ID =UserLocation.UserID inner join DeviceInstallation on Users.installationKey = DeviceInstallation.InstallationKey group by UserID,Users.Name,latitude,Longitude,[datetime],[type],deviceToken,CarType,Angle  having datetime > convert(VARCHAR(24),'" + DateTime.Now.AddMinutes(-30).ToString("yyyy-MM-dd hh:mm:ss") + "',120) and Users.Type = 1 order By dis";
+            string sql = "SELECT TOP 5 Min(acos(sin(" + lat.ToString() + ") * sin(latitude) + cos(" + lat.ToString() + ") * cos(latitude) * cos(Longitude - (" + lon.ToString() + "))))  as dis,UserID,Users.Name,latitude,Longitude,[datetime],[type],deviceToken,CarType,Angle,5 as Time FROM UserLocation inner join Users on Users.ID =UserLocation.UserID inner join DeviceInstallation on Users.installationKey = DeviceInstallation.InstallationKey group by UserID,Users.Name,latitude,Longitude,[datetime],[type],deviceToken,CarType,Angle  having datetime > convert(VARCHAR(24),'" + DateTime.UtcNow.AddMinutes(-30).ToString("yyyy-MM-dd hh:mm:ss") + "',120) and Users.Type = 1 order By dis";
             return DataAccess.ExecuteSQLQuery(sql);
 
         }

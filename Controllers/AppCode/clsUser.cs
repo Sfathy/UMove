@@ -106,5 +106,16 @@ namespace UMoveNew.Controllers.AppCode
                 return dt.Rows[0]["deviceToken"].ToString();
             return "";
         }
+        public  string getVerificationNo(int userID)
+        {
+            string sql = "select VerficationNo from DriverCarDetails where UserID = " + userID.ToString();
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+            {
+                return dt.Rows[0]["VerficationNo"].ToString();
+            }
+            else
+                return "";
+        }
     }
 }

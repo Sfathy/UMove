@@ -13,7 +13,7 @@ namespace UMoveNew.Controllers.AppCode
         public int insert(Trip trip)
         {
             //check if the user name exist before
-            SqlParameter[] param = new SqlParameter[20];
+            SqlParameter[] param = new SqlParameter[21];
             param[0] = DataAccess.AddParamter("@UserID", trip.UserID, SqlDbType.Int, 50);
             param[1] = DataAccess.AddParamter("@DestLat", trip.DestLat, SqlDbType.Decimal, 50);
             param[2] = DataAccess.AddParamter("@DestLag", trip.DestLag, SqlDbType.Decimal, 50);
@@ -27,8 +27,8 @@ namespace UMoveNew.Controllers.AppCode
             param[10] = DataAccess.AddParamter("@PicUpDate", trip.PicUpDate, SqlDbType.DateTime, 50);
             param[11] = DataAccess.AddParamter("@DeliveryDate", trip.DeliveryDate, SqlDbType.DateTime, 50);
             param[12] = DataAccess.AddParamter("@Note", trip.Note, SqlDbType.NVarChar, 500);
-            param[13] = DataAccess.AddParamter("@PicUpType", trip.PicUpType, SqlDbType.NVarChar, 500);
-            param[14] = DataAccess.AddParamter("@DeliveryType", trip.DeliveryType, SqlDbType.NVarChar, 500);
+            param[13] = DataAccess.AddParamter("@PicUpType", trip.PicUpType, SqlDbType.Int, 50);
+            param[14] = DataAccess.AddParamter("@DeliveryType", trip.DeliveryType, SqlDbType.Int, 50);
             param[15] = DataAccess.AddParamter("@SourceLocationText", trip.SourceLocationText, SqlDbType.NVarChar, 500);
             param[16] = DataAccess.AddParamter("@DeliveryLocationText", trip.DeliveryLocationText, SqlDbType.NVarChar, 500);
             param[17] = DataAccess.AddParamter("@Name", trip.Name, SqlDbType.NVarChar, 500);
@@ -39,7 +39,7 @@ namespace UMoveNew.Controllers.AppCode
 
 
             string sql = "insert into Trip([UserID],[DestLat],[DestLag],[SourceLat],[SourceLag],[EstimatedCost],[TripDuration],[TripCost],[EstimatedDuration],[DriverID],[PicUpDate],[DeliveryDate],[Note],[PicUpType],[DeliveryType],[SourceLocationText],[DeliveryLocationText],[Name],[CustomerID],[Country],[PaymentType],[Puplished]) values" +
-                "(@UserID,@DestLat,@DestLag,@SourceLat,@SourceLag,@EstimatedCost,@TripDuration,@TripCost,@EstimatedDuration,@DriverID,@PicUpDate,@DeliveryDate,@Note,@PicUpType,@DeliveryType,@SourceLocationText,@DeliveryLocationText,@Name,@CustomerID,@Country,@TripType,2)";
+                                         "(@UserID,@DestLat,@DestLag,@SourceLat,@SourceLag,@EstimatedCost,@TripDuration,@TripCost,@EstimatedDuration,@DriverID,@PicUpDate,@DeliveryDate,@Note,@PicUpType,@DeliveryType,@SourceLocationText,@DeliveryLocationText,@Name,@CustomerID,@Country,@TripType,2)";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int tripID = 0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from Trip");

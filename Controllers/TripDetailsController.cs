@@ -48,16 +48,26 @@ namespace UMoveNew.Controllers
           routs.Add("DestLat", t.DestLat);
           routs.Add("DestLong", t.DestLong);
           routs.Add("DriverID", t.DriverID);
-          RateDriver d1 = new clsUserRate().get(t.DriverID);
-            //get driver info this isn't real data 
-          routs.Add("DriverName", t.DriverName);
-          routs.Add("DriverPhone", t.DriverPhone);
-          routs.Add("DriverCarNo", t.DriverCarNo);
-          routs.Add("DriverCarDescription", t.DriverCarDescription);
-            // demo photo
-          routs.Add("DriverPhoto", t.DriverPhoto);
-          routs.Add("DriverRate", t.DriverRate);
-          routs.Add("IsFav", t.IsFav);
+          if (t.DriverID != 0)
+          {
+              RateDriver d1 = new clsUserRate().get(t.DriverID);
+              //get driver info this isn't real data 
+              routs.Add("DriverName", t.DriverName);
+              routs.Add("DriverPhone", t.DriverPhone);
+              routs.Add("DriverCarNo", t.DriverCarNo);
+              routs.Add("DriverCarDescription", t.DriverCarDescription);
+              // demo photo
+              routs.Add("DriverPhoto", t.DriverPhoto);
+              routs.Add("DriverRate", t.DriverRate);
+              routs.Add("IsFav", t.IsFav);
+              List<UserLocation> loc = new clsUserLocation().get(t.DriverID);
+              if(loc != null && loc.Count >0)
+              {
+                  routs.Add("DriverLat", loc[0].Latitude);
+                  routs.Add("DriverLng", loc[0].Longitude);
+                  routs.Add("DriverAngle", loc[0].Angle);
+              }
+          }
           routs.Add("UserName", t.UserName);
           routs.Add("UserPhone", t.UserPhone);
             
@@ -67,8 +77,17 @@ namespace UMoveNew.Controllers
           routs.Add("CarCategory", t.CarCategory);
           routs.Add("Distance", t.Distance);
           routs.Add("WaitingTime", t.WaitingTime);
+          routs.Add("StartTime", t.StartTime);
+          routs.Add("EndTime", t.EndTime);
+
           routs.Add("Cost", t.Cost.ToString()+" LE");
 
+          routs.Add("EstimatedDistance", t.EstimatedDistance);
+          routs.Add("EstimaedDuration", t.EstimatedDuration);
+          routs.Add("EstimatedCost", t.EstimatedCost );
+          routs.Add("StartAddress", t.StartAddress);
+          routs.Add("EndAddress", t.EndAddress);
+          routs.Add("NoOfSeats", t.NoOfSeats);
           routs.Add("Steps", t.Steps); 
             string s = JsonConvert.SerializeObject(routs);
             string jsonString =JsonConvert.SerializeObject(t);

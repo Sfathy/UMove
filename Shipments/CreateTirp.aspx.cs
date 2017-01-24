@@ -33,8 +33,12 @@ namespace UMoveNew.Shipments
             latlong1 = Request.Form["latn"];
 
             latlong2 = Request.Form["latn2"];
-            SourceLocationText = Request.Form["pac-input"];
-            DeliveryLocationText = Request.Form["pac-input2"];
+            SourceLocationText = Request.Form["origin-input"];
+            DeliveryLocationText = Request.Form["destination-input"];
+            if (Session["Items"]==null)
+            {
+               Response.Redirect("~/Trips");
+            }
             dt = (DataTable)Session["Items"];
             int count = dt.Rows.Count;
             clsTrip t = new clsTrip();
@@ -121,7 +125,7 @@ namespace UMoveNew.Shipments
                 Items.Add(i);
             }
             trip.tripType = Convert.ToInt32(RadioButtonList1.SelectedValue.ToString());
-            if (txtprice.Text != null)
+            if (txtprice.Text != null && txtprice.Text!="")
             {
                 trip.Cost = Convert.ToDecimal(txtprice.Text);
             }
@@ -147,7 +151,7 @@ namespace UMoveNew.Shipments
             trip.Note = txtdetais.Text;
             trip.PicUpType = DropDownList1.SelectedValue.ToString();
             trip.DeliveryType = DropDownList2.SelectedValue.ToString();
-            trip.Country = ASPxComboBox1.Value.ToString();
+            trip.Country = ASPxComboBox1.SelectedValue.ToString();
             List<TripService> services = new List<TripService>();
 
             TripService service = new TripService();

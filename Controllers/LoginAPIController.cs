@@ -71,6 +71,7 @@ namespace UMoveNew.Controllers
             string jsonString = string.Empty;
             DataTable dt2 = inst.get(Login.InstallationKey);
             clsUser user = new clsUser();
+            bool isError = true;
             if (dt2 != null && dt2.Rows != null && dt2.Rows.Count > 0)
             {
                int id= user.login(Login.Email, Login.Password);
@@ -102,7 +103,7 @@ namespace UMoveNew.Controllers
                         dt.Rows[0]["AccessToken"] = dt2.Rows[0]["InstallationKey"].ToString() + id.ToString();
 
                         //dt.Rows[0] = dr;
-                        
+                        isError = false;
                         jsonString = JsonConvert.SerializeObject(dt);
                         //return jsonString;
                     }
@@ -120,8 +121,8 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 1, \"message\": \"InValid InstallationKey\"  } }";
             }
-
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            HttpStatusCode s = isError ? HttpStatusCode.Unauthorized : HttpStatusCode.OK;
+            return new HttpResponseMessage() {StatusCode=s, Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
 
 
         }

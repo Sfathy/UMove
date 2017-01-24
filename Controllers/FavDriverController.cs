@@ -25,7 +25,7 @@ namespace UMoveNew.Controllers
         }
 
         // GET api/favdriver/5
-        public HttpResponseMessage Get(int userId,decimal lat,decimal lng)
+        public HttpResponseMessage Get(int userId,decimal lat = 0 ,decimal lng = 0)
         {
             //use this URL to get the distance between user and driver
             //https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=29.857218,%2031.371445&destinations=29.842767,%2031.333465&key=AIzaSyApwh5jfaziQLqxrDGMRrChZQkCs0vavsA
@@ -36,7 +36,7 @@ namespace UMoveNew.Controllers
             {
                 d1 = new FavDriver();
                 d1 = drivers[i];
-                if (d1.DriverLat != null && d1.DriverLat != 0 && d1.DriverLng != null && d1.DriverLng != 0)
+                if (d1.DriverLat != null && d1.DriverLat != 0 && d1.DriverLng != null && d1.DriverLng != 0 & lat != 0 & lng !=0)
                 {
                     clsUserLocation.dist mes = new clsUserLocation().getDistance(lat, lng, d1.DriverLat, d1.DriverLng);
                     d1.Distance = mes.distnation;

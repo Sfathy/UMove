@@ -50,6 +50,11 @@ namespace UMoveNew.Models
         public string  StartAddress { get; set; }
         public string EndAddress { get; set; }
 
+        public string EstimatedCost { get; set; }
+
+        public string EstimatedDuration { get; set; }
+        public string EstimatedDistance { get; set; }
         public string Steps { get; set; }
+        public int NoOfSeats { get; set; }
     }
 }
