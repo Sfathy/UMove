@@ -5,6 +5,14 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <script type="text/javascript">
+         function pageLoad(sendor, e) {
+             var calendarBehavior = $find("CalendarExtender1");
+             var calendarBehavior2 = $find("CalendarExtender2");
+             calendarBehavior.set_startDate('<%=DateTime.Now.ToString() %>');
+             calendarBehavior2.set_startDate('<%=DateTime.Now.ToString() %>');
+        }
+        </script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
    <style>
       /* Always set the map height explicitly to define the size of the div
@@ -60,6 +68,7 @@
       }
 
     </style>
+   
     <link href="<%$ Resources:form.css %>" rel="stylesheet" type="text/css" runat="server" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -213,14 +222,18 @@
         };
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
+                            <!-- on serve -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
             async defer></script>
+                            <!-- on local -->
+                          <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
+            async defer></script> -->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6">
                                     <label>
                                         <asp:TextBox ID="txtdatepic" runat="server" placeholder="Pickup Date" required meta:resourcekey="txtdatepicResource1"></asp:TextBox></label>
-                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtdatepic" BehaviorID="CalendarExtender1" Format="MM/dd/yyyy"/>
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtdatepic"  BehaviorID="CalendarExtender1" Format="MM/dd/yyyy"/>
                                 </div>
                                 <div class="col-md-6">
                                     <asp:DropDownList ID="DropDownList2" runat="server" meta:resourcekey="DropDownList2Resource1">
@@ -319,9 +332,9 @@
                             <asp:LinkButton runat="server" ID="btnback" Text="Back" OnClick="btnback_Click" meta:resourcekey="btnbackResource1" />
                         </div>
                     </div>
-                    <input type="hidden" id="latn" name="latn" />
+                    <input type="text" id="latn" name="latn" />
 
-                    <input type="hidden" id="latn2" name="latn2" />
+                    <input type="text" id="latn2" name="latn2" />
 
                 </div>
             </div>

@@ -248,12 +248,14 @@
     <Compile Include="Controllers\AppCode\clsUserPhones.cs" />
     <Compile Include="Controllers\AppCode\clsUserRate.cs" />
     <Compile Include="Controllers\AppCode\DataAccess.cs" />
+    <Compile Include="Controllers\AppCode\Helper.cs" />
     <Compile Include="Controllers\AppCode\RegisterDriverController.cs" />
     <Compile Include="Controllers\BalanceController.cs" />
     <Compile Include="Controllers\BecomeDriverController.cs" />
     <Compile Include="Controllers\CarCategoryController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ChangeUserInfoController.cs" />
+    <Compile Include="Controllers\FacebookLoginController.cs" />
     <Compile Include="Controllers\FavDriverController.cs" />
     <Compile Include="Controllers\FavLocController.cs" />
     <Compile Include="Controllers\HelpController.cs" />
@@ -308,6 +310,16 @@
     <Compile Include="Models\UserPhones.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Shipments\AddCar.aspx.cs">
       <DependentUpon>AddCar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -701,6 +713,10 @@
     <Content Include="bin\UMoveNew.dll.config" />
     <Content Include="bin\vssver.scc" />
     <Content Include="Administrator\Admin.Master" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -851,6 +867,10 @@
     <Content Include="Shipments\App_LocalResources\TripEdit.aspx.en-GB.resx" />
     <Content Include="Shipments\App_LocalResources\MyCars.aspx.resx" />
     <Content Include="Shipments\App_LocalResources\MyCars.aspx.en-GB.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Shipments\App_LocalResources\TripBids.aspx.en-GB.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

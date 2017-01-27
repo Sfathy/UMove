@@ -33,7 +33,7 @@ namespace UMoveNew.Controllers.AppCode
             param[16] = DataAccess.AddParamter("@DeliveryLocationText", trip.DeliveryLocationText, SqlDbType.NVarChar, 500);
             param[17] = DataAccess.AddParamter("@Name", trip.Name, SqlDbType.NVarChar, 500);
             param[18] = DataAccess.AddParamter("@CustomerID", trip.CustomerID, SqlDbType.Int, 500);
-            param[19] = DataAccess.AddParamter("@Country", trip.Country, SqlDbType.Int, 500);
+            param[19] = DataAccess.AddParamter("@Country", trip.Country, SqlDbType.NVarChar, 500);
             param[20] = DataAccess.AddParamter("@TripType", trip.tripType, SqlDbType.Int, 50);
             //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
 

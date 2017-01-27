@@ -25,7 +25,7 @@ namespace UMoveNew.Shipments
         string SourceLocationText = "";
         string DeliveryLocationText = "";
         DataTable dt = new DataTable();
-
+        
         int userType;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -75,8 +75,8 @@ namespace UMoveNew.Shipments
             Trip trip = new Trip();
             trip.SourceLag = Convert.ToDecimal(log1);
             trip.SourceLat = Convert.ToDecimal(lat1);
-            trip.DestLag = Convert.ToDecimal(log1);
-            trip.DestLat = Convert.ToDecimal(lat1);
+            trip.DestLag = Convert.ToDecimal(log2);
+            trip.DestLat = Convert.ToDecimal(lat2);
             trip.SourceLocationText = SourceLocationText;
             trip.Name = txtTripName.Text;
             trip.DeliveryLocationText = DeliveryLocationText;

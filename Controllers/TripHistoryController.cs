@@ -19,13 +19,13 @@ namespace UMoveNew.Controllers
         {
             return new string[] { "value1", "value2" };
         }
-      
+
         // GET api/triphistory/5
-        public HttpResponseMessage Get(int userId, int userType=0, int isFuture = 0,int page = 0,int isActive =0)
+        public HttpResponseMessage Get(int userId, int userType = 0, int isFuture = 0, int page = 0, int isActive = 0)
         {
             int pageSize = clsSettings.Setting.PageSize;
             string jsonString = "";
-            DataTable dt = new clsTripRequest().get(userId, userType,isFuture,isActive);
+            DataTable dt = new clsTripRequest().get(userId, userType, isFuture, isActive);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
                 List<TripRequest> lst = dt.DataTableToList<TripRequest>();
@@ -40,11 +40,11 @@ namespace UMoveNew.Controllers
                         jsonString = "{ \"error\": { \"code\": 2, \"message\": \"no trips in this page \"  } }"; ;
                     }
                 }
-                 else
+                else
                 {
                     jsonString = JsonConvert.SerializeObject(lst);
                 }
-                
+
             }
             else
             {
