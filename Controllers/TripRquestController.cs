@@ -21,17 +21,19 @@ namespace UMoveNew.Controllers
             clsUserLocation loc = new clsUserLocation();
             DataTable dt = loc.getNearestDrivers(Latitude, Longitude);
             string jsonString = string.Empty;
-           
+            string sql = "SELECT COUNT(*) AS NumberOfTrips FROM dbo.TripRequest WHERE (UserID = " + UserID.ToString() + ") AND (Status = " + ((int)clsTripRequest.TripStatus.Request).ToString() + " OR Status = " + ((int)clsTripRequest.TripStatus.InProgress).ToString() + " OR Status = " + ((int)clsTripRequest.TripStatus.Accepted).ToString() + ")";
+            DataTable dtNumberOfTrips = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
                 DataRow dr;
                 dt.Columns.Add("duration");
                 dt.Columns.Add("driverDescription");
                 dt.Columns.Add("NumberOfTrips");
+                new clsTripRequest().Expire(UserID);
+                
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    string sql = "SELECT COUNT(*) AS NumberOfTrips FROM dbo.TripRequest WHERE (UserID = "+UserID.ToString()+") AND (Status = 1 OR Status = 2 OR Status = 4)";
-                    DataTable dtNumberOfTrips = DataAccess.ExecuteSQLQuery(sql);
+                    
                    // dr = dt.NewRow();
                     dt.Rows[i]["duration"] = ((clsUserLocation.dist)loc.getDistance(Latitude, Longitude, decimal.Parse(dt.Rows[i]["latitude"].ToString()), decimal.Parse(dt.Rows[i]["Longitude"].ToString()))).duration;
                     dt.Rows[i]["driverDescription"] = dt.Rows[i]["Name"];
@@ -41,7 +43,7 @@ namespace UMoveNew.Controllers
             }
             else
             {
-                jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't find drivers around your location\"  } }";
+                jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't find drivers around your location\",\"NumberOfTrips\":" + dtNumberOfTrips.Rows[0]["NumberOfTrips"].ToString() + "  } }";
             }
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
@@ -69,12 +71,23 @@ namespace UMoveNew.Controllers
                 //get the nearby drivers 
                 clsUserLocation loc = new clsUserLocation();
                 DataTable dt = loc.getNearestDrivers(trip.SourceLat, trip.Sourcelong);
-
+                
                 //send the notification to the drivers using the trip info
                 AndroidGcmPushNotification not = new AndroidGcmPushNotification();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    not.SendNotification("AAAA0-XrarI:APA91bEReLIPg2bjfuuPshOiO3GbDeFg7irdrAMF3h2ErPhsf2LOOEGLP4C0Hz2CKjzWspoK0V7JwLRTXs1Kz-fQikKZG2hZNikWrAxJK1gLueNJ9SuB5JU_3aF_b-dAtiTHrEzXA7fB-Z59suJsTBvI3DODJwpusA", "910095510194", dt.Rows[i]["deviceToken"].ToString(), JsonConvert.SerializeObject(trip), "New Trip Requested");
+                    var message = new
+                    {
+                        to = dt.Rows[i]["deviceToken"].ToString(),
+                        notification = new
+                        {
+                            title = "New trip requested",
+                            body = " New trip requested from " + trip.StartAddress + " to " + trip.EndAddress ,
+                            status = "Reqested",
+                            id = tripID.ToString()
+                        }
+                    };
+                    not.SendNotification("AAAA0-XrarI:APA91bEReLIPg2bjfuuPshOiO3GbDeFg7irdrAMF3h2ErPhsf2LOOEGLP4C0Hz2CKjzWspoK0V7JwLRTXs1Kz-fQikKZG2hZNikWrAxJK1gLueNJ9SuB5JU_3aF_b-dAtiTHrEzXA7fB-Z59suJsTBvI3DODJwpusA", "910095510194", dt.Rows[i]["deviceToken"].ToString(), message, "New Trip Requested");
 
                     //not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "", dt.Rows[i]["deviceToken"].ToString(), JsonConvert.SerializeObject(trip));
                 }

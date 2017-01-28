@@ -78,12 +78,12 @@ public class AndroidGcmPushNotification
         // public List<FCMResult> results { get; set; }
     }
 
-    public FCMResponse SendNotification(string serverApiKey, string senderId, string deviceId, string message, string title)
+    public FCMResponse SendNotification(string serverApiKey, string senderId, string deviceId, object message, string title)
     {
         WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
         tRequest.Method = "post";
         tRequest.ContentType = "application/json";
-        var objNotification = new
+        /*var objNotification = new
         {
             to = deviceId,
             notification = new
@@ -92,8 +92,8 @@ public class AndroidGcmPushNotification
                 body = message,
                 type = title
             }
-        };
-        string jsonNotificationFormat = Newtonsoft.Json.JsonConvert.SerializeObject(objNotification);
+        };*/
+        string jsonNotificationFormat = Newtonsoft.Json.JsonConvert.SerializeObject(message);
 
         Byte[] byteArray = Encoding.UTF8.GetBytes(jsonNotificationFormat);
         tRequest.Headers.Add(string.Format("Authorization: key={0}", serverApiKey));

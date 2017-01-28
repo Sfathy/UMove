@@ -21,22 +21,30 @@ namespace UMoveNew.Controllers
         }
       
         // GET api/triphistory/5
-        public HttpResponseMessage Get(int userId, int userType, int isFuture,int page)
+        public HttpResponseMessage Get(int userId, int userType=0, int isFuture = 0,int page = 0,int isActive =0)
         {
             int pageSize = clsSettings.Setting.PageSize;
             string jsonString = "";
-            DataTable dt = new clsTripRequest().get(userId, userType,isFuture);
+            DataTable dt = new clsTripRequest().get(userId, userType,isFuture,isActive);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
                 List<TripRequest> lst = dt.DataTableToList<TripRequest>();
-                if ((page - 1) * pageSize < lst.Count  )
+                if (page != 0)
                 {
-                    jsonString = JsonConvert.SerializeObject(lst.Skip((page - 1) * pageSize).Take(pageSize));
+                    if ((page - 1) * pageSize < lst.Count)
+                    {
+                        jsonString = JsonConvert.SerializeObject(lst.Skip((page - 1) * pageSize).Take(pageSize));
+                    }
+                    else
+                    {
+                        jsonString = "{ \"error\": { \"code\": 2, \"message\": \"no trips in this page \"  } }"; ;
+                    }
                 }
-                else
+                 else
                 {
-                    jsonString = "{ \"error\": { \"code\": 2, \"message\": \"no trips in this page \"  } }"; ;
+                    jsonString = JsonConvert.SerializeObject(lst);
                 }
+                
             }
             else
             {
