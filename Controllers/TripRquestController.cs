@@ -71,12 +71,23 @@ namespace UMoveNew.Controllers
                 //get the nearby drivers 
                 clsUserLocation loc = new clsUserLocation();
                 DataTable dt = loc.getNearestDrivers(trip.SourceLat, trip.Sourcelong);
-
+                
                 //send the notification to the drivers using the trip info
                 AndroidGcmPushNotification not = new AndroidGcmPushNotification();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    not.SendNotification("AAAA0-XrarI:APA91bEReLIPg2bjfuuPshOiO3GbDeFg7irdrAMF3h2ErPhsf2LOOEGLP4C0Hz2CKjzWspoK0V7JwLRTXs1Kz-fQikKZG2hZNikWrAxJK1gLueNJ9SuB5JU_3aF_b-dAtiTHrEzXA7fB-Z59suJsTBvI3DODJwpusA", "910095510194", dt.Rows[i]["deviceToken"].ToString(), JsonConvert.SerializeObject(trip), "New Trip Requested");
+                    var message = new
+                    {
+                        to = dt.Rows[i]["deviceToken"].ToString(),
+                        notification = new
+                        {
+                            title = "New trip requested",
+                            body = " New trip requested from " + trip.StartAddress + " to " + trip.EndAddress ,
+                            status = "Reqested",
+                            id = tripID.ToString()
+                        }
+                    };
+                    not.SendNotification("AAAA0-XrarI:APA91bEReLIPg2bjfuuPshOiO3GbDeFg7irdrAMF3h2ErPhsf2LOOEGLP4C0Hz2CKjzWspoK0V7JwLRTXs1Kz-fQikKZG2hZNikWrAxJK1gLueNJ9SuB5JU_3aF_b-dAtiTHrEzXA7fB-Z59suJsTBvI3DODJwpusA", "910095510194", dt.Rows[i]["deviceToken"].ToString(), message, "New Trip Requested");
 
                     //not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "", dt.Rows[i]["deviceToken"].ToString(), JsonConvert.SerializeObject(trip));
                 }

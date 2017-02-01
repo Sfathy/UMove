@@ -25,19 +25,23 @@ namespace UMoveNew.Shipments
         string SourceLocationText = "";
         string DeliveryLocationText = "";
         DataTable dt = new DataTable();
-        
         int userType;
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            CalendarExtender1.StartDate = DateTime.Now;
+            CalendarExtender2.StartDate = DateTime.Now;
+            
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-
             latlong1 = Request.Form["latn"];
 
             latlong2 = Request.Form["latn2"];
             SourceLocationText = Request.Form["origin-input"];
             DeliveryLocationText = Request.Form["destination-input"];
-            if (Session["Items"]==null)
+            if (Session["Items"] == null)
             {
-               Response.Redirect("~/Trips");
+                Response.Redirect("~/Trips");
             }
             dt = (DataTable)Session["Items"];
             int count = dt.Rows.Count;
@@ -125,7 +129,7 @@ namespace UMoveNew.Shipments
                 Items.Add(i);
             }
             trip.tripType = Convert.ToInt32(RadioButtonList1.SelectedValue.ToString());
-            if (txtprice.Text != null && txtprice.Text!="")
+            if (txtprice.Text != null && txtprice.Text != "")
             {
                 trip.Cost = Convert.ToDecimal(txtprice.Text);
             }

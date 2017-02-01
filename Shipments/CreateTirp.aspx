@@ -5,14 +5,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <script type="text/javascript">
-         function pageLoad(sendor, e) {
-             var calendarBehavior = $find("CalendarExtender1");
-             var calendarBehavior2 = $find("CalendarExtender2");
-             calendarBehavior.set_startDate('<%=DateTime.Now.ToString() %>');
-             calendarBehavior2.set_startDate('<%=DateTime.Now.ToString() %>');
-        }
-        </script>
+    
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
    <style>
       /* Always set the map height explicitly to define the size of the div
@@ -340,4 +333,6 @@
             </div>
         </div>
     </div>
+</label>
+</label>
 </asp:Content>

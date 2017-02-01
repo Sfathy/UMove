@@ -191,7 +191,7 @@
                             </asp:TemplateField>
                              <asp:TemplateField meta:resourcekey="TemplateFieldResource7">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblWight"  runat="server" Text='<%# Bind("Wight") %>' meta:resourcekey="lblWightResource1"></asp:Label>
+                                    <asp:Label ID="lblWight"  runat="server" Text='<%# Bind("Weight") %>' meta:resourcekey="lblWightResource1"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

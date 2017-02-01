@@ -12,7 +12,14 @@ namespace UMoveNew.Administrator
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request.QueryString["alert"] == "Accept")
+            {
+                Response.Write("<script>alert('تم قبول السؤال');</script>");
+            }
+            if (Request.QueryString["alert"] == "Ignore")
+            {
+                Response.Write("<script>alert('تم تجاهل السؤال');</script>");
+            }
         }
 
         protected void ASPxGridView1_CustomButtonCallback(object sender, DevExpress.Web.ASPxGridViewCustomButtonCallbackEventArgs e)
@@ -24,7 +31,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["QuestionID"].ToString());
                 string sql = "Update TripQuestions Set QuestionPuplished=1 Where QuestionID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect("~/Administrator/Questions.aspx?alert=Accept");
             }
             if (e.ButtonID == "btnIgnore")
             {
@@ -33,7 +40,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["QuestionID"].ToString());
                 string sql = "Update TripQuestions Set QuestionPuplished=3 Where QuestionID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect("~/Administrator/Questions.aspx?alert=Ignore");
             }
         }
     }

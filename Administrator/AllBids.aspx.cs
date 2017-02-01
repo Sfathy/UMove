@@ -12,7 +12,14 @@ namespace UMoveNew.Administrator
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request.QueryString["alert"] == "Accept")
+            {
+                Response.Write("<script>alert('تم قبول المذايدة');</script>");
+            }
+            if (Request.QueryString["alert"] == "Ignore")
+            {
+                Response.Write("<script>alert('تم تجاهل المذايدة');</script>");
+            }
         }
 
         protected void ASPxGridView1_CustomButtonCallback(object sender, DevExpress.Web.ASPxGridViewCustomButtonCallbackEventArgs e)
@@ -24,7 +31,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["id"].ToString());
                 string sql = "Update Bid Set Puplished=1 Where ID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect("~/Administrator/AllBids.aspx?alert=Accept");
             }
             if (e.ButtonID == "btnIgnore")
             {
@@ -33,7 +40,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["id"].ToString());
                 string sql = "Update Bid Set Puplished=3 Where ID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect("~/Administrator/AllBids.aspx?alert=Ignore");
             }
         }
     }

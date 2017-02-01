@@ -168,7 +168,7 @@ namespace UMoveNew.Shipments
                     bi.Save(fileLocation, System.Drawing.Imaging.ImageFormat.Png);
                 }
                 else
-                    Response.Redirect("~/Shipments/CreateVeh.aspx?id=" + id + "&&alert=wronextention");
+                    Response.Redirect("~/Shipments/CreateFreight.aspx?id=" + id + "&&alert=wronextention");
 
 
                 dr["ImageURL"] = "~/images/Upload/" + fileName;

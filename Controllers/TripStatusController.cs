@@ -35,9 +35,31 @@ namespace UMoveNew.Controllers
             string jsonString = string.Empty;
             try
             {
+                
                 //start the trip and change the status to started
                 clsTripRequest trip = new clsTripRequest();
                 trip.Start(tripID.tripID);
+                TripRequest userTrip = trip.get(tripID.tripID);
+                string customerDeviceToken = new clsUser().getUserDeviceToken(userTrip.UserID);
+
+                var message = new
+                {
+                    to = customerDeviceToken,
+                    notification = new
+                    {
+                        title = "Your Trip Started",
+                        body = "Your trip started " ,
+                        status = "Started",
+                        id = tripID.tripID.ToString()
+                    }
+                };
+                //send notification to the user with the driver information
+                AndroidGcmPushNotification not = new AndroidGcmPushNotification();
+                //string jsonString = "{ \"TripAccepted\": { \"id\": " + acceptTrip.RequestID.ToString() + " ,\"DriverName\":\""+dtDriver.Rows[0]["Name"].ToString()+"\" } }";
+               //jsonString = "{ \"TripStarted\": {\"Status\":\"Started\", \"id\": " + tripID.tripID.ToString() + "  } }";
+                //jsonString = JsonConvert.SerializeObject(dtDriver);
+                //not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
+                not.SendNotification("AAAA0-XrarI:APA91bEReLIPg2bjfuuPshOiO3GbDeFg7irdrAMF3h2ErPhsf2LOOEGLP4C0Hz2CKjzWspoK0V7JwLRTXs1Kz-fQikKZG2hZNikWrAxJK1gLueNJ9SuB5JU_3aF_b-dAtiTHrEzXA7fB-Z59suJsTBvI3DODJwpusA", "910095510194", customerDeviceToken, message, "Trip Accepted");
                 jsonString = "{ \"success\": { \"id\": " + tripID.tripID.ToString() + "  } }";
             }
             catch (Exception e)
@@ -75,13 +97,25 @@ namespace UMoveNew.Controllers
                 //get customer Device Token
                 string customerDeviceToken = u.getUserDeviceToken(userTrip.UserID);
 
+                //DataTable dtDriver = u.get(acceptTrip.UserID);
 
                 //send notification to the user with the driver information
                 AndroidGcmPushNotification not = new AndroidGcmPushNotification();
                 //string jsonString = string.Empty;
-                jsonString = "{ \"TripEnded\": { \"id\": " + tripID.ToString() + ",\"Cost\":\""+finalCost.ToString()+" LE\"  } }";
+                //jsonString = "{ \"TripEnded\": {\"Status\":\"Ended\", \"id\": " + tripID.ToString() + ",\"Cost\":\""+finalCost.ToString()+" LE\"  } }";
+                var message = new
+                {
+                    to = customerDeviceToken,
+                    notification = new
+                    {
+                        title = "Your Trip Ended",
+                        body = " Your trip ended with cost " + finalCost.ToString(),
+                        status = "Ended",
+                        id = tripID.ToString()
+                    }
+                };
                 //not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
-                not.SendNotification("AAAA0-XrarI:APA91bEReLIPg2bjfuuPshOiO3GbDeFg7irdrAMF3h2ErPhsf2LOOEGLP4C0Hz2CKjzWspoK0V7JwLRTXs1Kz-fQikKZG2hZNikWrAxJK1gLueNJ9SuB5JU_3aF_b-dAtiTHrEzXA7fB-Z59suJsTBvI3DODJwpusA", "910095510194", customerDeviceToken, JsonConvert.SerializeObject(trip), "Trip Ended");
+                not.SendNotification("AAAA0-XrarI:APA91bEReLIPg2bjfuuPshOiO3GbDeFg7irdrAMF3h2ErPhsf2LOOEGLP4C0Hz2CKjzWspoK0V7JwLRTXs1Kz-fQikKZG2hZNikWrAxJK1gLueNJ9SuB5JU_3aF_b-dAtiTHrEzXA7fB-Z59suJsTBvI3DODJwpusA", "910095510194", customerDeviceToken, message, "Trip Ended");
                // not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "UMove", customerDeviceToken, jsonString);
                 ////////////////////////////////////////////////
                 //    string s="[{\"distance\":{\"text\":\"10Km\",\"value\":1000.0},\"duration\":{\"text\":\"10 min\",\"value\":600000.0},\"end_location\":{\"lat\":25.22145,\"lng\":630.254},\"html_instructions\":\"Continue onto <b>Al Betrool</b>\",\"start_location\":{\"lat\":68.215,\"lng\":36.25412},\"travel_mode\":\"DRIVING\"}],\"Duration\":50.0}]"   ;

@@ -151,8 +151,8 @@ namespace UMoveNew.Shipments
             dr["ID"] = GetLastKey() + 1;
             dr["UserID"] = UserID;
             dr["CatID"] = 3;
-            int id = Convert.ToInt32(Request.QueryString["id"].ToString());
-            dr["SubCatID"] = id;
+        //    int id = Convert.ToInt32(Request.QueryString["id"].ToString());
+            dr["SubCatID"] = 0;
             dr["Length"] = txtLength.Text + "." + txtLength2.Text;
             dr["Width"] = txtWidth.Text + "." + txtWidth2.Text;
             dr["Height"] = txtHeight.Text + "." + txtHeight2.Text;
@@ -170,7 +170,7 @@ namespace UMoveNew.Shipments
                     bi.Save(fileLocation, System.Drawing.Imaging.ImageFormat.Png);
                 }
                 else
-                    Response.Redirect("~/Shipments/CreateVeh.aspx?id=" + id + "&&alert=wronextention");
+                    Response.Redirect("~/Shipments/CreateHeavyEquipment.aspx?alert=wronextention");
 
 
                 dr["ImageURL"] = "~/images/Upload/" + fileName;

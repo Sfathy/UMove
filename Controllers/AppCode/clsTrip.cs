@@ -293,7 +293,12 @@ namespace UMoveNew.Controllers.AppCode
         {
             string sql = "select Name from SubCategory where ID = " + catID.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
-            return dt.Rows[0]["Name"].ToString();
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0]["Name"].ToString();
+            }
+            else
+                return "";
         }
     }
 }

@@ -28,7 +28,7 @@ namespace UMoveNew.Administrator
                 lblTitle.Text = trip.Name;
                 lblID.Text = trip.ID.ToString();
                 clsUser user = new clsUser();
-                DataTable dt = user.get(trip.DriverID);
+                DataTable dt = user.get(trip.UserID);
                 lblCustomer.Text = dt.Rows[0]["Name"].ToString();
                 lblPicUpDate.Text = trip.PicUpDate.ToString();
                 lblDeliveryDate.Text = trip.DeliveryDate.ToString();
