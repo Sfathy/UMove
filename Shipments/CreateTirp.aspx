@@ -216,11 +216,11 @@
 
     </script>
                             <!-- on serve -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
-            async defer></script>
+    <%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
+            async defer></script>--%>
                             <!-- on local -->
-                          <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
-            async defer></script> -->
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
+            async defer></script> 
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6">
@@ -325,14 +325,13 @@
                             <asp:LinkButton runat="server" ID="btnback" Text="Back" OnClick="btnback_Click" meta:resourcekey="btnbackResource1" />
                         </div>
                     </div>
-                    <input type="text" id="latn" name="latn" />
+                    <input type="hidden" id="latn" name="latn" />
 
-                    <input type="text" id="latn2" name="latn2" />
+                    <input type="hidden" id="latn2" name="latn2" />
 
                 </div>
             </div>
         </div>
     </div>
-</label>
-</label>
+
 </asp:Content>

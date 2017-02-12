@@ -183,4 +183,10 @@
   <data name="Warehousing" xml:space="preserve">
     <value>Warehousing</value>
   </data>
+  <data name="NewPartShipment" xml:space="preserve">
+    <value>Shared Shipment</value>
+  </data>
+  <data name="FindPartShipment" xml:space="preserve">
+    <value>Find Shared Shipment</value>
+  </data>
 </root>

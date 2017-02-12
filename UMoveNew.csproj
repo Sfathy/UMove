@@ -239,6 +239,7 @@
     <Compile Include="Controllers\AppCode\clsQuestion.cs" />
     <Compile Include="Controllers\AppCode\clsSendNotification.cs" />
     <Compile Include="Controllers\AppCode\clsSettings.cs" />
+    <Compile Include="Controllers\AppCode\clsSharedTrip.cs" />
     <Compile Include="Controllers\AppCode\clsTrip.cs" />
     <Compile Include="Controllers\AppCode\clsTripIssue.cs" />
     <Compile Include="Controllers\AppCode\clsTripRequest.cs" />
@@ -269,6 +270,7 @@
     <Compile Include="Controllers\RateDriverController.cs" />
     <Compile Include="Controllers\RateUserController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\SharedTripsController.cs" />
     <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Controllers\TripCostController.cs" />
     <Compile Include="Controllers\TripDetailsController.cs" />
@@ -299,6 +301,7 @@
     <Compile Include="Models\paymentMethodDetails.cs" />
     <Compile Include="Models\RateDriver.cs" />
     <Compile Include="Models\restPasswordController.cs" />
+    <Compile Include="Models\SharedTrip.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\TripIssues.cs" />
@@ -319,6 +322,34 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SharedShipment\CreateSharedTrip.aspx.cs">
+      <DependentUpon>CreateSharedTrip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharedShipment\CreateSharedTrip.aspx.designer.cs">
+      <DependentUpon>CreateSharedTrip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharedShipment\Question.aspx.cs">
+      <DependentUpon>Question.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharedShipment\Question.aspx.designer.cs">
+      <DependentUpon>Question.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharedShipment\SharedTripBids.aspx.cs">
+      <DependentUpon>SharedTripBids.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharedShipment\SharedTripBids.aspx.designer.cs">
+      <DependentUpon>SharedTripBids.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharedShipment\SharedTrips.aspx.cs">
+      <DependentUpon>SharedTrips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharedShipment\SharedTrips.aspx.designer.cs">
+      <DependentUpon>SharedTrips.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shipments\AddCar.aspx.cs">
       <DependentUpon>AddCar.aspx</DependentUpon>
@@ -456,6 +487,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NotAuthonticated.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SharedTrips\Index.en-GB.Designer.cs">
+      <DependentUpon>Index.en-GB.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\SharedTrips\Index.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\Shared\Layout.en-GB.Designer.cs">
       <DependentUpon>Layout.en-GB.resx</DependentUpon>
@@ -739,6 +780,10 @@
     <Content Include="Scripts\WidgetLine.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\wizardForm.js" />
+    <Content Include="SharedShipment\CreateSharedTrip.aspx" />
+    <Content Include="SharedShipment\Question.aspx" />
+    <Content Include="SharedShipment\SharedTripBids.aspx" />
+    <Content Include="SharedShipment\SharedTrips.aspx" />
     <Content Include="Shipments\AddCar.aspx" />
     <Content Include="Shipments\AllTrips.aspx" />
     <Content Include="Shipments\BidEdit.aspx" />
@@ -795,6 +840,7 @@
     <Content Include="Views\Trips\Freight.cshtml" />
     <Content Include="Shipments\Site.Master" />
     <Content Include="Views\Admin\NotAuthonticated.cshtml" />
+    <Content Include="Views\SharedTrips\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -871,6 +917,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="SharedShipment\App_LocalResources\CreateSharedTrip.aspx.resx" />
+    <Content Include="SharedShipment\App_LocalResources\SharedTripBids.aspx.resx" />
+    <Content Include="SharedShipment\App_LocalResources\SharedTrips.aspx.resx" />
+    <Content Include="SharedShipment\App_LocalResources\SharedTrips.aspx.en-GB.resx" />
+    <Content Include="SharedShipment\App_LocalResources\CreateSharedTrip.aspx.en-GB.resx" />
+    <Content Include="SharedShipment\App_LocalResources\SharedTripBids.aspx.en-GB.resx" />
     <EmbeddedResource Include="Shipments\App_LocalResources\TripBids.aspx.en-GB.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -881,6 +933,14 @@
     <EmbeddedResource Include="Views\Admin\NotAuthonticated.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NotAuthonticated.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SharedTrips\Index.en-GB.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.en-GB.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SharedTrips\Index.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\Layout.en-GB.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

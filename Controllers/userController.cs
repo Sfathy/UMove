@@ -19,12 +19,14 @@ namespace UMoveNew.Controllers
         {
             return View();
         }
-        public ActionResult Registration() {
+        public ActionResult Registration()
+        {
             return View();
         }
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult Login() {
+        public ActionResult Login()
+        {
             return View();
         }
         [HttpPost]
@@ -48,10 +50,10 @@ namespace UMoveNew.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 else
-            	{
+                {
                     return View(login);
-	            }
-                
+                }
+
             }
             else
             {
@@ -70,7 +72,7 @@ namespace UMoveNew.Controllers
             return RedirectToAction("Index", "Home");
         }
         //
-       
+
 
         //
         // GET: /user/Create
@@ -84,30 +86,32 @@ namespace UMoveNew.Controllers
         //
         // POST: /user/Create
         [HttpPost]
-       
+
         public ActionResult Create([Bind(Include = "Name,UserName,Password,Email,Address,Phone,ConfirmPassword,Type")] Users user)
         {
-            
-                if (ModelState.IsValid)
+
+            if (ModelState.IsValid)
+            {
+                clsUser User = new clsUser();
+                //user.Type =Convert.ToInt32(TempData["Type"].ToString());
+                int id = User.insert(user);
+                if (id > 0)
                 {
-                    clsUser User = new clsUser();
-                    //user.Type =Convert.ToInt32(TempData["Type"].ToString());
-                 int id= User.insert(user);
-                 if (id>0)
-                 {
-                     TempData["error"] = "";
-                     return RedirectToAction("login", "user");
-                     
-                 }
-                 else
-                 {
-                     TempData["error"] = "User Name or Mail Exist";
-                 }
+                    TempData["error"] = "";
+                    return RedirectToAction("login", "user");
+
                 }
-                return View(user);
-              
+                else
+                {
+                    TempData["error"] = "User Name or Mail Exist";
+                }
+                return RedirectToAction("login", "user");
             }
-      
+            else
+            return View(user);
+
+        }
+
         public ActionResult Details(int id)
         {
 
@@ -127,54 +131,55 @@ namespace UMoveNew.Controllers
                 return RedirectToAction("login", "user");
         }
 
-   
+
         //
         // GET: /user/Edit/5
-   
+
         public ActionResult Edit(int id)
         {
-             if (Request.Cookies["user"] != null)
+            if (Request.Cookies["user"] != null)
             {
-            clsUser user = new clsUser();
-            DataTable dt = user.get(id);
-            Users us = new Users();
-            us.UserID = id;
-            us.Name = dt.Rows[0]["name"].ToString();
-            us.UserName = dt.Rows[0]["username"].ToString();
-            us.Email = dt.Rows[0]["email"].ToString();
-            us.Address = dt.Rows[0]["address"].ToString();
-            us.Phone = dt.Rows[0]["phone"].ToString();
-            us.Password = dt.Rows[0]["password"].ToString();
-            us.ConfirmPassword  = dt.Rows[0]["password"].ToString();
-            us.Type =Convert.ToInt32(dt.Rows[0]["type"].ToString());
-            TempData["Type"] = us.Type;
-            TempData["UserID"] = id;
-            return View(us);
+                clsUser user = new clsUser();
+                DataTable dt = user.get(id);
+                Users us = new Users();
+                us.UserID = id;
+                us.Name = dt.Rows[0]["name"].ToString();
+                us.UserName = dt.Rows[0]["username"].ToString();
+                us.Email = dt.Rows[0]["email"].ToString();
+                us.Address = dt.Rows[0]["address"].ToString();
+                us.Phone = dt.Rows[0]["phone"].ToString();
+                us.Password = dt.Rows[0]["password"].ToString();
+                us.ConfirmPassword = dt.Rows[0]["password"].ToString();
+                us.Type = Convert.ToInt32(dt.Rows[0]["type"].ToString());
+                TempData["Type"] = us.Type;
+                TempData["UserID"] = id;
+                return View(us);
             }
-             else
-                 return RedirectToAction("login", "user");
+            else
+                return RedirectToAction("login", "user");
         }
 
         //
         // POST: /user/Edit/5
         [HttpPost]
-        
+
         public ActionResult Edit(Users user)
         {
             try
             {
-                
-                    clsUser User = new clsUser();
-                  int id =  User.update(user.UserID, user);
-                  return RedirectToAction("Details",new { id = id });
-              
+
+                clsUser User = new clsUser();
+                int id = User.update(user.UserID, user);
+                return RedirectToAction("Details", new { id = id });
+
             }
             catch
             {
                 return View(user);
             }
         }
-        public ActionResult ForgetPassword() {
+        public ActionResult ForgetPassword()
+        {
             return View();
         }
         [HttpPost]
@@ -182,51 +187,52 @@ namespace UMoveNew.Controllers
         {
             try
             {
-                 clsUser User = new clsUser();
-                 DataTable dt = User.restPassword(Email.ToString());
-                 if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
-                 {
-                     //var fromAddress = new MailAddress("semsem9000@gmail.com", "UMove");
-                     //var toAddress = new MailAddress(Email);
-                     //const string fromPassword = "fromPassword";
-                     //const string subject = "Subject";
-                     //const string body = "Body";
+                clsUser User = new clsUser();
+                DataTable dt = User.restPassword(Email.ToString());
+                if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+                {
+                    //var fromAddress = new MailAddress("semsem9000@gmail.com", "UMove");
+                    //var toAddress = new MailAddress(Email);
+                    //const string fromPassword = "fromPassword";
+                    //const string subject = "Subject";
+                    //const string body = "Body";
 
-                     //var smtp = new SmtpClient
-                     //{
-                     //    Host = "smtp.gmail.com",
-                     //    Port = 587,
-                     //    EnableSsl = true,
-                     //    DeliveryMethod = SmtpDeliveryMethod.Network,
-                     //    UseDefaultCredentials = false,
-                     //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-                     //};
-                     //using (var message = new MailMessage(fromAddress, toAddress)
-                     //{
-                     //    Subject = dt.Rows[0]["password"].ToString(),
-                     //    Body = body
-                     //})
-                     //{
-                     //    smtp.Send(message);
-                     //}
-                   return RedirectToAction("Password", new { Password = dt.Rows[0]["password"].ToString() });
-                 }
-                 return View("ForgetPassword");
+                    //var smtp = new SmtpClient
+                    //{
+                    //    Host = "smtp.gmail.com",
+                    //    Port = 587,
+                    //    EnableSsl = true,
+                    //    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    //    UseDefaultCredentials = false,
+                    //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                    //};
+                    //using (var message = new MailMessage(fromAddress, toAddress)
+                    //{
+                    //    Subject = dt.Rows[0]["password"].ToString(),
+                    //    Body = body
+                    //})
+                    //{
+                    //    smtp.Send(message);
+                    //}
+                    return RedirectToAction("Password", new { Password = dt.Rows[0]["password"].ToString() });
+                }
+                return View("ForgetPassword");
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-           
+
         }
-        public ActionResult Password(string password) {
+        public ActionResult Password(string password)
+        {
             ViewData["Password"] = password;
             return View();
         }
         //
         // GET: /user/Delete/5
-      
+
         public ActionResult Delete(int id)
         {
             return View();
@@ -235,7 +241,7 @@ namespace UMoveNew.Controllers
         //
         // POST: /user/Delete/5
         [HttpPost]
-       
+
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
