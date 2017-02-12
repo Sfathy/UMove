@@ -345,4 +345,10 @@
   <data name="Label1113Resource1.Text" xml:space="preserve">
     <value>My Cars</value>
   </data>
+  <data name="Label36Resource1.Text" xml:space="preserve">
+    <value>Shared Shipment</value>
+  </data>
+  <data name="Label37Resource1.Text" xml:space="preserve">
+    <value>Sahred Shipments</value>
+  </data>
 </root>

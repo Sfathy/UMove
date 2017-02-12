@@ -5,78 +5,63 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+    
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+   <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
 
-        #map {
-            height: 100%;
-        }
+      #origin-input,
+      #destination-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 300px;
+      }
 
-        .controls {
-            margin-top: 10px;
-            border: 1px solid transparent;
-            border-radius: 2px 0 0 2px;
-            box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            height: 32px;
-            outline: none;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
+      #origin-input:focus,
+      #destination-input:focus {
+        border-color: #4d90fe;
+      }
 
-        #pac-input {
-            background-color: #fff;
-            font-family: Roboto;
-            font-size: 15px;
-            font-weight: 300;
-            margin-left: 12px;
-            padding: 0 11px 0 13px;
-            text-overflow: ellipsis;
-            width: 300px;
-        }
+      #mode-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        margin-left: 12px;
+        padding: 5px 11px 0px 11px;
+      }
 
-            #pac-input:focus {
-                border-color: #4d90fe;
-            }
+      #mode-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
 
-        #pac-input2 {
-            background-color: #fff;
-            font-family: Roboto;
-            font-size: 15px;
-            font-weight: 300;
-            margin-left: 12px;
-            padding: 0 11px 0 13px;
-            text-overflow: ellipsis;
-            width: 300px;
-        }
-
-            #pac-input2:focus {
-                border-color: #4d90fe;
-            }
-
-        .pac-container {
-            font-family: Roboto;
-        }
-
-        #type-selector {
-            color: #fff;
-            background-color: #4d90fe;
-            padding: 5px 11px 0px 11px;
-        }
-
-            #type-selector label {
-                font-family: Roboto;
-                font-size: 13px;
-                font-weight: 300;
-            }
-
-        #target {
-            width: 345px;
-        }
     </style>
+   
     <link href="<%$ Resources:form.css %>" rel="stylesheet" type="text/css" runat="server" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -101,141 +86,147 @@
                                      <div class="col-md-4">
                                          <asp:Label ID="Label7" runat="server" Text="<%$ Resources:CountryName %>"></asp:Label></div>
                                     <div class="col-md-6">
-                                        <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" TextField="CountryName" ValueField="CountryName" DataSourceID="SqlDataSource1" Theme="Aqua"></dx:ASPxComboBox>
+
+                                        <asp:DropDownList ID="ASPxComboBox1" runat="server" DataTextField="CountryName" DataValueField="CountryName" DataSourceID="SqlDataSource1"></asp:DropDownList>
                                         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [CountryName] FROM [tbl_Countries]"></asp:SqlDataSource>
                                     </div>
                                 </div>
-                            </div>
-                            <input id="pac-input" name="pac-input" class="controls" type="text" placeholder="Picup Location" required /></label>
-                        <div id="map" name="map" style="width: 100%; height: 200px;"></div>
-                        <script type="text/javascript">
-                            function initAutocomplete() {
-                                var map = new google.maps.Map(document.getElementById('map'), {
-                                    center: { lat: 30.0444196, lng: 31.23571160000006 },
-                                    zoom: 13,
-                                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                                });
-                                var map2 = new google.maps.Map(document.getElementById('map2'), {
-                                    center: { lat: 30.0444196, lng: 31.23571160000006 },
-                                    zoom: 13,
-                                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                                });
-                                // Create the search box and link it to the UI element.
-                                var input = document.getElementById('pac-input');
-                                var searchBox = new google.maps.places.SearchBox(input);
-                                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-                                var input2 = document.getElementById('pac-input2');
-                                var searchBox2 = new google.maps.places.SearchBox(input2);
-                                map2.controls[google.maps.ControlPosition.TOP_LEFT].push(input2);
-                                // Bias the SearchBox results towards current map's viewport.
-                                map.addListener('bounds_changed', function () {
-                                    searchBox.setBounds(map.getBounds());
-                                });
-                                map2.addListener('bounds_changed', function () {
-                                    searchBox2.setBounds(map2.getBounds());
-                                });
-                                var markers = [];
-                                var markers2 = [];
-                                // Listen for the event fired when the user selects a prediction and retrieve
-                                // more details for that place.
-                                searchBox.addListener('places_changed', function () {
-                                    var places = searchBox.getPlaces();
+                  <input id="origin-input" name="origin-input" class="controls" type="text"
+        placeholder="Enter an origin location"/>
+    <input id="destination-input" name="destination-input" class="controls" type="text"
+        placeholder="Enter a destination location"/>
 
-                                    if (places.length == 0) {
-                                        return;
-                                    }
+    <div id="mode-selector" class="controls" style="display:none;">
+      <input type="radio" name="type" id="changemode-walking" checked="checked"/>
+      <label for="changemode-walking">Walking</label>
 
-                                    // Clear out the old markers.
-                                    markers.forEach(function (marker) {
-                                        marker.setMap(null);
-                                    });
-                                    markers = [];
+      <input type="radio" name="type" id="changemode-transit"/>
+      <label for="changemode-transit">Transit</label>
 
-                                    // For each place, get the icon, name and location.
-                                    var bounds = new google.maps.LatLngBounds();
-                                    places.forEach(function (place) {
-                                        var icon = {
-                                            url: place.icon,
-                                            size: new google.maps.Size(71, 71),
-                                            origin: new google.maps.Point(0, 0),
-                                            anchor: new google.maps.Point(17, 34),
-                                            scaledSize: new google.maps.Size(25, 25)
-                                        };
-                                        document.getElementById("latn").value = place.geometry.location;
-                                        // Create a marker for each place.
-                                        markers.push(new google.maps.Marker({
-                                            map: map,
-                                            icon: icon,
-                                            title: place.name,
-                                            position: place.geometry.location
-                                        }));
+      <input type="radio" name="type" id="changemode-driving"/>
+      <label for="changemode-driving">Driving</label>
+    </div>
+    <div id="map" name="map" style="width:100%;height:300px"></div>
+  </div>
+    <script>
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-                                        if (place.geometry.viewport) {
-                                            // Only geocodes have viewport.
-                                            bounds.union(place.geometry.viewport);
-                                        } else {
-                                            bounds.extend(place.geometry.location);
-                                        }
-                                    });
-                                    map.fitBounds(bounds);
-                                });
-                                searchBox2.addListener('places_changed', function () {
-                                    var places2 = searchBox2.getPlaces();
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                mapTypeControl: false,
+                center: { lat: -33.8688, lng: 151.2195 },
+                zoom: 13
+            });
 
-                                    if (places2.length == 0) {
-                                        return;
-                                    }
+            new AutocompleteDirectionsHandler(map);
+        }
 
-                                    // Clear out the old markers.
-                                    markers2.forEach(function (marker2) {
-                                        marker2.setMap(null);
-                                    });
-                                    markers2 = [];
+        /**
+         * @constructor
+        */
+        function AutocompleteDirectionsHandler(map) {
+            this.map = map;
+            this.originPlaceId = null;
+            this.destinationPlaceId = null;
+            this.travelMode = 'WALKING';
+            var originInput = document.getElementById('origin-input');
+            var destinationInput = document.getElementById('destination-input');
+            var modeSelector = document.getElementById('mode-selector');
+            this.directionsService = new google.maps.DirectionsService;
+            this.directionsDisplay = new google.maps.DirectionsRenderer;
+            this.directionsDisplay.setMap(map);
 
-                                    // For each place, get the icon, name and location.
-                                    var bounds2 = new google.maps.LatLngBounds();
-                                    places2.forEach(function (place2) {
-                                        var icon2 = {
-                                            url: place2.icon,
-                                            size: new google.maps.Size(71, 71),
-                                            origin: new google.maps.Point(0, 0),
-                                            anchor: new google.maps.Point(17, 34),
-                                            scaledSize: new google.maps.Size(25, 25)
-                                        };
-                                        document.getElementById("latn2").value = place2.geometry.location;
-                                        // Create a marker for each place.
-                                        markers2.push(new google.maps.Marker({
-                                            map: map2,
-                                            icon: icon2,
-                                            title: place2.name,
-                                            position: place2.geometry.location
-                                        }));
+            var originAutocomplete = new google.maps.places.Autocomplete(
+                originInput, { placeIdOnly: true });
+            var destinationAutocomplete = new google.maps.places.Autocomplete(
+                destinationInput, { placeIdOnly: true });
 
-                                        if (place2.geometry.viewport) {
-                                            // Only geocodes have viewport.
-                                            bounds2.union(place.geometry.viewport);
-                                        } else {
-                                            bounds2.extend(place.geometry.location);
-                                        }
-                                    });
-                                    map2.fitBounds(bounds2);
-                                });
-                            }
+            this.setupClickListener('changemode-walking', 'WALKING');
+            this.setupClickListener('changemode-transit', 'TRANSIT');
+            this.setupClickListener('changemode-driving', 'DRIVING');
 
+            this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+            this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
 
+            this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+            this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+            this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+        }
 
-                        </script>
+        // Sets a listener on a radio button to change the filter type on Places
+        // Autocomplete.
+        AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
+            var radioButton = document.getElementById(id);
+            var me = this;
+            radioButton.addEventListener('click', function () {
+                me.travelMode = mode;
+                me.route();
+            var xx=    me.route();
+            });
+        };
 
-                        <%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3ZiAhRI5Wh8UBr-u65bdd2_VEOLUewJc&libraries=places&callback=initAutocomplete"
-         async defer></script>--%>
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initAutocomplete"
-                            async defer></script>
+        AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
+            var me = this;
+            autocomplete.bindTo('bounds', this.map);
+            autocomplete.addListener('place_changed', function () {
+                var place = autocomplete.getPlace();
+                if (!place.place_id) {
+                    window.alert("Please select an option from the dropdown list.");
+                    return;
+                }
+                if (mode === 'ORIG') {
+                    me.originPlaceId = place.place_id;
+                    var xx = autocomplete.getBounds();
+                    var lat = xx["f"]["b"];
+                    var long = xx["f"]["f"];
+                    document.getElementById("latn").value = "("+lat+","+long+")";
+                } else {
+                    me.destinationPlaceId = place.place_id;
+                    var xx2 = autocomplete.getBounds();
+                    var lat2 = xx2["f"]["b"];
+                    var long2 = xx2["f"]["f"];
+                    document.getElementById("latn2").value = "(" + lat2 + "," + long2 + ")";
+                }
+               
+                me.route();
+            });
+
+        };
+
+        AutocompleteDirectionsHandler.prototype.route = function () {
+            if (!this.originPlaceId || !this.destinationPlaceId) {
+                return;
+            }
+            var me = this;
+
+            this.directionsService.route({
+                origin: { 'placeId': this.originPlaceId },
+                destination: { 'placeId': this.destinationPlaceId },
+                travelMode: this.travelMode
+            }, function (response, status) {
+                if (status === 'OK') {
+                    me.directionsDisplay.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        };
+
+    </script>
+                            <!-- on serve -->
+    <%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
+            async defer></script>--%>
+                            <!-- on local -->
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
+            async defer></script> 
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6">
                                     <label>
                                         <asp:TextBox ID="txtdatepic" runat="server" placeholder="Pickup Date" required meta:resourcekey="txtdatepicResource1"></asp:TextBox></label>
-                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtdatepic" BehaviorID="CalendarExtender1" Format="dd/MM/yyyy"/>
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtdatepic"  BehaviorID="CalendarExtender1" Format="MM/dd/yyyy"/>
                                 </div>
                                 <div class="col-md-6">
                                     <asp:DropDownList ID="DropDownList2" runat="server" meta:resourcekey="DropDownList2Resource1">
@@ -260,13 +251,12 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label3" CssClass="asplab" runat="server" Text="Delivery (City or ZIP)" meta:resourcekey="Label3Resource1"></asp:Label>
                     <div class="inner-wrap">
                         <label>
-                            <input id="pac-input2" name="pac-input2" class="controls" type="text" placeholder="Dleivery Location" required /></label>
-                        <div id="map2" name="map2" style="width: 100%; height: 200px;"></div>
+                        
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtdatedelivery" runat="server" placeholder="Delivery Date" required meta:resourcekey="txtdatedeliveryResource1"></asp:TextBox>
-                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtdatedelivery" BehaviorID="CalendarExtender2"  Format="dd/MM/yyyy"/>
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtdatedelivery" BehaviorID="CalendarExtender2"  Format="MM/dd/yyyy"/>
                                 </div>
                                 <div class="col-md-6">
                                     <asp:DropDownList ID="DropDownList1" runat="server" meta:resourcekey="DropDownList1Resource1">
@@ -343,4 +333,5 @@
             </div>
         </div>
     </div>
+
 </asp:Content>

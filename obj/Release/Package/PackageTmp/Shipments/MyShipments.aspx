@@ -83,9 +83,7 @@
                         </Cell>
                     </Styles>
                             </dx:ASPxGridView>
-                            <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT TripItems.ID, TripItems.TripID, TripItems.ItemDesc, TripItems.Width, TripItems.Height, TripItems.Length, TripItems.Wight, TripItems.NoOfUnits, TripItems.ImageURL, SubCategory.Name AS SubCategory, Categories.Name AS Category FROM TripItems INNER JOIN SubCategory ON TripItems.ID = SubCategory.ID INNER JOIN Categories ON TripItems.ID = Categories.ID 
-Where TripItems.TripID=@TripID and Puplished=1
-">
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT dbo.TripItems.ID, dbo.TripItems.TripID, dbo.TripItems.ItemDesc, dbo.TripItems.Width, dbo.TripItems.Height, dbo.TripItems.Length, dbo.TripItems.Wight, dbo.TripItems.NoOfUnits, dbo.TripItems.ImageURL, dbo.SubCategory.Name AS SubCategory, dbo.Categories.Name AS Category FROM dbo.TripItems INNER JOIN dbo.SubCategory ON dbo.TripItems.ItemSubCatID = dbo.SubCategory.ID INNER JOIN dbo.Categories ON dbo.TripItems.ItemCatID = dbo.Categories.ID WHERE (dbo.TripItems.TripID = @TripID) ">
                                 <SelectParameters>
                                     <asp:SessionParameter SessionField="TripID" Name="TripID"></asp:SessionParameter>
                                 </SelectParameters>
