@@ -95,8 +95,6 @@ namespace UMoveNew.Controllers
         public HttpResponseMessage Put(int id, [FromBody] Users user)
         {
             string err = "";
-            if (ModelState.IsValid)
-            {
                  clsInstallation inst = new clsInstallation();
                  
                 DataTable dt2 = inst.get(user.InstallationKey);
@@ -106,7 +104,7 @@ namespace UMoveNew.Controllers
                     DataTable dt = new DataTable();
                     dt.Columns.Add("ID");
                     DataRow dr = dt.NewRow();
-                    dr["ID"] = User.insert(user);
+                    dr["ID"] = User.update(id,user);
                     if (dr["ID"].ToString() != "-1")
                     {
                         dt.Rows.Add(dr);
@@ -125,11 +123,7 @@ namespace UMoveNew.Controllers
                 {
                     err = "{ \"error\": { \"code\": 1, \"message\": \"Installation Key not exist\"  } }";
                 }
-            }
-            else
-            {
-                err =  "{ \"error\": { \"code\": 1, \"message\": \"Error message\"  } }";
-            }
+            
             return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/jason") };
         }
 

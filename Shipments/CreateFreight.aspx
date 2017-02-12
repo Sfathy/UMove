@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shipments/Site.Master" AutoEventWireup="true" CodeBehind="CreateFreight.aspx.cs" Inherits="UMoveNew.Shipments.CreateFreight" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-       <link href="<%$ Resources:form.css %>" rel="stylesheet" type="text/css" />
+            <link href="<%$ Resources:form.css %>" rel="stylesheet" type="text/css"  runat="server" />
     <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css' />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
 
         function showpreview(input) {
@@ -190,7 +191,7 @@
                             </asp:TemplateField>
                              <asp:TemplateField meta:resourcekey="TemplateFieldResource7">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblWight"  runat="server" Text='<%# Bind("Wight") %>' meta:resourcekey="lblWightResource1"></asp:Label>
+                                    <asp:Label ID="lblWight"  runat="server" Text='<%# Bind("Weight") %>' meta:resourcekey="lblWightResource1"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

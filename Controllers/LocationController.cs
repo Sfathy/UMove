@@ -41,6 +41,10 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't save or update location\"  } }";
             }
+            if(loc.getRequests==1)
+            {
+                return new OpenedRequestController().Get(loc.Latitude, loc.Longitude, loc.UserID);
+            }
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
 

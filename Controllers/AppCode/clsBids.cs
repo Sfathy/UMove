@@ -10,6 +10,32 @@ namespace UMoveNew.Controllers.AppCode
 {
     public class clsBids
     {
+        public int insertShareBid(Bid bid)
+        {
+            SqlParameter[] param = new SqlParameter[10];
+            param[0] = DataAccess.AddParamter("@UserID", bid.UserID, SqlDbType.Int, 50);
+            param[1] = DataAccess.AddParamter("@Price", bid.Price, SqlDbType.Decimal, 50);
+            param[2] = DataAccess.AddParamter("@TripID", bid.TripID, SqlDbType.Decimal, 50);
+            param[3] = DataAccess.AddParamter("@TruckType", bid.TruckType, SqlDbType.Int, 50);
+            param[4] = DataAccess.AddParamter("@PickupDate", bid.PickupDate, SqlDbType.DateTime, 50);
+            param[5] = DataAccess.AddParamter("@DeliveryDate", bid.DeliveryDate, SqlDbType.DateTime, 50);
+            param[6] = DataAccess.AddParamter("@BidExpiration", bid.BidExpiration, SqlDbType.DateTime, 50);
+            param[7] = DataAccess.AddParamter("@Note", bid.Note, SqlDbType.NVarChar, 500);
+            param[8] = DataAccess.AddParamter("@TermCondition", bid.TermCondition, SqlDbType.NVarChar, 500);
+            param[9] = DataAccess.AddParamter("@Accepted", bid.Accepted, SqlDbType.Int, 50);
+            //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
+            string sql = "insert into [SharedTripsBid](UserID,Price,SharedTripID,TruckType,PickupDate,DeliveryDate,BidExpiration,Note,TermCondition,Accepted,Puplished) values" +
+                "(@UserID,@Price,@TripID,@TruckType,@PickupDate,@DeliveryDate,@BidExpiration,@Note,@TermCondition,@Accepted,2)";
+            DataAccess.ExecuteSQLNonQuery(sql, param);
+            int bidID = 0;
+            DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from Bid");
+            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+            {
+                sendmessage(bid);
+                bidID = int.Parse(dt.Rows[0]["MaxID"].ToString());
+            }
+            return bidID;
+        }
         public int insert(Bid bid)
         {
               //check if the user name exist before
@@ -28,8 +54,8 @@ namespace UMoveNew.Controllers.AppCode
             //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
 
 
-            string sql = "insert into Bid(UserID,Price,TripID,TruckType,PickupDate,DeliveryDate,BidExpiration,Note,TermCondition,Accepted) values" +
-                "(@UserID,@Price,@TripID,@TruckType,@PickupDate,@DeliveryDate,@BidExpiration,@Note,@TermCondition,@Accepted)";
+            string sql = "insert into Bid(UserID,Price,TripID,TruckType,PickupDate,DeliveryDate,BidExpiration,Note,TermCondition,Accepted,Puplished) values" +
+                "(@UserID,@Price,@TripID,@TruckType,@PickupDate,@DeliveryDate,@BidExpiration,@Note,@TermCondition,@Accepted,2)";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int bidID = 0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from Bid");

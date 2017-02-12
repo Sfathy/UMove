@@ -28,7 +28,7 @@ namespace UMoveNew.Shipments
                 lblTitle.Text = trip.Name;
                 lblID.Text = trip.ID.ToString();
                 clsUser user = new clsUser();
-                DataTable dt = user.get(trip.DriverID);
+                DataTable dt = user.get(trip.UserID);
                 lblCustomer.Text = dt.Rows[0]["Name"].ToString();
                 lblPicUpDate.Text = trip.PicUpDate.ToString();
                 lblDeliveryDate.Text = trip.DeliveryDate.ToString();
@@ -93,8 +93,8 @@ namespace UMoveNew.Shipments
             b.Note = txtnote.Text;
             b.TermCondition = txtTermCondition.Text;
             clsBids cb = new clsBids();
-            int BidID=  cb.insert(b);
-            if (BidID>0)
+            int BidID = cb.insert(b);
+            if (BidID > 0)
             {
                 Response.Redirect("~/Shipments/TripBids.aspx?id=" + Convert.ToInt32(Request.QueryString["id"].ToString()) + "&&alert=success");
             }
@@ -103,9 +103,9 @@ namespace UMoveNew.Shipments
         protected void btnAskQuestion_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(Request.QueryString["id"].ToString());
-            Response.Redirect("~/Shipments/AskQuestion.aspx?id="+id);
+            Response.Redirect("~/Shipments/AskQuestion.aspx?id=" + id);
         }
 
-       
+
     }
 }

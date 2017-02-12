@@ -75,14 +75,19 @@
                     <div class="header__navigation">
                         <nav class="collapse navbar-collapse" id="cargopress-navbar-collapse">
                             <ul class="main-navigation js-main-nav js-dropdown">
-                                <li >
-                                    <a href="~/">@UMoveNew.Views.Shared.Layout.Home</a>
-                                   
+                                <li>
+                                    @if (userInCookie == null)
+                                    {
+                                        <a href="~/">@UMoveNew.Views.Shared.Layout.Home</a>
+                                    }
                                 </li>
-                              
+
                                 @if (userInCookie != null)
                                 {
-                                <li><a href="~/Trips/Categories">@UMoveNew.Views.Shared.Layout.NewShipment</a></li>
+
+                                    <li><a href="~/Trips/Categories">@UMoveNew.Views.Shared.Layout.NewShipment</a></li>
+                                    <li><a href="~/SharedTrips">@UMoveNew.Views.Shared.Layout.NewPartShipment</a></li>
+                                    <li><a href="~/SharedTrips/AllSharedShipments">@UMoveNew.Views.Shared.Layout.FindPartShipment</a></li>
                                     <li><a href="~/Trips/AllShipments">@UMoveNew.Views.Shared.Layout.FindShipment</a></li>
                                 }
                             </ul>
@@ -155,7 +160,7 @@
                             <p>
                                 <img alt="logo-footer" src="~/images/logo-footer.png" class="logo">
                             </p>
-                           
+
                             <p>
                                 <a target="_blank" href="https://www.facebook.com/" class="icon-container icon-container--square">
                                     <span class="fa fa-facebook"></span>
@@ -236,7 +241,7 @@
 
                         </div><!-- /.row -->
 
-                      
+
                     </div><!-- /.row -->
 
                 </div><!-- /.footer -->

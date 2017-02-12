@@ -13,7 +13,7 @@ namespace UMoveNew.Controllers.AppCode
         public int insert(Trip trip)
         {
             //check if the user name exist before
-            SqlParameter[] param = new SqlParameter[20];
+            SqlParameter[] param = new SqlParameter[21];
             param[0] = DataAccess.AddParamter("@UserID", trip.UserID, SqlDbType.Int, 50);
             param[1] = DataAccess.AddParamter("@DestLat", trip.DestLat, SqlDbType.Decimal, 50);
             param[2] = DataAccess.AddParamter("@DestLag", trip.DestLag, SqlDbType.Decimal, 50);
@@ -27,19 +27,19 @@ namespace UMoveNew.Controllers.AppCode
             param[10] = DataAccess.AddParamter("@PicUpDate", trip.PicUpDate, SqlDbType.DateTime, 50);
             param[11] = DataAccess.AddParamter("@DeliveryDate", trip.DeliveryDate, SqlDbType.DateTime, 50);
             param[12] = DataAccess.AddParamter("@Note", trip.Note, SqlDbType.NVarChar, 500);
-            param[13] = DataAccess.AddParamter("@PicUpType", trip.PicUpType, SqlDbType.NVarChar, 500);
-            param[14] = DataAccess.AddParamter("@DeliveryType", trip.DeliveryType, SqlDbType.NVarChar, 500);
+            param[13] = DataAccess.AddParamter("@PicUpType", trip.PicUpType, SqlDbType.Int, 50);
+            param[14] = DataAccess.AddParamter("@DeliveryType", trip.DeliveryType, SqlDbType.Int, 50);
             param[15] = DataAccess.AddParamter("@SourceLocationText", trip.SourceLocationText, SqlDbType.NVarChar, 500);
             param[16] = DataAccess.AddParamter("@DeliveryLocationText", trip.DeliveryLocationText, SqlDbType.NVarChar, 500);
             param[17] = DataAccess.AddParamter("@Name", trip.Name, SqlDbType.NVarChar, 500);
             param[18] = DataAccess.AddParamter("@CustomerID", trip.CustomerID, SqlDbType.Int, 500);
-            param[19] = DataAccess.AddParamter("@Country", trip.Country, SqlDbType.Int, 500);
+            param[19] = DataAccess.AddParamter("@Country", trip.Country, SqlDbType.NVarChar, 500);
             param[20] = DataAccess.AddParamter("@TripType", trip.tripType, SqlDbType.Int, 50);
             //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
 
 
-            string sql = "insert into Trip([UserID],[DestLat],[DestLag],[SourceLat],[SourceLag],[EstimatedCost],[TripDuration],[TripCost],[EstimatedDuration],[DriverID],[PicUpDate],[DeliveryDate],[Note],[PicUpType],[DeliveryType],[SourceLocationText],[DeliveryLocationText],[Name],[CustomerID],[Country],[PaymentType]) values" +
-                "(@UserID,@DestLat,@DestLag,@SourceLat,@SourceLag,@EstimatedCost,@TripDuration,@TripCost,@EstimatedDuration,@DriverID,@PicUpDate,@DeliveryDate,@Note,@PicUpType,@DeliveryType,@SourceLocationText,@DeliveryLocationText,@Name,@CustomerID,@Country,@TripType)";
+            string sql = "insert into Trip([UserID],[DestLat],[DestLag],[SourceLat],[SourceLag],[EstimatedCost],[TripDuration],[TripCost],[EstimatedDuration],[DriverID],[PicUpDate],[DeliveryDate],[Note],[PicUpType],[DeliveryType],[SourceLocationText],[DeliveryLocationText],[Name],[CustomerID],[Country],[PaymentType],[Puplished]) values" +
+                                         "(@UserID,@DestLat,@DestLag,@SourceLat,@SourceLag,@EstimatedCost,@TripDuration,@TripCost,@EstimatedDuration,@DriverID,@PicUpDate,@DeliveryDate,@Note,@PicUpType,@DeliveryType,@SourceLocationText,@DeliveryLocationText,@Name,@CustomerID,@Country,@TripType,2)";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int tripID = 0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from Trip");
@@ -75,6 +75,7 @@ namespace UMoveNew.Controllers.AppCode
                 }
 
             }
+            sendmessage(trip);
             return tripID;
         }
         public void sendmessage(Trip trip)
@@ -84,7 +85,7 @@ namespace UMoveNew.Controllers.AppCode
             clsUser u = new clsUser();
             DataTable dt3 = u.get(trip.UserID);
             string Message = " You Have Request Trip by Name" + trip.Name + "";
-            string Message_AR = " N'تم عمل رحلة بأسم' " + trip.Name + " ";
+            string Message_AR = " N'تم عمل رحلة بأسم' " + trip.Name + " فى انتظار موافقة مدير الموقع ";
             param2[0] = DataAccess.AddParamter("@Message", Message, SqlDbType.NChar, 500);
             param2[1] = DataAccess.AddParamter("@ToUser", trip.UserID, SqlDbType.Int, 50);
             param2[2] = DataAccess.AddParamter("@Sender", trip.UserID, SqlDbType.Int, 50);
@@ -128,26 +129,6 @@ namespace UMoveNew.Controllers.AppCode
                 ")  where ID = @ID";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int tripID = trip.ID;
-            //DataTable dt = DataAccess.ExecuteSQLQuery("delete from TripItems where TripID = " + id.ToString());
-            ////add trip items
-            //SqlParameter[] param2 = new SqlParameter[10];
-            //for (int i = 0; i < trip.ItemsList.Count; i++)
-            //{
-            //    param2 = new SqlParameter[9];
-            //    param2[0] = DataAccess.AddParamter("@TripID", tripID, SqlDbType.Int, 50);
-            //    param2[1] = DataAccess.AddParamter("@ItemCatID", trip.ItemsList[i].CatID, SqlDbType.Int, 50);
-            //    param2[2] = DataAccess.AddParamter("@ItemSubCatID", trip.ItemsList[i].SubCatID, SqlDbType.Int, 50);
-            //    param2[3] = DataAccess.AddParamter("@ItemDesc", trip.ItemsList[i].Description, SqlDbType.NVarChar, 500);
-            //    param2[4] = DataAccess.AddParamter("@Width", trip.ItemsList[i].Width, SqlDbType.Decimal, 50);
-            //    param2[5] = DataAccess.AddParamter("@Height", trip.ItemsList[i].Height, SqlDbType.Decimal, 50);
-            //    param2[6] = DataAccess.AddParamter("@Length", trip.ItemsList[i].Length, SqlDbType.Decimal, 50);
-            //    param2[7] = DataAccess.AddParamter("@Wight", trip.ItemsList[i].Wight, SqlDbType.Decimal, 50);
-            //    param2[8] = DataAccess.AddParamter("@NoOfUnits", trip.ItemsList[i].NoOfUnits, SqlDbType.Decimal, 50);
-            //    sql = "insert into TripItems(TripID,ItemCatID,ItemSubCatID,ItemDesc,Width,Height,Length,Wight,NoOfUnits) values (@TripID,@ItemCatID,@ItemSubCatID,@ItemDesc,@Width,@Height,@Length,@Wight,@NoOfUnits)";
-            //    DataAccess.ExecuteSQLNonQuery(sql, param2);
-
-            //}
-
             return tripID;
         }
         public List<Trip> getList()
@@ -172,76 +153,6 @@ namespace UMoveNew.Controllers.AppCode
             string sql = "SELECT Trip.Name AS TripName,Trip.Country,Trip.PaymentType,Trip.SourceLocationText, Trip.DeliveryLocationText, Trip.PicUpDate, Trip.DeliveryDate,Trip.TripCost ,DATEDIFF(hh, Trip.PicUpDate, Trip.DeliveryDate) AS Ending,Trip.Note,Trip.PicUpType,Trip.DriverID,Trip.DeliveryType,Trip.CustomerID, Trip.ID,Trip.UserID as UserID,Trip.DestLat,Trip.DestLag,Trip.SourceLag,Trip.SourceLat ,ACOS(SIN(Trip.SourceLat) * SIN(Trip.DestLat) + COS(Trip.SourceLat) * COS(Trip.DestLat) * COS(Trip.DestLag - Trip.DestLag)) AS Dis from Trip where ID=" + TripID.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             Trip t = new Trip();
-            //sql = "select * from TripItems where TripID=" + TripID.ToString();
-            //DataTable dt2 = DataAccess.ExecuteSQLQuery(sql);
-            //List<Item> Items = new List<Item>();
-
-            //foreach (DataRow dr in dt2.Rows)
-            //{
-            //    Item item = new Item();
-            //    item.CatID = Convert.ToInt32(dr["ItemCatID"].ToString());
-            //    item.Description = dr["ItemDesc"].ToString();
-            //    item.ImageURL = dr["ImageURL"].ToString();
-            //    if (dr["Height"].ToString()==""||dr["Height"].ToString()=="0.000")
-            //    {
-            //        item.Height = 0;
-            //    }
-            //    else
-            //    item.Height = Convert.ToInt32(dr["Height"].ToString());
-            //    if (dr["Length"].ToString() == "" || dr["Length"].ToString() == "0.000")
-            //    {
-            //        item.Length = 0;
-            //    }
-            //    else
-            //     item.Length = Convert.ToInt32(dr["Length"].ToString());
-            //    if (dr["Width"].ToString() == "" || dr["Width"].ToString() == "0.000")
-            //    {
-            //        item.Width = 0;
-            //    }
-            //    else
-            //        item.Width = Convert.ToInt32(dr["Wight"].ToString());
-            //    if (dr["Wight"].ToString() == "" || dr["Wight"].ToString() == "0.000")
-            //    {
-            //        item.Wight = 0;
-            //    }
-            //    else
-            //        item.Wight = Convert.ToInt32(dr["Length"].ToString());
-                
-            //    item.ItemType =0;
-                
-            //    item.SubCatID = Convert.ToInt32(dr["ItemSubCatID"].ToString());
-               
-            //    item.NoOfUnits = dt2.Rows.Count;
-            //    Items.Add(item);
-            //}
-            //t.ItemsList = Items;
-            //sql = "select * from Trip_Service where TripID=" + TripID.ToString();
-            //DataTable dt3 = DataAccess.ExecuteSQLQuery(sql);
-            //List<TripService> Services = new List<TripService>();
-            //foreach (DataRow dr in dt3.Rows)
-            //{
-            //    TripService Service = new TripService();
-            //    Service.ServiceID = Convert.ToInt32(dr["ServiceID"].ToString());
-            //    Service.TripID = TripID;
-            //    Services.Add(Service);
-            //}
-            //t.tripService = Services;
-            //sql = "select * from TripQuestions where TripID=" + TripID.ToString();
-            //DataTable dt4 = DataAccess.ExecuteSQLQuery(sql);
-            //List<TripQuestions> Questions = new List<TripQuestions>();
-            //foreach (DataRow dr in dt4.Rows)
-            //{
-            //    TripQuestions Question = new TripQuestions();
-            //    Question.QuestionUserID = Convert.ToInt32(dr["QuestionUserID"].ToString());
-            //    Question.Question = dr["Question"].ToString();
-            //    Question.Answer = dr["Answer"].ToString();
-            //    Question.AnswerUserID = Convert.ToInt32(dr["AnswerUserID"].ToString());
-            //    Question.QuestionTime = Convert.ToDateTime(dr["QuestionTime"].ToString());
-            //    Question.AnswerTime = Convert.ToDateTime(dr["AnswerTime"].ToString());
-            //    Question.TripID = TripID;
-            //    Questions.Add(Question);
-            //}
-            //t.TripQuestionsList = Questions;
             t.UserID = Convert.ToInt32(dt.Rows[0]["UserID"].ToString());
             t.DestLat = Convert.ToDecimal(dt.Rows[0]["DestLat"].ToString());
             t.DestLag = Convert.ToDecimal(dt.Rows[0]["DestLag"].ToString());
@@ -292,7 +203,12 @@ namespace UMoveNew.Controllers.AppCode
         {
             string sql = "select Name from SubCategory where ID = " + catID.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
-            return dt.Rows[0]["Name"].ToString();
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0]["Name"].ToString();
+            }
+            else
+                return "";
         }
     }
 }

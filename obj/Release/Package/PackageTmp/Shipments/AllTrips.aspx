@@ -61,9 +61,7 @@
                                     
                                 </Columns>
                             </dx:ASPxGridView>
-                            <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT TripItems.ID, TripItems.TripID, TripItems.ItemDesc, TripItems.Width, TripItems.Height, TripItems.Length, TripItems.Wight, TripItems.NoOfUnits, TripItems.ImageURL, SubCategory.Name AS SubCategory, Categories.Name AS Category FROM TripItems INNER JOIN SubCategory ON TripItems.ID = SubCategory.ID INNER JOIN Categories ON TripItems.ID = Categories.ID 
-Where TripItems.TripID=@TripID
-">
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT dbo.TripItems.ID, dbo.TripItems.TripID, dbo.TripItems.ItemDesc, dbo.TripItems.Width, dbo.TripItems.Height, dbo.TripItems.Length, dbo.TripItems.Wight, dbo.TripItems.NoOfUnits, dbo.TripItems.ImageURL, dbo.SubCategory.Name AS SubCategory, dbo.Categories.Name AS Category FROM dbo.TripItems INNER JOIN dbo.SubCategory ON dbo.TripItems.ItemSubCatID = dbo.SubCategory.ID INNER JOIN dbo.Categories ON dbo.TripItems.ItemCatID = dbo.Categories.ID WHERE (dbo.TripItems.TripID = @TripID) ">
                                 <SelectParameters>
                                     <asp:SessionParameter SessionField="TripID" Name="TripID"></asp:SessionParameter>
                                 </SelectParameters>
@@ -79,5 +77,5 @@ Where TripItems.TripID=@TripID
     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [ID], [Name] FROM [Categories]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [ID], [Name] FROM [SubCategory]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [ID], [Name] FROM [Users]"></asp:SqlDataSource>
-    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT Trip.Name AS TripName, Trip.SourceLocationText, Trip.DeliveryLocationText, Trip.PicUpDate, Trip.DeliveryDate, DATEDIFF(hh, Trip.PicUpDate, Trip.DeliveryDate) AS Ending, Trip.ID, TripItems.ItemCatID, TripItems.ItemSubCatID, Trip.UserID, ACOS(SIN(Trip.SourceLat) * SIN(Trip.DestLat) + COS(Trip.SourceLat) * COS(Trip.DestLat) * COS(Trip.DestLag - Trip.DestLag)) AS Dis FROM Trip INNER JOIN TripItems ON Trip.ID = TripItems.ID"></asp:SqlDataSource>
+    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT Trip.Name AS TripName, Trip.SourceLocationText, Trip.DeliveryLocationText, Trip.PicUpDate, Trip.DeliveryDate, DATEDIFF(hh, Trip.PicUpDate, Trip.DeliveryDate) AS Ending, Trip.ID, TripItems.ItemCatID, TripItems.ItemSubCatID, Trip.UserID, ACOS(SIN(Trip.SourceLat) * SIN(Trip.DestLat) + COS(Trip.SourceLat) * COS(Trip.DestLat) * COS(Trip.DestLag - Trip.DestLag)) AS Dis FROM Trip INNER JOIN TripItems ON Trip.ID = TripItems.ID where Puplished=1"></asp:SqlDataSource>
 </asp:Content>

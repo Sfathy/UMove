@@ -183,4 +183,10 @@
   <data name="Warehousing" xml:space="preserve">
     <value>التخزين</value>
   </data>
+  <data name="NewPartShipment" xml:space="preserve">
+    <value>نصف رحله</value>
+  </data>
+  <data name="FindPartShipment" xml:space="preserve">
+    <value>البحث عن نصف رحلة</value>
+  </data>
 </root>

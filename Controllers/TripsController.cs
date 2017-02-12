@@ -26,6 +26,7 @@ namespace UMoveNew.Controllers
         {
             if (Request.Cookies["user"] != null)
             {
+               
                 return View();
             }
             else

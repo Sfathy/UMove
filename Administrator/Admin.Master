@@ -1,0 +1,272 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="UMoveNew.Administrator.Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" runat="server" dir="<%$ Resources:layoutDirection %>">
+
+<head runat="server">
+
+    <%--<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" `/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />--%>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>NitroGFX.COM - All For WebMasters... CargoPress</title>
+    <!-- Styling -->
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+    </asp:ContentPlaceHolder>
+    <link href="<%$ Resources:style.css %>" runat="server" rel="stylesheet" />
+    <link href="../Content/magnific-popup.css" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Roboto%3A400%2C700%7CSource+Sans+Pro%3A700%2C900&amp;subset=latin" rel="stylesheet" />
+
+    <script src="../Scripts/modernizr.custom.24530.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery.validate.js" type='text/javascript'></script>
+    <script src="../Scripts/jquery.validate.unobtrusive.js" type='text/javascript'></script>
+    <link rel="shortcut icon" href="../images/fav.png" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <asp:UpdatePanel ID="AdminUpdatePanel" runat="server">
+            <ContentTemplate>
+                <div class="boxed-container">
+                    <!-- TOP BAR -->
+                    <div class="top">
+                        <div class="container">
+                            <div class="top__tagline">
+                                <div class="widget-icon-box">
+                                    <div class="collapse navbar-collapse" style="width: 100%; height: 100%; background-color: #1f425d;">
+                                        <ul class="main-navigation js-main-nav js-dropdown">
+                                            <li>
+                                                <asp:LinkButton ID="lpro" runat="server" OnClick="lpro_Click" ><asp:Label runat="server" ID="UserName" Text="Welcome !" meta:resourcekey="UserNameResource1"></asp:Label></asp:LinkButton>
+                                            </li>
+                                            <li><a href="../../user/logout">
+                                                <asp:Label runat="server" ID="Label1" Text="Logout" meta:resourcekey="Label1Resource1"></asp:Label></a></li>
+                                            <li>
+                                                <div class="pp">
+                                                    <asp:LinkButton ID="btnEnglish" runat="server" CausesValidation="False" Font-Underline="False" Text="&lt;img src=&quot;../images/English.GIF&quot; width=&quot;50&quot; height=&quot;50&quot; alt=&quot;English&quot; /&gt;" OnClick="btnEnglish_Click" Width="50px" Height="50px" meta:resourcekey="btnEnglishResource1"></asp:LinkButton>
+                                                    <asp:LinkButton ID="btnArabic" runat="server" CausesValidation="False" Text="&lt;img src=&quot;../images/Arabic.GIF&quot;  width=&quot;50&quot; height=&quot;50&quot; alt=&quot;عربى&quot; /&gt;" Font-Underline="False" OnClick="btnArabic_Click" Width="50px" Height="50px" meta:resourcekey="btnArabicResource1"></asp:LinkButton>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.container -->
+                    </div>
+                    <!-- /.top -->
+                    <div class="header__container">
+                        <div class="container">
+                            <header class="header">
+                                <div class="header__logo">
+                                    <a href="index.html">
+                                        <img class="img-responsive" alt="CargoPress" src="../images/logo.png">
+                                    </a>
+                                    <button data-target="#cargopress-navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                                        <span class="navbar-toggle__text">
+                                            <asp:Label runat="server" ID="Label4" Text="MENU" meta:resourcekey="Label4Resource1"></asp:Label></a></span>
+                                        <span class="navbar-toggle__icon-bar">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </span>
+                                    </button>
+                                </div>
+                                <!-- /.header__logo -->
+                                <div class="header__navigation">
+                                    <nav class="collapse navbar-collapse" id="cargopress-navbar-collapse">
+                                        <ul class="main-navigation js-main-nav js-dropdown">
+                                            <li>
+                                                <a href="../../">
+                                                    <asp:Label runat="server" ID="Label5" Text="Home" meta:resourcekey="Label5Resource1"></asp:Label></a>
+                                            </li>
+                                            <li><a href="../../Admin/AllShipments">
+                                                <asp:Label runat="server" ID="Label36" Text="New Shipments" meta:resourcekey="Label36Resource1"></asp:Label></a></li>
+                                             <li><a href="../../Admin/AllBids">
+                                                <asp:Label runat="server" ID="Label37" Text="Bids" meta:resourcekey="Label37Resource1"></asp:Label></a></li>
+                                              <li><a href="../../Admin/Questions">
+                                                <asp:Label runat="server" ID="Label38" Text="Questions" meta:resourcekey="Label38Resource1"></asp:Label></a></li>
+                                           
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- /.header__navigation -->
+                                <div class="header__widgets">
+                                    <div class="widget-icon-box">
+                                        <div class="icon-box">
+                                            <i class="fa fa-headphones"></i>
+                                            <h4 class="icon-box__title">
+                                                <asp:Label runat="server" ID="Label8" Text="Call Us Anytime" meta:resourcekey="Label8Resource1"></asp:Label></h4>
+                                            <span class="icon-box__subtitle">
+                                                <asp:Label runat="server" ID="Label9" Text="1-888-123-4567" meta:resourcekey="Label9Resource1"></asp:Label></span>
+                                        </div>
+                                    </div>
+                                    <div class="widget-icon-box">
+                                        <div class="icon-box">
+                                            <i class="fa fa-clock-o"></i>
+                                            <h4 class="icon-box__title">
+                                                <asp:Label runat="server" ID="Label10" Text="Opening Time" meta:resourcekey="Label10Resource1"></asp:Label></h4>
+                                            <span class="icon-box__subtitle">
+                                                <asp:Label runat="server" ID="Label11" Text="08:00 - 18:00" meta:resourcekey="Label11Resource1"></asp:Label></span>
+                                        </div>
+                                    </div>
+                                    <div class="widget-icon-box">
+                                        <div class="icon-box">
+                                            <i class="fa fa-envelope-o"></i>
+                                            <h4 class="icon-box__title">
+                                                <asp:Label runat="server" ID="Label12" Text="Email Us" meta:resourcekey="Label12Resource1"></asp:Label></h4>
+                                            <span class="icon-box__subtitle">
+                                                <asp:Label runat="server" ID="Label13" Text="info@UMove.com" meta:resourcekey="Label13Resource1"></asp:Label></span>
+                                        </div>
+                                    </div>
+                                    <a target="_self" href="#" class="btn btn-info" id="button_requestQuote">
+                                        <asp:Label runat="server" ID="Label14" Text="REQUEST A QUOTE" meta:resourcekey="Label14Resource1"></asp:Label></a>
+                                </div>
+                                <!-- /.header__widgets -->
+                                <div class="header__navigation-widgets">
+                                    <a target="_blank" href="https://www.facebook.com/" class="social-icons__link"><i class="fa fa-facebook"></i></a>
+                                    <a target="_blank" href="https://twitter.com/" class="social-icons__link"><i class="fa fa-twitter"></i></a>
+                                    <a target="_blank" href="#" class="social-icons__link"><i class="fa fa-wordpress"></i></a>
+                                    <a target="_blank" href="https://www.youtube.com/" class="social-icons__link"><i class="fa fa-youtube"></i></a>
+                                </div>
+                            </header>
+                        </div>
+                        <!-- /.container -->
+                    </div>
+                    <!-- /.header__container -->
+                    <div>
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <footer class="footer">
+                        <div class="footer-top">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4">
+                                        <p>
+                                            <img alt="logo-footer" src="../images/logo-footer.png" class="logo" />
+                                        </p>
+                                        <p>
+                                            <asp:Label runat="server" ID="Label15" Text="But i must explain to you how all this mistaken idea pleasure and praising pain was born and i will give you. But i explain to you how all this mistaken idea." meta:resourcekey="Label15Resource1"></asp:Label>
+                                        </p>
+                                        <p>
+                                            <a target="_blank" href="https://www.facebook.com/" class="icon-container icon-container--square">
+                                                <span class="fa fa-facebook"></span>
+                                            </a>
+                                            <a target="_blank" href="https://twitter.com/" class="icon-container icon-container--square">
+                                                <span class="fa fa-twitter"></span>
+                                            </a>
+                                            <a target="_blank" href="#" class="icon-container icon-container--square">
+                                                <span class="fa fa-wordpress"></span>
+                                            </a>
+                                            <a target="_blank" href="https://www.youtube.com/" class="icon-container icon-container--square">
+                                                <span class="fa fa-youtube-play"></span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <!-- /.row -->
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="widget_nav_menu">
+                                            <h6 class="footer-top__headings">
+                                                <asp:Label runat="server" ID="Label16" Text="NAVIGATION" meta:resourcekey="Label16Resource1"></asp:Label></h6>
+                                            <ul>
+                                                <li>
+                                                    <a href="tables.html">
+                                                        <asp:Label runat="server" ID="Label17" Text="Extras" meta:resourcekey="Label17Resource1"></asp:Label></a>
+                                                    <ul class="sub-menu">
+                                                        <li>
+                                                            <a href="tables.html">
+                                                                <asp:Label runat="server" ID="Label18" Text="Tables" meta:resourcekey="Label18Resource1"></asp:Label></a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <asp:Label runat="server" ID="Label19" Text="Buy Now" meta:resourcekey="Label19Resource1"></asp:Label></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" target="_blank">
+                                                        <asp:Label runat="server" ID="Label20" Text="Theme Documentation" meta:resourcekey="Label20Resource1"></asp:Label></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.widget_nav_menu -->
+                                    </div>
+                                    <!-- /.row -->
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="widget_nav_menu">
+                                            <h6 class="footer-top__headings">
+                                                <asp:Label runat="server" ID="Label21" Text="OUR SERVICES" meta:resourcekey="Label21Resource1"></asp:Label></h6>
+                                            <ul>
+                                                <li>
+                                                    <a href="services.html">
+                                                        <asp:Label runat="server" ID="Label22" Text="All Services" meta:resourcekey="Label22Resource1"></asp:Label></a>
+                                                </li>
+                                                <li>
+                                                    <a href="ground_transport.html">
+                                                        <asp:Label runat="server" ID="Label23" Text="Ground Transport" meta:resourcekey="Label23Resource1"></asp:Label></a>
+                                                </li>
+                                                <li>
+                                                    <a href="cargo.html">
+                                                        <asp:Label runat="server" ID="Label24" Text="Cargo" meta:resourcekey="Label24Resource1"></asp:Label></a>
+                                                </li>
+                                                <li>
+                                                    <a href="warehousing.html">
+                                                        <asp:Label runat="server" ID="Label25" Text="Warehousing" meta:resourcekey="Label25Resource1"></asp:Label></a>
+                                                </li>
+                                                <li>
+                                                    <a href="logistic_service.html">
+                                                        <asp:Label runat="server" ID="Label26" Text="Logistic Service" meta:resourcekey="Label26Resource1"></asp:Label></a>
+                                                </li>
+                                                <li>
+                                                    <a href="trucking_service.html">
+                                                        <asp:Label runat="server" ID="Label27" Text="Trucking Service" meta:resourcekey="Label27Resource1"></asp:Label></a>
+                                                </li>
+                                                <li>
+                                                    <a href="storage.html">
+                                                        <asp:Label runat="server" ID="Label28" Text="Storage" meta:resourcekey="Label28Resource1"></asp:Label></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.widget_nav_menu -->
+                                    </div>
+                                    <!-- /.row -->
+                                    <div class="col-xs-12 col-md-4">
+                                        <h6 class="footer-top__headings">
+                                            <asp:Label runat="server" ID="Label29" Text="BUY NOW" meta:resourcekey="Label29Resource1"></asp:Label></h6>
+                                        <p>
+                                            <asp:Label runat="server" ID="Label30" Text="But i must explain to you how all this mistaken idea pleasure and praising pain was born and i will give you. But i explain to you how all this mistaken idea." meta:resourcekey="Label30Resource1"></asp:Label>
+                                        </p>
+                                        <p>
+                                            <a target="_blank" href="#" class="btn btn-info">
+                                                <asp:Label runat="server" ID="Label31" Text="BUY CARGOPRESS" meta:resourcekey="Label31Resource1"></asp:Label></a>
+                                        </p>
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.footer -->
+                        </div>
+                        <!-- /.footer-top -->
+                        <div class="footer-bottom">
+                            <div class="container">
+                                <div class="footer-bottom__left">
+                                    <asp:Label runat="server" ID="Label32" Text="Theme Made by Hossam Fathy." meta:resourcekey="Label32Resource1"></asp:Label>
+                                </div>
+                                <div class="footer-bottom__right">
+                                    <asp:Label runat="server" ID="Label33" Text="Copyright &copy; 2016&ndash;2017 UMove. All rights reserved." meta:resourcekey="Label33Resource1"></asp:Label>
+                                </div>
+                            </div>
+                            <!-- /.container -->
+                        </div>
+                        <!-- /.footer-bottom -->
+                    </footer>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+</body>
+</html>

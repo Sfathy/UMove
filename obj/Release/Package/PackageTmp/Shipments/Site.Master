@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" runat="server" dir="<%$ Resources:layoutDirection %>">
+
 <head runat="server">
   
     <meta charset="utf-8" />
@@ -11,7 +12,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>NitroGFX.COM - All For WebMasters... CargoPress</title>
     <!-- Styling -->
-      <asp:ContentPlaceHolder ID="head" runat="server" /></asp:ContentPlaceHolder>
+     <asp:ContentPlaceHolder ID="head" runat="server" >
+    </asp:ContentPlaceHolder>
     
    
 
@@ -99,14 +101,16 @@
                         <nav class="collapse navbar-collapse" id="cargopress-navbar-collapse">
                             <ul class="main-navigation js-main-nav js-dropdown">
                                 <li>
-                                    <a href="../../"><asp:Label runat="server" ID="Label5" Text="Home" meta:resourcekey="Label5Resource1"></asp:Label></a>
+                                    
                                    
                                 </li>
                               
-                               
+                             
                                 <li><a href="../../Trips/Categories"><asp:Label runat="server" ID="Label6" Text="New Shipment" meta:resourcekey="Label6Resource1"></asp:Label></a></li>
+                                  <li><a href="../../SharedTrips"><asp:Label runat="server" ID="Label36" Text="Sahred Shipment" meta:resourcekey="Label36Resource1"></asp:Label></a></li>
+                                 <li><a href="../../SharedTrips/AllSharedShipments"><asp:Label runat="server" ID="Label37" Text="Find Sahred Shipment" meta:resourcekey="Label37Resource1"></asp:Label></a></li>
                                <li><a href="../../Trips/AllShipments"><asp:Label runat="server" ID="Label7" Text="Find Shipment" meta:resourcekey="Label7Resource1"></asp:Label></a></li>
-                            </ul>
+                                 </ul>
 
                         </nav>
                     </div><!-- /.header__navigation -->

@@ -2,7 +2,10 @@
 @{
     ViewBag.Title = "Freight";
 }
-
+@if (HttpContext.Current.Session["Items"] != null)
+{
+    HttpContext.Current.Session["Items"] = null;
+}
 <div class="counters">
     <div class="container">
         <div class="row">

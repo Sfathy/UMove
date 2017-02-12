@@ -138,7 +138,7 @@
                         
                     </dx:aspxgridview>
            
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT TripQuestions.Question, Users.Name AS QuestionUser, TripQuestions.Answer, Users_1.Name AS AnswerUser, TripQuestions.QuestionTime, TripQuestions.AnswerTime, TripQuestions.QuestionID FROM TripQuestions LEFT OUTER JOIN Users AS Users_1 ON TripQuestions.AnswerUserID = Users_1.ID LEFT OUTER JOIN Users ON TripQuestions.QuestionUserID = Users.ID WHERE (TripQuestions.TripID = @ID)">
+                    <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT TripQuestions.Question, Users.Name AS QuestionUser, TripQuestions.Answer, Users_1.Name AS AnswerUser, TripQuestions.QuestionTime, TripQuestions.AnswerTime, TripQuestions.QuestionID FROM TripQuestions LEFT OUTER JOIN Users AS Users_1 ON TripQuestions.AnswerUserID = Users_1.ID LEFT OUTER JOIN Users ON TripQuestions.QuestionUserID = Users.ID WHERE (TripQuestions.TripID = @ID) and QuestionPuplished=1">
                         <SelectParameters>
                             <asp:QueryStringParameter QueryStringField="id" Name="ID"></asp:QueryStringParameter>
                         </SelectParameters>
@@ -168,7 +168,7 @@
                                 </dx:GridViewCommandColumn>
                             </Columns>
                         </dx:aspxgridview>
-                        <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT Bid.Price, Users.Name, Bid.BidExpiration, Bid.Note, Bid.Accepted, Bid.ID FROM Bid INNER JOIN Users ON Bid.UserID = Users.ID WHERE (Bid.TripID = @ID)">
+                        <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT Bid.Price, Users.Name, Bid.BidExpiration, Bid.Note, Bid.Accepted, Bid.ID FROM Bid INNER JOIN Users ON Bid.UserID = Users.ID WHERE (Bid.TripID = @ID) and Puplished=1">
                             <SelectParameters>
                                 <asp:QueryStringParameter QueryStringField="id" Name="ID"></asp:QueryStringParameter>
                             </SelectParameters>

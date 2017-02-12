@@ -77,7 +77,7 @@ namespace UMoveNew.Controllers.AppCode
         }
         public int login(string email,string pass)
         {
-            string sql = "select * from users where Email = '" + email + "' and Password ='" + pass + "'";
+            string sql = "select * from users where (Email = '" + email + "' and Password ='" + pass + "') or (Phone = '"+email+"' and Password = '"+pass+"')";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if(dt != null && dt.Rows != null && dt.Rows.Count>0)
             {
@@ -105,6 +105,17 @@ namespace UMoveNew.Controllers.AppCode
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
                 return dt.Rows[0]["deviceToken"].ToString();
             return "";
+        }
+        public  string getVerificationNo(int userID)
+        {
+            string sql = "select VerficationNo from DriverCarDetails where UserID = " + userID.ToString();
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+            {
+                return dt.Rows[0]["VerficationNo"].ToString();
+            }
+            else
+                return "";
         }
     }
 }

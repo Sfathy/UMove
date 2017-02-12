@@ -19,8 +19,8 @@ namespace UMoveNew.Controllers.AppCode
             param[4] = DataAccess.AddParamter("@AnswerUserID", Question.AnswerUserID, SqlDbType.Int, 50);
             param[5] = DataAccess.AddParamter("@QuestionTime", Question.QuestionTime, SqlDbType.DateTime, 50);
             param[6] = DataAccess.AddParamter("@AnswerTime", Question.AnswerTime, SqlDbType.DateTime, 50);
-            string sql = "INSERT INTO [TripQuestions]([TripID],[QuestionUserID],[Question],[Answer],[AnswerUserID],[QuestionTime],[AnswerTime]) Values" +
-                          "(@TripID,@QuestionUserID,@Question,@Answer,@AnswerUserID,@QuestionTime,@AnswerTime)";
+            string sql = "INSERT INTO [TripQuestions]([TripID],[QuestionUserID],[Question],[Answer],[AnswerUserID],[QuestionTime],[AnswerTime],[QuestionPuplished],[AnswerPuplished]) Values" +
+                          "(@TripID,@QuestionUserID,@Question,@Answer,@AnswerUserID,@QuestionTime,@AnswerTime,2,2)";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int QuestionID =0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(QuestionID) as MaxID from TripQuestions");

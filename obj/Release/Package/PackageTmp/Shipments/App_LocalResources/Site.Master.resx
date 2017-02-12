@@ -226,11 +226,7 @@
     <value />
   </data>
   <data name="Label26Resource1.Text" xml:space="preserve">
-    <value>Translate
-
-Logistic Service
-
-الخدمة اللوجستية</value>
+    <value>الخدمة اللوجستية</value>
   </data>
   <data name="Label26Resource1.ToolTip" xml:space="preserve">
     <value />
@@ -348,5 +344,11 @@ Logistic Service
   </data>
   <data name="Label1113Resource1.Text" xml:space="preserve">
     <value>سياراتى</value>
+  </data>
+  <data name="Label36Resource1.Text" xml:space="preserve">
+    <value>نصف رحلة</value>
+  </data>
+  <data name="Label37Resource1.Text" xml:space="preserve">
+    <value>البحث عن نصف رحلة</value>
   </data>
 </root>

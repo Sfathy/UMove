@@ -115,6 +115,15 @@ namespace UMoveNew.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to البحث عن نصف رحلة.
+        /// </summary>
+        public static string FindPartShipment {
+            get {
+                return ResourceManager.GetString("FindPartShipment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to البحت عن رحلة.
         /// </summary>
         public static string FindShipment {
@@ -165,6 +174,15 @@ namespace UMoveNew.Views.Shared {
         public static string NAVIGATION {
             get {
                 return ResourceManager.GetString("NAVIGATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نصف رحله.
+        /// </summary>
+        public static string NewPartShipment {
+            get {
+                return ResourceManager.GetString("NewPartShipment", resourceCulture);
             }
         }
         
