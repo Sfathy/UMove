@@ -93,10 +93,18 @@
                     <div class="inner-wrap">
                         <label>
 
-                            <input id="origin-input" name="origin-input" class="controls" type="text"
-                                placeholder="Enter an origin location" />
-                            <input id="destination-input" name="destination-input" class="controls" type="text"
-                                placeholder="Enter a destination location" />
+                           <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <input id="origin-input" name="origin-input" class="controls" type="text"
+                                                placeholder="Enter an origin location" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input id="destination-input" name="destination-input" class="controls" type="text"
+                                                placeholder="Enter a destination location" />
+                                        </div>
+                                    </div>
+                                </div>
 
                             <div id="mode-selector" class="controls" style="display: none;">
                                 <input type="radio" name="type" id="changemode-walking" checked="checked" />
@@ -220,11 +228,11 @@
 
                     </script>
                     <!-- on serve -->
-                <%--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
-                        async defer></script>--%>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
+                        async defer></script>
                     <!-- on local -->
-                      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
-            async defer></script> 
+                   <%--   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
+            async defer></script>--%> 
                     <div class="section"><span>3</span></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label8" CssClass="asplab" runat="server" Text="Schedule" meta:resourcekey="Label3Resource1"></asp:Label>
                     <div class="inner-wrap">
