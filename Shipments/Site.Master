@@ -100,12 +100,6 @@
                     <div class="header__navigation">
                         <nav class="collapse navbar-collapse" id="cargopress-navbar-collapse">
                             <ul class="main-navigation js-main-nav js-dropdown">
-                                <li>
-                                    
-                                   
-                                </li>
-                              
-                             
                                 <li><a href="../../Trips/Categories"><asp:Label runat="server" ID="Label6" Text="New Shipment" meta:resourcekey="Label6Resource1"></asp:Label></a></li>
                                   <li><a href="../../SharedTrips"><asp:Label runat="server" ID="Label36" Text="Sahred Shipment" meta:resourcekey="Label36Resource1"></asp:Label></a></li>
                                  <li><a href="../../SharedTrips/AllSharedShipments"><asp:Label runat="server" ID="Label37" Text="Find Sahred Shipment" meta:resourcekey="Label37Resource1"></asp:Label></a></li>
@@ -154,8 +148,8 @@
                     <div class="header__navigation-widgets">
                         <a target="_blank" href="https://www.facebook.com/" class="social-icons__link"><i class="fa fa-facebook"></i></a>
                         <a target="_blank" href="https://twitter.com/" class="social-icons__link"><i class="fa fa-twitter"></i></a>
-                        <a target="_blank" href="#" class="social-icons__link"><i class="fa fa-wordpress"></i></a>
-                        <a target="_blank" href="https://www.youtube.com/" class="social-icons__link"><i class="fa fa-youtube"></i></a>
+                      <%--  <a target="_blank" href="#" class="social-icons__link"><i class="fa fa-wordpress"></i></a>
+                        <a target="_blank" href="https://www.youtube.com/" class="social-icons__link"><i class="fa fa-youtube"></i></a>--%>
                     </div>
 
                 </header>
