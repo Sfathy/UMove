@@ -47,6 +47,7 @@
                         </Cell>
                     </Styles>
                     <BackgroundImage HorizontalPosition="center" VerticalPosition="center" />
+                         <Settings HorizontalScrollBarMode="Auto"/>
                 </dx:ASPxGridView>
 
                 <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT Trip.Name, Bid.Price, Bid.TruckType, Bid.PickupDate, Bid.DeliveryDate, Bid.BidExpiration, Bid.Accepted FROM Bid INNER JOIN Trip ON Bid.TripID = Trip.ID"></asp:SqlDataSource>

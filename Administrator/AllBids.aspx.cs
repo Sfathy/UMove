@@ -20,6 +20,13 @@ namespace UMoveNew.Administrator
             {
                 Response.Write("<script>alert('تم تجاهل المذايدة');</script>");
             }
+            AddSubmitEvent();
+        }
+        private void AddSubmitEvent()
+        {
+            UpdatePanel updatePanel = Page.Master.FindControl("AdminUpdatePanel") as UpdatePanel;
+            //  UpdatePanelControlTrigger trigger = new PostBackTrigger();
+
         }
 
         protected void ASPxGridView1_CustomButtonCallback(object sender, DevExpress.Web.ASPxGridViewCustomButtonCallbackEventArgs e)
@@ -31,7 +38,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["id"].ToString());
                 string sql = "Update Bid Set Puplished=1 Where ID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
-                Response.Redirect("~/Administrator/AllBids.aspx?alert=Accept");
+                Response.Redirect(Request.Url.AbsoluteUri + "?alert=Accept");
             }
             if (e.ButtonID == "btnIgnore")
             {
@@ -40,7 +47,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["id"].ToString());
                 string sql = "Update Bid Set Puplished=3 Where ID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
-                Response.Redirect("~/Administrator/AllBids.aspx?alert=Ignore");
+                Response.Redirect(Request.Url.AbsoluteUri + "?alert=Ignore");
             }
         }
     }

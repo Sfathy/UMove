@@ -20,7 +20,14 @@ namespace UMoveNew.Administrator
             if (Request.QueryString["alert"] == "Ignore")
             {
                 Response.Write("<script>alert('تم تجاهل الرحلة');</script>");
-            }
+            } 
+            AddSubmitEvent();
+        }
+        private void AddSubmitEvent()
+        {
+            UpdatePanel updatePanel = Page.Master.FindControl("AdminUpdatePanel") as UpdatePanel;
+            //  UpdatePanelControlTrigger trigger = new PostBackTrigger();
+
         }
         protected void detailGrid_BeforePerformDataSelect(object sender, EventArgs e)
         {
@@ -42,7 +49,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["id"].ToString());
                 string sql = "Update Trip Set Puplished=1 Where ID=" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
-                Response.Redirect("~/Administrator/AllTrips.aspx?alert=Accept");
+                Response.Redirect(Request.Url.AbsoluteUri + "?alert=Accept");
             }
             else if (e.ButtonID == "btnIgnore")
             {
@@ -51,7 +58,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["id"].ToString());
                 string sql = "Update Trip Set Puplished=3 Where ID=" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
-                Response.Redirect("~/Administrator/AllTrips.aspx?alert=Ignore");
+                Response.Redirect(Request.Url.AbsoluteUri + "?alert=Ignore");
             }
         }
     }

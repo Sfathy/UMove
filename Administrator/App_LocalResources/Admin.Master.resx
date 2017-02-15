@@ -345,4 +345,19 @@
   <data name="style.css" xml:space="preserve">
     <value>../Content/style_ar.css</value>
   </data>
+  <data name="Label2Resource1.Text" xml:space="preserve">
+    <value>جميع الرحلات المشتركة</value>
+  </data>
+  <data name="Label3Resource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label6Resource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SharedShipmentHeader" xml:space="preserve">
+    <value>نصف رحلة</value>
+  </data>
+  <data name="ShipmentHeader" xml:space="preserve">
+    <value>الرحلات الكاملة</value>
+  </data>
 </root>

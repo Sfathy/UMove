@@ -51,7 +51,7 @@
             margin-left: 12px;
             padding: 0 11px 0 13px;
             text-overflow: ellipsis;
-            width: 300px;
+            /*width: 300px;*/
         }
 
             #origin-input:focus,
@@ -84,14 +84,14 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="Label1" CssClass="asplab" runat="server" Text="Trip Name" meta:resourcekey="Label1Resource1"></asp:Label>
                     <div class="inner-wrap">
-                        <label>
-                            <asp:TextBox ID="txtTripName" runat="server" placeholder="Trip Name" required meta:resourcekey="txtTripNameResource1"></asp:TextBox></label>
+                   
+                            <asp:TextBox ID="txtTripName" runat="server" placeholder="Trip Name" required meta:resourcekey="txtTripNameResource1"></asp:TextBox>
                     </div>
                     <div class="section"><span>2</span></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="Label2" CssClass="asplab" runat="server" Text="Pickup (City or ZIP)" meta:resourcekey="Label2Resource1"></asp:Label>
                     <div class="inner-wrap">
-                        <label>
+           
 
                            <div class="row">
                                     <div class="col-md-12">
@@ -117,7 +117,7 @@
                                 <label for="changemode-driving">Driving</label>
                             </div>
                             <div id="map" name="map" style="width: 100%; height: 300px"></div>
-                        </label>
+                 
                     </div>
 
                     <script>
@@ -128,7 +128,7 @@
                         function initMap() {
                             var map = new google.maps.Map(document.getElementById('map'), {
                                 mapTypeControl: false,
-                                center: { lat: -33.8688, lng: 151.2195 },
+                                center: { lat: -33.80820191724644, lng: -33.979191697010805 },
                                 zoom: 13
                             });
 
@@ -232,15 +232,15 @@
                         async defer></script>
                     <!-- on local -->
                    <%--   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
-            async defer></script>--%> 
+            async defer></script> --%>
                     <div class="section"><span>3</span></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label8" CssClass="asplab" runat="server" Text="Schedule" meta:resourcekey="Label3Resource1"></asp:Label>
                     <div class="inner-wrap">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6">
-                                    <label>
-                                        <asp:TextBox ID="txtdatepic" runat="server" placeholder="Pickup Date" required meta:resourcekey="txtdatepicResource1"></asp:TextBox></label>
+                                 
+                                        <asp:TextBox ID="txtdatepic" runat="server" placeholder="Pickup Date" required meta:resourcekey="txtdatepicResource1"></asp:TextBox>
                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtdatepic" BehaviorID="CalendarExtender1" Format="MM/dd/yyyy" />
                                 </div>
                                 <div class="col-md-6">
@@ -310,8 +310,6 @@
                 <div class="section"><span>4</span></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label3" CssClass="asplab" runat="server" Text="Delivery (City or ZIP)" meta:resourcekey="Label3Resource1"></asp:Label>
                 <div class="inner-wrap">
-                    <label>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6">
@@ -381,13 +379,12 @@
                                 </div>
                             </div>
                         </div>
-                    </label>
                 </div>
                 <div class="section"><span>5</span></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label7" CssClass="asplab" runat="server" Text="Schedule" meta:resourcekey="Label7Resource1"></asp:Label>
                 <div class="inner-wrap">
                  
-                    <label>
+              
                         
                            <asp:CheckBox ID="cbRepeted"  CssClass="checkboxlist" runat="server"  Text="Repeated"  meta:resourcekey="Label7Resource1"/>
                           <hr />
@@ -414,7 +411,7 @@
                             </div>
                         </div>
                                 </div>
-                    </label>
+                    
                 </div>
                
                  
@@ -435,7 +432,7 @@
                             </asp:RadioButtonList>
                             <br />
                             <label style="color: #2A88AD; font-weight: bolder; font-size: 18px">
-                                <asp:Label ID="Label5" runat="server" Text="IF you chosse Transporters bid leave Price box Empty" meta:resourcekey="Label5Resource1"></asp:Label></label>
+                                <asp:Label ID="Label5" runat="server" Text="IF you chosse Transporters bid leave Price box Empty" meta:resourcekey="Label5Resource1"></asp:Label>
                             <asp:TextBox ID="txtprice" runat="server" TextMode="Number" placeholder="Price" meta:resourcekey="txtpriceResource1"></asp:TextBox>
                         </div>
                     </div>
@@ -444,7 +441,6 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="Label6" CssClass="asplab" runat="server" Text="Select the service types you will consider" meta:resourcekey="Label6Resource1"></asp:Label>
                 <div class="inner-wrap">
-                    <label>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6">
@@ -461,7 +457,6 @@
                                 </div>
                             </div>
                         </div>
-                    </label>
                     <asp:TextBox ID="txtdetais" TextMode="MultiLine" runat="server" placeholder="Special Instructions (optional)" meta:resourcekey="txtdetaisResource1"></asp:TextBox>
                 </div>
                 <div class="button-section">
@@ -481,7 +476,7 @@
 
 
 
-    </label>
+
 
 
 

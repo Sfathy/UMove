@@ -73,14 +73,14 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="Label1" CssClass="asplab" runat="server" Text="Trip Name" meta:resourcekey="Label1Resource1"></asp:Label>
                     <div class="inner-wrap">
-                        <label>
-                            <asp:TextBox ID="txtTripName" runat="server" placeholder="Trip Name" required meta:resourcekey="txtTripNameResource1"></asp:TextBox></label>
+                       
+                            <asp:TextBox ID="txtTripName" runat="server" placeholder="Trip Name" required meta:resourcekey="txtTripNameResource1"></asp:TextBox>
                     </div>
                     <div class="section"><span>2</span></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="Label2" CssClass="asplab" runat="server" Text="Pickup (City or ZIP)" meta:resourcekey="Label2Resource1"></asp:Label>
                     <div class="inner-wrap">
-                        <label>
+                        
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-4">
@@ -124,7 +124,7 @@
                                 function initMap() {
                                     var map = new google.maps.Map(document.getElementById('map'), {
                                         mapTypeControl: false,
-                                        center: { lat: -33.8688, lng: 151.2195 },
+                                        center: { lat: -33.80820191724644, lng: -33.979191697010805 },
                                         zoom: 13
                                     });
 
@@ -227,13 +227,13 @@
                             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
             async defer></script>
                             <!-- on local -->
-                          <%--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
+                           <%-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
                                 async defer></script>--%>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-6">
-                                        <label>
-                                            <asp:TextBox ID="txtdatepic" runat="server" placeholder="Pickup Date" required meta:resourcekey="txtdatepicResource1"></asp:TextBox></label>
+                                       
+                                            <asp:TextBox ID="txtdatepic" runat="server" placeholder="Pickup Date" required meta:resourcekey="txtdatepicResource1"></asp:TextBox>
                                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtdatepic" BehaviorID="CalendarExtender1" Format="MM/dd/yyyy" />
                                     </div>
                                     <div class="col-md-6">
@@ -258,8 +258,7 @@
                     <div class="section"><span>3</span></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label3" CssClass="asplab" runat="server" Text="Delivery (City or ZIP)" meta:resourcekey="Label3Resource1"></asp:Label>
                     <div class="inner-wrap">
-                        <label>
-
+                    
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-6">
@@ -307,7 +306,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="Label6" CssClass="asplab" runat="server" Text="Select the service types you will consider" meta:resourcekey="Label6Resource1"></asp:Label>
                     <div class="inner-wrap">
-                        <label>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-6">
@@ -324,7 +323,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </label>
+
                         <asp:TextBox ID="txtdetais" TextMode="MultiLine" runat="server" placeholder="Special Instructions (optional)" meta:resourcekey="txtdetaisResource1"></asp:TextBox>
                     </div>
                     <div class="button-section">

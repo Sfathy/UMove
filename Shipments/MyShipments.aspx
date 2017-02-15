@@ -59,6 +59,7 @@
                         </Cell>
                     </Styles>
                     <SettingsDetail ShowDetailRow="True" />
+                         <Settings HorizontalScrollBarMode="Auto"/>
                     <Templates>
                         <DetailRow>
                             <dx:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" Theme="Aqua" DataSourceID="SqlDataSource2" KeyFieldName="ID" OnBeforePerformDataSelect="detailGrid_BeforePerformDataSelect" Width="100%" meta:resourcekey="ASPxGridView2Resource1">
@@ -82,6 +83,7 @@
                         <Cell Font-Bold="True" Font-Names="Agency FB" Font-Size="Larger" HorizontalAlign="Center">
                         </Cell>
                     </Styles>
+                                     <Settings HorizontalScrollBarMode="Auto"/>
                             </dx:ASPxGridView>
                             <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT dbo.TripItems.ID, dbo.TripItems.TripID, dbo.TripItems.ItemDesc, dbo.TripItems.Width, dbo.TripItems.Height, dbo.TripItems.Length, dbo.TripItems.Wight, dbo.TripItems.NoOfUnits, dbo.TripItems.ImageURL, dbo.SubCategory.Name AS SubCategory, dbo.Categories.Name AS Category FROM dbo.TripItems INNER JOIN dbo.SubCategory ON dbo.TripItems.ItemSubCatID = dbo.SubCategory.ID INNER JOIN dbo.Categories ON dbo.TripItems.ItemCatID = dbo.Categories.ID WHERE (dbo.TripItems.TripID = @TripID) ">
                                 <SelectParameters>

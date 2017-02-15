@@ -43,6 +43,7 @@
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <SettingsDetail ShowDetailRow="True" />
+                         <Settings HorizontalScrollBarMode="Auto"/>
                     <Templates>
                         <DetailRow>
                             <dx:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" Theme="Glass" DataSourceID="SqlDataSource2" KeyFieldName="ID" OnBeforePerformDataSelect="detailGrid_BeforePerformDataSelect" Width="100%" meta:resourcekey="ASPxGridView2Resource1">
@@ -69,6 +70,8 @@
                         </DetailRow>
                     </Templates>
                     <Settings ShowFilterRow="True"></Settings>
+
+                         <Settings HorizontalScrollBarMode="Auto"/>
                 </dx:ASPxGridView>
 
             </div>

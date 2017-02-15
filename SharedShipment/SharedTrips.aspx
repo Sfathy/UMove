@@ -33,6 +33,7 @@
                    
                     </Columns>
                     <Settings ShowFilterRow="True" />
+                         <Settings HorizontalScrollBarMode="Auto"/>
                 </dx:ASPxGridView>
                 </div>
             </div>

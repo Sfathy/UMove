@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ASPxGridView1Resource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.Settings.GroupFormat" xml:space="preserve">
+    <value>{0}: {1} {2}</value>
+  </data>
+  <data name="ASPxGridView1Resource1.Settings.GroupSummaryTextSeparator" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsLoadingPanel.Text" xml:space="preserve">
+    <value>Loading&amp;hellip;</value>
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsPager.CurrentPageNumberFormat" xml:space="preserve">
+    <value>[{0}]</value>
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsPager.PageNumberFormat" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandApplyFilter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandApplySearchPanelFilter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandBatchEditCancel" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandBatchEditUpdate" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandCancel" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandClearFilter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandClearSearchPanelFilter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandDelete" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandDeselectAllOnAllPages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandDeselectAllOnPage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandEdit" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandNew" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandSelect" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandSelectAllOnAllPages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandSelectAllOnPage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CommandUpdate" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ConfirmDelete" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ConfirmOnLosingBatchChanges" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuClearFilter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuClearGrouping" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuClearSorting" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuCollapseDetailRow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuCollapseRow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuDeleteRow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuEditRow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuExpandDetailRow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuExpandRow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuFullCollapse" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuFullExpand" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuGroupByColumn" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuHideColumn" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuNewRow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuRefresh" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuShowColumn" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuShowCustomizationWindow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuShowFilterEditor" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuShowFilterRow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuShowFilterRowMenu" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuShowFooter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuShowGroupPanel" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuSortAscending" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuSortDescending" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuSummaryAverage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuSummaryCount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuSummaryMax" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuSummaryMin" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuSummaryNone" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuSummarySum" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.ContextMenuUngroupColumn" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.CustomizationWindowCaption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.EmptyDataRow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.EmptyHeaders" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.FilterBarClear" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.FilterBarCreateFilter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.FilterControlPopupCaption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.GroupContinuedOnNextPage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.GroupPanel" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.HeaderFilterCancelButton" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.HeaderFilterOkButton" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.HeaderFilterSelectAll" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.HeaderFilterShowAll" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.HeaderFilterShowBlanks" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.HeaderFilterShowNonBlanks" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.PopupEditFormCaption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.SearchPanelEditorNullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SettingsText.Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.SummaryText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ASPxGridView1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnCustomButtonResource1.Image.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnCustomButtonResource1.Image.DescriptionUrl" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnCustomButtonResource1.Image.IconID" xml:space="preserve">
+    <value>actions_apply_16x16</value>
+  </data>
+  <data name="GridViewCommandColumnCustomButtonResource1.Image.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnCustomButtonResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnCustomButtonResource2.Image.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnCustomButtonResource2.Image.DescriptionUrl" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnCustomButtonResource2.Image.IconID" xml:space="preserve">
+    <value>actions_close_16x16</value>
+  </data>
+  <data name="GridViewCommandColumnCustomButtonResource2.Image.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnCustomButtonResource2.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnResource1.CancelButton.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnResource1.Caption" xml:space="preserve">
+    <value>قبول</value>
+  </data>
+  <data name="GridViewCommandColumnResource1.ClearFilterButton.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnResource1.DeleteButton.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnResource1.EditButton.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnResource1.NewButton.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnResource1.SelectButton.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewCommandColumnResource1.UpdateButton.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.Caption" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ButtonEditEllipsisImage.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ButtonEditEllipsisImage.DescriptionUrl" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ButtonEditEllipsisImage.IconID" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ButtonEditEllipsisImage.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ClearButton.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ClearButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.DisplayFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.DropDownButton.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.DropDownButton.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ItemImage.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ItemImage.DescriptionUrl" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ItemImage.IconID" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ItemImage.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.TextFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.PropertiesComboBox.ValidationSettings.ErrorText" xml:space="preserve">
+    <value>Invalid value</value>
+  </data>
+  <data name="GridViewDataComboBoxColumnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataDateColumnResource1.Caption" xml:space="preserve">
+    <value>وقت السؤال</value>
+  </data>
+  <data name="GridViewDataDateColumnResource1.PropertiesDateEdit.DisplayFormatString" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="GridViewDataDateColumnResource1.PropertiesDateEdit.EditFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataDateColumnResource1.PropertiesDateEdit.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataDateColumnResource1.PropertiesDateEdit.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataDateColumnResource1.PropertiesDateEdit.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataDateColumnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataDateColumnResource2.Caption" xml:space="preserve">
+    <value>وقت الاجابة</value>
+  </data>
+  <data name="GridViewDataDateColumnResource2.PropertiesDateEdit.DisplayFormatString" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="GridViewDataDateColumnResource2.PropertiesDateEdit.EditFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataDateColumnResource2.PropertiesDateEdit.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataDateColumnResource2.PropertiesDateEdit.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataDateColumnResource2.PropertiesDateEdit.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataDateColumnResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource1.Caption" xml:space="preserve">
+    <value>التسلسل</value>
+  </data>
+  <data name="GridViewDataTextColumnResource1.PropertiesTextEdit.DisplayFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource1.PropertiesTextEdit.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource1.PropertiesTextEdit.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource1.PropertiesTextEdit.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource2.Caption" xml:space="preserve">
+    <value>اسم الرحلة</value>
+  </data>
+  <data name="GridViewDataTextColumnResource2.PropertiesTextEdit.DisplayFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource2.PropertiesTextEdit.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource2.PropertiesTextEdit.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource2.PropertiesTextEdit.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource3.Caption" xml:space="preserve">
+    <value>السؤال</value>
+  </data>
+  <data name="GridViewDataTextColumnResource3.PropertiesTextEdit.DisplayFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource3.PropertiesTextEdit.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource3.PropertiesTextEdit.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource3.PropertiesTextEdit.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource4.Caption" xml:space="preserve">
+    <value>بواسطة</value>
+  </data>
+  <data name="GridViewDataTextColumnResource4.PropertiesTextEdit.DisplayFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource4.PropertiesTextEdit.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource4.PropertiesTextEdit.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource4.PropertiesTextEdit.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource5.Caption" xml:space="preserve">
+    <value>الاجابة</value>
+  </data>
+  <data name="GridViewDataTextColumnResource5.PropertiesTextEdit.DisplayFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource5.PropertiesTextEdit.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource5.PropertiesTextEdit.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource5.PropertiesTextEdit.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource6.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource6.PropertiesTextEdit.DisplayFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource6.PropertiesTextEdit.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource6.PropertiesTextEdit.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource6.PropertiesTextEdit.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource7.Caption" xml:space="preserve">
+    <value>مكان البدأ</value>
+  </data>
+  <data name="GridViewDataTextColumnResource7.PropertiesTextEdit.DisplayFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource7.PropertiesTextEdit.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource7.PropertiesTextEdit.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource7.PropertiesTextEdit.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource8.Caption" xml:space="preserve">
+    <value>مكان التوصيل</value>
+  </data>
+  <data name="GridViewDataTextColumnResource8.PropertiesTextEdit.DisplayFormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource8.PropertiesTextEdit.HelpText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource8.PropertiesTextEdit.NullDisplayText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource8.PropertiesTextEdit.NullText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GridViewDataTextColumnResource8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>NitroGFX.COM - All For WebMasters... CargoPress</value>
+  </data>
+</root>

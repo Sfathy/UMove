@@ -33,7 +33,6 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label runat="server" ID="lblDeliveryDate" meta:resourcekey="lblDeliveryDateResource1"></asp:Label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        
                 </label>
                 <hr />
                 <label>
@@ -85,7 +84,5 @@
             <asp:Button runat="server" ID="btnaccept" type="submit" Text="Accept" meta:resourcekey="btnacceptResource" OnClick="btnaccept_Click" />
         </div>
         </div>
-      
     </div>
-
 </asp:Content>

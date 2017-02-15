@@ -95,6 +95,7 @@
 
                             <dx:GridViewDataImageColumn FieldName="ImageURL" Caption="Image" VisibleIndex="2" meta:resourcekey="GridViewDataImageColumnResource1"></dx:GridViewDataImageColumn>
                         </Columns>
+                             <Settings HorizontalScrollBarMode="Auto"/>
                     </dx:ASPxGridView>
                     <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT * FROM [TripItems] WHERE ([TripID] = @TripID)">
                         <SelectParameters>
@@ -122,6 +123,7 @@
                             <dx:GridViewDataDateColumn FieldName="QuestionTime" Caption="Question Time" VisibleIndex="3" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
                             <dx:GridViewDataDateColumn FieldName="AnswerTime" Caption="Answer Time" VisibleIndex="6" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
                         </Columns>
+                             <Settings HorizontalScrollBarMode="Auto"/>
                            <SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm" />
                     </dx:ASPxGridView>
                        <dx:ASPxPopupControl ID="ASPxPopupControl1" runat="server" 
@@ -147,6 +149,7 @@
                                 <dx:GridViewDataDateColumn FieldName="BidExpiration" Caption="Bid Expiration" VisibleIndex="2" meta:resourcekey="GridViewDataDateColumnResource3"></dx:GridViewDataDateColumn>
                                 <dx:GridViewDataTextColumn FieldName="Note" Caption="Note" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource10"></dx:GridViewDataTextColumn>
                             </Columns>
+                                 <Settings HorizontalScrollBarMode="Auto"/>
                         </dx:ASPxGridView>
                         <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT Bid.Price, Users.Name, Bid.BidExpiration, Bid.Note FROM Bid INNER JOIN Users ON Bid.UserID = Users.ID WHERE (Bid.TripID = @ID) and Puplished=1">
                             <SelectParameters>

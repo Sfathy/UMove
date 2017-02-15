@@ -83,6 +83,60 @@ namespace UMoveNew.Controllers
             else
                 return RedirectToAction("login", "user");
         }
+        public ActionResult AllSharedShipments()
+        {
+            if (Request.Cookies["user"] != null)
+            {
+                HttpCookie myCookie = Request.Cookies["user"];
+                int Type = Convert.ToInt32(myCookie.Values["type"].ToString());
+                if (Type == 3)
+                {
+                    return Redirect("/Administrator/AllSharedTrips.aspx");
+                }
+                else
+                {
+                    return RedirectToAction("NotAuthonticated", "Admin");
+                }
+            }
+            else
+                return RedirectToAction("login", "user");
+        }
+        public ActionResult AllSharedBids()
+        {
+            if (Request.Cookies["user"] != null)
+            {
+                HttpCookie myCookie = Request.Cookies["user"];
+                int Type = Convert.ToInt32(myCookie.Values["type"].ToString());
+                if (Type == 3)
+                {
+                    return Redirect("/Administrator/AllSharedBids.aspx");
+                }
+                else
+                {
+                    return RedirectToAction("NotAuthonticated", "Admin");
+                }
+            }
+            else
+                return RedirectToAction("login", "user");
+        }
+        public ActionResult SharedQuestions()
+        {
+            if (Request.Cookies["user"] != null)
+            {
+                HttpCookie myCookie = Request.Cookies["user"];
+                int Type = Convert.ToInt32(myCookie.Values["type"].ToString());
+                if (Type == 3)
+                {
+                    return Redirect("/Administrator/SharedQuestions.aspx");
+                }
+                else
+                {
+                    return RedirectToAction("NotAuthonticated", "Admin");
+                }
+            }
+            else
+                return RedirectToAction("login", "user");
+        }
         //
         // GET: /Admin/Details/5
         public ActionResult NotAuthonticated()

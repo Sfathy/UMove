@@ -345,4 +345,10 @@
   <data name="style.css" xml:space="preserve">
     <value>../Content/style.css</value>
   </data>
+  <data name="SharedShipmentHeader" xml:space="preserve">
+    <value>Shared Trips</value>
+  </data>
+  <data name="ShipmentHeader" xml:space="preserve">
+    <value>Shipments</value>
+  </data>
 </root>

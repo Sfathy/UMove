@@ -20,8 +20,14 @@ namespace UMoveNew.Administrator
             {
                 Response.Write("<script>alert('تم تجاهل السؤال');</script>");
             }
+            AddSubmitEvent();
         }
+        private void AddSubmitEvent()
+        {
+            UpdatePanel updatePanel = Page.Master.FindControl("AdminUpdatePanel") as UpdatePanel;
+            //  UpdatePanelControlTrigger trigger = new PostBackTrigger();
 
+        }
         protected void ASPxGridView1_CustomButtonCallback(object sender, DevExpress.Web.ASPxGridViewCustomButtonCallbackEventArgs e)
         {
             if (e.ButtonID == "btnAccept")
@@ -31,7 +37,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["QuestionID"].ToString());
                 string sql = "Update TripQuestions Set QuestionPuplished=1 Where QuestionID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
-                Response.Redirect("~/Administrator/Questions.aspx?alert=Accept");
+                Response.Redirect(Request.Url.AbsoluteUri + "?alert=Accept");
             }
             if (e.ButtonID == "btnIgnore")
             {
@@ -40,7 +46,7 @@ namespace UMoveNew.Administrator
                 int id = Convert.ToInt32(dr["QuestionID"].ToString());
                 string sql = "Update TripQuestions Set QuestionPuplished=3 Where QuestionID =" + id.ToString();
                 DataAccess.ExecuteSQLNonQuery(sql);
-                Response.Redirect("~/Administrator/Questions.aspx?alert=Ignore");
+                Response.Redirect(Request.Url.AbsoluteUri + "?alert=Ignore");
             }
         }
     }

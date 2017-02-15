@@ -39,6 +39,7 @@
                         <Cell Font-Bold="True" Font-Names="Agency FB" Font-Size="Larger" HorizontalAlign="Center">
                         </Cell>
                     </Styles>
+                         <Settings HorizontalScrollBarMode="Auto"/>
                 </dx:ASPxGridView>
               
             </div>

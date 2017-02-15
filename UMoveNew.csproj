@@ -196,6 +196,20 @@
     <Compile Include="Administrator\AllBids.aspx.designer.cs">
       <DependentUpon>AllBids.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\AllSharedBids.aspx.cs">
+      <DependentUpon>AllSharedBids.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\AllSharedBids.aspx.designer.cs">
+      <DependentUpon>AllSharedBids.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\AllSharedTrips.aspx.cs">
+      <DependentUpon>AllSharedTrips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\AllSharedTrips.aspx.designer.cs">
+      <DependentUpon>AllSharedTrips.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\AllTrips.aspx.cs">
       <DependentUpon>AllTrips.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -209,6 +223,20 @@
     </Compile>
     <Compile Include="Administrator\Questions.aspx.designer.cs">
       <DependentUpon>Questions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\SharedQuestions.aspx.cs">
+      <DependentUpon>SharedQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\SharedQuestions.aspx.designer.cs">
+      <DependentUpon>SharedQuestions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator\SharedTripDetails.aspx.cs">
+      <DependentUpon>SharedTripDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administrator\SharedTripDetails.aspx.designer.cs">
+      <DependentUpon>SharedTripDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administrator\TripDetails.aspx.cs">
       <DependentUpon>TripDetails.aspx</DependentUpon>
@@ -596,8 +624,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administrator\AllBids.aspx" />
+    <Content Include="Administrator\AllSharedBids.aspx" />
+    <Content Include="Administrator\AllSharedTrips.aspx" />
     <Content Include="Administrator\AllTrips.aspx" />
     <Content Include="Administrator\Questions.aspx" />
+    <Content Include="Administrator\SharedQuestions.aspx" />
+    <Content Include="Administrator\SharedTripDetails.aspx" />
     <Content Include="Administrator\TripDetails.aspx" />
     <Content Include="bin\AjaxControlToolkit.dll" />
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -875,6 +907,12 @@
     <Content Include="Administrator\App_LocalResources\AllBids.aspx.en-GB.resx" />
     <Content Include="Administrator\App_LocalResources\Questions.aspx.resx" />
     <Content Include="Administrator\App_LocalResources\Questions.aspx.en-GB.resx" />
+    <Content Include="Administrator\App_LocalResources\AllSharedBids.aspx.resx" />
+    <Content Include="Administrator\App_LocalResources\AllSharedBids.aspx.en-GB.resx" />
+    <Content Include="Administrator\App_LocalResources\AllSharedTrips.aspx.resx" />
+    <Content Include="Administrator\App_LocalResources\AllSharedTrips.aspx.en-GB.resx" />
+    <Content Include="Administrator\App_LocalResources\SharedQuestions.aspx.resx" />
+    <Content Include="Administrator\App_LocalResources\SharedQuestions.aspx.en-GB.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Shipments\App_LocalResources\Site.Master.resx" />
     <Content Include="Shipments\App_LocalResources\Site.Master.en-GB.resx" />
