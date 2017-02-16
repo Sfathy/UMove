@@ -9,21 +9,21 @@
             <div class="row">
                 <dx:ASPxGridView ID="ASPxGridView1" ClientInstanceName="ASPxGridView1" runat="server" Theme="PlasticBlue" Width="100%" KeyFieldName="QuestionID" AutoGenerateColumns="False" DataSourceID="SqlDataSource4" EnableTheming="True" EnableCallBacks="False" OnCustomButtonCallback="ASPxGridView1_CustomButtonCallback" meta:resourcekey="ASPxGridView1Resource1">
                     <Columns>
-                        <dx:GridViewDataTextColumn FieldName="QuestionID" Caption="ID" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Name" Caption="Trip Name" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="SourceLocationText" Caption="Source Location" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="DeliveryLocationText" Caption="Delivery Location" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource8"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Question" Caption="Question" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="QuestionUser" Caption="By" VisibleIndex="6" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Answer" Caption="Answer" VisibleIndex="7" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="AnswerUser" Visible="false" VisibleIndex="9" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataDateColumn FieldName="QuestionTime" Caption="Question Time" VisibleIndex="5" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
-                        <dx:GridViewDataDateColumn FieldName="AnswerTime" Caption="Answer Time" VisibleIndex="8" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
-                        <dx:GridViewDataComboBoxColumn FieldName="QuestionPuplished" SortIndex="0" SortOrder="Ascending" UnboundType="String" VisibleIndex="10" Caption="Status" meta:resourcekey="GridViewDataComboBoxColumnResource1">
+                        <dx:GridViewDataTextColumn FieldName="QuestionID" Width="100%" Caption="ID" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Name" Caption="Trip Name" Width="100%" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="SourceLocationText" Width="100%" Caption="Source Location" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="DeliveryLocationText" Width="100%" Caption="Delivery Location" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource8"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Question" Caption="Question" Width="100%" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="QuestionUser" Caption="By" Width="100%" VisibleIndex="6" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Answer" Caption="Answer" Width="100%" VisibleIndex="7" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="AnswerUser" Visible="false" Width="100%" VisibleIndex="9" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataDateColumn FieldName="QuestionTime" Caption="Question Time" Width="100%" VisibleIndex="5" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
+                        <dx:GridViewDataDateColumn FieldName="AnswerTime" Caption="Answer Time" VisibleIndex="8" Width="100%" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
+                        <dx:GridViewDataComboBoxColumn FieldName="QuestionPuplished" SortIndex="0" SortOrder="Ascending" Width="100%" UnboundType="String" VisibleIndex="10" Caption="Status" meta:resourcekey="GridViewDataComboBoxColumnResource1">
                             <PropertiesComboBox DataSourceID="SqlDataSource1" DropDownStyle="DropDown" TextField="Name" ValueField="ID">
                             </PropertiesComboBox>
                         </dx:GridViewDataComboBoxColumn>
-                        <dx:GridViewCommandColumn ButtonType="Image" Caption="Accept" VisibleIndex="11" meta:resourcekey="GridViewCommandColumnResource1" ShowClearFilterButton="True">
+                        <dx:GridViewCommandColumn ButtonType="Image" Width="100%" Caption="Accept" VisibleIndex="11" meta:resourcekey="GridViewCommandColumnResource1" ShowClearFilterButton="True">
                             <CustomButtons>
                                 <dx:GridViewCommandColumnCustomButton ID="btnAccept" meta:resourcekey="GridViewCommandColumnCustomButtonResource1">
                                     <Image IconID="actions_apply_16x16">

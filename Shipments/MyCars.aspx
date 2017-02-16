@@ -13,17 +13,17 @@
               <div class="row">
                 <dx:ASPxGridView ID="ASPxGridView1" runat="server" Theme="Aqua" AutoGenerateColumns="False" Width="100%"  EnableTheming="True" KeyFieldName="ID" OnCustomButtonCallback="ASPxGridView1_CustomButtonCallback" meta:resourcekey="ASPxGridView1Resource1">
                     <Columns>
-                         <dx:GridViewDataTextColumn FieldName="ID" Caption="" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="CarType" Caption="Car Type" VisibleIndex="0" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="CarModel" Caption="Car Model" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="CarYear" Caption="Car Year" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="CarCondition" Caption="Car Condition" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="NumOFSeats" Caption="Number OF Seats" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="MaxWidth" Caption="Max Width" VisibleIndex="5" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="hight" Caption="hight" VisibleIndex="6" meta:resourcekey="GridViewDataTextColumnResource8"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataCheckColumn FieldName="Active" Caption="Active" VisibleIndex="7" meta:resourcekey="GridViewDataCheckColumnResource1"></dx:GridViewDataCheckColumn>
+                         <dx:GridViewDataTextColumn FieldName="ID" Caption="" Width="100%" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="CarType" Caption="Car Type" Width="100%" VisibleIndex="0" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="CarModel" Caption="Car Model" Width="100%" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="CarYear" Caption="Car Year" Width="100%" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="CarCondition" Caption="Car Condition" Width="100%" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="NumOFSeats" Caption="Number OF Seats" Width="100%" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="MaxWidth" Caption="Max Width" VisibleIndex="5" Width="100%" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="hight" Caption="hight" VisibleIndex="6" Width="100%" meta:resourcekey="GridViewDataTextColumnResource8"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataCheckColumn FieldName="Active" Caption="Active" VisibleIndex="7" Width="100%" meta:resourcekey="GridViewDataCheckColumnResource1"></dx:GridViewDataCheckColumn>
 
-                        <dx:GridViewCommandColumn ButtonType="Image" Caption="Inactive" VisibleIndex="8" meta:resourcekey="GridViewCommandColumnResource1">
+                        <dx:GridViewCommandColumn ButtonType="Image" Caption="Inactive" Width="100%" VisibleIndex="8" meta:resourcekey="GridViewCommandColumnResource1">
                             <CustomButtons>
                                 <dx:GridViewCommandColumnCustomButton ID="BtnActive" Text="Inactive" meta:resourcekey="GridViewCommandColumnCustomButtonResource1">
                                     <Image IconID="actions_cancel_16x16">

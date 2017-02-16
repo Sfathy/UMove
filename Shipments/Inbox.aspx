@@ -10,13 +10,13 @@
                 <br />
                 <dx:ASPxGridView ID="ASPxGridView1" runat="server" Theme="Aqua" Width="100%" AutoGenerateColumns="False" EnableTheming="True" EnableCallBacks="False" KeyFieldName="ID" OnRowDeleted="ASPxGridView1_RowDeleted" meta:resourcekey="ASPxGridView1Resource1">
                     <Columns>
-                        <dx:GridViewCommandColumn ShowDeleteButton="True" VisibleIndex="6" ButtonType="Image" Caption="Delete" meta:resourcekey="GridViewCommandColumnResource1"></dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn FieldName="Message" VisibleIndex="0" Caption="Message" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="ToUser" VisibleIndex="1" Visible="false" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Sender" VisibleIndex="2" Caption="From" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataDateColumn FieldName="MessageDate" VisibleIndex="3" Caption="Date" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
-                        <dx:GridViewDataTextColumn FieldName="trip_name" VisibleIndex="4" Caption="Trip Name" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Message_AR" VisibleIndex="5" Caption="Message" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
+                        <dx:GridViewCommandColumn ShowDeleteButton="True" Width="100%" VisibleIndex="6" ButtonType="Image" Caption="Delete" meta:resourcekey="GridViewCommandColumnResource1"></dx:GridViewCommandColumn>
+                        <dx:GridViewDataTextColumn FieldName="Message" VisibleIndex="0" Width="100%" Caption="Message" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="ToUser" VisibleIndex="1" Width="100%" Visible="false" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Sender" VisibleIndex="2" Width="100%" Caption="From" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataDateColumn FieldName="MessageDate" VisibleIndex="3" Width="100%" Caption="Date" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
+                        <dx:GridViewDataTextColumn FieldName="trip_name" VisibleIndex="4" Width="100%" Caption="Trip Name" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Message_AR" VisibleIndex="5" Width="100%" Caption="Message" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
                     </Columns>
                     <SettingsCommandButton>
 

@@ -89,24 +89,24 @@
                 <div class="inner-wrap">
                     <dx:ASPxGridView ID="ASPxGridView3" runat="server" Theme="PlasticBlue" Width="100%" KeyFieldName="QuestionID" AutoGenerateColumns="False" DataSourceID="SqlDataSource4" EnableTheming="True" OnCustomButtonInitialize="ASPxGridView3_CustomButtonInitialize" meta:resourcekey="ASPxGridView3Resource1" OnRowUpdating="ASPxGridView3_RowUpdating">
                         <Columns>
-                            <dx:GridViewDataTextColumn FieldName="QuestionID" Caption="ID" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Question" Caption="Question" ReadOnly="true" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource5">
+                            <dx:GridViewDataTextColumn FieldName="QuestionID" Width="100%" Caption="ID" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Question" Width="100%" Caption="Question" ReadOnly="true" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource5">
                                 <EditFormSettings Visible="False" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="QuestionUser" Caption="by" ReadOnly="true" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource6">
+                            <dx:GridViewDataTextColumn FieldName="QuestionUser" Width="100%" Caption="by" ReadOnly="true" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource6">
                                 <EditFormSettings Visible="False" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Answer" Caption="Answer" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="AnswerUser" VisibleIndex="6" ReadOnly="true" Visible="false" meta:resourcekey="GridViewDataTextColumnResource8">
+                            <dx:GridViewDataTextColumn FieldName="Answer" Caption="Answer" Width="100%" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="AnswerUser" VisibleIndex="6" Width="100%" ReadOnly="true" Visible="false" meta:resourcekey="GridViewDataTextColumnResource8">
                                 <EditFormSettings Visible="False" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataDateColumn FieldName="QuestionTime" Caption="Question Time" VisibleIndex="2" meta:resourcekey="GridViewDataDateColumnResource1">
+                            <dx:GridViewDataDateColumn FieldName="QuestionTime" Caption="Question Time" Width="100%" VisibleIndex="2" meta:resourcekey="GridViewDataDateColumnResource1">
                                 <EditFormSettings Visible="False" />
                             </dx:GridViewDataDateColumn>
-                            <dx:GridViewDataDateColumn FieldName="AnswerTime" ReadOnly="true" Caption="Answer Time" VisibleIndex="5" meta:resourcekey="GridViewDataDateColumnResource2">
+                            <dx:GridViewDataDateColumn FieldName="AnswerTime" ReadOnly="true" Caption="Answer Time" Width="100%" VisibleIndex="5" meta:resourcekey="GridViewDataDateColumnResource2">
                                 <EditFormSettings Visible="False" />
                             </dx:GridViewDataDateColumn>
-                            <dx:GridViewCommandColumn ButtonType="Button" Name="Answer" Caption="Answer" VisibleIndex="7" meta:resourcekey="GridViewCommandColumnResource1" ShowEditButton="True">
+                            <dx:GridViewCommandColumn ButtonType="Button" Name="Answer" Caption="Answer" VisibleIndex="7" Width="100%" meta:resourcekey="GridViewCommandColumnResource1" ShowEditButton="True">
                                 <EditButton Text="<%$ Resources:GridViewDataTextColumnResource7.Caption %>"></EditButton>
                             </dx:GridViewCommandColumn>
                         </Columns>
@@ -124,14 +124,14 @@
                     <div class="panel-body">
                         <dx:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" DataSourceID="SqlDataSource3" Theme="PlasticBlue" Width="100%" OnCustomButtonCallback="ASPxGridView2_CustomButtonCallback" OnCustomButtonInitialize="ASPxGridView2_CustomButtonInitialize" meta:resourcekey="ASPxGridView2Resource1">
                             <Columns>
-                                <dx:GridViewDataTextColumn FieldName="ID" Caption="ID" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource9"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Price" Caption="Price" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource10"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Name" Caption="Name" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource11"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataDateColumn FieldName="BidExpiration" Caption="Bid Expiration" VisibleIndex="3" meta:resourcekey="GridViewDataDateColumnResource3"></dx:GridViewDataDateColumn>
-                                <dx:GridViewDataTextColumn FieldName="Note" Caption="Note" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource12"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataCheckColumn FieldName="Accepted" Caption="Accepted" VisibleIndex="5" meta:resourcekey="GridViewDataCheckColumnResource1">
+                                <dx:GridViewDataTextColumn FieldName="ID" Caption="ID" Width="100%" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource9"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Price" Caption="Price" Width="100%" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource10"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Name" Caption="Name" Width="100%" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource11"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataDateColumn FieldName="BidExpiration" Width="100%" Caption="Bid Expiration" VisibleIndex="3" meta:resourcekey="GridViewDataDateColumnResource3"></dx:GridViewDataDateColumn>
+                                <dx:GridViewDataTextColumn FieldName="Note" Caption="Note" Width="100%" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource12"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataCheckColumn FieldName="Accepted" Caption="Accepted" Width="100%" VisibleIndex="5" meta:resourcekey="GridViewDataCheckColumnResource1">
                                 </dx:GridViewDataCheckColumn>
-                                <dx:GridViewCommandColumn ButtonType="Button" Caption="Accept" VisibleIndex="6" meta:resourcekey="GridViewCommandColumnResource2">
+                                <dx:GridViewCommandColumn ButtonType="Button" Caption="Accept" Width="100%" VisibleIndex="6" meta:resourcekey="GridViewCommandColumnResource2">
                                     <CustomButtons>
                                         <dx:GridViewCommandColumnCustomButton ID="BtnAccept" Text="Accept" meta:resourcekey="GridViewCommandColumnCustomButtonResource2">
                                         </dx:GridViewCommandColumnCustomButton>

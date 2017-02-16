@@ -9,20 +9,20 @@
             <div class="row">
                 <dx:ASPxGridView ID="ASPxGridView1" runat="server" Theme="Aqua" Width="100%" EnableTheming="True" AutoGenerateColumns="False" KeyFieldName="ID" CssClass="dxtiIndexPanelItem_Aqua" Cursor="pointer" EnableCallBacks="False" OnStartRowEditing="ASPxGridView1_StartRowEditing" meta:resourcekey="ASPxGridView1Resource1">
                     <Columns>
-                        <dx:GridViewDataTextColumn FieldName="ID" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Name" Caption="Trip Name" VisibleIndex="1" ReadOnly="true" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Price" Caption="Price" VisibleIndex="2" UnboundType="Decimal" meta:resourcekey="GridViewDataTextColumnResource3">
+                        <dx:GridViewDataTextColumn FieldName="ID" Width="100%" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Name" Width="100%" Caption="Trip Name" VisibleIndex="1" ReadOnly="true" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Price" Width="100%" Caption="Price" VisibleIndex="2" UnboundType="Decimal" meta:resourcekey="GridViewDataTextColumnResource3">
                             <PropertiesTextEdit>
                                 <ValidationSettings>
                                     <RegularExpression ValidationExpression="[0-9]*\.?[0-9]*" ErrorText="Not valid" />
                                 </ValidationSettings>
                             </PropertiesTextEdit>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="TruckType" Caption="Truck Type" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataDateColumn FieldName="PickupDate" Caption="Pickup Date" VisibleIndex="4" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
-                        <dx:GridViewDataDateColumn FieldName="DeliveryDate" Caption="Delivery Date" VisibleIndex="5" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
-                        <dx:GridViewDataDateColumn FieldName="BidExpiration" Caption="Bid Expiration" VisibleIndex="6" meta:resourcekey="GridViewDataDateColumnResource3"></dx:GridViewDataDateColumn>
-                        <dx:GridViewDataCheckColumn FieldName="Accepted" Caption="Accepted" VisibleIndex="7" ReadOnly="true" meta:resourcekey="GridViewDataCheckColumnResource1">
+                        <dx:GridViewDataTextColumn FieldName="TruckType" Width="100%" Caption="Truck Type" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataDateColumn FieldName="PickupDate" Width="100%" Caption="Pickup Date" VisibleIndex="4" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
+                        <dx:GridViewDataDateColumn FieldName="DeliveryDate" Width="100%" Caption="Delivery Date" VisibleIndex="5" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
+                        <dx:GridViewDataDateColumn FieldName="BidExpiration" Width="100%" Caption="Bid Expiration" VisibleIndex="6" meta:resourcekey="GridViewDataDateColumnResource3"></dx:GridViewDataDateColumn>
+                        <dx:GridViewDataCheckColumn FieldName="Accepted" Width="100%" Caption="Accepted" VisibleIndex="7" ReadOnly="true" meta:resourcekey="GridViewDataCheckColumnResource1">
                         </dx:GridViewDataCheckColumn>
                         <dx:GridViewCommandColumn ShowEditButton="True" ButtonType="Image" Caption="Edit" VisibleIndex="8" meta:resourcekey="GridViewCommandColumnResource1"></dx:GridViewCommandColumn>
                     </Columns>

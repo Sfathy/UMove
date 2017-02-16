@@ -64,15 +64,16 @@
             <div class="inner-wrap">
                 <dx:ASPxGridView ID="ASPxGridView1" runat="server" Theme="PlasticBlue" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="ID" Width="100%" meta:resourcekey="ASPxGridView1Resource1">
                     <Columns>
-                        <dx:GridViewDataTextColumn FieldName="ID" Caption="ID" ReadOnly="True" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1">
+                        <dx:GridViewDataTextColumn FieldName="ID" Width="100%" Caption="ID" ReadOnly="True" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1">
                             <EditFormSettings Visible="False"></EditFormSettings>
                         </dx:GridViewDataTextColumn>
 
-                        <dx:GridViewDataTextColumn FieldName="TripID" Caption="Trip  ID" VisibleIndex="1" Visible="false" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="ItemDesc" Caption="Description" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="TripID" Width="100%" Caption="Trip  ID" VisibleIndex="1" Visible="false" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="ItemDesc" Width="100%" Caption="Description" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
 
-                        <dx:GridViewDataImageColumn FieldName="ImageURL" Caption="Image" VisibleIndex="2" meta:resourcekey="GridViewDataImageColumnResource1"></dx:GridViewDataImageColumn>
+                        <dx:GridViewDataImageColumn FieldName="ImageURL" Width="100%" Caption="Image" VisibleIndex="2" meta:resourcekey="GridViewDataImageColumnResource1"></dx:GridViewDataImageColumn>
                     </Columns>
+                         <Settings HorizontalScrollBarMode="Auto"/>
                 </dx:ASPxGridView>
                 <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT * FROM [TripItems] WHERE ([TripID] = @TripID)">
                     <SelectParameters>

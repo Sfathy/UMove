@@ -10,29 +10,29 @@
             <div class="row">
                 <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" EnableCallBacks="False" KeyFieldName="ID" Theme="Glass" DataSourceID="SqlDataSource1" Width="100%" EnableTheming="True" OnCustomButtonCallback="ASPxGridView1_CustomButtonCallback" meta:resourcekey="ASPxGridView1Resource1">
                     <Columns>
-                        <dx:GridViewDataTextColumn FieldName="TripName" Caption="Trip Name" VisibleIndex="0" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="SourceLocationText" Caption="Source Location" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="DeliveryLocationText" Caption="Delivery Location" VisibleIndex="5" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataDateColumn FieldName="PicUpDate" Caption="PicUp Date" VisibleIndex="6" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
-                        <dx:GridViewDataDateColumn FieldName="DeliveryDate" Caption="Delivery Date" VisibleIndex="7" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
-                        <dx:GridViewDataTextColumn FieldName="Ending" Caption="Duration" ReadOnly="True" VisibleIndex="8" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="9" Visible="false" meta:resourcekey="GridViewDataTextColumnResource5">
+                        <dx:GridViewDataTextColumn FieldName="TripName" Width="100%" Caption="Trip Name" VisibleIndex="0" meta:resourcekey="GridViewDataTextColumnResource1"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="SourceLocationText" Width="100%" Caption="Source Location" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="DeliveryLocationText" Width="100%" Caption="Delivery Location" VisibleIndex="5" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataDateColumn FieldName="PicUpDate" Caption="PicUp Date" Width="100%" VisibleIndex="6" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
+                        <dx:GridViewDataDateColumn FieldName="DeliveryDate" Caption="Delivery Date" Width="100%" VisibleIndex="7" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
+                        <dx:GridViewDataTextColumn FieldName="Ending" Caption="Duration" Width="100%" ReadOnly="True" VisibleIndex="8" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="9" Width="100%" Visible="false" meta:resourcekey="GridViewDataTextColumnResource5">
                             <EditFormSettings Visible="False"></EditFormSettings>
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataComboBoxColumn FieldName="ItemCatID" Caption="Catrgory" VisibleIndex="1" meta:resourcekey="GridViewDataComboBoxColumnResource1">
-                            <PropertiesComboBox DataSourceID="SqlDataSource3" TextField="Name" ValueField="ID"></PropertiesComboBox>
+                        <dx:GridViewDataComboBoxColumn FieldName="ItemCatID" Caption="Catrgory" Width="100%" VisibleIndex="1" meta:resourcekey="GridViewDataComboBoxColumnResource1">
+                            <PropertiesComboBox DataSourceID="SqlDataSource3" TextField="Name" Width="100%" ValueField="ID"></PropertiesComboBox>
                         </dx:GridViewDataComboBoxColumn>
-                        <dx:GridViewDataComboBoxColumn FieldName="ItemSubCatID" Caption=" Sub Catrgory" VisibleIndex="2" meta:resourcekey="GridViewDataComboBoxColumnResource2">
+                        <dx:GridViewDataComboBoxColumn FieldName="ItemSubCatID" Width="100%" Caption=" Sub Catrgory" VisibleIndex="2" meta:resourcekey="GridViewDataComboBoxColumnResource2">
                             <PropertiesComboBox DataSourceID="SqlDataSource4" TextField="Name" ValueField="ID"></PropertiesComboBox>
                         </dx:GridViewDataComboBoxColumn>
-                        <dx:GridViewDataComboBoxColumn FieldName="UserID" Caption="User" VisibleIndex="3" meta:resourcekey="GridViewDataComboBoxColumnResource3">
+                        <dx:GridViewDataComboBoxColumn FieldName="UserID" Caption="User" Width="100%" VisibleIndex="3" meta:resourcekey="GridViewDataComboBoxColumnResource3">
                             <PropertiesComboBox DataSourceID="SqlDataSource5" TextField="Name" ValueField="ID"></PropertiesComboBox>
                         </dx:GridViewDataComboBoxColumn>
-                        <dx:GridViewDataComboBoxColumn FieldName="Puplished" SortIndex="0" SortOrder="Ascending" UnboundType="String" VisibleIndex="6" Caption="Status" meta:resourcekey="GridViewDataComboBoxColumnResource7">
+                        <dx:GridViewDataComboBoxColumn FieldName="Puplished" Width="100%" SortIndex="0" SortOrder="Ascending" UnboundType="String" VisibleIndex="6" Caption="Status" meta:resourcekey="GridViewDataComboBoxColumnResource7">
                             <PropertiesComboBox DataSourceID="SqlDataSource10" DropDownStyle="DropDown" TextField="Name" ValueField="ID">
                             </PropertiesComboBox>
                         </dx:GridViewDataComboBoxColumn>
-                        <dx:GridViewCommandColumn ButtonType="Image" Caption="View / Accept" VisibleIndex="11" meta:resourcekey="GridViewCommandColumnResource1">
+                        <dx:GridViewCommandColumn ButtonType="Image" Caption="View / Accept" Width="100%" VisibleIndex="11" meta:resourcekey="GridViewCommandColumnResource1">
                             <CustomButtons>
                                 <dx:GridViewCommandColumnCustomButton ID="BtnView" Text="View" meta:resourcekey="GridViewCommandColumnCustomButtonResource1">
                                     <Image IconID="actions_show_16x16">
@@ -48,7 +48,7 @@
                                 </dx:GridViewCommandColumnCustomButton>
                             </CustomButtons>
                         </dx:GridViewCommandColumn>
-                        <dx:GridViewDataTextColumn Caption="Distance" FieldName="Dis" Name="Distance" UnboundType="Decimal" VisibleIndex="10" meta:resourcekey="GridViewDataTextColumnResource6">
+                        <dx:GridViewDataTextColumn Caption="Distance" FieldName="Dis" Width="100%" Name="Distance" UnboundType="Decimal" VisibleIndex="10" meta:resourcekey="GridViewDataTextColumnResource6">
                         </dx:GridViewDataTextColumn>
                     </Columns>
                     <SettingsDetail ShowDetailRow="True" />

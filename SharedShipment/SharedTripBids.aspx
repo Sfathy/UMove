@@ -89,14 +89,15 @@
 
                     <dx:ASPxGridView ID="ASPxGridView3" ClientInstanceName="ASPxGridView3" runat="server" Theme="PlasticBlue" Width="100%" KeyFieldName="QuestionID" AutoGenerateColumns="False" DataSourceID="SqlDataSource4" EnableTheming="True" meta:resourcekey="ASPxGridView3Resource1" EnableCallBacks="False" >
                         <Columns>
-                              <dx:GridViewDataTextColumn FieldName="QuestionID" Caption="ID" VisibleIndex="1" Visible="false" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Question" Caption="Question" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="QuestionUser" Caption="By" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Answer" Caption="Answer" VisibleIndex="5" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="AnswerUser" Visible="false" VisibleIndex="7" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataDateColumn FieldName="QuestionTime" Caption="Question Time" VisibleIndex="3" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
-                            <dx:GridViewDataDateColumn FieldName="AnswerTime" Caption="Answer Time" VisibleIndex="6" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
+                              <dx:GridViewDataTextColumn FieldName="QuestionID" Width="100%" Caption="ID" VisibleIndex="1" Visible="false" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Question" Width="100%" Caption="Question" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="QuestionUser" Width="100%" Caption="By" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Answer" Width="100%" Caption="Answer" VisibleIndex="5" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="AnswerUser" Width="100%" Visible="false" VisibleIndex="7" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataDateColumn FieldName="QuestionTime" Width="100%" Caption="Question Time" VisibleIndex="3" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
+                            <dx:GridViewDataDateColumn FieldName="AnswerTime" Width="100%" Caption="Answer Time" VisibleIndex="6" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
                         </Columns>
+                        <Settings HorizontalScrollBarMode="Auto" />
                            <SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm" />
                     </dx:ASPxGridView>
                        <dx:ASPxPopupControl ID="ASPxPopupControl1" runat="server" 
@@ -121,10 +122,10 @@
                     <div class="panel-body">
                         <dx:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource3" Theme="PlasticBlue" Width="100%" meta:resourcekey="ASPxGridView2Resource1">
                             <Columns>
-                                <dx:GridViewDataTextColumn FieldName="Price" Caption="Price" VisibleIndex="0" meta:resourcekey="GridViewDataTextColumnResource8"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Name" Caption="Name" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource9"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataDateColumn FieldName="BidExpiration" Caption="Bid Expiration" VisibleIndex="2" meta:resourcekey="GridViewDataDateColumnResource3"></dx:GridViewDataDateColumn>
-                                <dx:GridViewDataTextColumn FieldName="Note" Caption="Note" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource10"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Price" Width="100%" Caption="Price" VisibleIndex="0" meta:resourcekey="GridViewDataTextColumnResource8"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Name" Width="100%" Caption="Name" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource9"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataDateColumn FieldName="BidExpiration" Width="100%" Caption="Bid Expiration" VisibleIndex="2" meta:resourcekey="GridViewDataDateColumnResource3"></dx:GridViewDataDateColumn>
+                                <dx:GridViewDataTextColumn FieldName="Note" Width="100%" Caption="Note" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource10"></dx:GridViewDataTextColumn>
                             </Columns>
                         </dx:ASPxGridView>
                         <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT dbo.SharedTripsBid.Price, dbo.Users.Name, dbo.SharedTripsBid.BidExpiration, dbo.SharedTripsBid.Note FROM dbo.SharedTripsBid INNER JOIN dbo.Users ON dbo.SharedTripsBid.UserID = dbo.Users.ID WHERE (dbo.SharedTripsBid.SharedTripID = @ID) AND (dbo.SharedTripsBid.Puplished = 1)">

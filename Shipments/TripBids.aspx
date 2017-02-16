@@ -86,14 +86,14 @@
                 <div class="inner-wrap">
                     <dx:ASPxGridView ID="ASPxGridView1" runat="server" Theme="PlasticBlue" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="ID" Width="100%" meta:resourcekey="ASPxGridView1Resource1">
                         <Columns>
-                            <dx:GridViewDataTextColumn FieldName="ID" Caption="ID" ReadOnly="True" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1">
+                            <dx:GridViewDataTextColumn FieldName="ID" Width="100%" Caption="ID" ReadOnly="True" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1">
                                 <EditFormSettings Visible="False"></EditFormSettings>
                             </dx:GridViewDataTextColumn>
 
-                            <dx:GridViewDataTextColumn FieldName="TripID" Caption="Trip  ID" VisibleIndex="1" Visible="false" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="ItemDesc" Caption="Description" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="TripID" Width="100%" Caption="Trip  ID" VisibleIndex="1" Visible="false" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="ItemDesc" Width="100%" Caption="Description" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
 
-                            <dx:GridViewDataImageColumn FieldName="ImageURL" Caption="Image" VisibleIndex="2" meta:resourcekey="GridViewDataImageColumnResource1"></dx:GridViewDataImageColumn>
+                            <dx:GridViewDataImageColumn FieldName="ImageURL" Width="100%" Caption="Image" VisibleIndex="2" meta:resourcekey="GridViewDataImageColumnResource1"></dx:GridViewDataImageColumn>
                         </Columns>
                              <Settings HorizontalScrollBarMode="Auto"/>
                     </dx:ASPxGridView>
@@ -115,13 +115,13 @@
 
                     <dx:ASPxGridView ID="ASPxGridView3" ClientInstanceName="ASPxGridView3" runat="server" Theme="PlasticBlue" Width="100%" KeyFieldName="QuestionID" AutoGenerateColumns="False" DataSourceID="SqlDataSource4" EnableTheming="True" meta:resourcekey="ASPxGridView3Resource1" EnableCallBacks="False" >
                         <Columns>
-                              <dx:GridViewDataTextColumn FieldName="QuestionID" Caption="ID" VisibleIndex="1" Visible="false" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Question" Caption="Question" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="QuestionUser" Caption="By" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Answer" Caption="Answer" VisibleIndex="5" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="AnswerUser" Visible="false" VisibleIndex="7" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataDateColumn FieldName="QuestionTime" Caption="Question Time" VisibleIndex="3" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
-                            <dx:GridViewDataDateColumn FieldName="AnswerTime" Caption="Answer Time" VisibleIndex="6" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
+                              <dx:GridViewDataTextColumn FieldName="QuestionID" Width="100%" Caption="ID" VisibleIndex="1" Visible="false" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Question" Width="100%" Caption="Question" VisibleIndex="2" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="QuestionUser" Width="100%" Caption="By" VisibleIndex="4" meta:resourcekey="GridViewDataTextColumnResource5"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Answer" Caption="Answer" Width="100%" VisibleIndex="5" meta:resourcekey="GridViewDataTextColumnResource6"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="AnswerUser" Visible="false" Width="100%" VisibleIndex="7" meta:resourcekey="GridViewDataTextColumnResource7"></dx:GridViewDataTextColumn>
+                            <dx:GridViewDataDateColumn FieldName="QuestionTime" Caption="Question Time" Width="100%" VisibleIndex="3" meta:resourcekey="GridViewDataDateColumnResource1"></dx:GridViewDataDateColumn>
+                            <dx:GridViewDataDateColumn FieldName="AnswerTime" Caption="Answer Time" VisibleIndex="6" Width="100%" meta:resourcekey="GridViewDataDateColumnResource2"></dx:GridViewDataDateColumn>
                         </Columns>
                              <Settings HorizontalScrollBarMode="Auto"/>
                            <SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm" />
@@ -144,10 +144,10 @@
                     <div class="panel-body">
                         <dx:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource3" Theme="PlasticBlue" Width="100%" meta:resourcekey="ASPxGridView2Resource1">
                             <Columns>
-                                <dx:GridViewDataTextColumn FieldName="Price" Caption="Price" VisibleIndex="0" meta:resourcekey="GridViewDataTextColumnResource8"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn FieldName="Name" Caption="Name" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource9"></dx:GridViewDataTextColumn>
-                                <dx:GridViewDataDateColumn FieldName="BidExpiration" Caption="Bid Expiration" VisibleIndex="2" meta:resourcekey="GridViewDataDateColumnResource3"></dx:GridViewDataDateColumn>
-                                <dx:GridViewDataTextColumn FieldName="Note" Caption="Note" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource10"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Price" Width="100%" Caption="Price" VisibleIndex="0" meta:resourcekey="GridViewDataTextColumnResource8"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="Name" Width="100%" Caption="Name" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource9"></dx:GridViewDataTextColumn>
+                                <dx:GridViewDataDateColumn FieldName="BidExpiration" Width="100%" Caption="Bid Expiration" VisibleIndex="2" meta:resourcekey="GridViewDataDateColumnResource3"></dx:GridViewDataDateColumn>
+                                <dx:GridViewDataTextColumn FieldName="Note" Caption="Note" Width="100%" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource10"></dx:GridViewDataTextColumn>
                             </Columns>
                                  <Settings HorizontalScrollBarMode="Auto"/>
                         </dx:ASPxGridView>
