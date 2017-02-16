@@ -10,6 +10,7 @@
              @Html.ActionLink(UMoveNew.Views.Shared.login.Welcome +"  "+ userInCookie.Values["username"].ToString() + "!", "Details", "user", new { id = userInCookie.Values["userid"].ToString() }, null)
              <ul role="menu" class="sub-menu">
                  <li><a href="../../Trips/MyShipments">@UMoveNew.Views.Shared.login.MyShipments</a></li>
+                 <li><a href="../../SharedTrips/MySharedShipments">@UMoveNew.Views.Shared.login.MySharedShipments</a></li>
                  <li><a href="../../Trips/MyInbox">@UMoveNew.Views.Shared.login.Inbox</a></li>
                  <li><a href="../../Trips/MyBids">@UMoveNew.Views.Shared.login.MyBids</a></li>
                  <li><a href="../../Trips/MyCars">@UMoveNew.Views.Shared.login.MyCars</a></li>

@@ -351,4 +351,7 @@
   <data name="Label37Resource1.Text" xml:space="preserve">
     <value>البحث عن نصف رحلة</value>
   </data>
+  <data name="Label55Resource1.Text" xml:space="preserve">
+    <value>نصف رحلة</value>
+  </data>
 </root>

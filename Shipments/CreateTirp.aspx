@@ -73,215 +73,214 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="Label1" CssClass="asplab" runat="server" Text="Trip Name" meta:resourcekey="Label1Resource1"></asp:Label>
                     <div class="inner-wrap">
-                       
-                            <asp:TextBox ID="txtTripName" runat="server" placeholder="Trip Name" required meta:resourcekey="txtTripNameResource1"></asp:TextBox>
+
+                        <asp:TextBox ID="txtTripName" runat="server" placeholder="Trip Name" required meta:resourcekey="txtTripNameResource1"></asp:TextBox>
                     </div>
                     <div class="section"><span>2</span></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="Label2" CssClass="asplab" runat="server" Text="Pickup (City or ZIP)" meta:resourcekey="Label2Resource1"></asp:Label>
                     <div class="inner-wrap">
-                        
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <asp:Label ID="Label7" runat="server" Text="<%$ Resources:CountryName %>"></asp:Label>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <asp:DropDownList ID="ASPxComboBox1" runat="server" DataTextField="CountryName" DataValueField="CountryName" DataSourceID="SqlDataSource1"></asp:DropDownList>
+                                    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [CountryName] FROM [tbl_Countries]"></asp:SqlDataSource>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="col-md-4">
-                                        <asp:Label ID="Label7" runat="server" Text="<%$ Resources:CountryName %>"></asp:Label>
+                                    <div class="col-md-6">
+                                        <input id="origin-input" name="origin-input" class="controls" type="text"
+                                            placeholder="Enter an origin location" />
                                     </div>
                                     <div class="col-md-6">
-
-                                        <asp:DropDownList ID="ASPxComboBox1" runat="server" DataTextField="CountryName" DataValueField="CountryName" DataSourceID="SqlDataSource1"></asp:DropDownList>
-                                        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT [CountryName] FROM [tbl_Countries]"></asp:SqlDataSource>
+                                        <input id="destination-input" name="destination-input" class="controls" type="text"
+                                            placeholder="Enter a destination location" />
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="col-md-6">
-                                            <input id="origin-input" name="origin-input" class="controls" type="text"
-                                                placeholder="Enter an origin location" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input id="destination-input" name="destination-input" class="controls" type="text"
-                                                placeholder="Enter a destination location" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="mode-selector" class="controls" style="display: none;">
-                                    <input type="radio" name="type" id="changemode-walking" checked="checked" />
-                                    <label for="changemode-walking">Walking</label>
-
-                                    <input type="radio" name="type" id="changemode-transit" />
-                                    <label for="changemode-transit">Transit</label>
-
-                                    <input type="radio" name="type" id="changemode-driving" />
-                                    <label for="changemode-driving">Driving</label>
-                                </div>
-                                <div id="map" name="map" style="width: 100%; height: 300px"></div>
                             </div>
-                            <script>
-                                // This example requires the Places library. Include the libraries=places
-                                // parameter when you first load the API. For example:
-                                // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+                            <div id="mode-selector" class="controls" style="display: none;">
+                                <input type="radio" name="type" id="changemode-walking" checked="checked" />
+                                <label for="changemode-walking">Walking</label>
 
-                                function initMap() {
-                                    var map = new google.maps.Map(document.getElementById('map'), {
-                                        mapTypeControl: false,
-                                        center: { lat: -33.80820191724644, lng: -33.979191697010805 },
-                                        zoom: 13
-                                    });
+                                <input type="radio" name="type" id="changemode-transit" />
+                                <label for="changemode-transit">Transit</label>
 
-                                    new AutocompleteDirectionsHandler(map);
-                                }
+                                <input type="radio" name="type" id="changemode-driving" />
+                                <label for="changemode-driving">Driving</label>
+                            </div>
+                            <div id="map" name="map" style="width: 100%; height: 300px"></div>
+                        </div>
+                        <script>
+                            // This example requires the Places library. Include the libraries=places
+                            // parameter when you first load the API. For example:
+                            // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-                                /**
-                                 * @constructor
-                                */
-                                function AutocompleteDirectionsHandler(map) {
-                                    this.map = map;
-                                    this.originPlaceId = null;
-                                    this.destinationPlaceId = null;
-                                    this.travelMode = 'WALKING';
-                                    var originInput = document.getElementById('origin-input');
-                                    var destinationInput = document.getElementById('destination-input');
-                                    var modeSelector = document.getElementById('mode-selector');
-                                    this.directionsService = new google.maps.DirectionsService;
-                                    this.directionsDisplay = new google.maps.DirectionsRenderer;
-                                    this.directionsDisplay.setMap(map);
+                            function initMap() {
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                    mapTypeControl: false,
+                                    center: { lat: -33.80820191724644, lng: -33.979191697010805 },
+                                    zoom: 13
+                                });
 
-                                    var originAutocomplete = new google.maps.places.Autocomplete(
-                                        originInput, { placeIdOnly: true });
-                                    var destinationAutocomplete = new google.maps.places.Autocomplete(
-                                        destinationInput, { placeIdOnly: true });
+                                new AutocompleteDirectionsHandler(map);
+                            }
+                            /**
+                             * @constructor
+                            */
+                            function AutocompleteDirectionsHandler(map) {
+                                this.map = map;
+                                this.originPlaceId = null;
+                                this.destinationPlaceId = null;
+                                this.travelMode = 'WALKING';
+                                var originInput = document.getElementById('origin-input');
+                                var destinationInput = document.getElementById('destination-input');
+                                var modeSelector = document.getElementById('mode-selector');
+                                this.directionsService = new google.maps.DirectionsService;
+                                this.directionsDisplay = new google.maps.DirectionsRenderer;
+                                this.directionsDisplay.setMap(map);
 
-                                    this.setupClickListener('changemode-walking', 'WALKING');
-                                    this.setupClickListener('changemode-transit', 'TRANSIT');
-                                    this.setupClickListener('changemode-driving', 'DRIVING');
+                                var originAutocomplete = new google.maps.places.Autocomplete(
+                                    originInput, { placeIdOnly: true });
+                                var destinationAutocomplete = new google.maps.places.Autocomplete(
+                                    destinationInput, { placeIdOnly: true });
 
-                                    this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
-                                    this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+                                this.setupClickListener('changemode-walking', 'WALKING');
+                                this.setupClickListener('changemode-transit', 'TRANSIT');
+                                this.setupClickListener('changemode-driving', 'DRIVING');
 
-                                    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-                                    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-                                    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
-                                }
+                                this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+                                this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
 
-                                // Sets a listener on a radio button to change the filter type on Places
-                                // Autocomplete.
-                                AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
-                                    var radioButton = document.getElementById(id);
-                                    var me = this;
-                                    radioButton.addEventListener('click', function () {
-                                        me.travelMode = mode;
-                                        me.route();
-                                        var xx = me.route();
-                                    });
-                                };
+                                this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+                                this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+                                this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+                            }
 
-                                AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
-                                    var me = this;
-                                    autocomplete.bindTo('bounds', this.map);
-                                    autocomplete.addListener('place_changed', function () {
-                                        var place = autocomplete.getPlace();
-                                        if (!place.place_id) {
-                                            window.alert("Please select an option from the dropdown list.");
-                                            return;
-                                        }
-                                        if (mode === 'ORIG') {
-                                            me.originPlaceId = place.place_id;
-                                            var xx = autocomplete.getBounds();
-                                            var lat = xx["f"]["b"];
-                                            var long = xx["f"]["f"];
-                                            document.getElementById("latn").value = "(" + lat + "," + long + ")";
-                                        } else {
-                                            me.destinationPlaceId = place.place_id;
-                                            var xx2 = autocomplete.getBounds();
-                                            var lat2 = xx2["f"]["b"];
-                                            var long2 = xx2["f"]["f"];
-                                            document.getElementById("latn2").value = "(" + lat2 + "," + long2 + ")";
-                                        }
+                            // Sets a listener on a radio button to change the filter type on Places
+                            // Autocomplete.
+                            AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
+                                var radioButton = document.getElementById(id);
+                                var me = this;
+                                radioButton.addEventListener('click', function () {
+                                    me.travelMode = mode;
+                                    me.route();
+                                    var xx = me.route();
+                                });
+                            };
 
-                                        me.route();
-                                    });
-
-                                };
-
-                                AutocompleteDirectionsHandler.prototype.route = function () {
-                                    if (!this.originPlaceId || !this.destinationPlaceId) {
+                            AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
+                                var me = this;
+                                autocomplete.bindTo('bounds', this.map);
+                                autocomplete.addListener('place_changed', function () {
+                                    var place = autocomplete.getPlace();
+                                    if (!place.place_id) {
+                                        window.alert("Please select an option from the dropdown list.");
                                         return;
                                     }
-                                    var me = this;
+                                    if (mode === 'ORIG') {
+                                        me.originPlaceId = place.place_id;
+                                        var xx = autocomplete.getBounds();
+                                        var lat = xx["f"]["b"];
+                                        var long = xx["f"]["f"];
+                                        document.getElementById("latn").value = "(" + lat + "," + long + ")";
+                                    } else {
+                                        me.destinationPlaceId = place.place_id;
+                                        var xx2 = autocomplete.getBounds();
+                                        var lat2 = xx2["f"]["b"];
+                                        var long2 = xx2["f"]["f"];
+                                        document.getElementById("latn2").value = "(" + lat2 + "," + long2 + ")";
+                                    }
 
-                                    this.directionsService.route({
-                                        origin: { 'placeId': this.originPlaceId },
-                                        destination: { 'placeId': this.destinationPlaceId },
-                                        travelMode: this.travelMode
-                                    }, function (response, status) {
-                                        if (status === 'OK') {
-                                            me.directionsDisplay.setDirections(response);
-                                        } else {
-                                            window.alert('Directions request failed due to ' + status);
-                                        }
-                                    });
-                                };
+                                    me.route();
+                                });
 
-                            </script>
-                            <!-- on serve -->
-                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
-            async defer></script>
-                            <!-- on local -->
-                           <%-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
+                            };
+
+                            AutocompleteDirectionsHandler.prototype.route = function () {
+                                if (!this.originPlaceId || !this.destinationPlaceId) {
+                                    return;
+                                }
+                                var me = this;
+
+                                this.directionsService.route({
+                                    origin: { 'placeId': this.originPlaceId },
+                                    destination: { 'placeId': this.destinationPlaceId },
+                                    travelMode: this.travelMode
+                                }, function (response, status) {
+                                    if (status === 'OK') {
+                                        me.directionsDisplay.setDirections(response);
+                                    } else {
+                                        window.alert('Directions request failed due to ' + status);
+                                    }
+                                });
+                            };
+
+                        </script>
+                        <!-- on serve -->
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
+                            async defer></script>
+                        <!-- on local -->
+                        <%-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
                                 async defer></script>--%>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
-                                       
-                                            <asp:TextBox ID="txtdatepic" runat="server" placeholder="Pickup Date" required meta:resourcekey="txtdatepicResource1"></asp:TextBox>
-                                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtdatepic" BehaviorID="CalendarExtender1" Format="MM/dd/yyyy" />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <asp:DropDownList ID="DropDownList2" runat="server" meta:resourcekey="DropDownList2Resource1">
-                                            <asp:ListItem Value="1" meta:resourcekey="ListItemResource1">Residence</asp:ListItem>
-                                            <asp:ListItem Value="2" meta:resourcekey="ListItemResource2">Business (with loading dock or forklift)</asp:ListItem>
-                                            <asp:ListItem Value="3" meta:resourcekey="ListItemResource3">Business (without loading dock or forklift)</asp:ListItem>
-                                            <asp:ListItem Value="4" meta:resourcekey="ListItemResource4">Port</asp:ListItem>
-                                            <asp:ListItem Value="5" meta:resourcekey="ListItemResource5">Construction Site</asp:ListItem>
-                                            <asp:ListItem Value="6" meta:resourcekey="ListItemResource6">Trade Show / Convention Center</asp:ListItem>
-                                            <asp:ListItem Value="7" meta:resourcekey="ListItemResource7">Storage Facility</asp:ListItem>
-                                            <asp:ListItem Value="8" meta:resourcekey="ListItemResource8">Military Base</asp:ListItem>
-                                            <asp:ListItem Value="9" meta:resourcekey="ListItemResource9">Airport</asp:ListItem>
-                                            <asp:ListItem Value="10" meta:resourcekey="ListItemResource10">Other Secured or Limited Access Location</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+
+                                    <asp:TextBox ID="txtdatepic" runat="server" placeholder="Pickup Date" required meta:resourcekey="txtdatepicResource1"></asp:TextBox>
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtdatepic" BehaviorID="CalendarExtender1" Format="MM/dd/yyyy" />
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="DropDownList2" runat="server" meta:resourcekey="DropDownList2Resource1">
+                                        <asp:ListItem Value="1" meta:resourcekey="ListItemResource1">Residence</asp:ListItem>
+                                        <asp:ListItem Value="2" meta:resourcekey="ListItemResource2">Business (with loading dock or forklift)</asp:ListItem>
+                                        <asp:ListItem Value="3" meta:resourcekey="ListItemResource3">Business (without loading dock or forklift)</asp:ListItem>
+                                        <asp:ListItem Value="4" meta:resourcekey="ListItemResource4">Port</asp:ListItem>
+                                        <asp:ListItem Value="5" meta:resourcekey="ListItemResource5">Construction Site</asp:ListItem>
+                                        <asp:ListItem Value="6" meta:resourcekey="ListItemResource6">Trade Show / Convention Center</asp:ListItem>
+                                        <asp:ListItem Value="7" meta:resourcekey="ListItemResource7">Storage Facility</asp:ListItem>
+                                        <asp:ListItem Value="8" meta:resourcekey="ListItemResource8">Military Base</asp:ListItem>
+                                        <asp:ListItem Value="9" meta:resourcekey="ListItemResource9">Airport</asp:ListItem>
+                                        <asp:ListItem Value="10" meta:resourcekey="ListItemResource10">Other Secured or Limited Access Location</asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                             </div>
+                        </div>
                     </div>
 
 
                     <div class="section"><span>3</span></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label3" CssClass="asplab" runat="server" Text="Delivery (City or ZIP)" meta:resourcekey="Label3Resource1"></asp:Label>
                     <div class="inner-wrap">
-                    
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
-                                        <asp:TextBox ID="txtdatedelivery" runat="server" placeholder="Delivery Date" required meta:resourcekey="txtdatedeliveryResource1"></asp:TextBox>
-                                        <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtdatedelivery" BehaviorID="CalendarExtender2" Format="MM/dd/yyyy" />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <asp:DropDownList ID="DropDownList1" runat="server" meta:resourcekey="DropDownList1Resource1">
 
-                                            <asp:ListItem Value="1" meta:resourcekey="ListItemResource11">Residence</asp:ListItem>
-                                            <asp:ListItem Value="2" meta:resourcekey="ListItemResource12">Business (with loading dock or forklift)</asp:ListItem>
-                                            <asp:ListItem Value="3" meta:resourcekey="ListItemResource13">Business (without loading dock or forklift)</asp:ListItem>
-                                            <asp:ListItem Value="4" meta:resourcekey="ListItemResource14">Port</asp:ListItem>
-                                            <asp:ListItem Value="5" meta:resourcekey="ListItemResource15">Construction Site</asp:ListItem>
-                                            <asp:ListItem Value="6" meta:resourcekey="ListItemResource16">Trade Show / Convention Center</asp:ListItem>
-                                            <asp:ListItem Value="7" meta:resourcekey="ListItemResource17">Storage Facility</asp:ListItem>
-                                            <asp:ListItem Value="8" meta:resourcekey="ListItemResource18">Military Base</asp:ListItem>
-                                            <asp:ListItem Value="9" meta:resourcekey="ListItemResource19">Airport</asp:ListItem>
-                                            <asp:ListItem Value="10" meta:resourcekey="ListItemResource20">Other Secured or Limited Access Location</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtdatedelivery" runat="server" placeholder="Delivery Date" required meta:resourcekey="txtdatedeliveryResource1"></asp:TextBox>
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtdatedelivery" BehaviorID="CalendarExtender2" Format="MM/dd/yyyy" />
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="DropDownList1" runat="server" meta:resourcekey="DropDownList1Resource1">
+
+                                        <asp:ListItem Value="1" meta:resourcekey="ListItemResource11">Residence</asp:ListItem>
+                                        <asp:ListItem Value="2" meta:resourcekey="ListItemResource12">Business (with loading dock or forklift)</asp:ListItem>
+                                        <asp:ListItem Value="3" meta:resourcekey="ListItemResource13">Business (without loading dock or forklift)</asp:ListItem>
+                                        <asp:ListItem Value="4" meta:resourcekey="ListItemResource14">Port</asp:ListItem>
+                                        <asp:ListItem Value="5" meta:resourcekey="ListItemResource15">Construction Site</asp:ListItem>
+                                        <asp:ListItem Value="6" meta:resourcekey="ListItemResource16">Trade Show / Convention Center</asp:ListItem>
+                                        <asp:ListItem Value="7" meta:resourcekey="ListItemResource17">Storage Facility</asp:ListItem>
+                                        <asp:ListItem Value="8" meta:resourcekey="ListItemResource18">Military Base</asp:ListItem>
+                                        <asp:ListItem Value="9" meta:resourcekey="ListItemResource19">Airport</asp:ListItem>
+                                        <asp:ListItem Value="10" meta:resourcekey="ListItemResource20">Other Secured or Limited Access Location</asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                             </div>
+                        </div>
                     </div>
                     <div class="section"><span>4</span></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -307,22 +306,22 @@
                         <asp:Label ID="Label6" CssClass="asplab" runat="server" Text="Select the service types you will consider" meta:resourcekey="Label6Resource1"></asp:Label>
                     <div class="inner-wrap">
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
-                                        <asp:RadioButtonList ID="RadioButtonList2" CssClass="checkboxlist" runat="server">
-                                            <asp:ListItem Value="1" meta:resourcekey="ListItemResource23" Selected="True">Tow Away</asp:ListItem>
-                                            <asp:ListItem Value="2" meta:resourcekey="ListItemResource24">Drive Away</asp:ListItem>
-                                        </asp:RadioButtonList>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <asp:RadioButtonList ID="RadioButtonList3" CssClass="checkboxlist" runat="server">
-                                            <asp:ListItem Value="3" meta:resourcekey="ListItemResource25" Selected="True">Open Transport</asp:ListItem>
-                                            <asp:ListItem Value="4" meta:resourcekey="ListItemResource26">Enclosed Transport</asp:ListItem>
-                                        </asp:RadioButtonList>
-                                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <asp:RadioButtonList ID="RadioButtonList2" CssClass="checkboxlist" runat="server">
+                                        <asp:ListItem Value="1" meta:resourcekey="ListItemResource23" Selected="True">Tow Away</asp:ListItem>
+                                        <asp:ListItem Value="2" meta:resourcekey="ListItemResource24">Drive Away</asp:ListItem>
+                                    </asp:RadioButtonList>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:RadioButtonList ID="RadioButtonList3" CssClass="checkboxlist" runat="server">
+                                        <asp:ListItem Value="3" meta:resourcekey="ListItemResource25" Selected="True">Open Transport</asp:ListItem>
+                                        <asp:ListItem Value="4" meta:resourcekey="ListItemResource26">Enclosed Transport</asp:ListItem>
+                                    </asp:RadioButtonList>
                                 </div>
                             </div>
+                        </div>
 
                         <asp:TextBox ID="txtdetais" TextMode="MultiLine" runat="server" placeholder="Special Instructions (optional)" meta:resourcekey="txtdetaisResource1"></asp:TextBox>
                     </div>

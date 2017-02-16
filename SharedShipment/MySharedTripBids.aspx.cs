@@ -10,9 +10,9 @@ using System.Web.UI.WebControls;
 using UMoveNew.Controllers.AppCode;
 using UMoveNew.Models;
 
-namespace UMoveNew.Shipments
+namespace UMoveNew.SharedShipment
 {
-    public partial class MyTripBids : BasePage
+    public partial class MySharedTripBids : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,8 +24,8 @@ namespace UMoveNew.Shipments
                 }
 
                 int id = Convert.ToInt32(Request.QueryString["id"].ToString());
-                clsTrip t = new clsTrip();
-                Trip trip = t.getTrip(id);
+                clsSharedTrip t = new clsSharedTrip();
+                SharedTrip trip = t.getTrip(id);
                 lblTitle.Text = trip.Name;
                 lblID.Text = trip.ID.ToString();
                 clsUser user = new clsUser();
@@ -33,7 +33,7 @@ namespace UMoveNew.Shipments
                 lblCustomer.Text = dt.Rows[0]["Name"].ToString();
                 lblPicUpDate.Text = trip.PicUpDate.ToString();
                 lblDeliveryDate.Text = trip.DeliveryDate.ToString();
-                string sql = "SELECT COUNT(*) AS co, MIN(Price) AS low FROM dbo.Bid Where TripID=" + id;
+                string sql = "SELECT COUNT(*) AS co, MIN(Price) AS low FROM dbo.SharedTripsBid Where SharedTripID=" + id;
                 DataTable dt2 = DataAccess.ExecuteSQLQuery(sql);
                 if (trip.Cost == 0)
                 {
@@ -57,7 +57,6 @@ namespace UMoveNew.Shipments
                 lblDestination.Text = trip.DeliveryLocationText;
             }
         }
-
         protected void ASPxGridView3_CustomButtonInitialize(object sender, DevExpress.Web.ASPxGridViewCustomButtonEventArgs e)
         {
 
@@ -68,7 +67,6 @@ namespace UMoveNew.Shipments
             if (((DataRowView)row)["Answer"].ToString() == "")
                 e.Visible = DefaultBoolean.True;
         }
-
         protected void ASPxGridView2_CustomButtonInitialize(object sender, ASPxGridViewCustomButtonEventArgs e)
         {
 
@@ -79,7 +77,6 @@ namespace UMoveNew.Shipments
             if (e.ButtonID == "BtnAccept" && ((DataRowView)row)["Accepted"].ToString() == "0")
                 e.Visible = DefaultBoolean.True;
         }
-
         protected void ASPxGridView3_CustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
         {
             if (e.ButtonID == "btnAnswer")
@@ -90,6 +87,7 @@ namespace UMoveNew.Shipments
                 Response.Redirect("~/Shipments/QuestionAnswer.aspx?id=" + id);
             }
         }
+      
 
         protected void ASPxGridView2_CustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
         {
@@ -100,15 +98,17 @@ namespace UMoveNew.Shipments
             string sql;
             if (e.ButtonID == "BtnAccept")
             {
-                sql = "Update Bid SET [Accepted]=0 where [TripID]=" + Tripid;
+                sql = "Update SharedTripsBid SET [Accepted]=0 where [SharedTripID]=" + Tripid;
                 DataAccess.ExecuteSQLQuery(sql);
-                sql = "Update Bid SET [Accepted]=1 where [TripID]=" + Tripid + " And ID=" + id;
+                sql = "Update SharedTripsBid SET [Accepted]=1 where [SharedTripID]=" + Tripid + " And ID=" + id;
                 DataAccess.ExecuteSQLQuery(sql);
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
             if (e.ButtonID == "btnCancel")
             {
-                sql = "Update Bid SET [Accepted]=0 where [TripID]=" + Tripid + " And ID=" + id;
+                sql = "Update SharedTripsBid SET [Accepted]=0 where [SharedTripID]=" + Tripid + " And ID=" + id;
                 DataAccess.ExecuteSQLQuery(sql);
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
         }
         protected void ASPxGridView3_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
@@ -117,10 +117,11 @@ namespace UMoveNew.Shipments
             int id = Convert.ToInt32(e.Keys[0].ToString());
             HttpCookie user = Request.Cookies["user"];
             int UserID = Convert.ToInt32(user.Values["userid"].ToString());
-            string sql = "UPDATE [TripQuestions] Set [Answer] = '" + e.NewValues["Answer"] + "'," +
+            string sql = "UPDATE [SharedTripQuestions] Set [Answer] = N'" + e.NewValues["Answer"] + "'," +
                          "[AnswerUserID] =" + UserID + ",[AnswerTime] ='" + DateTime.Now.ToShortDateString() + "' WHERE QuestionID=" + id;
             DataAccess.ExecuteSQLQuery(sql);
             e.Cancel = true;
+            Response.Redirect(Request.Url.AbsoluteUri);
         }
     }
 }

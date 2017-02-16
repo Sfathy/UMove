@@ -135,6 +135,9 @@
   <data name="MyCars" xml:space="preserve">
     <value>My Cars</value>
   </data>
+  <data name="MySharedShipments" xml:space="preserve">
+    <value>My Shared Trips</value>
+  </data>
   <data name="MyShipments" xml:space="preserve">
     <value>My Shipments</value>
   </data>

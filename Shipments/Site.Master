@@ -51,6 +51,7 @@
               <asp:LinkButton ID="lpro" runat="server" OnClick="lpro_Click"> <asp:Label runat="server" ID="UserName" Text="Welcome !" meta:resourcekey="UserNameResource2"></asp:Label></asp:LinkButton>
                <ul role="menu" class="sub-menu">
                    <li><a href="../../Trips/MyShipments"><asp:Label runat="server" ID="Label2" Text="My Shipments" meta:resourcekey="Label2Resource1"></asp:Label></a></li>
+                    <li><a href="../../SharedTrips/MySharedShipments"><asp:Label runat="server" ID="Label55" Text="My Shared Shipments" meta:resourcekey="Label55Resource1"></asp:Label></a></li>
                     <li><a href="../../Trips/MyInbox"><asp:Label runat="server" ID="Label3" Text="Inbox" meta:resourcekey="Label3Resource1"></asp:Label></a></li>
                       <li><a href="../../Trips/MyBids"><asp:Label runat="server" ID="Label34" Text="My Bids" meta:resourcekey="Label113Resource1"></asp:Label></a></li>
                       <li><a href="../../Trips/MyCars"><asp:Label runat="server" ID="Label35" Text="My Cars" meta:resourcekey="Label1113Resource1"></asp:Label></a></li>

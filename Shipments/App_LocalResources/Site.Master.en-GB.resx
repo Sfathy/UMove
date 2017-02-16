@@ -351,4 +351,7 @@
   <data name="Label37Resource1.Text" xml:space="preserve">
     <value>Sahred Shipments</value>
   </data>
+  <data name="Label55Resource1.Text" xml:space="preserve">
+    <value>My Shared Trips</value>
+  </data>
 </root>

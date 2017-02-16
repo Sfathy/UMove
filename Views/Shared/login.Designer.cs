@@ -115,6 +115,15 @@ namespace UMoveNew.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نصف رحلة.
+        /// </summary>
+        public static string MySharedShipments {
+            get {
+                return ResourceManager.GetString("MySharedShipments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to رحلاتى.
         /// </summary>
         public static string MyShipments {

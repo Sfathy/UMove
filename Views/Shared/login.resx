@@ -135,6 +135,9 @@
   <data name="MyCars" xml:space="preserve">
     <value>سياراتى</value>
   </data>
+  <data name="MySharedShipments" xml:space="preserve">
+    <value>نصف رحلة</value>
+  </data>
   <data name="MyShipments" xml:space="preserve">
     <value>رحلاتى</value>
   </data>

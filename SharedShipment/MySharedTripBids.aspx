@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shipments/Site.Master" AutoEventWireup="true" CodeBehind="MyTripBids.aspx.cs" Inherits="UMoveNew.Shipments.MyTripBids" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shipments/Site.Master" AutoEventWireup="true" CodeBehind="MySharedTripBids.aspx.cs" Inherits="UMoveNew.SharedShipment.MySharedTripBids" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
@@ -80,40 +80,14 @@
                         <asp:Label runat="server" ID="lblDestination" meta:resourcekey="lblDestinationResource1"></asp:Label>
                     </label>
                 </div>
-                <div class="section"><span>2</span></div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Label runat="server" CssClass="asplab" ID="Label11" Text="Trip Items" meta:resourcekey="Label11Resource1"></asp:Label>
-                <div class="inner-wrap">
-                    <dx:ASPxGridView ID="ASPxGridView1" runat="server" Theme="PlasticBlue" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="ID" Width="100%" meta:resourcekey="ASPxGridView1Resource1">
-                        <Columns>
-                            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource1">
-                                <EditFormSettings Visible="False"></EditFormSettings>
-                            </dx:GridViewDataTextColumn>
 
-                            <dx:GridViewDataTextColumn FieldName="TripID" VisibleIndex="1" Visible="false" meta:resourcekey="GridViewDataTextColumnResource2"></dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="ItemDesc" VisibleIndex="3" meta:resourcekey="GridViewDataTextColumnResource3"></dx:GridViewDataTextColumn>
-
-                            <dx:GridViewDataImageColumn FieldName="ImageURL" VisibleIndex="2" meta:resourcekey="GridViewDataImageColumnResource1"></dx:GridViewDataImageColumn>
-                        </Columns>
-                    </dx:ASPxGridView>
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT * FROM [TripItems] WHERE ([TripID] = @TripID)">
-                        <SelectParameters>
-                            <asp:QueryStringParameter QueryStringField="id" Name="TripID" Type="Int32"></asp:QueryStringParameter>
-                        </SelectParameters>
-                    </asp:SqlDataSource>
-                </div>
 
                 <div class="section">
-                    <span>3</span>
+                    <span>2</span>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ID="Label12" CssClass="asplab" Text="Questions for this Shipment" meta:resourcekey="Label12Resource1"></asp:Label>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
-                   
-
                 <div class="inner-wrap">
-
-
                     <dx:ASPxGridView ID="ASPxGridView3" runat="server" Theme="PlasticBlue" Width="100%" KeyFieldName="QuestionID" AutoGenerateColumns="False" DataSourceID="SqlDataSource4" EnableTheming="True" OnCustomButtonInitialize="ASPxGridView3_CustomButtonInitialize" meta:resourcekey="ASPxGridView3Resource1" OnRowUpdating="ASPxGridView3_RowUpdating">
-
                         <Columns>
                             <dx:GridViewDataTextColumn FieldName="QuestionID" Caption="ID" VisibleIndex="0" Visible="false" meta:resourcekey="GridViewDataTextColumnResource4"></dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="Question" Caption="Question" ReadOnly="true" VisibleIndex="1" meta:resourcekey="GridViewDataTextColumnResource5">
@@ -134,14 +108,11 @@
                             </dx:GridViewDataDateColumn>
                             <dx:GridViewCommandColumn ButtonType="Button" Name="Answer" Caption="Answer" VisibleIndex="7" meta:resourcekey="GridViewCommandColumnResource1" ShowEditButton="True">
                                 <EditButton Text="<%$ Resources:GridViewDataTextColumnResource7.Caption %>"></EditButton>
-
                             </dx:GridViewCommandColumn>
                         </Columns>
                         <SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm" />
-
                     </dx:ASPxGridView>
-
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT TripQuestions.Question, Users.Name AS QuestionUser, TripQuestions.Answer, Users_1.Name AS AnswerUser, TripQuestions.QuestionTime, TripQuestions.AnswerTime, TripQuestions.QuestionID FROM TripQuestions LEFT OUTER JOIN Users AS Users_1 ON TripQuestions.AnswerUserID = Users_1.ID LEFT OUTER JOIN Users ON TripQuestions.QuestionUserID = Users.ID WHERE (TripQuestions.TripID = @ID) and QuestionPuplished=1">
+                    <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT     dbo.SharedTripQuestions.Question, dbo.Users.Name AS QuestionUser, dbo.SharedTripQuestions.Answer, Users_1.Name AS AnswerUser, dbo.SharedTripQuestions.QuestionTime, dbo.SharedTripQuestions.AnswerTime, dbo.SharedTripQuestions.QuestionID FROM dbo.SharedTripQuestions LEFT OUTER JOIN dbo.Users AS Users_1 ON dbo.SharedTripQuestions.AnswerUserID = Users_1.ID LEFT OUTER JOIN dbo.Users ON dbo.SharedTripQuestions.QuestionUserID = dbo.Users.ID WHERE     (dbo.SharedTripQuestions.TripID = @ID) AND (dbo.SharedTripQuestions.QuestionPuplished = 1)">
                         <SelectParameters>
                             <asp:QueryStringParameter QueryStringField="id" Name="ID"></asp:QueryStringParameter>
                         </SelectParameters>
@@ -149,7 +120,6 @@
                 </div>
                 <div class="section"><span>4</span></div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label runat="server" CssClass="asplab" ID="Label13" Text="Bids" meta:resourcekey="Label13Resource1"></asp:Label>
-
                 <div class="inner-wrap">
                     <div class="panel-body">
                         <dx:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" KeyFieldName="ID" DataSourceID="SqlDataSource3" Theme="PlasticBlue" Width="100%" OnCustomButtonCallback="ASPxGridView2_CustomButtonCallback" OnCustomButtonInitialize="ASPxGridView2_CustomButtonInitialize" meta:resourcekey="ASPxGridView2Resource1">
@@ -171,7 +141,7 @@
                                 </dx:GridViewCommandColumn>
                             </Columns>
                         </dx:ASPxGridView>
-                        <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT Bid.Price, Users.Name, Bid.BidExpiration, Bid.Note, Bid.Accepted, Bid.ID FROM Bid INNER JOIN Users ON Bid.UserID = Users.ID WHERE (Bid.TripID = @ID) and Puplished=1">
+                        <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:DefaultConnection %>' SelectCommand="SELECT     dbo.SharedTripsBid.Price, dbo.Users.Name, dbo.SharedTripsBid.BidExpiration, dbo.SharedTripsBid.Note, dbo.SharedTripsBid.Accepted, dbo.SharedTripsBid.ID FROM dbo.SharedTripsBid INNER JOIN dbo.Users ON dbo.SharedTripsBid.UserID = dbo.Users.ID WHERE     (dbo.SharedTripsBid.SharedTripID = @ID) AND (dbo.SharedTripsBid.Puplished = 1)">
                             <SelectParameters>
                                 <asp:QueryStringParameter QueryStringField="id" Name="ID"></asp:QueryStringParameter>
                             </SelectParameters>

@@ -358,6 +358,20 @@
     <Compile Include="SharedShipment\CreateSharedTrip.aspx.designer.cs">
       <DependentUpon>CreateSharedTrip.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SharedShipment\MySharedTripBids.aspx.cs">
+      <DependentUpon>MySharedTripBids.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharedShipment\MySharedTripBids.aspx.designer.cs">
+      <DependentUpon>MySharedTripBids.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SharedShipment\MySharedTrips.aspx.cs">
+      <DependentUpon>MySharedTrips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SharedShipment\MySharedTrips.aspx.designer.cs">
+      <DependentUpon>MySharedTrips.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SharedShipment\Question.aspx.cs">
       <DependentUpon>Question.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -813,6 +827,8 @@
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\wizardForm.js" />
     <Content Include="SharedShipment\CreateSharedTrip.aspx" />
+    <Content Include="SharedShipment\MySharedTripBids.aspx" />
+    <Content Include="SharedShipment\MySharedTrips.aspx" />
     <Content Include="SharedShipment\Question.aspx" />
     <Content Include="SharedShipment\SharedTripBids.aspx" />
     <Content Include="SharedShipment\SharedTrips.aspx" />
@@ -961,6 +977,10 @@
     <Content Include="SharedShipment\App_LocalResources\SharedTrips.aspx.en-GB.resx" />
     <Content Include="SharedShipment\App_LocalResources\CreateSharedTrip.aspx.en-GB.resx" />
     <Content Include="SharedShipment\App_LocalResources\SharedTripBids.aspx.en-GB.resx" />
+    <Content Include="SharedShipment\App_LocalResources\MySharedTrips.aspx.resx" />
+    <Content Include="SharedShipment\App_LocalResources\MySharedTrips.aspx.en-GB.resx" />
+    <Content Include="SharedShipment\App_LocalResources\MySharedTripBids.aspx.resx" />
+    <Content Include="SharedShipment\App_LocalResources\MySharedTripBids.aspx.en-GB.resx" />
     <EmbeddedResource Include="Shipments\App_LocalResources\TripBids.aspx.en-GB.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
