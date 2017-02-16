@@ -292,7 +292,6 @@
                             </div>
                         </div>
                     </div>
-                    
                         <div class="section"><span>4</span></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="Label4" CssClass="asplab" runat="server" Text="Price or Transporters bid" meta:resourcekey="Label4Resource1" ></asp:Label>

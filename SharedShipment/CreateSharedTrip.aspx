@@ -51,7 +51,7 @@
             margin-left: 12px;
             padding: 0 11px 0 13px;
             text-overflow: ellipsis;
-            /*width: 300px;*/
+            width: 40%;
         }
 
             #origin-input:focus,
@@ -182,6 +182,7 @@
                         AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
                             var me = this;
                             autocomplete.bindTo('bounds', this.map);
+                          
                             autocomplete.addListener('place_changed', function () {
                                 var place = autocomplete.getPlace();
                                 if (!place.place_id) {
@@ -190,19 +191,13 @@
                                 }
                                 if (mode === 'ORIG') {
                                     me.originPlaceId = place.place_id;
-                                    var xx = autocomplete.getBounds();
-                                    var lat = xx["f"]["b"];
-                                    var long = xx["f"]["f"];
-                                    document.getElementById("latn").value = "(" + lat + "," + long + ")";
+                                   
                                 } else {
                                     me.destinationPlaceId = place.place_id;
-                                    var xx2 = autocomplete.getBounds();
-                                    var lat2 = xx2["f"]["b"];
-                                    var long2 = xx2["f"]["f"];
-                                    document.getElementById("latn2").value = "(" + lat2 + "," + long2 + ")";
                                 }
 
                                 me.route();
+                                
                             });
 
                         };
@@ -212,7 +207,7 @@
                                 return;
                             }
                             var me = this;
-
+                            
                             this.directionsService.route({
                                 origin: { 'placeId': this.originPlaceId },
                                 destination: { 'placeId': this.destinationPlaceId },
@@ -220,6 +215,13 @@
                             }, function (response, status) {
                                 if (status === 'OK') {
                                     me.directionsDisplay.setDirections(response);
+                                    var x = response["routes"]["0"]["bounds"];
+                                    var lat = x["b"]["b"];
+                                    var long = x["b"]["f"];
+                                    document.getElementById("latn").value = "(" + lat + "," + long + ")";
+                                    var lat2 = x["f"]["b"];
+                                    var long2 = x["f"]["f"];
+                                    document.getElementById("latn2").value = "(" + lat2 + "," + long2 + ")";
                                 } else {
                                     window.alert('Directions request failed due to ' + status);
                                 }
@@ -231,7 +233,7 @@
                     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
                         async defer></script>
                     <!-- on local -->
-                   <%--   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
+                     <%-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
             async defer></script> --%>
                     <div class="section"><span>3</span></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label8" CssClass="asplab" runat="server" Text="Schedule" meta:resourcekey="Label3Resource1"></asp:Label>
@@ -465,9 +467,9 @@
                         <asp:LinkButton runat="server" ID="btnback" Text="Back" OnClick="btnback_Click" meta:resourcekey="btnbackResource1" />
                     </div>
                 </div>
-                <input type="hidden" id="latn" name="latn" />
+                <input type="text" id="latn" name="latn" />
 
-                <input type="hidden" id="latn2" name="latn2" />
+                <input type="text" id="latn2" name="latn2" />
 
             </div>
         </div>

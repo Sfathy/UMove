@@ -40,7 +40,7 @@
             margin-left: 12px;
             padding: 0 11px 0 13px;
             text-overflow: ellipsis;
-            width: 300px;
+            width: 40%;
         }
 
             #origin-input:focus,
@@ -120,14 +120,12 @@
                             // This example requires the Places library. Include the libraries=places
                             // parameter when you first load the API. For example:
                             // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
                             function initMap() {
                                 var map = new google.maps.Map(document.getElementById('map'), {
                                     mapTypeControl: false,
                                     center: { lat: -33.80820191724644, lng: -33.979191697010805 },
                                     zoom: 13
                                 });
-
                                 new AutocompleteDirectionsHandler(map);
                             }
                             /**
@@ -144,24 +142,19 @@
                                 this.directionsService = new google.maps.DirectionsService;
                                 this.directionsDisplay = new google.maps.DirectionsRenderer;
                                 this.directionsDisplay.setMap(map);
-
                                 var originAutocomplete = new google.maps.places.Autocomplete(
                                     originInput, { placeIdOnly: true });
                                 var destinationAutocomplete = new google.maps.places.Autocomplete(
                                     destinationInput, { placeIdOnly: true });
-
                                 this.setupClickListener('changemode-walking', 'WALKING');
                                 this.setupClickListener('changemode-transit', 'TRANSIT');
                                 this.setupClickListener('changemode-driving', 'DRIVING');
-
                                 this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
                                 this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
-
                                 this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
                                 this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
                                 this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
                             }
-
                             // Sets a listener on a radio button to change the filter type on Places
                             // Autocomplete.
                             AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
@@ -173,7 +166,6 @@
                                     var xx = me.route();
                                 });
                             };
-
                             AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
                                 var me = this;
                                 autocomplete.bindTo('bounds', this.map);
@@ -185,21 +177,11 @@
                                     }
                                     if (mode === 'ORIG') {
                                         me.originPlaceId = place.place_id;
-                                        var xx = autocomplete.getBounds();
-                                        var lat = xx["f"]["b"];
-                                        var long = xx["f"]["f"];
-                                        document.getElementById("latn").value = "(" + lat + "," + long + ")";
                                     } else {
                                         me.destinationPlaceId = place.place_id;
-                                        var xx2 = autocomplete.getBounds();
-                                        var lat2 = xx2["f"]["b"];
-                                        var long2 = xx2["f"]["f"];
-                                        document.getElementById("latn2").value = "(" + lat2 + "," + long2 + ")";
                                     }
-
                                     me.route();
                                 });
-
                             };
 
                             AutocompleteDirectionsHandler.prototype.route = function () {
@@ -215,6 +197,13 @@
                                 }, function (response, status) {
                                     if (status === 'OK') {
                                         me.directionsDisplay.setDirections(response);
+                                        var x = response["routes"]["0"]["bounds"];
+                                        var lat = x["b"]["b"];
+                                        var long = x["b"]["f"];
+                                        document.getElementById("latn").value = "(" + lat + "," + long + ")";
+                                        var lat2 = x["f"]["b"];
+                                        var long2 = x["f"]["f"];
+                                        document.getElementById("latn2").value = "(" + lat2 + "," + long2 + ")";
                                     } else {
                                         window.alert('Directions request failed due to ' + status);
                                     }
@@ -226,7 +215,7 @@
                         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAulFpy14Z-NyksphFAn9_jn2pNKM8XthM&libraries=places&callback=initMap"
                             async defer></script>
                         <!-- on local -->
-                        <%-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
+                       <%--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvj4pilXFB6MPNuPSMfqlLq3me9oZc9s&libraries=places&callback=initMap"
                                 async defer></script>--%>
                         <div class="row">
                             <div class="col-md-12">
