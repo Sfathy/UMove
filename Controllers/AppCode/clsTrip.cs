@@ -136,7 +136,8 @@ namespace UMoveNew.Controllers.AppCode
             List<Trip> trips = new List<Trip>();
             string sql = "select * from Trip";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
-            for (int i = 0; i < dt.Rows.Count; i++)
+            trips = dt.DataTableToList<Trip>();
+            /*for (int i = 0; i < dt.Rows.Count; i++)
             {
                 trips.Add(new Trip()
                 {
@@ -144,7 +145,7 @@ namespace UMoveNew.Controllers.AppCode
                     UserID = int.Parse(dt.Rows[i]["UserID"].ToString()),
                     TripCost = decimal.Parse(dt.Rows[i]["TripCost"].ToString()),
                 });
-            }
+            }*/
             return trips;
         }
      

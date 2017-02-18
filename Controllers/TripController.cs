@@ -12,15 +12,15 @@ namespace UMoveNew.Controllers
     public class TripController : ApiController
     {
         // GET api/trip
-        public List<Trip> Get()
+        public HttpResponseMessage Get()
         {
-            return new List<Trip>();
+            return Request.CreateResponse(HttpStatusCode.OK, new clsTrip().getList());
         }
 
         // GET api/trip/5
-        public string Get(int id)
+        public HttpResponseMessage Get(int id)
         {
-            return "value";
+            return Request.CreateResponse(HttpStatusCode.OK, new clsTrip().get(id));
         }
 
         // POST api/trip
