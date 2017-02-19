@@ -108,49 +108,57 @@ namespace UMoveNew.Controllers.AppCode
 
         public List<Bid> getList(int tripID)
         {
-            List<Bid> bids = new List<Bid>();
+            List<Bid> bids = null;
             string sql = "select * from bid where TripID = " + tripID.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
-            for (int i = 0; i < dt.Rows.Count; i++)
+            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
-                bids.Add(new Bid()
-                {
-                    ID = int.Parse(dt.Rows[i]["ID"].ToString()),
-                    UserID = int.Parse(dt.Rows[i]["UserID"].ToString()),
-                    Price = decimal.Parse(dt.Rows[i]["Price"].ToString()),
-                    TripID = int.Parse(dt.Rows[i]["TripID"].ToString()),
-                    TruckType = int.Parse(dt.Rows[i]["TruckType"].ToString()),
-                    PickupDate = DateTime.Parse(dt.Rows[i]["PickupDate"].ToString()),
-                    DeliveryDate = DateTime.Parse(dt.Rows[i]["DeliveryDate"].ToString()),
-                    BidExpiration = DateTime.Parse(dt.Rows[i]["BidExpiration"].ToString()),
-                    Note = dt.Rows[i]["Note"].ToString(),
-                    TermCondition = dt.Rows[i]["TermCondition"].ToString(),
-                    Accepted = int.Parse(dt.Rows[i]["Accepted"].ToString())
+                bids = dt.DataTableToList<Bid>();
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+                //    bids.Add(new Bid()
+                //    {
+                //        ID = int.Parse(dt.Rows[i]["ID"].ToString()),
+                //        UserID = int.Parse(dt.Rows[i]["UserID"].ToString()),
+                //        Price = decimal.Parse(dt.Rows[i]["Price"].ToString()),
+                //        TripID = int.Parse(dt.Rows[i]["TripID"].ToString()),
+                //        TruckType = int.Parse(dt.Rows[i]["TruckType"].ToString()),
+                //        PickupDate = DateTime.Parse(dt.Rows[i]["PickupDate"].ToString()),
+                //        DeliveryDate = DateTime.Parse(dt.Rows[i]["DeliveryDate"].ToString()),
+                //        BidExpiration = DateTime.Parse(dt.Rows[i]["BidExpiration"].ToString()),
+                //        Note = dt.Rows[i]["Note"].ToString(),
+                //        TermCondition = dt.Rows[i]["TermCondition"].ToString(),
+                //        Accepted = int.Parse(dt.Rows[i]["Accepted"].ToString())
 
-                });
+                //    });
             }
-            return bids;
+           return bids;
+            
         }
         public Bid get(int id) {
             string sql = "select * from bid where ID = " + id.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
-            Bid bid = new Bid();
-                
-                   bid.ID = int.Parse(dt.Rows[0]["ID"].ToString());
-                    bid.UserID = int.Parse(dt.Rows[0]["UserID"].ToString());
-                    bid.Price = decimal.Parse(dt.Rows[0]["Price"].ToString());
-                    bid.TripID = int.Parse(dt.Rows[0]["TripID"].ToString());
-                    bid.TruckType = int.Parse(dt.Rows[0]["TruckType"].ToString());
-                    bid.PickupDate = DateTime.Parse(dt.Rows[0]["PickupDate"].ToString());
-                    bid.DeliveryDate = DateTime.Parse(dt.Rows[0]["DeliveryDate"].ToString());
-                    bid.BidExpiration = DateTime.Parse(dt.Rows[0]["BidExpiration"].ToString());
-                    bid.Note = dt.Rows[0]["Note"].ToString();
-                    bid.TermCondition = dt.Rows[0]["TermCondition"].ToString();
-                    bid.Accepted = int.Parse(dt.Rows[0]["Accepted"].ToString());
+            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+            {
+                Bid bid = new Bid();
 
-               
-            
-            return bid;
+                bid.ID = int.Parse(dt.Rows[0]["ID"].ToString());
+                bid.UserID = int.Parse(dt.Rows[0]["UserID"].ToString());
+                bid.Price = decimal.Parse(dt.Rows[0]["Price"].ToString());
+                bid.TripID = int.Parse(dt.Rows[0]["TripID"].ToString());
+                bid.TruckType = int.Parse(dt.Rows[0]["TruckType"].ToString());
+                bid.PickupDate = DateTime.Parse(dt.Rows[0]["PickupDate"].ToString());
+                bid.DeliveryDate = DateTime.Parse(dt.Rows[0]["DeliveryDate"].ToString());
+                bid.BidExpiration = DateTime.Parse(dt.Rows[0]["BidExpiration"].ToString());
+                bid.Note = dt.Rows[0]["Note"].ToString();
+                bid.TermCondition = dt.Rows[0]["TermCondition"].ToString();
+                bid.Accepted = int.Parse(dt.Rows[0]["Accepted"].ToString());
+
+
+
+                return bid;
+            }
+            return null;
         }
         /*public List<UserLocation> get(int UserID)
         {

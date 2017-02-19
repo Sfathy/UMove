@@ -20,7 +20,7 @@ namespace UMoveNew.Controllers
         // GET api/trip/5
         public HttpResponseMessage Get(int id)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, new clsTrip().get(id));
+            return Request.CreateResponse(HttpStatusCode.OK, new clsTrip().getTrip(id));
         }
 
         // POST api/trip
