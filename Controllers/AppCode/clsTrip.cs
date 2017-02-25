@@ -189,16 +189,13 @@ namespace UMoveNew.Controllers.AppCode
             return t;
 
         }
-        public List<UserLocation> get(int UserID)
+        public List<Trip> get(int UserID)
         {
-            List<UserLocation> userlocations = new List<UserLocation>();
-            string sql = "select * from UserLocation where UserID = " + UserID.ToString();
+            List<Trip> userTrips = new List<Trip>();
+            string sql = "SELECT Trip.Name ,Trip.Country,Trip.PaymentType,Trip.SourceLocationText, Trip.DeliveryLocationText, Trip.PicUpDate, Trip.DeliveryDate,Trip.TripCost ,DATEDIFF(hh, Trip.PicUpDate, Trip.DeliveryDate) AS Ending,Trip.Note,Trip.PicUpType,Trip.DriverID,Trip.DeliveryType,Trip.CustomerID, Trip.ID,Trip.UserID as UserID,Trip.DestLat,Trip.DestLag,Trip.SourceLag,Trip.SourceLat ,ACOS(SIN(Trip.SourceLat) * SIN(Trip.DestLat) + COS(Trip.SourceLat) * COS(Trip.DestLat) * COS(Trip.DestLag - Trip.DestLag)) AS Dis from Trip where UserID=" + UserID.ToString();
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                userlocations.Add(new UserLocation() { ID = int.Parse(dt.Rows[i]["ID"].ToString()), UserID = int.Parse(dt.Rows[i]["UserID"].ToString()), Latitude = decimal.Parse(dt.Rows[i]["Latitude"].ToString()), Longitude = decimal.Parse(dt.Rows[i]["Lagnitude"].ToString()), DateTime = DateTime.Parse(dt.Rows[i]["DateTime"].ToString()) });
-            }
-            return userlocations;
+            userTrips = dt.DataTableToList<Trip>();
+            return userTrips;
         }
         public string getCategoryName(int catID)
         {
