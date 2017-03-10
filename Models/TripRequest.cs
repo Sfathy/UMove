@@ -8,6 +8,17 @@ namespace UMoveNew.Models
 {
     public class TripRequest
     {
+        public enum Freq
+        {
+            Day=1,
+            Week=2,
+            Month=3
+        }
+        public enum tripType
+        {
+            byUser =1,
+            byDriver=2
+        }
         public int ID { get; set; }
 
         public int UserID { get; set; }
@@ -21,7 +32,7 @@ namespace UMoveNew.Models
         public int DriverID { get; set; }
         public int CustomerID { get; set; }
 
-        public int tripType { get; set; }
+        public int TripType { get; set; }
         public int PaymentMethod { get; set; }
         public int CarCategory { get; set; }
         public int Status { get; set; }
@@ -50,11 +61,25 @@ namespace UMoveNew.Models
         public string  StartAddress { get; set; }
         public string EndAddress { get; set; }
 
-        public string EstimatedCost { get; set; }
+        public string EstimatedCost  { get; set; }
 
         public string EstimatedDuration { get; set; }
         public string EstimatedDistance { get; set; }
         public string Steps { get; set; }
         public int NoOfSeats { get; set; }
+        public int TripCreator { get; set; }
+        public TimeSpan EstimatedStartTime { get; set; }
+        public TimeSpan EstimatedEndTime { get; set; }
+        public Decimal FeesPerChair { get; set; }
+        public Decimal FeesforCar { get; set; }
+        public bool IsSchedule { get; set; }
+        public int Every { get; set; }
+        public int Frequency { get; set; }
+
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+
+
+
     }
 }

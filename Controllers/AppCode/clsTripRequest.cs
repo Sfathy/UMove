@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using System.Web.Http;
 using UMoveNew.Models;
 
 namespace UMoveNew.Controllers.AppCode
@@ -24,11 +25,42 @@ namespace UMoveNew.Controllers.AppCode
             Canceled = 5,
             Expired = 6
         }
+        public List<TripRequest> SearchTrip(DateTime? searchDate,int carCategory,string startAddress,string endAddress)
+        {
+            List<TripRequest> trips = null;
+            DateTime date;
+            if (searchDate == DateTime.MinValue || searchDate == null)
+                date = DateTime.Today;
+            else
+                date = searchDate.Value;
+            string sql = "Select TripRequest.ID,   TripRequest.NoOfSeats, CarDescription , CarNo,  TripRequest.UserID, " +
+                "TripRequest.EstimatedDistance,TripRequest.EstimatedDuration,TripRequest.EstimatedCost," +
+                "TripRequest.SourceLat, TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, " +
+                "dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod," +
+                " dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost," +
+                " dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, " +
+                "dbo.TripRequest.EndAddress, TripCreator,EstimatedStartTime,EstimatedEndTime,FeesPerChair,FeesforCar, "+
+                " StartDate,EndDate, " +
+                "dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, " +
+                "dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon " +
+                "FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID " +
+                "LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID " +
+                "left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID" +
+                " where TripCreator = 2 and CarCategory = " + carCategory.ToString() + " and '" + date.ToShortDateString() + "' between StartDate and EndDate";
+            if (!string.IsNullOrEmpty(startAddress))
+                sql += " and StartAddress like '%" + startAddress + "%";
+            if (!string.IsNullOrEmpty(endAddress))
+                sql += " and EndAddress like '%" + endAddress + "%";
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+            if(dt != null && dt.Rows != null && dt.Rows.Count >0)
+                trips = dt.DataTableToList<TripRequest>();
+            return trips;
+        }
         public int insert(TripRequest trip)
         {
             JObject googleApi = (JObject)JsonConvert.DeserializeObject(trip.Route, typeof(JObject));
             //check if the user name exist before
-            SqlParameter[] param = new SqlParameter[19];
+            SqlParameter[] param = new SqlParameter[29];
             param[0] = DataAccess.AddParamter("@UserID", trip.UserID, SqlDbType.Int, 50);
             param[1] = DataAccess.AddParamter("@DestLat", trip.DestLat, SqlDbType.Decimal, 500);
             param[2] = DataAccess.AddParamter("@DestLong", trip.DestLong, SqlDbType.Decimal, 500);
@@ -38,25 +70,43 @@ namespace UMoveNew.Controllers.AppCode
             param[6] = DataAccess.AddParamter("@PicUpDate", trip.PicUpDate, SqlDbType.DateTime, 50);
             param[7] = DataAccess.AddParamter("@PaymentMethod", trip.PaymentMethod, SqlDbType.Int, 50);
             param[8] = DataAccess.AddParamter("@CarCategory", trip.CarCategory, SqlDbType.Int, 50);
-            param[9] = DataAccess.AddParamter("@Route", googleApi.ToString(), SqlDbType.NVarChar, int.MaxValue);
-            param[10] = DataAccess.AddParamter("@StartAddress", trip.StartAddress, SqlDbType.NVarChar, int.MaxValue);
-            param[11] = DataAccess.AddParamter("@EndAddress", trip.EndAddress, SqlDbType.NVarChar, int.MaxValue);
+            param[9] = DataAccess.AddParamter("@Route", googleApi==null? "": googleApi.ToString(), SqlDbType.NVarChar, int.MaxValue);
+            param[10] = DataAccess.AddParamter("@StartAddress",string.IsNullOrEmpty(trip.StartAddress)?"": trip.StartAddress, SqlDbType.NVarChar, int.MaxValue);
+            param[11] = DataAccess.AddParamter("@EndAddress", string.IsNullOrEmpty(trip.EndAddress) ? "" : trip.EndAddress, SqlDbType.NVarChar, int.MaxValue);
 
             param[12] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
             param[13] = DataAccess.AddParamter("@WaitingTime", trip.WaitingTime, SqlDbType.Decimal, 50);
             param[14] = DataAccess.AddParamter("@Distance", trip.Distance, SqlDbType.Decimal, 50);
 
-            param[15] = DataAccess.AddParamter("@EstimatedCost", trip.EstimatedCost, SqlDbType.NVarChar, 50);
-            param[16] = DataAccess.AddParamter("@EstimatedDuration", trip.EstimatedDuration , SqlDbType.NVarChar, 50);
-            param[17] = DataAccess.AddParamter("@EstimatedDistance", trip.EstimatedDistance, SqlDbType.NVarChar, 50);
+            param[15] = DataAccess.AddParamter("@EstimatedCost", string.IsNullOrEmpty(trip.EstimatedCost) ? "" : trip.EstimatedCost, SqlDbType.NVarChar, 50);
+            param[16] = DataAccess.AddParamter("@EstimatedDuration", string.IsNullOrEmpty(trip.EstimatedDuration) ? "" : trip.EstimatedDuration, SqlDbType.NVarChar, 50);
+            param[17] = DataAccess.AddParamter("@EstimatedDistance", string.IsNullOrEmpty(trip.EstimatedDistance) ? "" : trip.EstimatedDistance, SqlDbType.NVarChar, 50);
             param[18] = DataAccess.AddParamter("@NoOfSeats", trip.NoOfSeats, SqlDbType.Int, 50);
+
+
+            param[19] = DataAccess.AddParamter("@TripCreator", trip.TripCreator, SqlDbType.Int, 50);
+            param[20] = DataAccess.AddParamter("@EstimatedStartTime", trip.EstimatedStartTime, SqlDbType.Time, 50);
+            param[21] = DataAccess.AddParamter("@EstimatedEndTime", trip.EstimatedEndTime, SqlDbType.Time, 50);
+            param[22] = DataAccess.AddParamter("@IsSchedule", trip.IsSchedule, SqlDbType.Bit, 50);
+            param[23] = DataAccess.AddParamter("@FeesPerChair", trip.FeesPerChair, SqlDbType.Decimal, 50);
+            param[24] = DataAccess.AddParamter("@FeesforCar", trip.FeesforCar, SqlDbType.Decimal, 50);
+            param[25] = DataAccess.AddParamter("@Every", trip.Every, SqlDbType.Int, 50);
+            param[26] = DataAccess.AddParamter("@Frequency", trip.Frequency, SqlDbType.Int, 50);
+            param[27] = DataAccess.AddParamter("@StartDate", trip.StartDate, SqlDbType.Date, 50);
+            param[28] = DataAccess.AddParamter("@EndDate", trip.EndDate, SqlDbType.Date, 50);
 
             
             //param[10] = DataAccess.AddParamter("@Cost", trip.Cost, SqlDbType.Decimal, 50);
 
 
-            string sql = "insert into TripRequest([UserID],[DestLat],[DestLong],[SourceLat],[SourceLong],[DriverID],[PicUpDate],PaymentMethod,CarCategory,Route,StartAddress,EndAddress,Status,Cost,WaitingTime,Distance,EstimatedCost,EstimatedDuration,EstimatedDistance,NoOfSeats) values" +
-                "(@UserID,@DestLat,@DestLong,@SourceLat,@SourceLong,@DriverID,@PicUpDate,@PaymentMethod,@CarCategory,@Route,@StartAddress,@EndAddress," + ((int)TripStatus.Request).ToString() + ",@Cost,@WaitingTime,@Distance,@EstimatedCost,@EstimatedDuration,@EstimatedDistance,@NoOfSeats)";
+            string sql = "insert into TripRequest([UserID],[DestLat],[DestLong],[SourceLat],[SourceLong],[DriverID],"+
+                "[PicUpDate],PaymentMethod,CarCategory,Route,StartAddress,EndAddress,Status,Cost,WaitingTime,Distance,"+
+                "EstimatedCost,EstimatedDuration,EstimatedDistance,NoOfSeats,TripCreator,EstimatedStartTime,EstimatedEndTime," +
+                "IsSchedule,FeesPerChair,FeesforCar,Every,Frequency,StartDate,EndDate) values" +
+                "(@UserID,@DestLat,@DestLong,@SourceLat,@SourceLong,@DriverID,@PicUpDate,@PaymentMethod,@CarCategory,"+
+                "@Route,@StartAddress,@EndAddress," + ((int)TripStatus.Request).ToString() + ",@Cost,@WaitingTime,@Distance,"+
+                "@EstimatedCost,@EstimatedDuration,@EstimatedDistance,@NoOfSeats,@TripCreator,@EstimatedStartTime,@EstimatedEndTime," +
+                "@IsSchedule,@FeesPerChair,@FeesforCar,@Every,@Frequency,@StartDate,@EndDate)";
             DataAccess.ExecuteSQLNonQuery(sql, param);
             int tripID = 0;
             DataTable dt = DataAccess.ExecuteSQLQuery("select Max(ID) as MaxID from TripRequest");
@@ -266,6 +316,28 @@ namespace UMoveNew.Controllers.AppCode
                 return dt;
             }
             return null;
+        }
+
+        public int ReserveTrip(ReservedTrip reservedTrip)
+        {
+            TripRequest t = get(reservedTrip.TripID);
+            //get the reserved seats for this day
+            string sql = "select *from TripReservation where tripID = " +reservedTrip.TripID.ToString() +" and reservationDate='"+reservedTrip.ReserveDate.ToShortDateString()+"'";
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+            List<ReservedTrip> ReservedSeats = dt.DataTableToList<ReservedTrip>();
+            int researvedSeats = ReservedSeats.Sum(m => m.NoOfSeats);
+            //validate availability
+            ///get the total no of seats
+            sql = "select * from CarCategory";
+            DataTable dtCarCat = DataAccess.ExecuteSQLQuery(sql);
+            int totalNoOfSeats = dtCarCat.Rows[0]["maxsize"] == DBNull.Value ? 0 : int.Parse(dtCarCat.Rows[0]["maxsize"].ToString());
+            if (totalNoOfSeats < researvedSeats + reservedTrip.NoOfSeats)
+                return -1;
+            //add the reservation to the DB
+            sql = "insert into TripReservation(TripID,ReservationDate,NoOfSeats) values("+reservedTrip.TripID.ToString()
+                +",'"+reservedTrip.ReserveDate.ToShortDateString()+"',"+reservedTrip.NoOfSeats.ToString()+")";
+            return DataAccess.ExecuteSQLNonQuery(sql);
+            
         }
     }
 }

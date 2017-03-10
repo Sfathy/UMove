@@ -196,20 +196,7 @@
     <Compile Include="Administrator\AllBids.aspx.designer.cs">
       <DependentUpon>AllBids.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Administrator\AllSharedBids.aspx.cs">
-      <DependentUpon>AllSharedBids.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Administrator\AllSharedBids.aspx.designer.cs">
-      <DependentUpon>AllSharedBids.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Administrator\AllSharedTrips.aspx.cs">
-      <DependentUpon>AllSharedTrips.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Administrator\AllSharedTrips.aspx.designer.cs">
-      <DependentUpon>AllSharedTrips.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Administrator\AllSharedTrips.aspx.designer.cs" />
     <Compile Include="Administrator\AllTrips.aspx.cs">
       <DependentUpon>AllTrips.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -223,13 +210,6 @@
     </Compile>
     <Compile Include="Administrator\Questions.aspx.designer.cs">
       <DependentUpon>Questions.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Administrator\SharedQuestions.aspx.cs">
-      <DependentUpon>SharedQuestions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Administrator\SharedQuestions.aspx.designer.cs">
-      <DependentUpon>SharedQuestions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administrator\SharedTripDetails.aspx.cs">
       <DependentUpon>SharedTripDetails.aspx</DependentUpon>
@@ -281,6 +261,7 @@
     <Compile Include="Controllers\AppCode\RegisterDriverController.cs" />
     <Compile Include="Controllers\BalanceController.cs" />
     <Compile Include="Controllers\BecomeDriverController.cs" />
+    <Compile Include="Controllers\BidsController.cs" />
     <Compile Include="Controllers\CarCategoryController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ChangeUserInfoController.cs" />
@@ -297,8 +278,9 @@
     <Compile Include="Controllers\PaymentMethodController.cs" />
     <Compile Include="Controllers\RateDriverController.cs" />
     <Compile Include="Controllers\RateUserController.cs" />
+    <Compile Include="Controllers\ReserveTripController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
-    <Compile Include="Controllers\SharedTripsController.cs" />
+    <Compile Include="Controllers\TripBidsController.cs" />
     <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Controllers\TripCostController.cs" />
     <Compile Include="Controllers\TripDetailsController.cs" />
@@ -306,10 +288,12 @@
     <Compile Include="Controllers\TripIssueController.cs" />
     <Compile Include="Controllers\TripRquestController.cs" />
     <Compile Include="Controllers\TripsController.cs" />
+    <Compile Include="Controllers\TripSearchController.cs" />
     <Compile Include="Controllers\TripStatusController.cs" />
     <Compile Include="Controllers\userController.cs" />
     <Compile Include="Controllers\UserPhonesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserTripController.cs" />
     <Compile Include="Controllers\VerfiyNoController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -328,6 +312,7 @@
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\paymentMethodDetails.cs" />
     <Compile Include="Models\RateDriver.cs" />
+    <Compile Include="Models\ReservedTrip.cs" />
     <Compile Include="Models\restPasswordController.cs" />
     <Compile Include="Models\SharedTrip.cs" />
     <Compile Include="Models\SubCategory.cs" />
@@ -336,21 +321,12 @@
     <Compile Include="Models\TripQuestions.cs" />
     <Compile Include="Models\TripRequest.cs" />
     <Compile Include="Models\TripRoute.cs" />
+    <Compile Include="Models\TripSearchCriteria.cs" />
     <Compile Include="Models\TripService.cs" />
     <Compile Include="Models\UserLocation.cs" />
     <Compile Include="Models\UserPhones.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="SharedShipment\CreateSharedTrip.aspx.cs">
       <DependentUpon>CreateSharedTrip.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -530,16 +506,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NotAuthonticated.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\SharedTrips\Index.en-GB.Designer.cs">
-      <DependentUpon>Index.en-GB.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Views\SharedTrips\Index.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Index.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Views\SharedTrips\Index.Designer.cs" />
+    <Compile Include="Views\SharedTrips\Index.en-GB.Designer.cs" />
     <Compile Include="Views\Shared\Layout.en-GB.Designer.cs">
       <DependentUpon>Layout.en-GB.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -639,7 +607,6 @@
   <ItemGroup>
     <Content Include="Administrator\AllBids.aspx" />
     <Content Include="Administrator\AllSharedBids.aspx" />
-    <Content Include="Administrator\AllSharedTrips.aspx" />
     <Content Include="Administrator\AllTrips.aspx" />
     <Content Include="Administrator\Questions.aspx" />
     <Content Include="Administrator\SharedQuestions.aspx" />
@@ -800,10 +767,7 @@
     <Content Include="bin\UMoveNew.dll.config" />
     <Content Include="bin\vssver.scc" />
     <Content Include="Administrator\Admin.Master" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Properties\PublishProfiles\umove2.mline-ksa1.com - Web Deploy %282%29.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -967,10 +931,6 @@
     <Content Include="Shipments\App_LocalResources\TripEdit.aspx.en-GB.resx" />
     <Content Include="Shipments\App_LocalResources\MyCars.aspx.resx" />
     <Content Include="Shipments\App_LocalResources\MyCars.aspx.en-GB.resx" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <Content Include="SharedShipment\App_LocalResources\CreateSharedTrip.aspx.resx" />
     <Content Include="SharedShipment\App_LocalResources\SharedTripBids.aspx.resx" />
     <Content Include="SharedShipment\App_LocalResources\SharedTrips.aspx.resx" />
@@ -991,14 +951,6 @@
     <EmbeddedResource Include="Views\Admin\NotAuthonticated.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NotAuthonticated.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\SharedTrips\Index.en-GB.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Index.en-GB.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\SharedTrips\Index.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\Layout.en-GB.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
