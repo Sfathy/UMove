@@ -88,7 +88,18 @@ namespace UMoveNew.Controllers
           routs.Add("StartAddress", t.StartAddress);
           routs.Add("EndAddress", t.EndAddress);
           routs.Add("NoOfSeats", t.NoOfSeats);
-          routs.Add("Steps", t.Steps); 
+          routs.Add("Steps", t.Steps);
+
+          routs.Add("TripCreator", t.TripCreator);
+          routs.Add("EstimatedStartTime", t.EstimatedStartTime);
+          routs.Add("EstimatedEndTime", t.EstimatedEndTime);
+          routs.Add("IsSchedule", t.IsSchedule);
+          routs.Add("FeesPerChair", t.FeesPerChair);
+          routs.Add("FeesforCar", t.FeesforCar);
+          routs.Add("Every", t.Every);
+          routs.Add("Frequency", t.Frequency);
+          routs.Add("StartDate", t.StartDate);
+          routs.Add("EndDate", t.EndDate); 
             string s = JsonConvert.SerializeObject(routs);
             string jsonString =JsonConvert.SerializeObject(t);
            // return t;

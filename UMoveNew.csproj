@@ -305,6 +305,7 @@
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\changePassword.cs" />
     <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\EndedTripInfo.cs" />
     <Compile Include="Models\FavDriver.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Installation.cs" />

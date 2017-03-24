@@ -12,6 +12,7 @@ namespace UMoveNew.Models
             public int TripID { get; set; }
             public int NoOfSeats { get; set; }
             public DateTime ReserveDate { get; set; }
+            public int UserID { get; set; }
 
         
     }

@@ -46,11 +46,11 @@ namespace UMoveNew.Controllers.AppCode
                 "FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID " +
                 "LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID " +
                 "left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID" +
-                " where TripCreator = 2 and CarCategory = " + carCategory.ToString() + " and '" + date.ToShortDateString() + "' between StartDate and EndDate";
+                " where TripCreator = 2 and CarCategory = " + carCategory.ToString() + " and '" + date + "' between StartDate and EndDate";
             if (!string.IsNullOrEmpty(startAddress))
-                sql += " and StartAddress like '%" + startAddress + "%";
+                sql += " and StartAddress like '%" + startAddress + "%'";
             if (!string.IsNullOrEmpty(endAddress))
-                sql += " and EndAddress like '%" + endAddress + "%";
+                sql += " and EndAddress like '%" + endAddress + "%'";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if(dt != null && dt.Rows != null && dt.Rows.Count >0)
                 trips = dt.DataTableToList<TripRequest>();
@@ -161,6 +161,18 @@ namespace UMoveNew.Controllers.AppCode
                 tr.EstimatedCost = (dt.Rows[0]["EstimatedCost"] == DBNull.Value) ? "" : dt.Rows[0]["EstimatedCost"].ToString();
                 tr.EstimatedDuration = (dt.Rows[0]["EstimatedDuration"] == DBNull.Value) ? "" : dt.Rows[0]["EstimatedDuration"].ToString();
 
+                tr.TripCreator = (dt.Rows[0]["TripCreator"] == DBNull.Value) ? 1 : int.Parse(dt.Rows[0]["TripCreator"].ToString());
+                tr.EstimatedStartTime = (dt.Rows[0]["EstimatedStartTime"] == DBNull.Value) ? TimeSpan.MinValue : TimeSpan.Parse(dt.Rows[0]["EstimatedStartTime"].ToString());
+                tr.EstimatedEndTime = (dt.Rows[0]["EstimatedEndTime"] == DBNull.Value) ? TimeSpan.MinValue : TimeSpan.Parse(dt.Rows[0]["EstimatedEndTime"].ToString());
+
+                tr.IsSchedule = (dt.Rows[0]["IsSchedule"] == DBNull.Value) ? false : Boolean.Parse( dt.Rows[0]["IsSchedule"].ToString());
+                tr.FeesPerChair = (dt.Rows[0]["FeesPerChair"] == DBNull.Value) ? 0 : Decimal.Parse( dt.Rows[0]["FeesPerChair"].ToString());
+                tr.FeesforCar = (dt.Rows[0]["FeesforCar"] == DBNull.Value) ? 0 :Decimal.Parse( dt.Rows[0]["FeesforCar"].ToString());
+                tr.Every = (dt.Rows[0]["Every"] == DBNull.Value) ? 0 : int.Parse(dt.Rows[0]["Every"].ToString());
+                tr.Frequency = (dt.Rows[0]["Frequency"] == DBNull.Value) ? 0 : int.Parse( dt.Rows[0]["Frequency"].ToString());
+                tr.StartDate = (dt.Rows[0]["StartDate"] == DBNull.Value) ? DateTime.MinValue :DateTime.Parse( dt.Rows[0]["StartDate"].ToString());
+                tr.EndDate = (dt.Rows[0]["EndDate"] == DBNull.Value) ? DateTime.MinValue :DateTime.Parse( dt.Rows[0]["EndDate"].ToString());
+
                 //tr.EndTime = DateTime.Now;
                 //string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + tr.SourceLat.ToString() + "%2C" + tr.Sourcelong.ToString() + "&destination=" + tr.DestLat.ToString() + "%2C" + tr.DestLong.ToString();
                 //string jsonString = string.Empty;
@@ -183,7 +195,8 @@ namespace UMoveNew.Controllers.AppCode
         public DataTable get(int userId,int userType,int isFuture,int isActive)
         {
 
-            string sql = "SELECT TripRequest.ID,   TripRequest.NoOfSeats, CarDescription , CarNo,  TripRequest.UserID, TripRequest.EstimatedDistance,TripRequest.EstimatedDuration,TripRequest.EstimatedCost,TripRequest.SourceLat, TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID";
+            string sql = "SELECT TripRequest.ID, TripCreator,EstimatedStartTime,EstimatedEndTime," +
+                "IsSchedule,FeesPerChair,FeesforCar,Every,Frequency,StartDate,EndDate,  TripRequest.NoOfSeats, CarDescription , CarNo,  TripRequest.UserID, TripRequest.EstimatedDistance,TripRequest.EstimatedDuration,TripRequest.EstimatedCost,TripRequest.SourceLat, TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID";
             if(userType == 0)
                 sql += " where dbo.TripRequest.UserID = " + userId.ToString();
             else
@@ -223,21 +236,130 @@ namespace UMoveNew.Controllers.AppCode
             return tripID;
         }
 
-        public int End(int tripID,decimal waitingTime,decimal distance,decimal cost,string steps)
+        public int End(int tripID,EndedTripInfo endedTripInfo)
         {
-            string sql = "update TripRequest set Status = " + ((int)TripStatus.Ended).ToString() + ",EndTime = '"+DateTime.UtcNow+"',   WaitingTime = "+ waitingTime.ToString()+", Distance = " + distance.ToString() +", Cost = " + cost.ToString() + ", Steps = '" + steps +"' Where ID = " + tripID.ToString();
-            DataAccess.ExecuteSQLNonQuery(sql);
-            TripRequest t = new clsTripRequest().get(tripID);
-            //update user balance (KM only)
-            sql = " if exists ( select * from UserBalance where userid = " + t.UserID.ToString() + ") begin Update UserBalance set KMBalance = KMBalance + " + distance.ToString() + ",PointsBalance= PointsBalance +" + (distance / clsSettings.Setting.UserPointRate).ToString() + " where userid = " + t.UserID.ToString() 
-                +" end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values ("+t.UserID.ToString()+","+distance.ToString()+",0,"+ (distance / clsSettings.Setting.UserPointRate).ToString() +") end ";
-            DataAccess.ExecuteSQLNonQuery(sql);
-            //update driver balance
-            sql = "if exists ( select * from UserBalance where userid = " + t.DriverID.ToString() + ") begin Update UserBalance set KMBalance = KMBalance + " + distance.ToString() + ",PointsBalance= PointsBalance +" + (distance / clsSettings.Setting.DriverPointRate).ToString() + ",MoneyBalance = MoneyBalance - " + (cost * clsSettings.Setting.CompanyRate / 100).ToString() + " where userid = " + t.DriverID.ToString()
-                + " end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values (" + t.DriverID.ToString() + "," + distance.ToString() + "," + (-1 * cost * clsSettings.Setting.CompanyRate / 100).ToString() + "," + (distance / clsSettings.Setting.DriverPointRate).ToString() + ") end";
-            DataAccess.ExecuteSQLNonQuery(sql);
+            clsTripRequest trip = new clsTripRequest();
+            clsUser u = new clsUser();
+
+            TripRequest userTrip = trip.get(tripID);
+            if (userTrip.TripCreator == 1)
+            {
+                EndNormalTrip(tripID, endedTripInfo,userTrip);
+            }
+            else
+            {
+                EndSharedTrip(tripID, endedTripInfo,userTrip);
+            }
+            
             
             return tripID;
+        }
+
+        private void EndSharedTrip(int tripID, EndedTripInfo endedTripInfo, TripRequest userTrip)
+        {
+            decimal distance;
+            decimal waitTime;
+            JObject steps;
+            steps = endedTripInfo.Steps;
+            CalcWaitingTime(endedTripInfo, out distance, out waitTime, steps);
+            string sql = "";
+            decimal finalCost = 0;
+
+            foreach (ReservedTrip user in endedTripInfo.PickedUpUsers)
+            {
+                //update reserved table    
+                sql = "update TripReservation set status = 1 where userID = " + user.UserID.ToString();
+                //update the KM and money balance for each user 
+                //update user balance (KM only)
+                sql = " if exists ( select * from UserBalance where userid = " + user.UserID.ToString() + ") begin Update UserBalance set KMBalance = KMBalance + " + distance.ToString() + ",PointsBalance= PointsBalance +" + (distance / clsSettings.Setting.UserPointRate).ToString() + " where userid = " + user.UserID.ToString()
+                    + " end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values (" + user.UserID.ToString() + "," + distance.ToString() + ",0," + (distance / clsSettings.Setting.UserPointRate).ToString() + ") end ";
+                DataAccess.ExecuteSQLNonQuery(sql);
+                finalCost += userTrip.FeesPerChair * user.NoOfSeats;
+            }
+
+            TripRequest t = get(tripID);
+            //update the KM and money balance for the driver
+            sql = "if exists ( select * from UserBalance where userid = " + t.DriverID.ToString() + ") begin Update UserBalance set KMBalance = KMBalance + " + distance.ToString() + ",PointsBalance= PointsBalance +" + (distance / clsSettings.Setting.DriverPointRate).ToString() + ",MoneyBalance = MoneyBalance - " + (finalCost * clsSettings.Setting.CompanyRate / 100).ToString() + " where userid = " + t.DriverID.ToString()
+                + " end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values (" + t.DriverID.ToString() + "," + distance.ToString() + "," + (-1 * finalCost * clsSettings.Setting.CompanyRate / 100).ToString() + "," + (distance / clsSettings.Setting.DriverPointRate).ToString() + ") end";
+            DataAccess.ExecuteSQLNonQuery(sql);
+
+            UpdateTripStatus(tripID, distance, waitTime, steps, finalCost);
+            
+        }
+        public List<ReservedTrip> GetTripReservations(int tripId,DateTime date)
+        {
+            string sql = "Select * from TripReservation where TripID = " + tripId.ToString() + " and ReservationDate ='" + date.ToShortDateString() + "'";
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+            return dt.DataTableToList<ReservedTrip>();
+        }
+        private void EndNormalTrip(int tripID, EndedTripInfo endedTripInfo,TripRequest userTrip)
+        {
+            decimal distance;
+            decimal waitTime;
+            JObject steps;
+            steps = endedTripInfo.Steps;
+            CalcWaitingTime(endedTripInfo, out distance, out waitTime,steps);
+            decimal finalCost = Math.Round(calcCost(distance, waitTime, userTrip.CarCategory), 3);
+
+            string sql = "";
+            UpdateTripStatus(tripID, distance, waitTime, steps, finalCost);
+            TripRequest t = new clsTripRequest().get(tripID);
+            //update user balance (KM only)
+            sql = " if exists ( select * from UserBalance where userid = " + t.UserID.ToString() + ") begin Update UserBalance set KMBalance = KMBalance + " + distance.ToString() + ",PointsBalance= PointsBalance +" + (distance / clsSettings.Setting.UserPointRate).ToString() + " where userid = " + t.UserID.ToString()
+                + " end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values (" + t.UserID.ToString() + "," + distance.ToString() + ",0," + (distance / clsSettings.Setting.UserPointRate).ToString() + ") end ";
+            DataAccess.ExecuteSQLNonQuery(sql);
+            //update driver balance
+            sql = "if exists ( select * from UserBalance where userid = " + t.DriverID.ToString() + ") begin Update UserBalance set KMBalance = KMBalance + " + distance.ToString() + ",PointsBalance= PointsBalance +" + (distance / clsSettings.Setting.DriverPointRate).ToString() + ",MoneyBalance = MoneyBalance - " + (finalCost * clsSettings.Setting.CompanyRate / 100).ToString() + " where userid = " + t.DriverID.ToString()
+                + " end else begin insert into UserBalance(UserID, KMBalance,MoneyBalance,PointsBalance) values (" + t.DriverID.ToString() + "," + distance.ToString() + "," + (-1 * finalCost * clsSettings.Setting.CompanyRate / 100).ToString() + "," + (distance / clsSettings.Setting.DriverPointRate).ToString() + ") end";
+            DataAccess.ExecuteSQLNonQuery(sql);
+            //notify the user with the end trip
+            //get customer Device Token
+            clsUser u = new clsUser();
+            string customerDeviceToken = u.getUserDeviceToken(userTrip.UserID);
+
+            //DataTable dtDriver = u.get(acceptTrip.UserID);
+
+            //send notification to the user with the driver information
+            AndroidGcmPushNotification not = new AndroidGcmPushNotification();
+            //string jsonString = string.Empty;
+            //jsonString = "{ \"TripEnded\": {\"Status\":\"Ended\", \"id\": " + tripID.ToString() + ",\"Cost\":\""+finalCost.ToString()+" LE\"  } }";
+            var message = new
+            {
+                to = customerDeviceToken,
+                notification = new
+                {
+                    title = "Your Trip Ended",
+                    body = " Your trip ended with cost " + finalCost.ToString(),
+                    status = "Ended",
+                    id = tripID.ToString()
+                }
+            };
+            //not.SendGcmNotification("", new string[] { customerDeviceToken }, jsonString);
+            not.SendNotification("AAAA0-XrarI:APA91bEReLIPg2bjfuuPshOiO3GbDeFg7irdrAMF3h2ErPhsf2LOOEGLP4C0Hz2CKjzWspoK0V7JwLRTXs1Kz-fQikKZG2hZNikWrAxJK1gLueNJ9SuB5JU_3aF_b-dAtiTHrEzXA7fB-Z59suJsTBvI3DODJwpusA", "910095510194", customerDeviceToken, message, "Trip Ended");
+            // not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "UMove", customerDeviceToken, jsonString);
+            ////////////////////////////////////////////////
+            //    string s="[{\"distance\":{\"text\":\"10Km\",\"value\":1000.0},\"duration\":{\"text\":\"10 min\",\"value\":600000.0},\"end_location\":{\"lat\":25.22145,\"lng\":630.254},\"html_instructions\":\"Continue onto <b>Al Betrool</b>\",\"start_location\":{\"lat\":68.215,\"lng\":36.25412},\"travel_mode\":\"DRIVING\"}],\"Duration\":50.0}]"   ;
+        }
+
+        private static void CalcWaitingTime(EndedTripInfo endedTripInfo, out decimal distance, out decimal waitTime,  JObject steps)
+        {
+            decimal duration = 0M;
+            distance = 0M;
+            waitTime = 0M;
+            
+            decimal.TryParse(steps.GetValue("duration").ToString(), out duration);
+            decimal.TryParse(steps.GetValue("distance").ToString(), out distance);
+            if (distance != 0)
+            {
+                waitTime = new clsTripRequest().calcWaitTime(distance, duration);
+            }
+        }
+
+        private static void UpdateTripStatus(int tripID, decimal distance, decimal waitTime, JObject steps, decimal finalCost)
+        {
+            string sql = "update TripRequest set Status = " + ((int)TripStatus.Ended).ToString() + ",EndTime = '" + DateTime.UtcNow + "',   WaitingTime = " + waitTime.ToString() + ", Distance = " + distance.ToString() + ", Cost = " + finalCost.ToString() + ", Steps = '" + steps + "' Where ID = " + tripID.ToString();
+            DataAccess.ExecuteSQLNonQuery(sql);
+            
         }
 
         public  decimal calcWaitTime(decimal distance, decimal duration)
@@ -334,8 +456,8 @@ namespace UMoveNew.Controllers.AppCode
             if (totalNoOfSeats < researvedSeats + reservedTrip.NoOfSeats)
                 return -1;
             //add the reservation to the DB
-            sql = "insert into TripReservation(TripID,ReservationDate,NoOfSeats) values("+reservedTrip.TripID.ToString()
-                +",'"+reservedTrip.ReserveDate.ToShortDateString()+"',"+reservedTrip.NoOfSeats.ToString()+")";
+            sql = "insert into TripReservation(TripID,ReservationDate,NoOfSeats,userID) values("+reservedTrip.TripID.ToString()
+                +",'"+reservedTrip.ReserveDate.ToShortDateString()+"',"+reservedTrip.NoOfSeats.ToString()+","+reservedTrip.UserID.ToString()+")";
             return DataAccess.ExecuteSQLNonQuery(sql);
             
         }
