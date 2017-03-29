@@ -21,11 +21,11 @@ namespace UMoveNew.Controllers
         }
       
         // GET api/triphistory/5
-        public HttpResponseMessage Get(int userId, int userType=0, int isFuture = 0,int page = 0,int isActive =0)
+        public HttpResponseMessage Get(int userId, int userType=0, int isFuture = 0,int isMine =0,int page = 0,int isActive =0)
         {
             int pageSize = clsSettings.Setting.PageSize;
             string jsonString = "";
-            DataTable dt = new clsTripRequest().get(userId, userType,isFuture,isActive);
+            DataTable dt = new clsTripRequest().get(userId, userType,isFuture,isActive,isMine);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
             {
                 List<TripRequest> lst = dt.DataTableToList<TripRequest>();

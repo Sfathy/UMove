@@ -12,14 +12,16 @@ namespace UMoveNew.Controllers
 {
     public class TripSearchController : ApiController
     {
-        public IHttpActionResult Get(int carCategory, string startAddress="", string endAddress="", DateTime? searchDate = null)
+        public HttpRequestMessage Get(int carCategory, string startAddress = "", string endAddress = "", DateTime? searchDate = null)
         {
-
+            string jsonString = "";
             List<TripRequest> trips = new clsTripRequest().SearchTrip(searchDate, carCategory,startAddress,endAddress);
             if (trips != null)
-                return Ok(trips);
+                jsonString = JsonConvert.SerializeObject(trips);
+                
             else
-                return BadRequest("Can't find trips");
+                jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't find trips\"  } }";
+                return new HttpRequestMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
     }
 }

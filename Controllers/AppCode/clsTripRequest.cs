@@ -42,7 +42,7 @@ namespace UMoveNew.Controllers.AppCode
                 "dbo.TripRequest.EndAddress, TripCreator,EstimatedStartTime,EstimatedEndTime,FeesPerChair,FeesforCar, "+
                 " StartDate,EndDate, " +
                 "dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, " +
-                "dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon " +
+                "dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon,CarImage " +
                 "FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID " +
                 "LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID " +
                 "left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID" +
@@ -192,7 +192,7 @@ namespace UMoveNew.Controllers.AppCode
             return null;
         }
 
-        public DataTable get(int userId,int userType,int isFuture,int isActive)
+        public DataTable get(int userId,int userType,int isFuture,int isActive,int isMine)
         {
 
             string sql = "SELECT TripRequest.ID, TripCreator,EstimatedStartTime,EstimatedEndTime," +
@@ -207,6 +207,8 @@ namespace UMoveNew.Controllers.AppCode
             {
                 sql += " and (TripRequest.status= " + ((int)TripStatus.Request).ToString() + " OR TripRequest.status= " + ((int)TripStatus.Accepted).ToString() + " OR TripRequest.status= " + ((int)TripStatus.InProgress).ToString() + " )";
             }
+            if (isMine == 1)
+                sql += " and tripcreator = 2";
             sql += " order by TripRequest.ID desc";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
@@ -286,9 +288,11 @@ namespace UMoveNew.Controllers.AppCode
             UpdateTripStatus(tripID, distance, waitTime, steps, finalCost);
             
         }
-        public List<ReservedTrip> GetTripReservations(int tripId,DateTime date)
+        public List<ReservedTrip> GetTripReservations(int tripId,DateTime? date)
         {
-            string sql = "Select * from TripReservation where TripID = " + tripId.ToString() + " and ReservationDate ='" + date.ToShortDateString() + "'";
+            string sql = "Select * from TripReservation where TripID = " + tripId.ToString();
+                if(date != null)
+                    sql += " and ReservationDate ='" + date.Value.ToShortDateString() + "'";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             return dt.DataTableToList<ReservedTrip>();
         }
@@ -444,7 +448,7 @@ namespace UMoveNew.Controllers.AppCode
         {
             TripRequest t = get(reservedTrip.TripID);
             //get the reserved seats for this day
-            string sql = "select *from TripReservation where tripID = " +reservedTrip.TripID.ToString() +" and reservationDate='"+reservedTrip.ReserveDate.ToShortDateString()+"'";
+            string sql = "select *from TripReservation where tripID = " +reservedTrip.TripID.ToString() +" and reservationDate='"+reservedTrip.ReservationDate.ToShortDateString()+"'";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             List<ReservedTrip> ReservedSeats = dt.DataTableToList<ReservedTrip>();
             int researvedSeats = ReservedSeats.Sum(m => m.NoOfSeats);
@@ -457,7 +461,7 @@ namespace UMoveNew.Controllers.AppCode
                 return -1;
             //add the reservation to the DB
             sql = "insert into TripReservation(TripID,ReservationDate,NoOfSeats,userID) values("+reservedTrip.TripID.ToString()
-                +",'"+reservedTrip.ReserveDate.ToShortDateString()+"',"+reservedTrip.NoOfSeats.ToString()+","+reservedTrip.UserID.ToString()+")";
+                +",'"+reservedTrip.ReservationDate.ToShortDateString()+"',"+reservedTrip.NoOfSeats.ToString()+","+reservedTrip.UserID.ToString()+")";
             return DataAccess.ExecuteSQLNonQuery(sql);
             
         }
