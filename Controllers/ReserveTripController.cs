@@ -24,6 +24,18 @@ namespace UMoveNew.Controllers
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"Can't find trip reservations\"  } }";
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
+        [HttpDelete]
+        public HttpResponseMessage Delete(int ID)
+        {
+            string jsonString = "";
+            clsTripRequest t = new clsTripRequest();
+            int  res = t.CancelReserveTrip(ID);
+            if (res >0)
+                jsonString = "{ \"Success\": { \"ID\": "+ID.ToString()+", \"message\": \"reservation canceled\"  } }";
+            else
+                jsonString = "{ \"error\": { \"code\": 3, \"message\": \"Can't find trip reservation\"  } }";
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+        }
         [HttpPost]
         public HttpResponseMessage ReserveTrip([FromBody] ReservedTrip reservedTrip)
         {
@@ -41,11 +53,12 @@ namespace UMoveNew.Controllers
                     break;
                 default:
                     reservedTrip.ID = res;
-                    JsonConvert.SerializeObject(reservedTrip);
+                    jsonString= JsonConvert.SerializeObject(reservedTrip);
                     break;
             }
            // return BadRequest("Can't save reservation");
-            jsonString = "{ \"error\": { \"code\": 3, \"message\": \"Can't save reservation\"  } }";
+            if (string.IsNullOrEmpty(jsonString))
+                jsonString = "{ \"error\": { \"code\": 3, \"message\": \"Can't save reservation\"  } }";
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
         }
     }

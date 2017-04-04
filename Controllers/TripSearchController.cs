@@ -12,7 +12,7 @@ namespace UMoveNew.Controllers
 {
     public class TripSearchController : ApiController
     {
-        public HttpRequestMessage Get(int carCategory, string startAddress = "", string endAddress = "", DateTime? searchDate = null)
+        public HttpResponseMessage Get(int carCategory, string startAddress = "", string endAddress = "", DateTime? searchDate = null)
         {
             string jsonString = "";
             List<TripRequest> trips = new clsTripRequest().SearchTrip(searchDate, carCategory,startAddress,endAddress);
@@ -21,7 +21,8 @@ namespace UMoveNew.Controllers
                 
             else
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't find trips\"  } }";
-                return new HttpRequestMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+                return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
+            //return Request.CreateResponse(HttpStatusCode.OK, jsonString);
         }
     }
 }

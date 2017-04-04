@@ -46,7 +46,7 @@ namespace UMoveNew.Controllers.AppCode
                 "FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID " +
                 "LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID " +
                 "left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID" +
-                " where TripCreator = 2 and CarCategory = " + carCategory.ToString() + " and '" + date + "' between StartDate and EndDate";
+                " where TripCreator = 2 and Status <> 5 and CarCategory = " + carCategory.ToString() + " and '" + date + "' between StartDate and EndDate";
             if (!string.IsNullOrEmpty(startAddress))
                 sql += " and StartAddress like '%" + startAddress + "%'";
             if (!string.IsNullOrEmpty(endAddress))
@@ -196,7 +196,17 @@ namespace UMoveNew.Controllers.AppCode
         {
 
             string sql = "SELECT TripRequest.ID, TripCreator,EstimatedStartTime,EstimatedEndTime," +
-                "IsSchedule,FeesPerChair,FeesforCar,Every,Frequency,StartDate,EndDate,  TripRequest.NoOfSeats, CarDescription , CarNo,  TripRequest.UserID, TripRequest.EstimatedDistance,TripRequest.EstimatedDuration,TripRequest.EstimatedCost,TripRequest.SourceLat, TripRequest.SourceLong, dbo.TripRequest.DestLat, dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID";
+                "IsSchedule,FeesPerChair,FeesforCar,Every,Frequency,StartDate,EndDate,  TripRequest.NoOfSeats,"+
+                "CarDescription , CarNo,  TripRequest.UserID, TripRequest.EstimatedDistance,TripRequest.EstimatedDuration," +
+                "TripRequest.EstimatedCost,TripRequest.SourceLat, TripRequest.SourceLong, dbo.TripRequest.DestLat, " +
+                "dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, " +
+                "dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, " +
+                "dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, " +
+                "dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, " +
+                "dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon " +
+                "FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID " +
+                "LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID " +
+                "left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID";
             if(userType == 0)
                 sql += " where dbo.TripRequest.UserID = " + userId.ToString();
             else
@@ -209,6 +219,35 @@ namespace UMoveNew.Controllers.AppCode
             }
             if (isMine == 1)
                 sql += " and tripcreator = 2";
+
+            sql += " order by TripRequest.ID desc";
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+            if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
+            {
+                return dt;
+            }
+            return null;
+        }
+
+        public DataTable getSharedTrips(int userId)
+        {
+
+            string sql = "SELECT TripRequest.ID, TripCreator,EstimatedStartTime,EstimatedEndTime," +
+                "IsSchedule,FeesPerChair,FeesforCar,Every,Frequency,StartDate,EndDate,  TripRequest.NoOfSeats," +
+                "CarDescription , CarNo,  TripRequest.UserID, TripRequest.EstimatedDistance,TripRequest.EstimatedDuration," +
+                "TripRequest.EstimatedCost,TripRequest.SourceLat, TripRequest.SourceLong, dbo.TripRequest.DestLat, " +
+                "dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, " +
+                "dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, " +
+                "dbo.TripRequest.WaitingTime, dbo.TripRequest.Cost, dbo.TripRequest.StartTime, dbo.TripRequest.EndTime, " +
+                "dbo.TripRequest.StartAddress, dbo.TripRequest.EndAddress, dbo.Users.Name AS DriverName, " +
+                "dbo.Users.Phone AS DriverPhone, dbo.CarCategory.Name AS CarCategoryName, dbo.CarCategory.icon, " +
+                "TripReservation.NoOfSeats,TripReservation.ReservationDate,TripReservation.status " +
+                "FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID " +
+                "LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID " +
+                "left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID "+
+                "left outer join TripReservation on TripReservation.TripID = TripRequest.ID "+
+                "where TripReservation.userID = " + userId.ToString() + " and TripReservation.status = 1";
+            
             sql += " order by TripRequest.ID desc";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             if (dt != null && dt.Rows != null && dt.Rows.Count > 0)
@@ -448,7 +487,7 @@ namespace UMoveNew.Controllers.AppCode
         {
             TripRequest t = get(reservedTrip.TripID);
             //get the reserved seats for this day
-            string sql = "select *from TripReservation where tripID = " +reservedTrip.TripID.ToString() +" and reservationDate='"+reservedTrip.ReservationDate.ToShortDateString()+"'";
+            string sql = "select *from TripReservation where tripID = " +reservedTrip.TripID.ToString() +" and reservationDate='"+reservedTrip.ReservationDate.ToShortDateString()+"' and status <> 3";
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             List<ReservedTrip> ReservedSeats = dt.DataTableToList<ReservedTrip>();
             int researvedSeats = ReservedSeats.Sum(m => m.NoOfSeats);
@@ -464,6 +503,21 @@ namespace UMoveNew.Controllers.AppCode
                 +",'"+reservedTrip.ReservationDate.ToShortDateString()+"',"+reservedTrip.NoOfSeats.ToString()+","+reservedTrip.UserID.ToString()+")";
             return DataAccess.ExecuteSQLNonQuery(sql);
             
+        }
+
+        public int CancelReserveTrip(int reservedTripID)
+        {
+            //TripRequest t = get(reservedTrip.TripID);
+            //get the reserved seats for this day
+            string sql = "select * from TripReservation where ID = " + reservedTripID.ToString();
+            DataTable dt = DataAccess.ExecuteSQLQuery(sql);
+            if (dt == null || dt.Rows == null || dt.Rows.Count == 0)
+                return -1;
+            //add the reservation to the DB
+            sql = "update TripReservation set status = 3 where ID = " + reservedTripID.ToString();
+                
+            return DataAccess.ExecuteSQLNonQuery(sql);
+
         }
     }
 }

@@ -278,6 +278,7 @@
     <Compile Include="Controllers\PaymentMethodController.cs" />
     <Compile Include="Controllers\RateDriverController.cs" />
     <Compile Include="Controllers\RateUserController.cs" />
+    <Compile Include="Controllers\ReservedTripHistoryController.cs" />
     <Compile Include="Controllers\ReserveTripController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TripBidsController.cs" />
