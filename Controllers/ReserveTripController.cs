@@ -19,7 +19,7 @@ namespace UMoveNew.Controllers
             clsTripRequest t = new clsTripRequest();
             List<ReservedTrip> res = t.GetTripReservations(tripID, reservationDate);
             if (res != null && res.Count > 0)
-                JsonConvert.SerializeObject(res);
+               jsonString =  JsonConvert.SerializeObject(res);
             else
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"Can't find trip reservations\"  } }";
             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };

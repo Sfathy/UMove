@@ -197,7 +197,7 @@ namespace UMoveNew.Controllers.AppCode
 
             string sql = "SELECT TripRequest.ID, TripCreator,EstimatedStartTime,EstimatedEndTime," +
                 "IsSchedule,FeesPerChair,FeesforCar,Every,Frequency,StartDate,EndDate,  TripRequest.NoOfSeats,"+
-                "CarDescription , CarNo,  TripRequest.UserID, TripRequest.EstimatedDistance,TripRequest.EstimatedDuration," +
+                "CarDescription , CarNo,DriverPhoto,CarImage,  TripRequest.UserID, TripRequest.EstimatedDistance,TripRequest.EstimatedDuration," +
                 "TripRequest.EstimatedCost,TripRequest.SourceLat, TripRequest.SourceLong, dbo.TripRequest.DestLat, " +
                 "dbo.TripRequest.DestLong, dbo.TripRequest.DriverID,  dbo.TripRequest.PicUpDate, dbo.TripRequest.Status, " +
                 "dbo.TripRequest.PaymentMethod, dbo.TripRequest.CarCategory, dbo.TripRequest.Distance, " +
