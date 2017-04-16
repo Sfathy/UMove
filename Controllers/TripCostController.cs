@@ -53,7 +53,7 @@ namespace UMoveNew.Controllers
             
            
              //jsonString = "{ \"cost\": { \"cost\": "+cost.ToString()+",\"time\":"+waitTime.ToString()+"  } }";
-            return new HttpResponseMessage() { Content = new StringContent(routes.ToString(), System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(routes.ToString(), System.Text.Encoding.UTF8, "application/json") };
 
             
         }

@@ -122,7 +122,7 @@ namespace UMoveNew.Controllers
                 jsonString = "{ \"error\": { \"code\": 1, \"message\": \"InValid InstallationKey\"  } }";
             }
             HttpStatusCode s = isError ? HttpStatusCode.Unauthorized : HttpStatusCode.OK;
-            return new HttpResponseMessage() {StatusCode=s, Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() {StatusCode=s, Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
 
 
         }

@@ -39,7 +39,7 @@ namespace UMoveNew.Controllers.AppCode
             {
                 jsonString = "{ \"error\": { \"code\": 1, \"message\": \"User name or mail exist\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
 
         }
 

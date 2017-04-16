@@ -246,7 +246,7 @@ namespace UMoveNew.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                
 
                 return RedirectToAction("Index");
             }

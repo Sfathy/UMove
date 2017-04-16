@@ -26,7 +26,7 @@ namespace UMoveNew.Controllers
             string jsonString = "";
             //DataTable dt = new clsTripRequest().get(userId, userType);
             jsonString = JsonConvert.SerializeObject(nots);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // POST api/notification
@@ -42,7 +42,7 @@ namespace UMoveNew.Controllers
             else {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't save Notification\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/notification/5

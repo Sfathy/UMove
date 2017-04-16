@@ -37,13 +37,13 @@ namespace UMoveNew.Controllers
             {
                 string jsonString = string.Empty;
                 jsonString = JsonConvert.SerializeObject(us.get(id));
-                return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+                return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
                 
             }
             else
             {
                 err = "{ \"error\": { \"code\": 1, \"message\": \"Error message\"  } }";
-                return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/jason") };
+                return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/json") };
             }
             
         }
@@ -72,7 +72,7 @@ namespace UMoveNew.Controllers
                      //   dt.Rows.Add(dr);
                         string jsonString = string.Empty;
                         jsonString = JsonConvert.SerializeObject(dt);
-                        return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+                        return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
                     }
                     else
                     {
@@ -88,7 +88,7 @@ namespace UMoveNew.Controllers
             {
                 err = "{ \"error\": { \"code\": 1, \"message\": \"InValid Paramters\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/<controller>/5
@@ -110,7 +110,7 @@ namespace UMoveNew.Controllers
                         dt.Rows.Add(dr);
                         string jsonString = string.Empty;
                         jsonString = JsonConvert.SerializeObject(dt);
-                        return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+                        return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
 
                         //return jsonString;
                     }
@@ -124,7 +124,7 @@ namespace UMoveNew.Controllers
                     err = "{ \"error\": { \"code\": 1, \"message\": \"Installation Key not exist\"  } }";
                 }
             
-            return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/json") };
         }
 
 

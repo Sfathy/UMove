@@ -20,7 +20,7 @@ namespace UMoveNew.Controllers
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             string jsonString = string.Empty;
             jsonString = JsonConvert.SerializeObject(dt);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
             
         }
 
@@ -45,7 +45,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't retrieve payment methods\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // POST api/paymentmethod
@@ -69,7 +69,7 @@ namespace UMoveNew.Controllers
              {
                  jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't save trip\"  } }";
              }
-             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+             return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/paymentmethod/5
@@ -93,7 +93,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't save trip\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // DELETE api/paymentmethod/5
@@ -117,7 +117,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't delete the card\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
     }
 }

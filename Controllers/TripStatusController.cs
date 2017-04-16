@@ -66,7 +66,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't accept trip\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/tripstatus/5
@@ -84,7 +84,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't end trip\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // DELETE api/tripstatus/5

@@ -55,6 +55,8 @@ namespace UMoveNew.Models
         public string UserPhone { get; set; }
         public string DriverCarNo { get; set; }
         public string DriverCarDescription { get; set; }
+        public string icon { get; set; }
+        public string CarImage { get; set; }
         public bool IsFav { get; set; }
         public string Route { get; set; }
         public double Duration { get; set; }

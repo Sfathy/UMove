@@ -56,7 +56,7 @@ namespace UMoveNew.Controllers
                 jsonString = "{ \"error\": { \"code\": 1, \"message\": \" Can not update \"  } }";
 
             // jsonString = JsonConvert.SerializeObject("");
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/changename/5

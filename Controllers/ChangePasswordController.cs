@@ -40,7 +40,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"Wrong Password\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/<controller>/5

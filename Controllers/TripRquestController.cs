@@ -45,7 +45,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't find drivers around your location\",\"NumberOfTrips\":" + dtNumberOfTrips.Rows[0]["NumberOfTrips"].ToString() + "  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // GET api/triprquest/5
@@ -109,7 +109,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't save trip\"  } }";
             }
-            return  new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return  new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/triprquest/5
@@ -123,7 +123,7 @@ namespace UMoveNew.Controllers
                clsTripRequest tripRq = new clsTripRequest();
                tripRq.cancelTrip(id,userType);
                string jsonString = "{ \"success\": { \"id\": " + id.ToString() + "  } }";
-               return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+               return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
            }
     }
 }

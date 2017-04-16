@@ -20,7 +20,7 @@ namespace UMoveNew.Controllers
             string jsonString = "{\"" + dt.Rows[0]["ParamterName"].ToString() + "\":\"" + dt.Rows[0]["ParamterValue"].ToString()+"\"}";
             // DataTable dt = new clsTripRequest().get(userId, userType);
 
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // GET api/about/5

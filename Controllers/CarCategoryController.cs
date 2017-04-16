@@ -19,7 +19,7 @@ namespace UMoveNew.Controllers
             string jsonString = string.Empty;
             jsonString = JsonConvert.SerializeObject(dt);
 
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // GET api/carcategory/5

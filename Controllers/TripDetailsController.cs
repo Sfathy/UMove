@@ -37,10 +37,17 @@ namespace UMoveNew.Controllers
             //    jsonString =  reader.ReadToEnd();
             //}
             //   TripRoute t = (TripRoute)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString, typeof(TripRoute));
+            if (t == null)
+                return new HttpResponseMessage() { Content = new StringContent("{ \"error\": { \"code\": 3, \"message\": \"Can't find trip\"  } }", System.Text.Encoding.UTF8, "application/json") };
+            if (t.Route == null)
+            {
+                t.Route = "";
 
-
+            }
             //return webResponse;
           JObject  routs = (JObject)JsonConvert.DeserializeObject(t.Route, typeof(JObject));
+          if (routs == null)
+              routs = new JObject();
           routs.Add("ID", id);
           routs.Add("UserID", t.UserID);
           routs.Add("SourceLat", t.SourceLat);
@@ -103,7 +110,7 @@ namespace UMoveNew.Controllers
             string s = JsonConvert.SerializeObject(routs);
             string jsonString =JsonConvert.SerializeObject(t);
            // return t;
-              return new HttpResponseMessage() { Content = new StringContent(s.Trim(), System.Text.Encoding.UTF8, "application/jason") };
+              return new HttpResponseMessage() { Content = new StringContent(s.Trim(), System.Text.Encoding.UTF8, "application/json") };
 
         }
 

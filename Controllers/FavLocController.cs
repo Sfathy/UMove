@@ -26,7 +26,7 @@ namespace UMoveNew.Controllers
             clsFavLoc loc = new clsFavLoc();
             List<UserLocation> locs = loc.get(userID);
             jsonString = JsonConvert.SerializeObject(locs);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // POST api/favloc
@@ -46,7 +46,7 @@ namespace UMoveNew.Controllers
                 jsonString = "{ \"error\": { \"code\": 1, \"message\": \"Error while adding new locatino\"  } }"; ;
             }
             
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/favloc/5
@@ -65,7 +65,7 @@ namespace UMoveNew.Controllers
                 jsonString = "{ \"error\": { \"code\": 1, \"message\": \"Error while updating new location\"  } }"; ;
             }
 
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // DELETE api/favloc/5
@@ -82,7 +82,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 1, \"message\": \"Error while Deleting  location\"  } }"; ;
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
     }
 }

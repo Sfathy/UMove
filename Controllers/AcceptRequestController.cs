@@ -82,7 +82,7 @@ namespace UMoveNew.Controllers
             {
                 jsonRes = "{ \"error\": { \"code\": 3, \"message\": \"can't accept trip\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonRes, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonRes, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/acceptrequest/5

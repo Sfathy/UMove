@@ -15,7 +15,7 @@ namespace UMoveNew.Controllers
             string jsonString = "{ \"URL\": { \"url\": http://umove2.mline-ksa1.com/ } }";
             // DataTable dt = new clsTripRequest().get(userId, userType);
 
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // GET api/becomedriver/5

@@ -42,7 +42,7 @@ namespace UMoveNew.Controllers
             string jsonString = "";
             //DataTable dt = new clsTripRequest().get(userId, userType);
             jsonString = JsonConvert.SerializeObject(dt);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
             
             
         } 
@@ -63,7 +63,7 @@ namespace UMoveNew.Controllers
             string jsonString = "";
             //DataTable dt = new clsTripRequest().get(userId, userType);
             jsonString = JsonConvert.SerializeObject(dt);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
             
         }
 
@@ -75,7 +75,7 @@ namespace UMoveNew.Controllers
             string jsonString = "{ \"success\": { \"id\": "+ id.ToString() +"  } }"; ;
 
             // jsonString = JsonConvert.SerializeObject("");
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/tripissue/5

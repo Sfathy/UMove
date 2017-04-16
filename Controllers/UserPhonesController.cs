@@ -25,7 +25,7 @@ namespace UMoveNew.Controllers
             List<UserPhones> userPhones = new clsUserPhones().get(userId);
             string jsonString = "";
             jsonString = JsonConvert.SerializeObject(userPhones);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // POST api/userphones
@@ -43,7 +43,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't save User Phone\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/userphones/5
@@ -62,7 +62,7 @@ namespace UMoveNew.Controllers
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't Update User Phone\"  } }";
             }
             // jsonString = JsonConvert.SerializeObject("");
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // DELETE api/userphones/5
@@ -80,7 +80,7 @@ namespace UMoveNew.Controllers
             {
                 jsonString = "{ \"error\": { \"code\": 3, \"message\": \"can't Update User Phone\"  } }";
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
     }
 }

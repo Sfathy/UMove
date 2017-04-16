@@ -52,7 +52,7 @@ namespace UMoveNew.Controllers
                 s= "{ \"error\": { \"code\": 3, \"message\": \"no trips around you\"  } }";
             }
             
-            return new HttpResponseMessage() { Content = new StringContent(s.Trim(), System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(s.Trim(), System.Text.Encoding.UTF8, "application/json") };
         }
 
         // POST api/openedrequest

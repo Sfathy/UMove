@@ -45,7 +45,7 @@ namespace UMoveNew.Controllers
             {
                 return new OpenedRequestController().Get(loc.Latitude, loc.Longitude, loc.UserID);
             }
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/location/5
@@ -55,7 +55,7 @@ namespace UMoveNew.Controllers
             clsUserLocation location = new clsUserLocation();
             location.update(id,loc);
             jsonString = "{ \"success\": { \"id\":" + id.ToString() + "  } }";
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // DELETE api/location/5

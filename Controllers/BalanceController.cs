@@ -25,7 +25,7 @@ namespace UMoveNew.Controllers
            
              DataTable dt = new clsUserBalance().getBalance(userId);
              jsonString = JsonConvert.SerializeObject(dt);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // POST api/balance

@@ -37,7 +37,7 @@ namespace UMoveNew.Controllers
             string jsonString = "";
 
             jsonString = JsonConvert.SerializeObject(dt);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
             
         }
 
@@ -57,7 +57,7 @@ namespace UMoveNew.Controllers
             }
 
             // jsonString = JsonConvert.SerializeObject("");
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
         // PUT api/rateuser/5
         public void Put(int id, [FromBody]string value)

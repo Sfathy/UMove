@@ -41,12 +41,12 @@ namespace UMoveNew.Controllers
                 dt2.Rows.Add(dr);
                 string jsonString = string.Empty;
                 jsonString = JsonConvert.SerializeObject(dt2);
-                return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+                return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
             }
             else
             {
                 string err = "{ \"error\": { \"code\": 1, \"message\": \"InValid Paramters\"  } }";
-                return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/jason") };
+                return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/json") };
             }
 
 
@@ -69,12 +69,12 @@ namespace UMoveNew.Controllers
                 dt2.Rows.Add(dr);
                 string jsonString = string.Empty;
                 jsonString = JsonConvert.SerializeObject(dt2);
-                return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+                return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
             }
             else
             {
                 String err = "{ \"error\": { \"code\": 1, \"message\": \"InValid Paramters\"  } }";
-                return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/jason") };
+                return new HttpResponseMessage() { Content = new StringContent(err, System.Text.Encoding.UTF8, "application/json") };
             }
         }
 

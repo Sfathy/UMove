@@ -21,7 +21,7 @@ namespace UMoveNew.Controllers
             string jsonString = "";
 
             jsonString = JsonConvert.SerializeObject("");
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // GET api/favdriver/5
@@ -53,7 +53,7 @@ namespace UMoveNew.Controllers
             string jsonString = "";
             //DataTable dt = new clsTripRequest().get(userId, userType);
             jsonString = JsonConvert.SerializeObject(drivers);
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
 
             
         }
@@ -66,7 +66,7 @@ namespace UMoveNew.Controllers
             string jsonString = "{ \"success\": { \"id\": "+ id.ToString()+"  } }"; ;
             
            // jsonString = JsonConvert.SerializeObject("");
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
         // PUT api/favdriver/5
@@ -75,7 +75,7 @@ namespace UMoveNew.Controllers
             string jsonString = "{ \"success\": { \"id\": "+id.ToString()+"  } }"; ;
             
             
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }*/
 
         // DELETE api/favdriver/5
@@ -85,7 +85,7 @@ namespace UMoveNew.Controllers
             string jsonString = "{ \"success\": { \"id\": " + id.ToString() + "  } }"; ;
 
 
-            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/jason") };
+            return new HttpResponseMessage() { Content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json") };
         }
 
     }
