@@ -46,7 +46,7 @@ namespace UMoveNew.Controllers.AppCode
                 "FROM dbo.TripRequest LEFT OUTER JOIN dbo.CarCategory ON dbo.TripRequest.CarCategory = dbo.CarCategory.ID " +
                 "LEFT OUTER JOIN dbo.Users ON dbo.Users.ID = dbo.TripRequest.DriverID " +
                 "left outer join DriverCarDetails on dbo.TripRequest.DriverID = DriverCarDetails.UserID" +
-                " where TripCreator = 2 and TripRequest.Status <> 5 and CarCategory = " + carCategory.ToString() +
+                " where TripCreator = 2 and TripRequest.Status not in (4, 5,6) and CarCategory = " + carCategory.ToString() +
                 " and '" + date + "' between StartDate and EndDate"; ///TODO date need to be in another table to handle the freq
             if (!string.IsNullOrEmpty(startAddress))
                 sql += " and StartAddress like '%" + startAddress + "%'";
@@ -87,7 +87,7 @@ namespace UMoveNew.Controllers.AppCode
             param[18] = DataAccess.AddParamter("@NoOfSeats", trip.NoOfSeats, SqlDbType.Int, 50);
 
 
-            param[19] = DataAccess.AddParamter("@TripCreator", trip.TripCreator, SqlDbType.Int, 50);
+            param[19] = DataAccess.AddParamter("@TripCreator", trip.TripCreator == 0 ? 1 : trip.TripCreator, SqlDbType.Int, 50);
             param[20] = DataAccess.AddParamter("@EstimatedStartTime", trip.EstimatedStartTime, SqlDbType.Time, 50);
             param[21] = DataAccess.AddParamter("@EstimatedEndTime", trip.EstimatedEndTime, SqlDbType.Time, 50);
             param[22] = DataAccess.AddParamter("@IsSchedule", trip.IsSchedule, SqlDbType.Bit, 50);
@@ -293,7 +293,7 @@ namespace UMoveNew.Controllers.AppCode
             clsUser u = new clsUser();
 
             TripRequest userTrip = trip.get(tripID);
-            if (userTrip.TripCreator == 1)
+            if (userTrip.TripCreator != 2)
             {
                 EndNormalTrip(tripID, endedTripInfo,userTrip);
             }
@@ -339,8 +339,8 @@ namespace UMoveNew.Controllers.AppCode
         }
         public List<ReservedTrip> GetTripReservations(int tripId,DateTime? date,int status)
         {
-            string sql = "Select TripReservation.*,users.Name as UserName,users.phone as UsertriprequestPhone from TripReservation "+
-                "inner join users on userID = users.ID inner join  on TripReservation.tripID = triprequest.ID "+
+            string sql = "Select TripReservation.*,users.Name as UserName,users.phone as UserPhone from TripReservation " +
+                "inner join users on userID = users.ID inner join  TripRequest on TripReservation.tripID = triprequest.ID " +
                 "where triprequest.status in("+((int)TripStatus.Accepted).ToString()+","+((int)TripStatus.InProgress).ToString()+","
                 +((int)TripStatus.Request).ToString()+" ) and TripReservation.status = " + status.ToString() + 
                 " and TripReservation.TripID = " + tripId.ToString();
