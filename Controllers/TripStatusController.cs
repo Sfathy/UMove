@@ -77,8 +77,8 @@ namespace UMoveNew.Controllers
             {
                 //end the trip and change the status to ended
                 clsTripRequest trip = new clsTripRequest();
-                trip.End(tripID,endedTripInfo);
-                jsonString = "{ \"success\": { \"tripID\": "+tripID.ToString()+"  } }";
+                decimal cost =  trip.End(tripID,endedTripInfo);
+                jsonString = " { \"tripID\": "+tripID.ToString()+",\"Cost\":"+cost.ToString()+"   }";
             }
             catch (Exception e)
             {

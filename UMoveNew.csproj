@@ -269,6 +269,7 @@
     <Compile Include="Controllers\CarCategoryController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ChangeUserInfoController.cs" />
+    <Compile Include="Controllers\CostController.cs" />
     <Compile Include="Controllers\FacebookLoginController.cs" />
     <Compile Include="Controllers\FavDriverController.cs" />
     <Compile Include="Controllers\FavLocController.cs" />
@@ -853,11 +854,13 @@
     <Content Include="Shipments\Site.Master" />
     <Content Include="Views\Admin\NotAuthonticated.cshtml" />
     <Content Include="Views\SharedTrips\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout - Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\bin\en-GB\" />
     <Folder Include="images\Upload\" />
+    <Folder Include="Views\Cost\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

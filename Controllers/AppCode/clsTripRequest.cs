@@ -214,10 +214,9 @@ namespace UMoveNew.Controllers.AppCode
                 "left outer join TripReservation on TripReservation.tripID = TripRequest.ID";
             if (userType == 0)
             {
-                if (isMine == 0)
-                    sql += " where dbo.TripRequest.UserID = " + userId.ToString();
-                else
-                    sql += "  where TripReservation.userID = " + userId.ToString();
+                
+                    sql += " where dbo.TripRequest.UserID = " + userId.ToString() + " or TripReservation.userID = " + userId.ToString();
+                
             }
             else
                 sql += " where DriverID = " + userId.ToString();
@@ -287,7 +286,7 @@ namespace UMoveNew.Controllers.AppCode
             return tripID;
         }
 
-        public int End(int tripID,EndedTripInfo endedTripInfo)
+        public decimal End(int tripID,EndedTripInfo endedTripInfo)
         {
             clsTripRequest trip = new clsTripRequest();
             clsUser u = new clsUser();
@@ -295,11 +294,12 @@ namespace UMoveNew.Controllers.AppCode
             TripRequest userTrip = trip.get(tripID);
             if (userTrip.TripCreator != 2)
             {
-                EndNormalTrip(tripID, endedTripInfo,userTrip);
+                return EndNormalTrip(tripID, endedTripInfo,userTrip);
             }
             else
             {
                 EndSharedTrip(tripID, endedTripInfo,userTrip);
+                return 0M;
             }
             
             
@@ -349,7 +349,7 @@ namespace UMoveNew.Controllers.AppCode
             DataTable dt = DataAccess.ExecuteSQLQuery(sql);
             return dt.DataTableToList<ReservedTrip>();
         }
-        private void EndNormalTrip(int tripID, EndedTripInfo endedTripInfo,TripRequest userTrip)
+        private decimal EndNormalTrip(int tripID, EndedTripInfo endedTripInfo,TripRequest userTrip)
         {
             decimal distance;
             decimal waitTime;
@@ -396,6 +396,7 @@ namespace UMoveNew.Controllers.AppCode
             // not.SendNotification("AIzaSyAUzTKuzVyD4ERLmaQb49bt4HnwioeVgT8", "UMove", customerDeviceToken, jsonString);
             ////////////////////////////////////////////////
             //    string s="[{\"distance\":{\"text\":\"10Km\",\"value\":1000.0},\"duration\":{\"text\":\"10 min\",\"value\":600000.0},\"end_location\":{\"lat\":25.22145,\"lng\":630.254},\"html_instructions\":\"Continue onto <b>Al Betrool</b>\",\"start_location\":{\"lat\":68.215,\"lng\":36.25412},\"travel_mode\":\"DRIVING\"}],\"Duration\":50.0}]"   ;
+            return finalCost;
         }
 
         private static void CalcWaitingTime(EndedTripInfo endedTripInfo, out decimal distance, out decimal waitTime,  JObject steps)
